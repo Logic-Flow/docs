@@ -1,7 +1,7 @@
 <p align="center">
   <a href="https://github.com/didi/LogicFlow" target="_blank">
     <img
-      src="http://logic-flow.org/new-logo.png"
+      src="./_images/logo.png"
       alt="LogicFlow logo"
       width="250"
     />
