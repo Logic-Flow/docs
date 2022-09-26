@@ -28,8 +28,8 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { computed, onMounted, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
 const src = computed(() => {
@@ -37,13 +37,13 @@ const src = computed(() => {
 });
 const project = ref(null);
 onMounted(() => {
-  project.value = 'ide-project';
+  project.value = "ide-project";
   const timer = setInterval(() => {
-    const urlDiv = document.querySelector('.urlDiv');
+    const urlDiv = document.querySelector(".urlDiv");
     const el = document
-      .querySelector('#ide-preview')
-      ?.shadowRoot?.querySelector('iframe')?.src;
-    if (el?.includes('playground-elements')) {
+      .querySelector("#ide-preview")
+      ?.shadowRoot?.querySelector("iframe")?.src;
+    if (el?.includes("playground-elements")) {
       urlDiv.innerText = el;
       clearInterval(timer);
     }
@@ -51,5 +51,5 @@ onMounted(() => {
 });
 </script>
 <style lang="scss" scoped>
-@import url('./style.scss');
+@import url("./style.scss");
 </style>

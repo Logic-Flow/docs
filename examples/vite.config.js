@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import examplesConfig from './scripts/rollup-plugin-config/rollup-plugin-config-json';
-import playgroundJson from './scripts/rollup-plugin-playground/rollup-plugin-playground-json';
-import viteImagemin from 'vite-plugin-imagemin';
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import examplesConfig from "./scripts/rollup-plugin-config/rollup-plugin-config-json";
+import playgroundJson from "./scripts/rollup-plugin-playground/rollup-plugin-playground-json";
+import viteImagemin from "vite-plugin-imagemin";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,10 +12,10 @@ export default defineConfig({
         compilerOptions: {
           isCustomElement: (tag) =>
             [
-              'playground-preview',
-              'playground-project',
-              'playground-file-editor',
-              'playground-tab-bar',
+              "playground-preview",
+              "playground-project",
+              "playground-file-editor",
+              "playground-tab-bar",
             ].includes(tag),
         },
       },
@@ -33,10 +33,10 @@ export default defineConfig({
       svgo: {
         plugins: [
           {
-            name: 'removeViewBox',
+            name: "removeViewBox",
           },
           {
-            name: 'removeEmptyAttrs',
+            name: "removeEmptyAttrs",
             active: false,
           },
         ],
@@ -56,5 +56,6 @@ export default defineConfig({
     port: 5000,
     strictPort: true,
     cors: true,
+    base: "/examples/",
   },
 });
