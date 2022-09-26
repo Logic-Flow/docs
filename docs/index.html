@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Documentation · LogicFlow</title>
-  <link href="//unpkg.com/docsify/themes/vue.css" rel="stylesheet">xx
+  <link href="//unpkg.com/docsify/themes/vue.css" rel="stylesheet">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
   
   <nav>
-    <a target="_blank" href="https://github.com/Logic-Flow/docs.logic-flow.cn">
+    <a target="_blank" href="https://github.com/didi/LogicFlow">
       <i class="fa fa-github fa-lg"></i> Github
     </a>
     <a target="_blank" href="https://github.com/Logic-Flow/docs.logic-flow.cn/examples/dist">
-      <i class="fa fa-puzzle-piece fa-lg"></i> Examples
+      <i class="fa fa-code fa-lg"></i> Examples
     </a>
   </nav>
 
@@ -22,15 +22,34 @@
 <script>
   window.$docsify = {
     name: 'LogicFlow',
+    repo: 'https://github.com/didi/LogicFlow',
     auto2top: true,
     coverpage: true,
     loadSidebar: true,
     alias: {
       '/en/.*/_sidebar.md': '/en/_sidebar.md',
-      '/zh-cn/.*/_sidebar.md': '/zh-cn/_sidebar.md'
+      '/zh/.*/_sidebar.md': '/zh/_sidebar.md'
+    },
+    search: 'auto',
+	// search: {
+    //     maxAge: 86400000,
+    //     paths: [],
+    //     placeholder: '请输入搜索关键字',
+    //     noData: '找不到哦～',
+    //     depth:2
+	// },
+    count:{
+        countable:true,
+        fontsize:'0.9em',
+        color:'rgb(90,90,90)',
+        language:'chinese'
     }
   }
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+<script src="//unpkg.com/docsify-count/dist/countable.js"></script>
 </body>
 </html>
