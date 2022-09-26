@@ -1,0 +1,55 @@
+div {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+        /* Chrome Safari */
+    }
+
+    scrollbar-width: none;
+    /* firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+}
+
+a {
+    display: block;
+    padding-left: 10px;
+    color: #000;
+    width: 100%;
+    line-height: 44px;
+    transition: 0.25s;
+
+    &:link {
+        text-decoration: none;
+    }
+
+    &:visited {
+        text-decoration: none;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:active {
+        text-decoration: none;
+    }
+}
+
+span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+strong {
+    padding-left: 5px;
+}
+
+p {
+    margin: 0px;
+}

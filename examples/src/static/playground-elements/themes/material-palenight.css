@@ -1,0 +1,28 @@
+.playground-theme-material-palenight {
+  --playground-code-background: rgb(41, 45, 62);
+  --playground-code-default-color: rgb(166, 172, 205);
+  --playground-code-cursor-color: rgb(255, 204, 0);
+  --playground-code-selection-background: rgba(113, 124, 180, 0.2);
+  --playground-code-gutter-background: rgb(41, 45, 62);
+  --playground-code-gutter-border-right: 0px;
+  --playground-code-linenumber-color: rgb(103, 110, 149);
+  --playground-code-atom-color: rgb(247, 140, 108);
+  --playground-code-attribute-color: rgb(199, 146, 234);
+  --playground-code-builtin-color: rgb(255, 203, 107);
+  --playground-code-comment-color: rgb(103, 110, 149);
+  --playground-code-def-color: rgb(130, 170, 255);
+  --playground-code-keyword-color: rgb(199, 146, 234);
+  --playground-code-meta-color: rgb(255, 203, 107);
+  --playground-code-number-color: rgb(255, 83, 112);
+  --playground-code-operator-color: rgb(137, 221, 255);
+  --playground-code-qualifier-color: rgb(222, 203, 107);
+  --playground-code-string-color: rgb(195, 232, 141);
+  --playground-code-string-2-color: rgb(240, 113, 120);
+  --playground-code-tag-color: rgb(255, 83, 112);
+  --playground-code-type-color: rgb(222, 203, 107);
+  --playground-code-variable-color: rgb(240, 113, 120);
+  --playground-code-variable-2-color: rgb(238, 255, 255);
+  --playground-code-variable-3-color: rgb(222, 203, 107);
+  --playground-code-callee-color: rgb(166, 172, 205);
+  --playground-code-property-color: rgb(199, 146, 234)
+}

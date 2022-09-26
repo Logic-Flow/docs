@@ -1,0 +1,18 @@
+{
+  "name": "例子集-3-3",
+  "key": "example-set-3-3",
+  "examples": [
+    {
+      "name": "自定义带有图标的节点-3-3",
+      "key": "custom-node-3-3"
+    },
+    {
+      "name": "使用vue自定义html节点-3-3",
+      "key": "vue-3-3"
+    },
+    {
+      "name": "html卡片-3-3",
+      "key": "html-card-3-3"
+    }
+  ]
+}

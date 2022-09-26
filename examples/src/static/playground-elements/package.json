@@ -1,0 +1,306 @@
+{
+  "name": "playground-elements",
+  "version": "0.16.3",
+  "description": "Serverless coding environments for the web",
+  "homepage": "https://github.com/google/playground-elements#readme",
+  "repository": "github:google/playground-elements",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "module": "playground-ide.js",
+  "main": "playground-ide.js",
+  "scripts": {
+    "prepare": "if [ -f './web-test-runner.config.js' ]; then cd node_modules/puppeteer && PUPPETEER_PRODUCT=firefox node install.js; fi",
+    "prepack": "wireit",
+    "update-version-module": "wireit",
+    "nuke": "npm run clean && rm -rf node_modules && npm install",
+    "upgrade": "rm -rf node_modules package-lock.json && npm install",
+    "build": "wireit",
+    "build:ts": "wireit",
+    "build:styles-module": "wireit",
+    "build:themes": "wireit",
+    "build:codemirror": "wireit",
+    "build:configurator": "wireit",
+    "build:typescript-module": "wireit",
+    "build:service-worker": "wireit",
+    "build:web-worker": "wireit",
+    "test": "wireit",
+    "test:wtr": "wireit",
+    "test:playwright": "wireit",
+    "lint": "wireit",
+    "lint:eslint": "wireit",
+    "serve": "npm run build && (npm run build --watch & web-dev-server --node-resolve --watch --open=configurator/)",
+    "format": "prettier --write .",
+    "lint:format": "prettier --check ."
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build:ts",
+        "build:themes",
+        "build:service-worker",
+        "build:web-worker",
+        "build:configurator",
+        "build:codemirror"
+      ]
+    },
+    "prepack": {
+      "dependencies": [
+        "update-version-module",
+        "build"
+      ]
+    },
+    "build:ts": {
+      "command": "tsc --build --pretty",
+      "clean": "if-file-deleted",
+      "dependencies": [
+        "build:styles-module",
+        "build:themes"
+      ],
+      "files": [
+        "tsconfig.json",
+        "src/**/tsconfig.json",
+        "src/**/*.ts"
+      ],
+      "output": [
+        "index-*.{js,d.ts,d.ts.map}",
+        "playground-*.{js,d.ts,d.ts.map}",
+        "!playground-service-worker-proxy.html",
+        "!playground-service-worker.js",
+        "!playground-typescript-worker.js",
+        "service-worker/**",
+        "typescript-worker/**",
+        "internal/**",
+        "!internal/typescript.js",
+        "shared/**",
+        "test/**",
+        "themes/**",
+        "!themes/**/*.css",
+        "configurator/**/*.{js,d.ts,d.ts.map}",
+        "!configurator/playground-service-worker.js",
+        "!configurator/deploy/**",
+        ".tsbuildinfo"
+      ]
+    },
+    "build:styles-module": {
+      "command": "FORCE_COLOR=1 rollup -c rollup.config.styles.js",
+      "files": [
+        "playground-styles.css",
+        "rollup.config.styles.js"
+      ],
+      "output": [
+        "src/playground-styles.ts"
+      ]
+    },
+    "build:themes": {
+      "command": "node scripts/theme-generator.js",
+      "files": [
+        "scripts/theme-generator.js"
+      ],
+      "output": [
+        "themes/**/*.css",
+        "src/themes/**/*.css.ts",
+        "src/configurator/themes.ts"
+      ]
+    },
+    "build:typescript-module": {
+      "command": "FORCE_COLOR=1 rollup -c rollup.config.typescript.js",
+      "files": [
+        "rollup.config.typescript.js"
+      ],
+      "output": [
+        "internal/typescript.js"
+      ]
+    },
+    "build:service-worker": {
+      "command": "FORCE_COLOR=1 rollup -c rollup.config.service-worker.js",
+      "dependencies": [
+        "build:ts"
+      ],
+      "files": [
+        "rollup.config.service-worker.js",
+        "rollup.config.common.js"
+      ],
+      "output": [
+        "playground-service-worker-proxy.html",
+        "playground-service-worker.js"
+      ]
+    },
+    "build:web-worker": {
+      "command": "FORCE_COLOR=1 rollup -c rollup.config.web-worker.js",
+      "dependencies": [
+        "build:ts",
+        "build:typescript-module"
+      ],
+      "files": [
+        "rollup.config.web-worker.js",
+        "rollup.config.common.js"
+      ],
+      "output": [
+        "playground-typescript-worker.js"
+      ]
+    },
+    "build:codemirror": {
+      "command": "FORCE_COLOR=1 rollup -c rollup.config.codemirror.js",
+      "files": [
+        "rollup.config.codemirror.js",
+        "rollup.config.common.js",
+        "src/_codemirror/codemirror-bundle.js"
+      ],
+      "output": [
+        "_codemirror/codemirror-bundle.js"
+      ]
+    },
+    "build:configurator": {
+      "command": "FORCE_COLOR=1 rollup -c rollup.config.configurator.js",
+      "dependencies": [
+        "build:ts",
+        "build:service-worker",
+        "build:web-worker",
+        "build:codemirror"
+      ],
+      "files": [
+        "rollup.config.configurator.js",
+        "configurator/**",
+        "!configurator/deploy/**"
+      ],
+      "output": [
+        "configurator/deploy/**"
+      ]
+    },
+    "test": {
+      "dependencies": [
+        "test:wtr",
+        "test:playwright"
+      ]
+    },
+    "test:wtr": {
+      "command": "wtr",
+      "dependencies": [
+        "build:ts",
+        "build:service-worker",
+        "build:web-worker",
+        "build:codemirror"
+      ],
+      "files": [
+        "web-test-runner.config.js"
+      ],
+      "output": []
+    },
+    "test:playwright": {
+      "command": "playwright test",
+      "dependencies": [
+        "build:ts",
+        "build:service-worker",
+        "build:web-worker",
+        "build:codemirror"
+      ],
+      "files": [
+        "playwright.config.ts"
+      ],
+      "output": []
+    },
+    "update-version-module": {
+      "command": "node scripts/update-version-module.js",
+      "dependencies": [
+        "build:service-worker"
+      ],
+      "files": [
+        "scripts/update-version-module.js",
+        "package.json"
+      ],
+      "clean": false,
+      "output": [
+        "src/shared/version.ts"
+      ]
+    },
+    "lint": {
+      "dependencies": [
+        "lint:eslint",
+        "lint:format"
+      ]
+    },
+    "lint:eslint": {
+      "command": "eslint --color --cache --cache-location .eslintcache .",
+      "files": [
+        ".eslintignore",
+        ".eslintrc.json",
+        "playwright.config.ts",
+        "scripts/**/*.js",
+        "src/**/*.{ts,js}",
+        "!src/themes/**"
+      ],
+      "output": []
+    }
+  },
+  "files": [
+    "_codemirror/",
+    "images/",
+    "index.{js,d.ts,d.ts.map}",
+    "playground-code-editor.{js,d.ts,d.ts.map}",
+    "playground-connected-element.{js,d.ts,d.ts.map}",
+    "playground-file-editor.{js,d.ts,d.ts.map}",
+    "playground-file-system-controls.{js,d.ts,d.ts.map}",
+    "playground-ide.{js,d.ts,d.ts.map}",
+    "playground-preview.{js,d.ts,d.ts.map}",
+    "playground-project.{js,d.ts,d.ts.map}",
+    "playground-tab-bar.{js,d.ts,d.ts.map}",
+    "playground-service-worker-proxy.html",
+    "playground-service-worker.js",
+    "playground-typescript-worker.js",
+    "playground-styles.{css,js,d.ts,d.ts.map}",
+    "internal/**/*.{js,d.ts,d.ts.map}",
+    "shared/**/*.{js,d.ts,d.ts.map}",
+    "themes/*.css",
+    "themes/*.css.{js,d.ts,d.ts.map}"
+  ],
+  "devDependencies": {
+    "@esm-bundle/chai": "^4.1.5",
+    "@material/mwc-dialog": "^0.25.1",
+    "@playwright/test": "^1.15.1",
+    "@rollup/plugin-commonjs": "^21.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@types/semver": "^7.3.6",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "@web/dev-server": "^0.1.4",
+    "@web/test-runner": "^0.13.4",
+    "@web/test-runner-playwright": "^0.8.0",
+    "@web/test-runner-puppeteer": "^0.10.0",
+    "clean-css": "^5.1.2",
+    "codemirror": "=5.63.0",
+    "codemirror-grammar-mode": "^0.1.10",
+    "es-module-lexer": "^0.9.3",
+    "eslint": "^7.31.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-no-only-tests": "^2.6.0",
+    "google_modes": "git+https://github.com/codemirror/google-modes.git#e4725332b9bba4c3418f29a28f3042799d559e76",
+    "playwright": "^1.15.1",
+    "prettier": "^2.0.5",
+    "rollup": "^2.21.0",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-lit-css": "^3.0.2",
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "rollup-plugin-summary": "^1.2.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "semver": "^7.3.5",
+    "tsc-watch": "^4.2.3",
+    "typescript": "^4.4.3",
+    "wireit": "^0.7.1"
+  },
+  "dependencies": {
+    "@material/mwc-button": "^0.26.1",
+    "@material/mwc-icon-button": "^0.26.1",
+    "@material/mwc-linear-progress": "^0.26.1",
+    "@material/mwc-list": "^0.26.1",
+    "@material/mwc-menu": "^0.26.1",
+    "@material/mwc-textfield": "^0.26.1",
+    "@types/codemirror": "^5.60.0",
+    "comlink": "=4.3.1",
+    "fuse.js": "^6.4.6",
+    "lit": "^2.0.0",
+    "tslib": "^2.0.3",
+    "vscode-languageserver": "^7.0.0"
+  }
+}

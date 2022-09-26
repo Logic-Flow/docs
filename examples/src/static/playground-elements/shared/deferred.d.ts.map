@@ -1,0 +1,1 @@
+{"version":3,"file":"deferred.d.ts","sourceRoot":"","sources":["../src/shared/deferred.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH,qBAAa,QAAQ,CAAC,CAAC;IACrB,QAAQ,CAAC,OAAO,EAAE,OAAO,CAAC,CAAC,CAAC,CAAC;IAC7B,OAAO,CAAC,QAAQ,CAAsB;IACtC,OAAO,CAAC,OAAO,CAA8B;IAC7C,OAAO,UAAS;;IAShB,OAAO,CAAC,KAAK,EAAE,CAAC;IAKhB,MAAM,CAAC,MAAM,EAAE,OAAO;CAIvB"}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Documentation · LogicFlow</title>
+  <link href="//unpkg.com/docsify/themes/vue.css" rel="stylesheet">xx
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+  
+  <nav>
+    <a target="_blank" href="https://github.com/Logic-Flow/docs.logic-flow.cn">
+      <i class="fa fa-github fa-lg"></i> Github
+    </a>
+    <a target="_blank" href="https://github.com/Logic-Flow/docs.logic-flow.cn/examples/dist">
+      <i class="fa fa-puzzle-piece fa-lg"></i> Examples
+    </a>
+  </nav>
+
+  <div id="app"></div>
+  
+<script>
+  window.$docsify = {
+    name: 'LogicFlow',
+    auto2top: true,
+    coverpage: true,
+    loadSidebar: true,
+    alias: {
+      '/en/.*/_sidebar.md': '/en/_sidebar.md',
+      '/zh-cn/.*/_sidebar.md': '/zh-cn/_sidebar.md'
+    }
+  }
+</script>
+<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+</body>
+</html>

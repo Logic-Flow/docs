@@ -1,0 +1,226 @@
+.rem-17 {
+    width: 17rem;
+}
+
+.rem-0 {
+    width: 27px;
+}
+
+.menu-wrap {
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+    background: #fff;
+}
+
+.menu {
+    height: 100%;
+    overflow: scroll;
+    background-color: #fff;
+    color: #000;
+    border-right: 1px solid #ccc;
+
+    .menu-search-wrap {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 10px 0px;
+        .menu-search {
+            display: flex;
+            border-radius: 3px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+        .menu-search-icon {
+            margin: 0px 5px;
+        }
+        .menu-search-input {
+            outline-style: none;
+            border: none;
+            border-radius: 3px;
+            background-color: #fff;
+            color: #000;
+        }
+
+        .menu-search-fold {
+            cursor: pointer;
+        }
+    }
+
+    .menu-item {
+        overflow: hidden;
+        transition: 0.25s;
+    }
+
+    .topic {
+        height: 40px;
+        padding: 0px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        transition: 0.25s;
+        background-color: #fff;
+    }
+
+    .examples-wrap {
+        background-color: #f9f9f9;
+        transition: 0.3s;
+        overflow: hidden;
+
+        div {
+            width: 100%;
+            transition: 0.25s;
+        }
+
+        .examples {
+            min-height: 44px;
+            color: #000;
+        }
+
+        .item-active {
+            background: #cae4ff;
+            box-shadow: inset -5px 0px #214393;
+        }
+
+        .sub-title {
+            display: flex;
+            height: 50px;
+            align-items: center;
+            justify-content: space-between;
+            :first-child {
+                padding-left: 15px;
+            }
+            .fold-icon {
+                right: 20px;
+            }
+        }
+
+        .sub-items {
+            flex-direction: column;
+            background-color: #f3f3f3;
+            a {
+                display: flex;
+                img {
+                    display: inline-block;
+                }
+            }
+            .sub-item {
+                transition: 0.25s;
+                padding: 8px 0px;
+            }
+        }
+
+        .with-thumbnail {
+            display: flex;
+            flex-direction: column;
+            overflow: scroll;
+        }
+    }
+}
+
+.hover-bkg {
+    &:hover {
+        background-color: #eef7ff;
+    }
+}
+.hover-font {
+    &:hover {
+        color: #306eff;
+    }
+}
+
+.fold-tool {
+    background-color: #fff;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    border-radius: 0px 6px 6px 0px;
+    padding: 0px 10px 0px 0px;
+    color: #000;
+    border: 1px solid #ccc;
+    border-left: none;
+    position: relative;
+    right: 1px;
+    transition: 0.25s;
+}
+
+.fold-tool-transform {
+    transform: rotate3d(0, 0, 1, 180deg) translate(-10px, 0px);
+}
+
+.fold-icon-collapse {
+    .fold-icon {
+        // opacity: 0;
+        &::after {
+            // transform: translateX(2.5px) rotate(45deg);
+            transform: translate(-6px, 0px);
+        }
+        &::before {
+            // transform: translateX(-1.5px) rotate(-45deg);
+            transform: translate(-8px, 0px);
+        }
+    }
+}
+
+.fold-icon-open {
+    .fold-icon {
+        // opacity: 1;
+        &::after {
+            // transform: translate(1px, 2.5px);
+            transform: translate(-2px, 0px) rotate(90deg);
+            // transform: translateX(2.5px) rotate(-45deg);
+        }
+        &::before {
+            // transform: translate(-14px, 2.5px);
+            transform: translate(-12px, 0px) rotate(-90deg);
+            // transform: translateX(-1.5px) rotate(45deg);
+        }
+    }
+}
+
+.fold-icon {
+    text-align: right;
+    position: relative;
+    right: 10px;
+    &::after {
+        transition: 0.25s;
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 1.5px;
+        background-color: #314659;
+    }
+    &::before {
+        transition: 0.25s;
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 1.5px;
+        background-color: #314659;
+    }
+}
+
+.thumbnail-active {
+    .thumbnail {
+        border: 1px solid #587ef1;
+    }
+}
+
+.thumbnail {
+    height: 100px;
+    display: block;
+    margin-left: 10px;
+    border: 1px solid transparent;
+}
+
+.selected {
+    &:first-child {
+        color: #306eff;
+    }
+}
+
+.filter-font {
+    padding-left: 0px !important;
+    color: #306eff;
+}

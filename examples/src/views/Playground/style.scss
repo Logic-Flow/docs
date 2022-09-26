@@ -1,0 +1,25 @@
+.ide {
+    display: flex;
+}
+.preview {
+    flex: 2;
+}
+.editor {
+    flex: 1.5;
+}
+.urlDiv {
+    position: absolute;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+div {
+    height: 100%;
+    overflow: scroll;
+}
+#ide-preview {
+    height: 100%;
+}
+#ide-editor {
+    height: 100%;
+}

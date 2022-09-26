@@ -1,0 +1,34 @@
+{
+  "name": "playgroundex",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "dev:screenshot": "vite & node scripts/screenshot.js "
+  },
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^14.1.0",
+    "lit": "^2.3.1",
+    "lodash": "^4.17.21",
+    "playground-elements": "^0.16.3",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.1.0",
+    "lit": "^2.3.1",
+    "nodemon": "^2.0.19",
+    "ora": "^5.4.1",
+    "puppeteer": "^17.1.3",
+    "rollup-plugin-visualizer": "^5.8.1",
+    "sass": "^1.54.9",
+    "vite": "^3.1.0",
+    "vite-plugin-imagemin": "^0.6.1"
+  },
+  "resolutions": {
+    "bin-wrapper": "npm:bin-wrapper-china"
+  }
+}
