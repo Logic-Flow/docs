@@ -1388,6 +1388,11 @@ error-ex@^1.2.0:
   dependencies:
     is-arrayish "^0.2.1"
 
+es-module-lexer@^0.6.0:
+  version "0.6.0"
+  resolved "http://artifactory.intra.xiaojukeji.com/artifactory/api/npm/npm/es-module-lexer/-/es-module-lexer-0.6.0.tgz?dl=https%3A%2F%2Fregistry.npmmirror.com%2Fes-module-lexer%2F-%2Fes-module-lexer-0.6.0.tgz#e72ab05b7412e62b9be37c37a09bdb6000d706f0"
+  integrity sha1-5yqwW3QS5iub43w3oJvbYADXBvA=
+
 esbuild-android-64@0.14.54:
   version "0.14.54"
   resolved "http://artifactory.intra.xiaojukeji.com/artifactory/api/npm/npm/esbuild-android-64/-/esbuild-android-64-0.14.54.tgz?dl=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-android-64%2F-%2Fesbuild-android-64-0.14.54.tgz#505f41832884313bbaffb27704b8bcaa2d8616be"
@@ -3722,6 +3727,13 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+vite-plugin-dynamic-publicpath@^1.1.2:
+  version "1.1.2"
+  resolved "http://artifactory.intra.xiaojukeji.com/artifactory/api/npm/npm/vite-plugin-dynamic-publicpath/-/vite-plugin-dynamic-publicpath-1.1.2.tgz?dl=https%3A%2F%2Fregistry.npmmirror.com%2Fvite-plugin-dynamic-publicpath%2F-%2Fvite-plugin-dynamic-publicpath-1.1.2.tgz#bef4ccf56d500b9414653a92cd5783f152a5fd9e"
+  integrity sha1-vvTM9W1QC5QUZTqSzVeD8VKl/Z4=
+  dependencies:
+    es-module-lexer "^0.6.0"
 
 vite-plugin-imagemin@^0.6.1:
   version "0.6.1"

@@ -3,10 +3,11 @@ import vue from "@vitejs/plugin-vue";
 import examplesConfig from "./scripts/rollup-plugin-config/rollup-plugin-config-json";
 import playgroundJson from "./scripts/rollup-plugin-playground/rollup-plugin-playground-json";
 import viteImagemin from "vite-plugin-imagemin";
+// import { useDynamicPublicPath } from "vite-plugin-dynamic-publicpath";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // base: "/docs.logic-flow.cn/",
+  base: "/docs.logic-flow.cn/",
   plugins: [
     vue({
       template: {
@@ -23,6 +24,7 @@ export default defineConfig({
     }),
     examplesConfig(),
     playgroundJson(),
+    // useDynamicPublicPath(),
     viteImagemin({
       optipng: {
         optimizationLevel: 7,
