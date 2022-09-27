@@ -31,7 +31,7 @@
               <img
                 draggable="false"
                 class="thumbnail"
-                :src="`/screenshots/${example.key}.png`"
+                :src="screenshots(example.key)"
               />
             </a>
           </div>
@@ -50,9 +50,10 @@
 </template>
 
 <script setup>
-import { inject, computed } from 'vue';
-import { useRouter } from 'vue-router';
-import CollapseTransition from '../SideBarTransition/transition.vue';
+import { inject, computed } from "vue";
+import { useRouter } from "vue-router";
+import CollapseTransition from "../SideBarTransition/transition.vue";
+// import { getScreenshot } from "../../utils";
 
 const router = useRouter();
 
@@ -62,8 +63,8 @@ const props = defineProps({
     default: () => {
       return [
         {
-          key: '',
-          name: '',
+          key: "",
+          name: "",
           examples: [],
         },
       ];
@@ -71,14 +72,15 @@ const props = defineProps({
   },
 });
 
-const config = inject('config');
+const config = inject("config");
 const type = computed(() => {
-  return inject('type').value;
+  return inject("type").value;
 });
-const tools = inject('tools');
-const menuItemEvents = inject('menuItemEvents');
-const animations = inject('animations');
-const inputValue = inject('inputValue');
+const tools = inject("tools");
+const menuItemEvents = inject("menuItemEvents");
+const animations = inject("animations");
+const inputValue = inject("inputValue");
+const screenshots = inject("screenshots");
 
 const handleAtagClick = (name, id) => {
   tools.goAnchor(id);
@@ -90,5 +92,5 @@ const handleAtagClick = (name, id) => {
 // };
 </script>
 <style lang="scss" scoped>
-@import './scoped.scss';
+@import "./scoped.scss";
 </style>

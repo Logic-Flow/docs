@@ -1,19 +1,22 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import { provide, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { provide, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 
-import MenuVue from './components/SideBar/Menu.vue';
-import config from '../examples/config.json';
+import MenuVue from "./components/SideBar/Menu.vue";
+import config from "../examples/config.json";
+import { getScreenshots } from "./utils";
 
 const route = useRoute();
-const type = ref('withoutThumbnail');
+const type = ref("withoutThumbnail");
+const screenshots = getScreenshots();
 watch(() => [
-  (type.value = route.name === 'Playground' ? 'thumbnail' : 'withoutThumbnail'),
+  (type.value = route.name === "Playground" ? "thumbnail" : "withoutThumbnail"),
 ]);
-provide('originConfig', config.topic);
-provide('type', type);
+provide("originConfig", config.topic);
+provide("type", type);
+provide("screenshots", screenshots);
 </script>
 
 <template>

@@ -31,9 +31,11 @@
 import { computed, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
-const router = useRouter();
 const src = computed(() => {
-  return `/playground_json/${route.hash.slice(1)}.playground.json`;
+  // return route.hash.slice(1);
+  return `/docs.logic-flow.cn/examples/dist/playground_json/${route.hash.slice(
+    1
+  )}.playground.json`;
 });
 const project = ref(null);
 onMounted(() => {

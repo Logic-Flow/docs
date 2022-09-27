@@ -17,10 +17,7 @@
             @click="jumpTo(example.key)"
           >
             <div class="case-thumbnail">
-              <img
-                :src="`/screenshots/${example.key}.png`"
-                :alt="example.key"
-              />
+              <img :src="screenshots(example.key)" :alt="example.key" />
             </div>
             <div class="case-name">{{ example.name }}</div>
           </div>
@@ -31,19 +28,20 @@
 </template>
 
 <script setup>
-import { inject } from 'vue';
-import { useRouter } from 'vue-router';
+import { inject } from "vue";
+import { useRouter } from "vue-router";
 const router = useRouter();
 const jumpTo = (hash) => {
-  type.value = 'thumbnail';
+  type.value = "thumbnail";
   router.push({
-    name: 'Playground',
+    name: "Playground",
     hash: `#${hash}`,
   });
 };
-const config = inject('originConfig');
-const type = inject('type');
+const config = inject("originConfig");
+const type = inject("type");
+const screenshots = inject("screenshots");
 </script>
 <style lang="scss" scoped>
-@import './style.scss';
+@import "./style.scss";
 </style>
