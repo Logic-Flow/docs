@@ -13,6 +13,8 @@ cd dist
 
 # 如果你要部署到自定义域名
 # echo 'www.example.com' > CNAME
+git config --global user.email "1059037014@qq.com"
+git config --global user.name "wumail"
 
 git checkout master
 git add -A
