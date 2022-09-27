@@ -44,7 +44,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    assetsDir: "./",
+    // assetsDir: "./",
     // rollupOptions: {
     //   output: {
     //     manualChunks: {
