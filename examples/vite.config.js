@@ -6,6 +6,7 @@ import viteImagemin from "vite-plugin-imagemin";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // base: "/docs.logic-flow.cn/",
   plugins: [
     vue({
       template: {
@@ -57,6 +58,5 @@ export default defineConfig({
     port: 5000,
     strictPort: true,
     cors: true,
-    base: "/docs.logic-flow.cn/",
   },
 });
