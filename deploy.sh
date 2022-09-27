@@ -3,12 +3,6 @@
 # 发生错误时终止
 set -e
 
-# git checkout master
-git add .
-git commit -m "auto push while deploying"
-
-git push
-
 cd examples
 
 # 构建
