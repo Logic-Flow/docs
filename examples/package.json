@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode production",
     "build": "vite build",
     "preview": "vite preview",
-    "dev:screenshot": "vite & node scripts/screenshot.js "
+    "dev:screenshot": "vite --mode development & node --unhandled-rejections=strict scripts/screenshot.js && exit 0 && vite --mode production"
   },
   "dependencies": {
     "@rollup/plugin-node-resolve": "^14.1.0",

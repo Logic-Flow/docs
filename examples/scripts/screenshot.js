@@ -1,11 +1,11 @@
-import fs from 'fs';
-import path from 'path';
-import ora from 'ora';
-const spinner = ora({ text: 'wait a minute...' });
+import fs from "fs";
+import path from "path";
+import ora from "ora";
+const spinner = ora({ text: "wait a minute..." });
 
-import puppeteer from 'puppeteer';
+import puppeteer from "puppeteer";
 
-const port = '5000';
+const port = "5000";
 
 const waitTime = (time = 100) => {
   return new Promise((resolve) => {
@@ -38,8 +38,8 @@ function findPath(data) {
 }
 
 async function scrape() {
-  const browser = await puppeteer.launch({ headless: false });
-  const p = path.resolve('playgroundEx', '../examples/config.json');
+  const browser = await puppeteer.launch({ headless: true });
+  const p = path.resolve("playgroundEx", "../examples/config.json");
   const config = JSON.parse(fs.readFileSync(p));
   const examples = findPath(config.topic);
   for (const example of examples) {
@@ -53,14 +53,14 @@ async function scrape() {
         deviceScaleFactor: 1,
       });
       await page.goto(
-        `http://127.0.0.1:${port}/#/examples/playground/#${example}`,
+        `http://127.0.0.1:${port}/docs.logic-flow.cn/examples/dist/#/playground#${example}`
       );
       await waitTime(4000);
-      const rs = await page.$eval('.urlDiv', (el) => el.textContent);
+      const rs = await page.$eval(".urlDiv", (el) => el.textContent);
       const iframe = await browser.newPage();
       await iframe.goto(rs);
       await iframe.screenshot({
-        path: `public/screenshots/${example}.png`,
+        path: `src/screenshots/${example}.png`,
       });
       await page.close();
       spinner.succeed(`Screenshot of ${example} saved!`);

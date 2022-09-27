@@ -29,10 +29,9 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 const route = useRoute();
 const src = computed(() => {
-  // return route.hash.slice(1);
   return `/docs.logic-flow.cn/examples/dist/playground_json/${route.hash.slice(
     1
   )}.playground.json`;

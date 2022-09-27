@@ -17,7 +17,7 @@
             @click="jumpTo(example.key)"
           >
             <div class="case-thumbnail">
-              <img :src="screenshots(example.key)" :alt="example.key" />
+              <img :src="handleSrc(example.key)" :alt="example.key" />
             </div>
             <div class="case-name">{{ example.name }}</div>
           </div>
@@ -41,6 +41,11 @@ const jumpTo = (hash) => {
 const config = inject("originConfig");
 const type = inject("type");
 const screenshots = inject("screenshots");
+const handleSrc = (name) => {
+  return import.meta.env.MODE === "production"
+    ? screenshots(name)
+    : `src/screenshots/${name}.png`;
+};
 </script>
 <style lang="scss" scoped>
 @import "./style.scss";

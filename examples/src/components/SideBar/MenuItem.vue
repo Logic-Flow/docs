@@ -31,7 +31,7 @@
               <img
                 draggable="false"
                 class="thumbnail"
-                :src="screenshots(example.key)"
+                :src="handleSrc(example.key)"
               />
             </a>
           </div>
@@ -81,6 +81,11 @@ const menuItemEvents = inject("menuItemEvents");
 const animations = inject("animations");
 const inputValue = inject("inputValue");
 const screenshots = inject("screenshots");
+const handleSrc = (name) => {
+  return import.meta.env.MODE === "production"
+    ? screenshots(name)
+    : `src/screenshots/${name}.png`;
+};
 
 const handleAtagClick = (name, id) => {
   tools.goAnchor(id);

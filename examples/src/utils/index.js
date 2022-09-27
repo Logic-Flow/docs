@@ -6,22 +6,16 @@ export const TypeOf = (target, type) => {
 };
 
 export const getScreenshots = () => {
-  // const modules = import.meta.globEager("/public/screenshots/*.png", {
-  //   eager: true,
-  // });
-  const modules = import.meta.globEager("/public/screenshots/*.png");
-  // return modules[path].default;
-  return (name) => {
-    const path = `/public/screenshots/${name}.png`;
-    return modules[path].default;
-  };
-  const fn = async (name) => {
-    const path = `/public/screenshots/${name}.png`;
-    const res = await modules[path]();
-    console.log(res, res.default);
-    return res.default;
-  };
-  return (name) => {
-    return fn(name);
-  };
+  const mode = import.meta.env.MODE;
+  if (mode === "development") {
+    return (name) => {
+      return `/src/screenshots/${name}.png`;
+    };
+  } else {
+    const modules = import.meta.globEager("/src/screenshots/*.png");
+    return (name) => {
+      const path = `/src/screenshots/${name}.png`;
+      return modules[path].default;
+    };
+  }
 };
