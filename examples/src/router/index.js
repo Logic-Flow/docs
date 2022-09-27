@@ -1,20 +1,20 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
   {
-    path: '/',
-    name: 'Index',
-    redirect: 'examples/gallery',
+    path: "/",
+    name: "Index",
+    redirect: "/gallery",
     children: [
       {
-        path: '/examples/gallery',
-        name: 'Gallery',
-        component: () => import('../views/Gallery/index.vue'),
+        path: "/gallery",
+        name: "Gallery",
+        component: () => import("../views/Gallery/index.vue"),
       },
       {
-        path: '/examples/playground',
-        name: 'Playground',
-        component: () => import('../views/Playground/index.vue'),
+        path: "/playground",
+        name: "Playground",
+        component: () => import("../views/Playground/index.vue"),
       },
     ],
   },

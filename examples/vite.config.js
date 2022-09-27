@@ -46,9 +46,10 @@ export default defineConfig({
   // build: {
   //   rollupOptions: {
   //     output: {
-  //       manualChunks: {
-  //         'playground-elements': ['playground-elements'],
-  //       },
+  //       // dir: "/assets",
+  //       // manualChunks: {
+  //       //   "playground-elements": ["playground-elements"],
+  //       // },
   //     },
   //   },
   // },
