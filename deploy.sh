@@ -3,11 +3,13 @@
 # 发生错误时终止
 set -e
 
+cd examples
+
 # 构建
-# npm run build
+npm run build
 
 # 进入构建文件夹
-cd examples/dist
+cd dist
 
 # 如果你要部署到自定义域名
 # echo 'www.example.com' > CNAME
