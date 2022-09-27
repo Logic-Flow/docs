@@ -7,7 +7,7 @@ set -e
 # npm run build
 
 # 进入构建文件夹
-cd docs
+cd examples/dist
 
 # 如果你要部署到自定义域名
 # echo 'www.example.com' > CNAME
