@@ -6,6 +6,7 @@ set -e
 cd examples
 
 # 构建
+npm install vite
 npm run build
 
 # 进入构建文件夹
