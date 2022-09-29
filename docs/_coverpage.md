@@ -12,8 +12,23 @@
 [![npm download][npm-dl-img]][npm-url]
 [![license][license-img]][license-url]
 
+<div style="display: flex;justify-content: space-between;width:60%;margin: 0 auto;">
+  <div style="width: 33%">
+    <font size=5>🛠 高拓展性</font>
+    <p>兼容各种产品自定义的流程编辑需求，绝大部分模块以插件的形式实现，支持各模块自由插拔。</p>
+  </div>
+  <div style="width: 33%">
+    <font size=5>🚀 重执行</font>
+    <p><font size=>流程图能完备的表达业务逻辑，不受流程引擎限制。</font></p>
+  </div>
+  <div>
+    <font size=5>🎯 专业</font>
+    <p>专注于业务自定义的流程图编辑框架。</p>
+  </div>
+</div>
+
 [GitHub](https://github.com/didi/LogicFlow)
-[Get Started](README)
+[Get Started](zh/guide/start.md)
 
 [npm-url]: https://www.npmjs.com/package/@logicflow/core
 [npm-v-img]: https://img.shields.io/npm/v/@logicflow/core

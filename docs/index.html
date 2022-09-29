@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Documentation · LogicFlow</title>
   <link rel="icon" type="image/svg+xml" href="./_images/logo.svg" />
+  <link href="./style/common.css" rel="stylesheet">
   <link href="//unpkg.com/docsify/themes/vue.css" rel="stylesheet">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
@@ -14,31 +15,34 @@
       <i class="fa fa-github fa-lg"></i> Github
     </a>
     <a target="_blank" href="https://logic-flow.github.io/docs.logic-flow.cn/examples/dist">
-      <i class="fa fa-code fa-lg"></i> Examples
+      <i class="fa fa-code fa-lg"></i> 示例
     </a>
   </nav>
 
-  <div id="app"></div>
+  <div id="app">
+    <img src="./_images/1485.gif" />
+    <span style="font-weight: bold;">加载中...</span>
+  </div>
   
 <script>
   window.$docsify = {
     name: 'LogicFlow',
     repo: 'https://github.com/didi/LogicFlow',
+    logo: './_images/horizontal-logo.png width=200',
+    formatUpdated: '{YYYY}/{MM}/{DD}',
+    onlyCover: true,
     auto2top: true,
     coverpage: true,
+    loadNavbar: true,
     loadSidebar: true,
-    alias: {
-      '/en/.*/_sidebar.md': '/en/_sidebar.md',
-      '/zh/.*/_sidebar.md': '/zh/_sidebar.md'
+    subMaxLevel: 2,
+    search: {
+          maxAge: 86400000,
+          paths: [],
+          placeholder: '请输入搜索关键字',
+          noData: '找不到哦～',
+          depth:2
     },
-    search: 'auto',
-	// search: {
-    //     maxAge: 86400000,
-    //     paths: [],
-    //     placeholder: '请输入搜索关键字',
-    //     noData: '找不到哦～',
-    //     depth:2
-	// },
     count:{
         countable:true,
         fontsize:'0.9em',
@@ -49,9 +53,9 @@
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
 <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
 </body>
 </html>
 
