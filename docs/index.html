@@ -15,8 +15,10 @@
       <i class="fa fa-github fa-lg"></i> Github
     </a>
     <a target="_blank" href="https://logic-flow.github.io/docs.logic-flow.cn/examples/dist">
-      <i class="fa fa-code fa-lg"></i> 示例
+      <i class="fa fa-puzzle-piece fa-lg"></i> examples
     </a>
+    <a href="#/en/">EN</a>
+    <a href="#/zh/">中文</a>
   </nav>
 
   <div id="app">
@@ -29,18 +31,28 @@
     name: 'LogicFlow',
     repo: 'https://github.com/didi/LogicFlow',
     logo: './_images/horizontal-logo.png width=200',
+    nameLink: {
+      '/zh/': '#/zh/',
+      '/en/': '#/en/',
+    },
     formatUpdated: '{YYYY}/{MM}/{DD}',
     onlyCover: true,
     auto2top: true,
-    coverpage: true,
+    coverpage: ['/en/', '/zh/'],
     loadNavbar: true,
     loadSidebar: true,
     subMaxLevel: 2,
     search: {
           maxAge: 86400000,
           paths: [],
-          placeholder: '请输入搜索关键字',
-          noData: '找不到哦～',
+          placeholder: {
+            '/zh/': '请输入搜索关键字',
+            '/en/': 'Type to search'
+          },
+          noData: {
+            '/zh/': '找不到结果',
+            '/en/': 'No Results'
+          },
           depth:2
     },
     count:{
