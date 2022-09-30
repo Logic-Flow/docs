@@ -28,6 +28,7 @@
   </div>
   
 <script>
+  const language = navigator.language
   window.$docsify = {
     name: 'LogicFlow',
     repo: 'https://github.com/didi/LogicFlow',
@@ -39,7 +40,12 @@
     formatUpdated: '{YYYY}/{MM}/{DD}',
     onlyCover: true,
     auto2top: true,
-    coverpage: ['/en/', '/zh/'],
+    // coverpage: ['/en/', '/zh/'],
+    coverpage: {
+    '/': `./${language === 'zh-CN' ? 'zh' : 'en'}/_coverpage.md`,
+    '/zh/': './zh/_coverpage.md',
+    '/en/': './en/_coverpage.md'
+  },
     loadNavbar: true,
     loadSidebar: true,
     subMaxLevel: 2,
