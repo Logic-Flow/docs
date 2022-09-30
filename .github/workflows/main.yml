@@ -1,30 +1,46 @@
-# This is a basic workflow to help you get started with Actions
+name: docs
 
-name: CI
+on: [push]
 
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  deploy:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    if: github.ref == 'refs/heads/master'
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: sh deploy.sh
+      - name: Use node v16
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+
+      - name: load dependences
+        run: |
+          npm run bootstrap
+
+      - name: generate static file
+        run: |
+          npm run build:types
+          npm run docs:build
+          npm run build
+          rm -rf ./deploy
+          mkdir -p deploy/examples
+          cp -rf ./docs/.vuepress/dist/* ./deploy
+          cp -rf ./examples/build/* ./deploy/examples
+
+      - name: generate mvp
+        run: |
+          cd ./site/mvp
+          npm install
+          npm run build
+          cd ../../
+          mkdir -p deploy/mvp
+          cp -rf ./site/mvp/dist/* ./deploy/mvp
+
+      - name: deploy to github pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          force_orphan: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./deploy
+          cname: logic-flow.org

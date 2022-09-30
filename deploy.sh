@@ -7,7 +7,9 @@ if branch=$(git symbolic-ref --short -q HEAD)
 then
     echo $branch
     cd examples
-    npm run build
+    npm install yarn
+    yarn
+    yarn build
     cd -
     git add -A
     git commit -m "auto push while running deploy.sh"
