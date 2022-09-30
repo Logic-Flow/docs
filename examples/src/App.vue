@@ -27,13 +27,21 @@ provide("screenshots", screenshots);
   </div>
 </template>
 
-<style>
+<style lang="scss">
 body,
 html {
   width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
+}
+.wrap {
+  height: 100%;
+  width: 100%;
+  .header {
+    width: 100%;
+    height: 5%;
+  }
 }
 .container {
   width: 100%;

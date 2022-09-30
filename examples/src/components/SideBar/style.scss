@@ -23,8 +23,32 @@
     .menu-search-wrap {
         display: flex;
         justify-content: space-around;
+        flex-direction: column;
         align-items: center;
-        margin: 10px 0px;
+        margin: 0px 0px 10px 0px;
+        .menu-header {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            div {
+                margin: 0px 15px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+            img {
+                height: 24px;
+            }
+        }
+        .menu-sh {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        }
         .menu-search {
             display: flex;
             border-radius: 3px;
