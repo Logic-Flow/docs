@@ -51,7 +51,7 @@
     subMaxLevel: 2,
     search: {
           maxAge: 86400000,
-          paths: [],
+          paths: 'auto',
           placeholder: {
             '/zh/': '请输入搜索关键字',
             '/en/': 'Type to search'
@@ -60,6 +60,7 @@
             '/zh/': '找不到结果',
             '/en/': 'No Results'
           },
+          pathNamespaces: ['/zh', '/en'],
           depth:2
     },
     count:{
