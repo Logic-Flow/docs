@@ -30,4 +30,4 @@
 ```
 3. 开发完示例之后，再次执行`yarn dev:screenshot`生成新的截图
 
-**开发完成后在项目根目录下执行`sh deploy.sh`以部署项目到github pages**
+**开发完成后将开发分支的代码合并至master以部署项目到github pages**
