@@ -24,6 +24,7 @@ jobs:
           rm -rf ./deploy
           mkdir -p deploy/examples
           mkdir -p deploy/docs
+          cp -rf index.html ./deploy
           cp -rf ./docs/* ./deploy/docs
           cp -rf ./examples/dist/* ./deploy/examples
 
