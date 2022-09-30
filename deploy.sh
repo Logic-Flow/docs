@@ -3,6 +3,7 @@
 # 发生错误时终止
 set -e
 
+git checkout master
 git add -A
 git commit -m "auto push while running deploy.sh"
 git push
