@@ -5,6 +5,7 @@ set -e
 
 if branch=$(git symbolic-ref --short -q HEAD)
 then
+    echo $branch
     cd examples
     npm run build
     cd -
