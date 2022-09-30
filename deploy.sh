@@ -9,8 +9,6 @@ git push
 
 cd examples
 
-
-git checkout master
 # 构建
 npm run build
 
@@ -20,6 +18,7 @@ cd dist
 # 如果你要部署到自定义域名
 # echo 'www.example.com' > CNAME
 
+git checkout master
 git add -A
 git commit -m 'deploy'
 
