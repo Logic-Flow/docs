@@ -14,8 +14,8 @@ dist-ssr
 
 public/playground_json/*
 !public/playground_json/example.json
-src/screenshots/*
-!src/screenshots/example.png
+# src/screenshots/*
+# !src/screenshots/example.png
 
 
 # Editor directories and files
