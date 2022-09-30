@@ -32,7 +32,7 @@ import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 const src = computed(() => {
-  return `/docs.logic-flow.cn/examples/dist/playground_json/${route.hash.slice(
+  return `/docs.logic-flow.cn/examples/playground_json/${route.hash.slice(
     1
   )}.playground.json`;
 });
