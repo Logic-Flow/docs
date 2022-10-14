@@ -34,4 +34,4 @@ jobs:
           force_orphan: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./deploy
-          cname: logic-flow.github.io
+          cname: docs.logic-flow.cn
