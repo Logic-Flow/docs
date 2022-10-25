@@ -35,3 +35,5 @@
 [npm-dl-img]: https://img.shields.io/npm/dm/@logicflow/core
 [license-url]: https://github.com/didi/LogicFlow/blob/master/LICENSE
 [license-img]: https://img.shields.io/npm/l/@logicflow/core
+
+![color](#ffffff)

@@ -20,7 +20,7 @@
   <div style="width: 33%">
     <font size=5>🚀 重执行</font>
     <p><font size=>流程图能完备的表达业务逻辑，不受流程引擎限制。</font></p>
-  </div>
+  </div>  
   <div>
     <font size=5>🎯 专业</font>
     <p>专注于业务自定义的流程图编辑框架。</p>
@@ -35,3 +35,5 @@
 [npm-dl-img]: https://img.shields.io/npm/dm/@logicflow/core
 [license-url]: https://github.com/didi/LogicFlow/blob/master/LICENSE
 [license-img]: https://img.shields.io/npm/l/@logicflow/core
+
+![color](#ffffff)

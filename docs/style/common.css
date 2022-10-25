@@ -3,3 +3,15 @@
   margin-left: 5px;
   font-size: 14px !important;
 }
+.sidebar ul li.active > a {
+  color: var(--theme-color, #0074d9) !important;
+}
+
+.search input:focus {
+  box-shadow: 0 0 5px var(--theme-color, #0074d9) !important;
+  border: 1px solid var(--theme-color, #0074d9) !important;
+}
+
+.edit > a{
+  text-decoration: none !important;
+}
