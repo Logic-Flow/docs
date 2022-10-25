@@ -8,7 +8,7 @@
   * [TransformModel](zh/api/transformModelApi)
   * [editConfigModel](zh/api/editConfigModelApi)
   * [Theme](zh/api/themeApi)
-* [Examples <i class="fa fa-external-link navbar-icon"></i>](https://logic-flow.github.io/docs.logic-flow.cn/examples)
+* [Examples <i class="fa fa-external-link navbar-icon"></i>](https://logic-flow.github.io/docs/examples)
 * <font size=4>v1.1.x <i class="fa fa-caret-down navbar-icon"></i></font>
   * [v1.1.x](zh/release/1.1)
   * [v1.0.x](zh/release/1.0)
