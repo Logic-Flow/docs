@@ -32,9 +32,7 @@ import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 const src = computed(() => {
-  return `/docs/examples/playground_json/${route.hash.slice(
-    1
-  )}.playground.json`;
+  return `/examples/playground_json/${route.hash.slice(1)}.playground.json`;
 });
 const project = ref(null);
 onMounted(() => {

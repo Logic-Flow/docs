@@ -53,7 +53,7 @@ async function scrape() {
         deviceScaleFactor: 1,
       });
       await page.goto(
-        `http://127.0.0.1:${port}/docs/examples/#/playground#${example}`
+        `http://127.0.0.1:${port}/examples/#/playground#${example}`
       );
       await waitTime(4000);
       const rs = await page.$eval(".urlDiv", (el) => el.textContent);
