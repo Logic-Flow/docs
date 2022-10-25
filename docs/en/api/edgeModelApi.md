@@ -56,7 +56,7 @@ LogicFlow 在`model`上还维护一些属性，开发者可以通过这些属性
 
 ## 样式属性
 
-LogicFlow 所有的边最终都是以 SVG DOM 的方式渲染。svg 的样式相关属性都不会直接存在`edgeModel`。当开发者想要对 SVG DOM 添加更多的[svg 属性](https://developer.mozilla.org/en-CN/docs/Web/SVG/Attribute)时，可以通过重写`edgeModel`上获取边样式属性方法来实现。
+LogicFlow 所有的边最终都是以 SVG DOM 的方式渲染。svg 的样式相关属性都不会直接存在`edgeModel`。当开发者想要对 SVG DOM 添加更多的[svg 属性](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute)时，可以通过重写`edgeModel`上获取边样式属性方法来实现。
 
 ## getEdgeStyle
 
@@ -115,11 +115,13 @@ class UserEdgeModel extends PolylineEdgeModel {
 }
 ```
 
-> **提示**  
-> initEdgeData 和 setAttributes 都可以对 edgeModel 的属性进行赋值，但是两者的区别在于：
->
-> - `initEdgeData`只在初始化的时候调用，用于初始化的属性。
-> - `setAttributes`除了初始化调用外，还会在 properties 发生变化了调用。
+::: tip 提示
+initEdgeData 和 setAttributes 都可以对 edgeModel 的属性进行赋值，但是两者的区别在于：
+
+- `initEdgeData`只在初始化的时候调用，用于初始化的属性。
+- `setAttributes`除了初始化调用外，还会在 properties 发生变化了调用。
+
+:::
 
 ## setAttributes
 
@@ -138,8 +140,11 @@ class UserEdgeModel extends PolylineEdgeModel {
 
 支持重写，自定义节点 id 的生成规则.
 
-!> 1. 请保证此方法返回 id 的唯一性。  
+::: warning 注意
+
+1. 请保证此方法返回 id 的唯一性。
 2. 此方法为同步方法，如果想要异步修改节点 id, 请参考[#272](https://github.com/didi/LogicFlow/issues/272)
+   :::
 
 ```js
 import { v4 as uuidv4 } from "uuid";

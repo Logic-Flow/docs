@@ -1,6 +1,7 @@
 # 边 Edge
 
-和节点一样，LogicFlow也内置一些基础的边。LogicFlow 的内置边包括:
+和节点一样，LogicFlow 也内置一些基础的边。LogicFlow 的内置边包括:
+
 - 直线(line)
 - 直角折线(polyline)
 - 贝塞尔曲线(bezier)
@@ -27,7 +28,7 @@ import { BezierEdge, BezierEdgeModel } from "@logicflow/core";
 
 ## 基于继承的自定义边
 
-和节点一样，LogicFlow的边也支持基于继承的自定义机制。同样也只需同时继承`view`和`model`。
+和节点一样，LogicFlow 的边也支持基于继承的自定义机制。同样也只需同时继承`view`和`model`。
 但是和节点不一样的是，由于边的编辑复杂度问题，绝大多数情况下，自定义边时不推荐自定义`view`。
 只需要在自定义[edgeModel](/api/edgeModelApi.html)中样式类即可。
 
@@ -65,15 +66,15 @@ class SequenceModel extends PolylineEdgeModel {
 export default {
   type: "sequence",
   view: PolylineEdge,
-  model: SequenceModel
+  model: SequenceModel,
 };
 ```
 
-[去codesandbox中编辑](https://codesandbox.io/s/logicflow-step5-i4xes?file=/step5/sequence.js)
+[去 codesandbox 中编辑](https://codesandbox.io/s/logicflow-step5-i4xes?file=/step5/sequence.js)
 
-## 基于React组件自定义边
+## 基于 React 组件自定义边
 
-使用以下方法可以基于React组件自定义边，你可以在边上添加任何你想要的React组件，甚至将原有的边通过样式隐藏，使用React重新绘制
+使用以下方法可以基于 React 组件自定义边，你可以在边上添加任何你想要的 React 组件，甚至将原有的边通过样式隐藏，使用 React 重新绘制
 
 ```js
 import React from "react";
@@ -100,10 +101,8 @@ const CustomLine: React.FC = () => {
 class CustomEdgeView extends LineEdge {
   getEdge() {
     const { model } = this.props;
-    const {
-      customWidth = DEFAULT_WIDTH,
-      customHeight = DEFAULT_HEIGHT
-    } = model.getProperties();
+    const { customWidth = DEFAULT_WIDTH, customHeight = DEFAULT_HEIGHT } =
+      model.getProperties();
     const id = model.id;
     const edgeStyle = model.getEdgeStyle();
     const { startPoint, endPoint } = model;
@@ -111,17 +110,17 @@ class CustomEdgeView extends LineEdge {
       x1: startPoint.x,
       y1: startPoint.y,
       x2: endPoint.x,
-      y2: endPoint.y
+      y2: endPoint.y,
     };
     const positionData = {
       x: (startPoint.x + endPoint.x - customWidth) / 2,
       y: (startPoint.y + endPoint.y - customHeight) / 2,
       width: customWidth,
-      height: customHeight
+      height: customHeight,
     };
     const wrapperStyle = {
       width: customWidth,
-      height: customHeight
+      height: customHeight,
     };
 
     setTimeout(() => {
@@ -133,9 +132,9 @@ class CustomEdgeView extends LineEdge {
         h("div", {
           id,
           style: wrapperStyle,
-          className: "lf-custom-edge-wrapper"
-        })
-      ])
+          className: "lf-custom-edge-wrapper",
+        }),
+      ]),
     ]);
   }
 
@@ -151,9 +150,8 @@ class CustomEdgeView extends LineEdge {
 export default {
   type: "CustomEdge",
   view: CustomEdgeView,
-  model: CustomEdgeModel
+  model: CustomEdgeModel,
 };
-
 ```
 
 ### 示例
@@ -167,7 +165,7 @@ export default {
 
 ## 保存锚点信息
 
-默认情况下，LogicFlow只记录节点与节点的信息。但是在一些业务场景下，需要关注到锚点，比如在UML类图中的关联关系；或者锚点表示节点的入口和出口之类。这个时候需要重写连线的保存方法，将锚点信息也一起保存。
+默认情况下，LogicFlow 只记录节点与节点的信息。但是在一些业务场景下，需要关注到锚点，比如在 UML 类图中的关联关系；或者锚点表示节点的入口和出口之类。这个时候需要重写连线的保存方法，将锚点信息也一起保存。
 
 ```js
 class CustomEdgeModel2 extends LineEdgeModel {
@@ -183,7 +181,6 @@ class CustomEdgeModel2 extends LineEdgeModel {
 }
 ```
 
-
 <iframe src="https://codesandbox.io/embed/logicflow-base17-h5pis?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
      title="logicflow-base17"
@@ -193,13 +190,13 @@ class CustomEdgeModel2 extends LineEdgeModel {
 
 ## 自定义边文本位置
 
-默认情况下，边上文本的位置是用户双击点击边时的位置。如果是通过API的方式给边添加的文本，文本位置按照如下规则。
+默认情况下，边上文本的位置是用户双击点击边时的位置。如果是通过 API 的方式给边添加的文本，文本位置按照如下规则。
 
 - line: 起点和终点中间
 - polyline: 最长线段中间
 - bezier: 起点、终点、调整点中间
 
-LogicFlow支持开发者自定义文本位置，例如文本位置永远在边起点旁边。定义方式为将属性`customTextPosition`设置为true, 然后重写`getTextPosition`方法, 此方法发回的坐标就是文本的坐标。
+LogicFlow 支持开发者自定义文本位置，例如文本位置永远在边起点旁边。定义方式为将属性`customTextPosition`设置为 true, 然后重写`getTextPosition`方法, 此方法发回的坐标就是文本的坐标。
 
 ```js
 class CustomEdgeModel extends PolylineEdgeModel {
@@ -252,7 +249,7 @@ class CustomEdgeModel extends PolylineEdgeModel {
 
 ## 给边开启动画
 
-由于LogicFlow是基于svg的流程图编辑框架，所以我们可以给svg添加动画的方式来给流程图添加动画效果。为了方便使用，我们也内置了基础的动画效果。在定义边的时候，可以将属性`isAnimation`设置为true就可以让边动起来，也可以使用`lf.openEdgeAnimation(edgeId)`来开启边的默认动画。
+由于 LogicFlow 是基于 svg 的流程图编辑框架，所以我们可以给 svg 添加动画的方式来给流程图添加动画效果。为了方便使用，我们也内置了基础的动画效果。在定义边的时候，可以将属性`isAnimation`设置为 true 就可以让边动起来，也可以使用`lf.openEdgeAnimation(edgeId)`来开启边的默认动画。
 
 ```js
 class CustomEdgeModel extends PolylineEdgeModel {
@@ -295,57 +292,58 @@ const lf = new LogicFlow({
 
 ```
 
-
 ## 自定义箭头
 
-在`1.1.27`版本后，LogicFlow支持单独自定义连线两端的箭头。和之前的自定义方式一样，支持通过主题自定义大小等基本数据和通过重写对应的方法实现完全的自定义。
+在`1.1.27`版本后，LogicFlow 支持单独自定义连线两端的箭头。和之前的自定义方式一样，支持通过主题自定义大小等基本数据和通过重写对应的方法实现完全的自定义。
 
 ### 主题设置
 
 ```js
-lf.setTheme({ 
+lf.setTheme({
   arrow: {
     offset: 4, // 箭头垂线长度
     verticalLength: 2, // 箭头底线长度
-  }
-})
+  },
+});
 ```
 
 ### 自定义箭头形状
 
-在自定义连线view的时候，可以重写`getEndArrow`和`getStartArrow`方法来实现自定义连线两端的图形，这两个方法可以返回的任意`svg`图形。
+在自定义连线 view 的时候，可以重写`getEndArrow`和`getStartArrow`方法来实现自定义连线两端的图形，这两个方法可以返回的任意`svg`图形。
 
-这里以通过连线属性中的arrowType来控制连线不同的外观为例。
+这里以通过连线属性中的 arrowType 来控制连线不同的外观为例。
 
 ```js
 class Connection extends PolylineEdge {
   getEndArrow() {
     const { model, graphModel } = this.props;
-    const { id, properties: { arrowType } } = model;
+    const {
+      id,
+      properties: { arrowType },
+    } = model;
     const { stroke, strokeWidth } = this.getArrowStyle();
     const pathAttr = {
       stroke,
-      strokeWidth
-    }
-    if (arrowType === 'empty') {  // 空心箭头
-      return h('path', {
+      strokeWidth,
+    };
+    if (arrowType === "empty") {
+      // 空心箭头
+      return h("path", {
         ...pathAttr,
-        fill: '#FFF',
-        d: 'M -10 0  -20 -5 -30 0 -20 5 z'
-      })
-    } else if (arrowType === 'half') { // 半箭头
-      return (
-        h('path', {
-          ...pathAttr,
-          d: 'M 0 0 -10 5'
-        })
-      )
+        fill: "#FFF",
+        d: "M -10 0  -20 -5 -30 0 -20 5 z",
+      });
+    } else if (arrowType === "half") {
+      // 半箭头
+      return h("path", {
+        ...pathAttr,
+        d: "M 0 0 -10 5",
+      });
     }
-    return h('path', {
+    return h("path", {
       ...pathAttr,
-      d: 'M 0 0 -10 -5 -10 5 z'
-    })
+      d: "M 0 0 -10 -5 -10 5 z",
+    });
   }
 }
 ```
-

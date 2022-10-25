@@ -4,7 +4,7 @@
 
 **lf.setPatternItems(patternItems)**
 
-**lf.extension.dndPanel.setPatternItems(patternItems)** `1.1.0`新增 
+**lf.extension.dndPanel.setPatternItems(patternItems)** `1.1.0`新增
 
 设置拖拽面板组件内容
 
@@ -24,15 +24,15 @@ lf.extension.dndPanel.setPatternItems(patternItems: PatternItem[])
 
 PatternItem：
 
-| 名称 | 类型 | 必选 | 默认值 | 描述 |
-| :- | :- | :- | :- | :- |
-|type|string|非必须|无|指定用户鼠标可以拖入的节点类型，包括自定义节点类型， 不传则不会创建节点，只会触发callback|
-|text|string|非必须|无|创建节点的文本|
-|properties|object|非必须|无|创建节点的properties|
-|label|string|非必须|无|拖拽面板节点文本描述|
-|icon|string|非必须|无|拖拽面试上显示的图标，可以传入图标url地址或base64编码|
-|className|string|非必须|无|额外传入可以拖拽项的class, 用于自定义拖拽项的样式|
-|callback|fn|非必须|无|用户鼠标按下拖拽项后触发的回调|
+| 名称       | 类型   | 必选   | 默认值 | 描述                                                                                       |
+| :--------- | :----- | :----- | :----- | :----------------------------------------------------------------------------------------- |
+| type       | string | 非必须 | 无     | 指定用户鼠标可以拖入的节点类型，包括自定义节点类型， 不传则不会创建节点，只会触发 callback |
+| text       | string | 非必须 | 无     | 创建节点的文本                                                                             |
+| properties | object | 非必须 | 无     | 创建节点的 properties                                                                      |
+| label      | string | 非必须 | 无     | 拖拽面板节点文本描述                                                                       |
+| icon       | string | 非必须 | 无     | 拖拽面试上显示的图标，可以传入图标 url 地址或 base64 编码                                  |
+| className  | string | 非必须 | 无     | 额外传入可以拖拽项的 class, 用于自定义拖拽项的样式                                         |
+| callback   | fn     | 非必须 | 无     | 用户鼠标按下拖拽项后触发的回调                                                             |
 
 ### 使用示例
 

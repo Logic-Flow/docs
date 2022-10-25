@@ -2,8 +2,9 @@
 
 LogicFlow 中所有的节点都会有一个 nodeModel 与其对应。由于数据驱动视图的机制，我们对节点的所有操作事实上就是对 model 的操作。大多数情况下，我们不建议直接对 nodeModel 的属性进行赋值操作，而是调用 model 或者[graphModel](graphModelApi.md)上提供的方法。
 
-!> **警告**  
+:::warning 警告
 在对 LogicFlow 内部源码不熟悉的情况，对 model 的属性进行赋值操作可能会引起很多不符合预期的问题。例如在 model 中`x`,`y`表示节点的位置，如果想要移动节点直接修改`x`,`y`的话，会出现节点被移动了，而节点上的文本、节点相连的边都没有动。所以想要移动节点，最好的方法还是调用`graphModel`上的`moveNode`方法来实现。
+:::
 
 nodeModel 上节点属性有很多，由于用途不一样，我们对其进行了分类。
 
@@ -21,14 +22,13 @@ nodeModel 上节点属性有很多，由于用途不一样，我们对其进行�
 | properties | Object     |          | 节点业务自定义属性 |
 
 **TextObject**
-
-| 名称      | 类型    | 是否必须 | 描述                                             |
-| :-------- | :------ | :------- | :----------------------------------------------- |
-| value     | String  |          | 文本内容                                         |
-| x         | number  | ✅       | 文本中心 x 轴坐标                                |
-| y         | number  | ✅       | 文本中心 y 轴坐标                                |
-| draggable | boolean | ✅       | 文本是否允许被拖动调整位置，保存时不会保存此属性 |
-| editable  | boolean | ✅       | 文本是否允许被双击编辑，保存时不会保存此属性     |
+| 名称 | 类型 | 是否必须 | 描述 |
+| :---- | :----- | :------- | :------------- |
+| value | String | | 文本内容 |
+| x | number | ✅ | 文本中心 x 轴坐标 |
+| y | number | ✅ | 文本中心 y 轴坐标 |
+| draggable | boolean | ✅ | 文本是否允许被拖动调整位置，保存时不会保存此属性 |
+| editable | boolean | ✅ | 文本是否允许被双击编辑，保存时不会保存此属性 |
 
 ## 状态属性
 
@@ -76,12 +76,15 @@ LogicFlow 在`model`上还维护一些属性，开发者可以通过这些属性
 | outgoing    | object  | ✅       | 离开当前节点的所有边和节点, `v1.1.4`                                                                                                                                                                           |
 | virtual     | boolean | -        | 是否为虚拟节点，默认 false。当为 true 时导出数据不会包含此元素。 `v1.1.24`                                                                                                                                     |
 
-> **modelType 与 type 的区别是什么？**
-> 在自定义节点的时候，`type`可以是开发者自定义的任何值，但是在 LogicFlow 内部，涉及到这个节点的计算时，我们需要感知到这个节点的具体形状，这个时候不能用`type`, 而是要用`modelType`来判断。
+::: tip modelType 与 type 的区别是什么？
+
+在自定义节点的时候，`type`可以是开发者自定义的任何值，但是在 LogicFlow 内部，涉及到这个节点的计算时，我们需要感知到这个节点的具体形状，这个时候不能用`type`, 而是要用`modelType`来判断。
+
+:::
 
 ## 样式属性
 
-LogicFlow 所有的节点最终都是以 SVG DOM 的方式渲染。但是除了形状属性之外，所有的其他属于 svg 的属性都不会直接存在`nodeModel`。当开发者想要对 SVG DOM 添加更多的[svg 属性](https://developer.mozilla.org/en-CN/docs/Web/SVG/Attribute)时，可以通过重写`nodeModel`上获取节点样式属性方法来实现。
+LogicFlow 所有的节点最终都是以 SVG DOM 的方式渲染。但是除了形状属性之外，所有的其他属于 svg 的属性都不会直接存在`nodeModel`。当开发者想要对 SVG DOM 添加更多的[svg 属性](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute)时，可以通过重写`nodeModel`上获取节点样式属性方法来实现。
 
 ## getNodeStyle
 
@@ -184,13 +187,14 @@ class UserTaskModel extends RectResize.model {
 }
 ```
 
-> **提示**  
-> initNodeData 和 setAttributes 都可以对 nodeModel 的属性进行赋值，但是两者的区别在于：
->
-> - `initNodeData`只在节点初始化的时候调用，用于初始化节点的属性。
-> - `setAttributes`除了初始化调用外，还会在 properties 发生变化了调用。
->
-> 以上面代码为例，由于节点缩放的时候，会更新 properties 中的缩放后的大小，也就会触发`setAttributes`。如果在`setAttributes`中定义节点的初始大小的话，会导致节点无法缩放。
+::: tip 提示
+initNodeData 和 setAttributes 都可以对 nodeModel 的属性进行赋值，但是两者的区别在于：
+
+- `initNodeData`只在节点初始化的时候调用，用于初始化节点的属性。
+- `setAttributes`除了初始化调用外，还会在 properties 发生变化了调用。
+
+以上面代码为例，由于节点缩放的时候，会更新 properties 中的缩放后的大小，也就会触发`setAttributes`。如果在`setAttributes`中定义节点的初始大小的话，会导致节点无法缩放。
+:::
 
 ## setAttributes
 
@@ -210,9 +214,11 @@ class UserTaskModel extends RectNodeModel {
 
 支持重写，自定义节点 id 的生成规则.
 
-!> **注意**  
-1.请保证此方法返回 id 的唯一性。  
-2.此方法为同步方法，如果想要异步修改节点 id, 请参考[#272](https://github.com/didi/LogicFlow/issues/272)
+::: warning 注意
+
+1. 请保证此方法返回 id 的唯一性。
+2. 此方法为同步方法，如果想要异步修改节点 id, 请参考[#272](https://github.com/didi/LogicFlow/issues/272)
+   :::
 
 ```js
 import { v4 as uuidv4 } from "uuid";

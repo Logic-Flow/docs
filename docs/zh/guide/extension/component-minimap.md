@@ -3,9 +3,9 @@
 ### 启用
 
 ```ts
-import LogicFlow from '@logicflow/core';
-import { MiniMap } from '@logicflow/extension';
-import '@logicflow/extension/lib/style/index.css'
+import LogicFlow from "@logicflow/core";
+import { MiniMap } from "@logicflow/extension";
+import "@logicflow/extension/lib/style/index.css";
 
 LogicFlow.use(MiniMap);
 ```
@@ -37,11 +37,10 @@ MiniMap.show(leftPosition?: number, topPosition?: number);
 
 ```ts
 // 1.1.0 以上
-lf.extension.miniMap.hide()
+lf.extension.miniMap.hide();
 
 // 1.1.0 以下
 MiniMap.hide();
-
 ```
 
 ### 示例

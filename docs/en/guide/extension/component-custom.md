@@ -1,6 +1,7 @@
 # 自定义插件 CustomPlugin
 
-LogicFlow提供了很多的插件，但是这些插件都是一些具有普适性的插件，不一定都符合业务需求。这时候可以基于自己的业务场景进行自定义插件。
+LogicFlow 提供了很多的插件，但是这些插件都是一些具有普适性的插件，不一定都符合业务需求。这时候可以基于自己的业务场景进行自定义插件。
+
 ## 插件的基础格式
 
 ```js
@@ -21,16 +22,16 @@ class PluginCls {
 - 插件是一个类。
 - 这个类有个静态属性`pluginName`用于标识插件的名称。同名的插件在初始化`lf`实例的时候会覆盖。同时使用方可以通过`lf.extension.插件名称`获取插件这个类的实例。
 - 在初始化`lf`实例的时候，会同时初始化插件实例，此时会传入参数`lf`和`LogicFlow`。
-- 在`lf`渲染完成后，会调用插件实例的`render`方法(如有)。第二个参数domOverlay是表示`LogicFlow` Dom层的节点。插件开发者可以直接在这个节点插入html内容。
+- 在`lf`渲染完成后，会调用插件实例的`render`方法(如有)。第二个参数 domOverlay 是表示`LogicFlow` Dom 层的节点。插件开发者可以直接在这个节点插入 html 内容。
 - `destroy`是销毁插件是调用的方法。大多数情况下可以不写。
 
-## 实现context-pad插件
+## 实现 context-pad 插件
 
 下面实现一个`context-pad`示例，向大家介绍如何定义符合自己业务的插件。`context-pad`插件是一个点击节点后，在节点旁边出现可选的快捷操作，可以看做是左键点击出现的菜单。
 
 ### 增加插入选项方法
 
-LogicFlow会将插件的实例以插件名称的形式挂载到`lf.extension`上，这样我们在`class`中的方法就可以用`lf.extension.插件名称.插件方法`调用了。
+LogicFlow 会将插件的实例以插件名称的形式挂载到`lf.extension`上，这样我们在`class`中的方法就可以用`lf.extension.插件名称.插件方法`调用了。
 
 ```js
 class ContextPad {
@@ -49,9 +50,9 @@ ContextPad.pluginName = "contextPad";
 lf.extension.contextPad.setContextMenuItems([
   {
     icon: "...",
-    callback: () => {}
-  }
-])
+    callback: () => {},
+  },
+]);
 ```
 
 ### 监听节点被点击
@@ -62,8 +63,8 @@ lf.extension.contextPad.setContextMenuItems([
 class ContextPad {
   constructor({ lf }) {
     lf.on("node:click", (data) => {
-      this.showContextPad(data)
-    })
+      this.showContextPad(data);
+    });
   }
   showContextPad() {
     // ...
@@ -71,13 +72,13 @@ class ContextPad {
 }
 ```
 
-### 在画布指定位置显示HTML内容
+### 在画布指定位置显示 HTML 内容
 
-插件的render函数有两个参数，一个是`lf`, 第二个参数是`toolOverlay`, 也就是组件层。LogicFlow的画布是由多个图层组成，而组件层则是专门用来渲染自定义的组件。
+插件的 render 函数有两个参数，一个是`lf`, 第二个参数是`toolOverlay`, 也就是组件层。LogicFlow 的画布是由多个图层组成，而组件层则是专门用来渲染自定义的组件。
 
-**LogicFlow的图分层**
+**LogicFlow 的图分层**
 
-<img src="en/assets/images/overlay.png" width="200">
+<img src="../assets/../../assets/images/overlay.png" width="200">
 
 所以这里我们只需要将菜单插入到`toolOverlay`, 然后将其菜单移动到对应的位置即可。
 
@@ -86,8 +87,8 @@ class ContextPad {
   render(lf, toolOverlay) {
     this.toolOverlay = toolOverlay;
   }
-  createMenu () {
-    this.__menuDOM = document.createElement('div')
+  createMenu() {
+    this.__menuDOM = document.createElement("div");
   }
   // 计算出菜单应该显示的位置（节点的右上角）
   getContextMenuPosition() {
@@ -101,7 +102,7 @@ class ContextPad {
     }
     return this.lf.graphModel.transformModel.CanvasPointToHtmlPoint([x, y]);
   }
-  showMenu () {
+  showMenu() {
     const [x, y] = this.getContextMenuPosition();
     this.__menuDOM.style.display = "flex";
     // 将菜单显示到对应的位置
@@ -120,5 +121,3 @@ class ContextPad {
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
-
-  
