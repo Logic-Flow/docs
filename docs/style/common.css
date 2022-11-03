@@ -36,8 +36,9 @@ pre{
 
 [class^='lang-']{
   background: #282c34 !important;
-  font-size: 15px !important;
   color: #ff7878 !important;
+  font-size: 16px !important;
+  line-height: 1.7 !important;
 }
 
 .sidebar li.active{
@@ -113,7 +114,7 @@ p strong{
 
 body{
   font-size: 16px !important;
-  line-height: 1.7;
+  line-height: 1.7 !important;
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
   -webkit-font-smoothing: antialiased;
 }
