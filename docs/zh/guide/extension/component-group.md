@@ -153,9 +153,7 @@ class MyGroupModel extends GroupNode.model {
 }
 ```
 
-::: tip 提示
-在节点不被允许添加到分组中时，节点仍然会显示在用户放的位置，只是这个节点不属于分组。如果你希望添加的节点被删除，可以监听`group:not-allowed`事件，然后手动删除这个节点。
-:::
+!> **提示**在节点不被允许添加到分组中时，节点仍然会显示在用户放的位置，只是这个节点不属于分组。如果你希望添加的节点被删除，可以监听`group:not-allowed`事件，然后手动删除这个节点。
 
 ### getAddableOutlineStyle
 
@@ -172,9 +170,7 @@ class MyGroupModel extends GroupNode.model {
 }
 ```
 
-::: warning 如何阻止节点连接到分组上?
-分组是一种特殊的节点，所以仍然可以通过[自定义连接规则校验](http://logic-flow.org/guide/basic/node.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9E%E6%8E%A5%E8%A7%84%E5%88%99%E6%A0%A1%E9%AA%8C)来实现不允许节点和分组直接相连。但是请不要将分组的锚点数量设置为 0，因为在分组被折叠时，会通过分组的锚点与外部节点相连来表示分组内部节点与外部节点的关系。
-:::
+?> **如何阻止节点连接到分组上?**分组是一种特殊的节点，所以仍然可以通过[自定义连接规则校验](http://logic-flow.org/guide/basic/node.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9E%E6%8E%A5%E8%A7%84%E5%88%99%E6%A0%A1%E9%AA%8C)来实现不允许节点和分组直接相连。但是请不要将分组的锚点数量设置为 0，因为在分组被折叠时，会通过分组的锚点与外部节点相连来表示分组内部节点与外部节点的关系。
 
 ## 示例
 
@@ -185,6 +181,4 @@ class MyGroupModel extends GroupNode.model {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-::: tip 关于泳道
-分组功能不是泳道，需要开发者在分组的基础上自己实现。后续 LogicFlow 提供的 Bpmn 全功能支持会支持 BPMN 泳道。也欢迎自己实现了的同学给我们 PR。
-:::
+!> **关于泳道**分组功能不是泳道，需要开发者在分组的基础上自己实现。后续 LogicFlow 提供的 Bpmn 全功能支持会支持 BPMN 泳道。也欢迎自己实现了的同学给我们 PR。

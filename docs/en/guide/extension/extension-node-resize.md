@@ -90,9 +90,7 @@ export default {
 };
 ```
 
-::: tip 提示
-对于继承`HtmlResize`的节点，自定义`view`请继续使用自定义 HTML 节点的`view`的`setHtml`方法。
-:::
+!> **提示**对于继承`HtmlResize`的节点，自定义`view`请继续使用自定义 HTML 节点的`view`的`setHtml`方法。
 
 ## 事件
 
@@ -145,9 +143,7 @@ class ResizableRectModel extends RectResize.model {
 }
 ```
 
-::: tip 关于节点缩放的 gridSize
-大多数情况下，为了保证节点的`整齐`，便于节点之间的上下左右对齐。`logicflow`默认在放大缩小时，只有鼠标移动的距离达到初始化画布传入的`gridSize`两倍时才改变节点的大小。但是这样会有一个缺点，那就是调整的时候有卡顿的感觉。可以再不改变初始化`gridSize`的情况下，单独设置每个节点的`gridSize`来让放大缩小节点更流畅。
-:::
+!> **关于节点缩放的 gridSize**大多数情况下，为了保证节点的`整齐`，便于节点之间的上下左右对齐。`logicflow`默认在放大缩小时，只有鼠标移动的距离达到初始化画布传入的`gridSize`两倍时才改变节点的大小。但是这样会有一个缺点，那就是调整的时候有卡顿的感觉。可以再不改变初始化`gridSize`的情况下，单独设置每个节点的`gridSize`来让放大缩小节点更流畅。
 
 ## 设置调整边框样式
 

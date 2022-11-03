@@ -69,3 +69,50 @@ pre{
 .token.attr-value{
   color: #e1cb7a !important;
 }
+
+p strong{
+  padding-right: 10px;
+}
+
+.markdown-section p.warn {
+  background-color: #fff6eb !important;
+  border-bottom-right-radius: 2px;
+  border-left: 4px solid #fe9430;
+  border-top-right-radius: 2px;
+  margin: 2em 0;
+  padding: 12px 24px 12px 30px;
+  position: relative;
+}
+
+.markdown-section p.warn:before {
+  background-color: #fe9430;
+  border-radius: 100%;
+  color: #fff;
+  content: '!';
+  font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  left: -12px;
+  line-height: 20px;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  top: 14px;
+}
+
+.markdown-section p.tip {
+  border-left: 4px solid rgb(43 129 66) !important;
+  background: #ecfff1 !important;
+}
+
+.markdown-section p.tip:before {
+  background-color: rgb(43 129 66) !important;
+  content: 'i' !important;
+}
+
+body{
+  line-height: 1.7;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

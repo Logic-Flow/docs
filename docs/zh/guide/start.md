@@ -88,9 +88,7 @@ lf.render({
 
 LogicFlow 本身是以 umd 打包为纯 JS 的包，所以不论是 vue 还是 react 中都可以使用。这里需要注意一个点，那就是初始化 LogicFlow 实例的时候，传入的参数 container,必须要 dom 上存在这个节点，不然会报错`请检查 container 参数是否有效`。
 
-::: warning 注意
-LogicFlow 支持初始化不传容器宽高参数，这个时候默认会使用 container 的宽高。请保证初始化 LogicFlow 的时候，container 已经存在宽高了。
-:::
+?> **注意**LogicFlow 支持初始化不传容器宽高参数，这个时候默认会使用 container 的宽高。请保证初始化 LogicFlow 的时候，container 已经存在宽高了。
 
 [在 Sandbox 查看 vue 示例](https://codesandbox.io/s/github/towersxu/logicflow-vue-base/tree/main/?fontsize=14&hidenavigation=1&theme=dark)
 
