@@ -62,7 +62,7 @@ html {
 .main {
   background-color: #fff;
   width: calc(100% - 17rem);
-  color: #fff;
+  color: #000;
   transition: 0.5s;
 }
 
