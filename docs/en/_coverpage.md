@@ -4,6 +4,7 @@
       src="./_images/logo.png"
       alt="LogicFlow logo"
       width="250"
+      class='logo'
     />
   </a>
 </p>
