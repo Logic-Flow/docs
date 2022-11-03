@@ -52,6 +52,9 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  toggleHidden: {
+    type: Function,
+  },
 });
 const animations = useAnimations();
 const menuItemEvents = useMenuItemEvent(props);
@@ -69,8 +72,7 @@ const backToGallery = () => {
   });
 };
 const backToDocs = () => {
-  window.location.href =
-    "https://logic-flow.github.io/docs.logic-flow.cn/docs/#/";
+  window.location.href = "https://docs.logic-flow.cn/docs/#/";
 };
 
 const FoldAll = () => {
@@ -79,6 +81,8 @@ const FoldAll = () => {
 
 const handleWidthHidden = () => {
   widthHidden.value = !widthHidden.value;
+  console.log(props.toggleHidden);
+  props.toggleHidden();
 };
 
 watchEffect(() => {

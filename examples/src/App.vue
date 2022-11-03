@@ -11,6 +11,11 @@ import { getScreenshots } from "./utils";
 const route = useRoute();
 const type = ref("withoutThumbnail");
 const screenshots = getScreenshots();
+const sideBarHidden = ref(false);
+function toggleHidden() {
+  sideBarHidden.value = !sideBarHidden.value;
+  console.log("boolean", sideBarHidden);
+}
 watch(() => [
   (type.value = route.name === "Playground" ? "thumbnail" : "withoutThumbnail"),
 ]);
@@ -22,8 +27,14 @@ provide("screenshots", screenshots);
 <template>
   <div class="container">
     <!-- <SideBarVue :type="type" :menuConfig="config.topic"></SideBarVue> -->
-    <MenuVue :type="type" :menuConfig="config.topic"></MenuVue>
-    <div class="main"><router-view /></div>
+    <MenuVue
+      :type="type"
+      :menuConfig="config.topic"
+      :toggleHidden="toggleHidden"
+    ></MenuVue>
+    <div :class="`main ${sideBarHidden ? 'widthHidden' : 'widthOpen'}`">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -50,7 +61,16 @@ html {
 }
 .main {
   background-color: #fff;
-  width: 100%;
-  color: #000;
+  width: calc(100% - 17rem);
+  color: #fff;
+  transition: 0.5s;
+}
+
+.widthHidden {
+  width: calc(100% - 27px);
+}
+
+.widthOpen {
+  width: calc(100% - 17rem);
 }
 </style>

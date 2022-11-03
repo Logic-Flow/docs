@@ -18,6 +18,16 @@
 #app{
   height: 100%;
 }
+
+div {
+  scrollbar-width: none !important; /* firefox */
+  -ms-overflow-style: none !important; /* ie10+ */
+}
+
+div ::-webkit-scrollbar {
+  /* chrome */
+  display: none !important;
+}
 /* a {
   font-weight: 500;
   color: #646cff;

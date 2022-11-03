@@ -1,11 +1,30 @@
+.ide,
+.preview,
+.editor {
+    scrollbar-width: none !important; /* firefox */
+    -ms-overflow-style: none !important; /* ie10+ */
+}
+
 .ide {
     display: flex;
+    & ::-webkit-scrollbar {
+        /* chrome */
+        display: none !important;
+    }
 }
 .preview {
     flex: 2;
+    & ::-webkit-scrollbar {
+        /* chrome */
+        display: none !important;
+    }
 }
 .editor {
     flex: 1.5;
+    & ::-webkit-scrollbar {
+        /* chrome */
+        display: none !important;
+    }
 }
 .urlDiv {
     position: absolute;
