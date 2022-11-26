@@ -7,10 +7,12 @@
     "example": "examples"
   },
   "workspaces": [
-    "demo/*"
+    "demo/*",
+    "examples"
   ],
   "private": "true",
   "scripts": {
+    "build": "lerna run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/Logic-Flow/docs/issues"
   },
-  "homepage": "https://github.com/Logic-Flow/docs#readme"
+  "homepage": "https://github.com/Logic-Flow/docs#readme",
+  "devDependencies": {
+    "lerna": "^6.0.1"
+  }
 }
