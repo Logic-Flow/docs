@@ -28,8 +28,8 @@ jobs:
           cp -rf ./docs/* ./deploy/docs
           cp -rf ./examples/dist/* ./deploy/examples
 
-      - name: lerna build
-        run: |
+      # - name: lerna build
+      #   run: |
 
       - name: deploy to github pages
         uses: peaceiris/actions-gh-pages@v3
