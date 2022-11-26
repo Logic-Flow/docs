@@ -10,12 +10,12 @@ class HtmlCard extends HtmlNode {
     const { properties } = this.props.model;
     const html= `
       <div class="node-add" onclick="addChildNode('${properties.id}', '${properties.properties.type}', 'left')">
-        ${(properties.side === 'left' || !properties.side) ? `<img src="https://gw.alipayobjects.com/mdn/rms_43231b/afts/img/A*SYCuQ6HHs5cAAAAAAAAAAAAAARQnAQ" alt=""  width="20px" height="20px" />` : ''}
+        ${(properties.side === 'left' || !properties.side) ? `<img src="https://img-hxy021.didistatic.com/static/starimg/img/4YJ5oVGRhF1669467073849.png" alt=""  width="20px" height="20px" />` : ''}
        </div>
       <div class="${nodeStyle[properties.type]}">
       </div>
       <div class="node-add" onclick="addChildNode('${properties.id}', '${properties.properties.type}', 'right')">
-        ${(properties.side === 'right' || !properties.side) ? `<img src="https://gw.alipayobjects.com/mdn/rms_43231b/afts/img/A*SYCuQ6HHs5cAAAAAAAAAAAAAARQnAQ" alt=""  width="20px" height="20px" />` : ''}
+        ${(properties.side === 'right' || !properties.side) ? `<img src="https://img-hxy021.didistatic.com/static/starimg/img/4YJ5oVGRhF1669467073849.png" alt=""  width="20px" height="20px" />` : ''}
       </div>
     `;
     const el = document.createElement('div');
