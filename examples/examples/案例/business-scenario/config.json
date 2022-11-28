@@ -1,0 +1,10 @@
+{
+  "name": "业务场景",
+  "key": "business-scenario",
+  "examples": [
+    {
+      "name": "思维导图",
+      "key": "mind-mapping"
+    }
+  ]
+}
