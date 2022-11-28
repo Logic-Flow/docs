@@ -1,0 +1,31 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "## 文档开发",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "workspaces": [
+    "demo/*",
+    "examples"
+  ],
+  "private": "true",
+  "scripts": {
+    "build": "lerna run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Logic-Flow/docs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Logic-Flow/docs/issues"
+  },
+  "homepage": "https://github.com/Logic-Flow/docs#readme",
+  "devDependencies": {
+    "lerna": "^6.0.1"
+  }
+}
