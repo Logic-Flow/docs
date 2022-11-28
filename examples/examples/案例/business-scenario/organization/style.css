@@ -1,0 +1,56 @@
+.mind-mapping-node {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.staff-detail {
+  padding-right: 15px;
+  border: 2px solid #0074d9;
+  border-left: 0;
+  border-radius: 5px;
+  width: 160px;
+  text-align: right;
+  position: relative;
+  left: -25px;
+}
+
+.staff-name {
+  font-size: 14px;
+  font-weight: 900;
+  color: #03569f;
+}
+
+.staff-position {
+  font-size: 12px;
+  color: #6a7279;
+}
+
+.staff-department {
+  font-size: 12px;
+  color: #6a7279;
+}
+
+.staff-options {
+  flex: 1;
+  position: relative;
+  left: -25px;
+  align-self: flex-end;
+  margin-bottom: 12px;
+  visibility: hidden;
+}
+
+.node-delete {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.node-add {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}

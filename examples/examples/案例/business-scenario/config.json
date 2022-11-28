@@ -5,6 +5,10 @@
     {
       "name": "思维导图",
       "key": "mind-mapping"
+    },
+    {
+      "name": "组织架构图",
+      "key": "organization"
     }
   ]
 }
