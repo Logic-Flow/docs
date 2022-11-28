@@ -163,6 +163,10 @@ const childType = {
   'childTheme': 'childTheme',
 }
 
+// 节点平移
+const moveX = 400;
+const moveY = 300;
+
 const renderData = (baseData) => {
   const miniMapData = window.Hierarchy.mindmap(baseData, {
     getSide(d) {
@@ -182,8 +186,8 @@ const renderData = (baseData) => {
     const edges = [];
     const curNode = {
       id: `node_${node.data.id}`,
-      x: node.x,
-      y: node.y,
+      x: node.x + moveX,
+      y: node.y + moveY,
       type: 'mindmap-node',
       properties: {
         ...node.data,
@@ -218,6 +222,3 @@ const renderData = (baseData) => {
 }
 
 renderData(baseData);
-lf.focusOn({
-  id: lf.graphModel.nodes[0].id,
-});
