@@ -9,6 +9,10 @@
     {
       "name": "自定义svg节点",
       "key": "custom-svg-node"
+    },
+    {
+      "name": "自定义html节点",
+      "key": "custom-html-node"
     }
   ]
 }
