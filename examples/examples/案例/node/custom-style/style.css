@@ -1,0 +1,43 @@
+.custom-node-style {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  font-size: 14px;
+  margin: 20px;
+}
+
+.custom-node-style > div {
+  margin-bottom: 10px;
+}
+
+.custom-text-color,
+.custom-node-stroke,
+.custom-node-fill {
+  display: flex;
+}
+
+.custom-red {
+  width: 30px;
+  background-color: red;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.custom-blue {
+  width: 30px;
+  background-color: blue;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.custom-green {
+  width: 30px;
+  background-color: green;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+input {
+  width: 70px;
+}
