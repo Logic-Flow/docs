@@ -1,0 +1,10 @@
+{
+  "name": "节点",
+  "key": "node",
+  "examples": [
+    {
+      "name": "自定义节点样式、形状",
+      "key": "custom-style"
+    }
+  ]
+}
