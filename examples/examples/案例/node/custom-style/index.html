@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="//unpkg.com/@logicflow/core/dist/style/index.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #container {
+      height: calc(100% - 20px);
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <div class="custom-node-style">
+    <div class="custom-node-fill">
+      节点填充色：
+      <div class="custom-red" onclick="handleColorChange('node', 'red')"></div>
+      <div class="custom-blue" onclick="handleColorChange('node', 'blue')"></div>
+      <div class="custom-green" onclick="handleColorChange('node', 'green')"></div>
+    </div>
+    <div class="custom-node-stroke">
+      节点边框色：
+      <div class="custom-red" onclick="handleColorChange('stroke', 'red')"></div>
+      <div class="custom-blue" onclick="handleColorChange('stroke', 'blue')"></div>
+      <div class="custom-green" onclick="handleColorChange('stroke', 'green')"></div>
+    </div>
+    <div class="custom-stroke-width">
+      节点边框宽度：
+      <input type="text" oninput="handleStrokeWidth(this)">
+    </div>
+    <div class="custom-node-size">
+      节点大小：<br>
+      width: <input type="text" oninput="handleNodeWidth(this)">
+      height: <input type="text" oninput="handleNodeHeight(this)">
+    </div>
+    <div class="custom-text-color">
+      文本颜色：
+      <div class="custom-red" onclick="handleColorChange('text', 'red')"></div>
+      <div class="custom-blue" onclick="handleColorChange('text', 'blue')"></div>
+      <div class="custom-green" onclick="handleColorChange('text', 'green')"></div>
+    </div>
+    <div class="custom-text-size">
+      文本字体大小：<input type="text" oninput="handleFontSize(this)">
+    </div>
+    <div class="custom-text-position">
+      文本位置（基于节点位置平移距离）：<br>
+      水平：<input type="text" oninput="handleHorizontalMove(this)">
+      垂直：<input type="text" oninput="handleVerticalMove(this)">
+    </div>
+  </div>
+  <script src="//unpkg.com/@logicflow/core/dist/logic-flow.js"></script>
+  <script type="module" src="./index.js"></script>
+</body>
+</html>
