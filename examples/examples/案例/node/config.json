@@ -5,6 +5,10 @@
     {
       "name": "自定义节点样式、形状",
       "key": "custom-style"
+    },
+    {
+      "name": "自定义svg节点",
+      "key": "custom-svg-node"
     }
   ]
 }
