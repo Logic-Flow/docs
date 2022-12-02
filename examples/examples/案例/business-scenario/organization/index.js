@@ -2,7 +2,7 @@ import organizationNode from "./htmlCard.js";
 import organizationEdge from './htmlEdge.js';
 
 // logicflow流程图配置
-export const LFConfig = {
+const LFConfig = {
   edgeTextDraggable: true,
   adjustEdgeMiddle: true,
   hoverOutline: false,

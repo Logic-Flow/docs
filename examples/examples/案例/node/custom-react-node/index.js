@@ -1,4 +1,4 @@
-import htmlNode from "./htmlNode.js";
+import reactNode from "./reactNode.js";
 
 // logicflow流程图配置
 const LFConfig = {
@@ -27,22 +27,30 @@ const lf = new LogicFlow({
   container,
 });
 
-lf.register(htmlNode);
+lf.register(reactNode);
 
-lf.on("custom:button-click", (model) => {
+lf.on('custom:add-one', (model) => {
   lf.setProperties(model.id, {
-    body: "LogicFlow"
+    name: 'turbo',
+    body: model.getProperties().body + 1,
+  });
+});
+
+lf.on('custom:delete-one', (model) => {
+  lf.setProperties(model.id, {
+    name: 'turbo',
+    body: model.getProperties().body - 1,
   });
 });
 
 const nodeData = {
   id: "1",
-  type: "html-node",
+  type: "react-node",
   x: 300,
   y: 250,
   properties: {
     name: "hello",
-    body: "world"
+    body: Math.random(),
   }
 };
 
