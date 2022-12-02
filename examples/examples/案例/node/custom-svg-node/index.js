@@ -1,7 +1,7 @@
 import svgNode from "./svgNode.js";
 
 // logicflow流程图配置
-export const LFConfig = {
+const LFConfig = {
   background: {
     backgroundImage:
             "url('https://dpubstatic.udache.com/static/dpubimg/805efa14-d908-4332-a7a2-bee8fbb903e3.jpg')",

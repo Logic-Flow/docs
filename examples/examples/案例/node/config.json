@@ -13,6 +13,10 @@
     {
       "name": "自定义html节点",
       "key": "custom-html-node"
+    },
+    {
+      "name": "自定义React节点",
+      "key": "custom-react-node"
     }
   ]
 }
