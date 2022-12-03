@@ -1,6 +1,5 @@
 function Hello(props) {
   const addOne = () => {
-    console.log(props.model);
     props.graphModel.eventCenter.emit("custom:add-one", props.model);
   }
 
