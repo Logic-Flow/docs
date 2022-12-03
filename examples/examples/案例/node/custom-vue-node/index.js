@@ -1,4 +1,4 @@
-import reactNode from "./reactNode.js";
+import vueNode from './vueNode.js'
 
 // logicflow流程图配置
 const LFConfig = {
@@ -20,32 +20,31 @@ const LFConfig = {
     enabled: true,
   },
 };
-const container = document.querySelector('#container');
 
 const lf = new LogicFlow({
   ...LFConfig,
-  container,
+  container: document.querySelector('#container'),
 });
 
-lf.register(reactNode);
+lf.register(vueNode);
 
 lf.on('custom:add-one', (model) => {
   lf.setProperties(model.id, {
-    name: 'reactComponent',
+    name: 'vueComponent',
     body: model.getProperties().body + 1,
   });
 });
 
 lf.on('custom:delete-one', (model) => {
   lf.setProperties(model.id, {
-    name: 'reactComponent',
+    name: 'vueComponent',
     body: model.getProperties().body - 1,
   });
 });
 
 const nodeData = {
   id: "1",
-  type: "react-node",
+  type: "vue-node",
   x: 300,
   y: 250,
   properties: {
