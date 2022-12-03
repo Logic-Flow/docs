@@ -17,6 +17,10 @@
     {
       "name": "自定义React节点",
       "key": "custom-react-node"
+    },
+    {
+      "name": "自定义Vue节点",
+      "key": "custom-vue-node"
     }
   ]
 }

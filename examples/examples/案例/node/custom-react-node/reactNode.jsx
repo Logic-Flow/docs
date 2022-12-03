@@ -17,7 +17,7 @@ class CustomReactNodeModel extends HtmlNodeModel {
   }
 }
 
-class CustomHReactNode extends HtmlNode {
+class CustomReactNode extends HtmlNode {
   setHtml(rootEl) {
     const { properties } = this.props.model;
     ReactDOM.render(
@@ -34,6 +34,6 @@ class CustomHReactNode extends HtmlNode {
 
 export default {
   type: 'react-node',
-  view: CustomHReactNode,
+  view: CustomReactNode,
   model: CustomReactNodeModel,
 }
