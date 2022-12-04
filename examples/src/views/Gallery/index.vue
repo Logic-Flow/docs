@@ -15,30 +15,17 @@
             class="case"
             :id="example.key"
           >
-            <template v-if="example.mode === 'playground'">
-              <div class="case-thumbnail" @click="jumpTo(example)">
-                <img :src="handleSrc(example.key)" :alt="example.key" />
+            <div class="case-thumbnail" @click="jumpTo(example)">
+              <img :src="handleSrc(example.key)" :alt="example.key" />
+            </div>
+            <div class="case-name">
+              <div>
+                {{ example.name }}
               </div>
-              <div class="case-name">
-                <div>
-                  {{ example.name }}
-                </div>
-                <a v-if="example.github" :href="example.github"
-                  >🔗 view in github</a
-                >
-              </div>
-            </template>
-            <template v-else-if="example.mode === 'link'">
-              <div class="case-thumbnail link-mode" @click="jumpTo(example)">
-                <img :src="handleSrc(example.key)" :alt="example.key" />
-              </div>
-              <div class="case-name">
-                <div>
-                  {{ example.name }}
-                </div>
-                <a :href="example.github">🔗 view in github </a>
-              </div>
-            </template>
+              <a v-if="example.github" :href="example.github"
+                >🔗 view in github
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -72,7 +59,7 @@ const handleSrc = (name) => {
       ? screenshots(name)
       : `src/screenshots/${name}.png`;
   } catch (error) {
-    return "logo.png";
+    return "no_pic.png";
   }
 };
 </script>

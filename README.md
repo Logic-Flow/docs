@@ -19,21 +19,21 @@
     {
       "name": "自定义带有图标的节点-1-1",
       "key": "custom-node-1-1",
-      "type": "playground" // playground 表示需要playground, 会跳转至playground页面， link 表示链接，会跳到外部链接（非playground页面）
+      "mode": "playground", // playground 表示需要playground, 会跳转至playground页面， link 表示链接，会跳到外部链接（非playground页面）
+      "github": "https://github.com/xxx" //github 地址，如果有
     },
     {
       "name": "使用vue自定义html节点-1-1",
       "key": "vue-1-1",
-      "type": "playground"
-    },
-    {
-      "name": "html卡片-1-1",
-      "key": "html-card-1-1",
-      "type": "playground"
+      "mode": "link",
+      "link": "/demo/dist/vue-1-1", //一般是 /demo/dist/ + 项目夹名称（如vue-1-1)
+      "github": "https://github.com/xxx" //github 地址，如果有
     }
   ]
 }
 ```
+
+具体参考项目已有的 config.json
 
 3. 开发完示例之后，如需使用自动截图工具请解除`examples/scripts/screenshot.js`文件的注释，并自行安装相关依赖，执行`yarn dev:screenshot`生成新的截图，或者手动截图并放在`examples/src/screenshots`中
 
