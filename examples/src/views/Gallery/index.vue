@@ -14,12 +14,31 @@
             :key="example.key"
             class="case"
             :id="example.key"
-            @click="jumpTo(example.key)"
           >
-            <div class="case-thumbnail">
-              <img :src="handleSrc(example.key)" :alt="example.key" />
-            </div>
-            <div class="case-name">{{ example.name }}</div>
+            <template v-if="example.mode === 'playground'">
+              <div class="case-thumbnail" @click="jumpTo(example)">
+                <img :src="handleSrc(example.key)" :alt="example.key" />
+              </div>
+              <div class="case-name">
+                <div>
+                  {{ example.name }}
+                </div>
+                <a v-if="example.github" :href="example.github"
+                  >🔗 view in github</a
+                >
+              </div>
+            </template>
+            <template v-else-if="example.mode === 'link'">
+              <div class="case-thumbnail link-mode" @click="jumpTo(example)">
+                <img :src="handleSrc(example.key)" :alt="example.key" />
+              </div>
+              <div class="case-name">
+                <div>
+                  {{ example.name }}
+                </div>
+                <a :href="example.github">🔗 view in github </a>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -31,20 +50,29 @@
 import { inject } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
-const jumpTo = (hash) => {
-  type.value = "thumbnail";
-  router.push({
-    name: "Playground",
-    hash: `#${hash}`,
-  });
+const jumpTo = (example) => {
+  const { mode, key, link } = example;
+  if (mode === "playground") {
+    type.value = "thumbnail";
+    router.push({
+      name: "Playground",
+      hash: `#${key}`,
+    });
+  } else {
+    window.open(link);
+  }
 };
 const config = inject("originConfig");
 const type = inject("type");
 const screenshots = inject("screenshots");
 const handleSrc = (name) => {
-  return import.meta.env.MODE === "production"
-    ? screenshots(name)
-    : `src/screenshots/${name}.png`;
+  try {
+    return import.meta.env.MODE === "production"
+      ? screenshots(name)
+      : `src/screenshots/${name}.png`;
+  } catch (error) {
+    return "src/assets/icon/new-logo.png";
+  }
 };
 </script>
 <style lang="scss" scoped>

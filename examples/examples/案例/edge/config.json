@@ -4,11 +4,13 @@
   "examples": [
     {
       "name": "自定义边样式",
-      "key": "custom-edge-style"
+      "key": "custom-edge-style",
+      "mode": "playground"
     },
     {
       "name": "自定义节点之间边的类型",
-      "key": "custom-edge-type"
+      "key": "custom-edge-type",
+      "mode": "playground"
     }
   ]
 }

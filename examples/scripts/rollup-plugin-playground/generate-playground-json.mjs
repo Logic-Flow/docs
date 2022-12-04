@@ -1,5 +1,5 @@
-import path from 'path';
-import fs from 'fs';
+import path from "path";
+import fs from "fs";
 
 function findPath(data) {
   if (!data) return;
@@ -27,31 +27,33 @@ function findPath(data) {
 }
 
 export default function generatePlaygroundJson() {
-  const configPath = path.resolve('playgroundEx', '../examples/config.json');
-  const topics = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+  const configPath = path.resolve("playgroundEx", "../examples/config.json");
+  const topics = JSON.parse(fs.readFileSync(configPath, "utf-8"));
   const playgroundPath = findPath(topics.topic);
-  const playgroundPathStr = playgroundPath.map((item) => item.join('/'));
+  const playgroundPathStr = playgroundPath.map((item) => item.join("/"));
   const jsonObject = {};
 
   for (let index = 0; index < playgroundPathStr.length; index++) {
     const jsonFiles = {};
     const p = path.resolve(
-      'playgroundEx',
-      '../examples',
-      playgroundPathStr[index],
+      "playgroundEx",
+      "../examples",
+      playgroundPathStr[index]
     );
-    const files = fs.readdirSync(p);
-    files.forEach((file) => {
-      const filePath = path.resolve(p, file);
-      const content = fs.readFileSync(filePath, 'utf8');
-      jsonFiles[file] = {
-        content,
+    if (fs.existsSync(p)) {
+      const files = fs.readdirSync(p);
+      files.forEach((file) => {
+        const filePath = path.resolve(p, file);
+        const content = fs.readFileSync(filePath, "utf8");
+        jsonFiles[file] = {
+          content,
+        };
+      });
+      const el = playgroundPath[index];
+      jsonObject[el[el.length - 1]] = {
+        files: jsonFiles,
       };
-    });
-    const el = playgroundPath[index];
-    jsonObject[el[el.length - 1]] = {
-      files: jsonFiles,
-    };
+    }
   }
   return jsonObject;
 }
