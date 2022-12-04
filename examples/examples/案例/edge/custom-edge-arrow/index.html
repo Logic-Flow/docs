@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="//unpkg.com/@logicflow/core/dist/style/index.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #container {
+      height: calc(100% - 20px);
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <div class="custom-node-style">
+    <div class="custom-node-fill">
+      箭头类型：
+      <input type="radio" name="type" value="default" checked="checked" oninput="handleTypeChange(this)">默认箭头
+      <input type="radio" name="type" value="empty" oninput="handleTypeChange(this)">空心箭头
+      <input type="radio" name="type" value="half" oninput="handleTypeChange(this)">半箭头
+    </div>
+  </div>
+  <script src="//unpkg.com/@logicflow/core/dist/logic-flow.js"></script>
+  <script type="module" src="./index.js"></script>
+</body>
+</html>

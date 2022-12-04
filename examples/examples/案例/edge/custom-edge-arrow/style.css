@@ -1,0 +1,16 @@
+.custom-node-style {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  font-size: 14px;
+  margin: 20px;
+}
+
+.custom-node-style > div {
+  margin-bottom: 10px;
+}
+
+.custom-node-fill {
+  display: flex;
+}
