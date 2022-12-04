@@ -72,7 +72,7 @@ const handleSrc = (name) => {
       ? screenshots(name)
       : `src/screenshots/${name}.png`;
   } catch (error) {
-    return "src/assets/icon/new-logo.png";
+    return "logo.png";
   }
 };
 </script>
