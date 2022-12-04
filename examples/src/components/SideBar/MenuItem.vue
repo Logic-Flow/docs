@@ -16,24 +16,26 @@
       <CollapseTransition>
         <div v-show="!data.fold" class="sub-items">
           <div v-for="(example, index) in data.examples" :key="example.key">
-            <a
-              draggable="false"
-              @click.stop="
-                () => {
-                  menuItemEvents.clickItem(`${example.name}`);
-                  menuItemEvents.toggleSelectedByPath(config, data.name);
-                  router.push(`playground#${example.key}`);
-                }
-              "
-              :class="`${example.name} hover-bkg sub-item`"
-              href="javascript:void(0)"
-            >
-              <img
+            <template v-if="example.mode === 'playground'">
+              <a
                 draggable="false"
-                class="thumbnail"
-                :src="handleSrc(example.key)"
-              />
-            </a>
+                @click.stop="
+                  () => {
+                    menuItemEvents.clickItem(`${example.name}`);
+                    menuItemEvents.toggleSelectedByPath(config, data.name);
+                    router.push(`playground#${example.key}`);
+                  }
+                "
+                :class="`${example.name} hover-bkg sub-item`"
+                href="javascript:void(0)"
+              >
+                <img
+                  draggable="false"
+                  class="thumbnail"
+                  :src="handleSrc(example.key)"
+                />
+              </a>
+            </template>
           </div>
         </div>
       </CollapseTransition>

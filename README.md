@@ -18,15 +18,18 @@
   "examples": [
     {
       "name": "自定义带有图标的节点-1-1",
-      "key": "custom-node-1-1"
+      "key": "custom-node-1-1",
+      "type": "playground" // playground 表示需要playground, 会跳转至playground页面， link 表示链接，会跳到外部链接（非playground页面）
     },
     {
       "name": "使用vue自定义html节点-1-1",
-      "key": "vue-1-1"
+      "key": "vue-1-1",
+      "type": "playground"
     },
     {
       "name": "html卡片-1-1",
-      "key": "html-card-1-1"
+      "key": "html-card-1-1",
+      "type": "playground"
     }
   ]
 }

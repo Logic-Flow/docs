@@ -8,7 +8,6 @@ import viteImagemin from "vite-plugin-imagemin";
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "/examples/",
-
   plugins: [
     vue({
       template: {
@@ -47,19 +46,10 @@ export default defineConfig({
       },
     }),
   ],
-  build: {
-    // assetsDir: "./",
-    // rollupOptions: {
-    //   output: {
-    //     manualChunks: {
-    //       'playground-elements': ['playground-elements'],
-    //     },
-    //   },
-    // },
-  },
   server: {
     port: 5000,
     strictPort: true,
     cors: true,
+    hmr: true,
   },
 });

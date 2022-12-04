@@ -13,6 +13,7 @@
   "private": "true",
   "scripts": {
     "build": "lerna run build",
+    "build:local": "lerna run build && sh remove.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
