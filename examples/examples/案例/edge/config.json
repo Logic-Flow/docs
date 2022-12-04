@@ -5,6 +5,10 @@
     {
       "name": "自定义边样式",
       "key": "custom-edge-style"
+    },
+    {
+      "name": "自定义节点之间边的类型",
+      "key": "custom-edge-type"
     }
   ]
 }
