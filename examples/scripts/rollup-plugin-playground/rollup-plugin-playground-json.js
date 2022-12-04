@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import generatePlaygroundJson from './generate-playground-json.mjs';
+import fs from "fs";
+import path from "path";
+import generatePlaygroundJson from "./generate-playground-json.mjs";
 
 function copyPlaygroundJson() {
   return new Promise((resolve) => {
-    const targetDir = path.resolve('public/playground_json');
+    const targetDir = path.resolve("public/playground_json");
     const jsonObject = generatePlaygroundJson();
     Object.keys(jsonObject).forEach((key) => {
       const exampleJsonPath = path.resolve(targetDir, `${key}.playground.json`);
@@ -16,7 +16,7 @@ function copyPlaygroundJson() {
 
 export default function playgroundJson() {
   return {
-    name: 'playgroundJson',
+    name: "playgroundJson",
     buildStart: async () => {
       await copyPlaygroundJson();
     },

@@ -3,12 +3,21 @@
   "key": "business-scenario",
   "examples": [
     {
-      "name": "思维导图",
-      "key": "mind-mapping"
+      "name": "思维导图1",
+      "key": "mind-mapping",
+      "mode": "playground"
     },
     {
       "name": "组织架构图",
-      "key": "organization"
+      "key": "organization",
+      "mode": "playground"
+    },
+    {
+      "name": "logicflow-node-red-vue3",
+      "key": "logicflow-node-red-vue3",
+      "mode": "link",
+      "link": "/demo/dist/logicflow-node-red-vue3",
+      "github": "https://github.com/Logic-Flow/docs/tree/master/demo/logicflow-node-red-vue3"
     }
   ]
 }
