@@ -4,7 +4,7 @@ class SquareModel extends RectNodeModel {
     super.initNodeData(data);
     // 设置校验规则方法1
     const circleOnlyAsTarget = {
-      message: "正方形节点下一个节点只能是圆形或多边形节点",
+      message: "矩形节点下一个节点只能是圆形或多边形节点",
       validate: (sourceNode, targetNode, sourceAnchor, targetAnchor) => {
         return targetNode.type === "customCircleNode" || targetNode.type === "customPolygonNode";
       },
