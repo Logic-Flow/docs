@@ -9,6 +9,10 @@
     {
       "name": "自定义节点之间边的类型",
       "key": "custom-edge-type"
+    },
+    {
+      "name": "自定义连线规则",
+      "key": "custom-edge-rules"
     }
   ]
 }
