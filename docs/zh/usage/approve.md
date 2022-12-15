@@ -40,7 +40,7 @@
 
 ### 事件
 
-LogicFlow 提供了节点和边的交互事件，可以通过监听这些事件，拿到对应的节点和边的`数据`以及`原生事件`信息。事件的详细内容见[事件 API](zh/guide/advance/event)  
+LogicFlow 提供了节点和边的交互事件，可以通过监听这些事件，拿到对应的节点和边的`数据`以及`原生事件`信息。事件的详细内容见[事件 API](zh/guide/basic/event)  
 审批中的流程进度预览，设置[静默模式](zh/guide/basic/silent-mode)，监听节点 hover，使用 React 组件展示审批详情。
 <example :height="350" href="/examples/#/usage/approve/preview"></example>
 
