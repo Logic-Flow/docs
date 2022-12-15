@@ -1,6 +1,6 @@
 # editConfigModel
 
-editConfigModel是控制页面编辑状态。详细用法见[设置图编辑方式](/guide/basic/silent-mode.html)
+editConfigModel是控制页面编辑状态。详细用法见[设置图编辑方式](zh/guide/basic/silent-mode)
 
 
 ## 属性说明

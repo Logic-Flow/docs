@@ -1,6 +1,6 @@
 # nodeModel
 
-LogicFlow 中所有的节点都会有一个 nodeModel 与其对应。由于数据驱动视图的机制，我们对节点的所有操作事实上就是对 model 的操作。大多数情况下，我们不建议直接对 nodeModel 的属性进行赋值操作，而是调用 model 或者[graphModel](graphModelApi.md)上提供的方法。
+LogicFlow 中所有的节点都会有一个 nodeModel 与其对应。由于数据驱动视图的机制，我们对节点的所有操作事实上就是对 model 的操作。大多数情况下，我们不建议直接对 nodeModel 的属性进行赋值操作，而是调用 model 或者[graphModel](en/api/graphModelApi)上提供的方法。
 
 ?> **警告**在对 LogicFlow 内部源码不熟悉的情况，对 model 的属性进行赋值操作可能会引起很多不符合预期的问题。例如在 model 中`x`,`y`表示节点的位置，如果想要移动节点直接修改`x`,`y`的话，会出现节点被移动了，而节点上的文本、节点相连的边都没有动。所以想要移动节点，最好的方法还是调用`graphModel`上的`moveNode`方法来实现。
 
@@ -43,7 +43,7 @@ nodeModel 上节点属性有很多，由于用途不一样，我们对其进行�
 
 ## 形状属性
 
-LogicFlow 的形状属性主要是控制基础节点的主要外观。形状属性可以通过`setAttributes`或者`initNodeData`来设置。具体设置方式见[自定义节点的形状属性](/guide/basic/node.html#自定义节点的形状属性)。
+LogicFlow 的形状属性主要是控制基础节点的主要外观。形状属性可以通过`setAttributes`或者`initNodeData`来设置。具体设置方式见[自定义节点的形状属性](en/guide/basic/node#自定义节点的形状属性)。
 
 | 名称   | 类型              | 是否必须 | 描述                                                                       |
 | :----- | :---------------- | :------- | :------------------------------------------------------------------------- |
@@ -61,7 +61,7 @@ LogicFlow 在`model`上还维护一些属性，开发者可以通过这些属性
 
 | 名称        | 类型    | 是否必须 | 描述                                                                                                                                                                                                           |
 | :---------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| graphModel  | object  | ✅       | 整个画布对应的 model，[详情见](/api/graphModelApi.html#width)                                                                                                                                                  |
+| graphModel  | object  | ✅       | 整个画布对应的 model，[详情见](en/api/graphModelApi#width)                                                                                                                                                     |
 | zIndex      | number  | ✅       | 节点在 z 轴的高度，元素重合时，zIndex 高的在上面, 默认为 1                                                                                                                                                     |
 | state       | number  | ✅       | 元素状态，不同的状态对应着元素显示效果。DEFAULT = 1 默认显示；TEXT_EDIT = 2 此元素正在进行文本编辑；ALLOW_CONNECT = 4, 此元素允许作为当前边的目标节点；NOT_ALLOW_CONNECT = 5, 此元素不允许作为当前边的目标节点 |
 | BaseType    | string  | ✅       | 当前 model 的基础类型，对于节点，则固定为`node`。主要用在节点和边混合的时候识别此`model`是节点还是边。                                                                                                         |
@@ -82,7 +82,7 @@ LogicFlow 所有的节点最终都是以 SVG DOM 的方式渲染。但是除了�
 
 ## getNodeStyle
 
-支持重写，自定义节点样式属性. 默认为[主题 baseNode](/api/themeApi.html#basenode)
+支持重写，自定义节点样式属性. 默认为[主题 baseNode](en/api/themeApi#basenode)
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -97,7 +97,7 @@ class UserTaskModel extends RectNodeModel {
 
 ## getTextStyle
 
-支持重写，自定义节点文本样式属性，默认为[主题 nodeText](/api/themeApi.html#nodetext)
+支持重写，自定义节点文本样式属性，默认为[主题 nodeText](en/api/themeApi#nodetext)
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -111,7 +111,7 @@ class UserTaskModel extends RectNodeModel {
 
 ## getAnchorStyle
 
-支持重写，自定义节点锚点样式属性，默认为[主题 anchor](/api/themeApi.html#anchor)
+支持重写，自定义节点锚点样式属性，默认为[主题 anchor](en/api/themeApi#anchor)
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -129,7 +129,7 @@ class UserTaskModel extends RectNodeModel {
 
 ## getAnchorLineStyle
 
-支持重写，自定义节点锚点拖出连接线的样式属性，默认为[主题 anchorline](/api/themeApi.html#anchorline)
+支持重写，自定义节点锚点拖出连接线的样式属性，默认为[主题 anchorline](en/api/themeApi#anchorline)
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -143,7 +143,7 @@ class UserTaskModel extends RectNodeModel {
 
 ## getOutlineStyle
 
-支持重写，自定义节点轮廓框的样式属性，默认为[主题 outline](/api/themeApi.html#outline)
+支持重写，自定义节点轮廓框的样式属性，默认为[主题 outline](en/api/themeApi#outline)
 
 ```js
 class UserTaskModel extends RectNodeModel {

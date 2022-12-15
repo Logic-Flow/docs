@@ -10,7 +10,7 @@
 ## 创建审批节点
 
 审批节点包括发起申请、审核、判断、结束。
-通过`LogicFlow`[自定义节点](/guide/advance/customNode.html)，扩展审批流程需要的节点。
+通过`LogicFlow`[自定义节点](zh/guide/advance/customNode)，扩展审批流程需要的节点。
 
 ### 节点菜单 Panel
 
@@ -40,10 +40,10 @@
 
 ### 事件
 
-LogicFlow 提供了节点和边的交互事件，可以通过监听这些事件，拿到对应的节点和边的`数据`以及`原生事件`信息。事件的详细内容见[事件 API](/guide/advance/event.html)  
-审批中的流程进度预览，设置[静默模式](/guide/basic/silent-mode.html)，监听节点 hover，使用 React 组件展示审批详情。
+LogicFlow 提供了节点和边的交互事件，可以通过监听这些事件，拿到对应的节点和边的`数据`以及`原生事件`信息。事件的详细内容见[事件 API](zh/guide/advance/event)  
+审批中的流程进度预览，设置[静默模式](zh/guide/basic/silent-mode)，监听节点 hover，使用 React 组件展示审批详情。
 <example :height="350" href="/examples/#/usage/approve/preview"></example>
 
 ## 审批流程主题设置
 
-可以通过主题设置的方式，统一修改节点和边的样式，优化流程展示，适配与宿主系统 UI。主题详情见[主题 API](/guide/basic/theme.html)
+可以通过主题设置的方式，统一修改节点和边的样式，优化流程展示，适配与宿主系统 UI。主题详情见[主题 API](zh/guide/basic/theme)

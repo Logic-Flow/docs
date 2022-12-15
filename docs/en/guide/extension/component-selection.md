@@ -42,7 +42,7 @@ const lf = new LogicFlow({
 
 如果`stopMoveGraph`不为 true, 也就是允许拖动画布，那么默认则不可以进行框选。
 
-大多数情况下，我们期望允许拖动画布，当用户点击拖拽面板后才开启选区。请参考[拖拽面板插件](/guide/extension/component-dnd-panel.html)
+大多数情况下，我们期望允许拖动画布，当用户点击拖拽面板后才开启选区。请参考[拖拽面板插件](en/guide/extension/component-dnd-panel)
 
 ### 设置选区灵敏度
 

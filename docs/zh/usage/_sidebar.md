@@ -1,2 +1,2 @@
-- [Approve](approve.md)
-- [Bpmn](bpmn.md)
+- [Approve](zh/usage/approve)
+- [Bpmn](zh/usage/bpmn)
