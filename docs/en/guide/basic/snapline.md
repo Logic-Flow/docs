@@ -8,13 +8,13 @@
 ## 对齐线使用
 
 普通编辑模式下，默认开启对齐线，也可通过配置进行关闭。  
-在[静默模式](/guide/basic/silent-mode.html)下，无法移动节点，所以关闭了对齐线功能，无法通过配置开启。
+在[静默模式](en/guide/basic/silent-mode)下，无法移动节点，所以关闭了对齐线功能，无法通过配置开启。
 
 ```ts
 // 关闭对齐线功能
 const lf = new LogicFlow({
   snapline: false,
-})
+});
 ```
 
 ## 对齐线样式设置
@@ -38,4 +38,4 @@ lf.setTheme({
 
 <example :height="400" ></example>
 
-更多样式修改参见[主题](/guide/advance/theme.html)
+更多样式修改参见[主题](en/guide/advance/theme)

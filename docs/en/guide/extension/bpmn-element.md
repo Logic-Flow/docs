@@ -2,7 +2,7 @@
 
 > BPMN 是目前较为著名的 workflow 的建模语言标准之一。LogicFlow 实现了 BPMN 扩展，可以直接使用 LogicFlow 来绘制兼容 BPMN2.0 规范的流程，并且其导出的数据可以在 Activiti 流程引擎上运行。
 
-LogicFlow 提供了[自定义节点](/guide/basic/node.html)和[自定义边](/guide/basic/edge.html), 可以实现满足 BPMN2.0 规范的节点和边。然后在使用[数据转换](../extension/adapter)将生成的数据转换为 Activiti 需要的格式。
+LogicFlow 提供了[自定义节点](en/guide/basic/node)和[自定义边](en/guide/basic/edge), 可以实现满足 BPMN2.0 规范的节点和边。然后在使用[数据转换](../extension/adapter)将生成的数据转换为 Activiti 需要的格式。
 
 ?> **注意**在实际项目中，我们推荐开发者完全自定义项目的节点和数据转换，而不是使用我们提供的 bpmnElement 和 bpmnAdapter 插件。我们内置的插件只包括了很基础的演示功能，不支持更多的 bpmn 元素和自定义属性。大家可以参考我们的 bpmnElement 和 bpmnAdapter 插件，自己在本地重新实现一套符合你们自己产品需求的节点和数据格式转换插件。我们开发 LogicFlow 的初衷之一就是希望前端能在代码中体现所有的业务逻辑，这样让前端研发更贴近的业务，而不是把业务逻辑交给第三方库。
 
@@ -113,4 +113,4 @@ const data = {
 };
 ```
 
-完整的 BPMN 案例工具请到[示例](/usage/bpmn.html)中体验。
+完整的 BPMN 案例工具请到[示例](en/usage/bpmn)中体验。

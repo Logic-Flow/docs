@@ -33,7 +33,7 @@ LogicFlow 是基于继承来实现自定义节点、边。开发者可以继承 
 
 ![logicflow-1.0-2.png](../../assets/images/logicflow-1.0-2.png)
 
-> 此图也是用 LogicFlow 画出来的。见[作图工具](/mvp/index.html)。
+> 此图也是用 LogicFlow 画出来的。见[作图工具](zh/mvp/index)。
 
 ## 选择自定义节点继承的基础节点
 
@@ -117,13 +117,13 @@ lf.render({
 
 ### 步骤 2: 自定义节点 model
 
-LogicFlow 把自定义节点外观分为了`自定义节点样式属性`和`自定义节点形状属性`两种方式。更多详细定义方法，请查看[NodeModelApi](../../api/nodeModelApi.md)
+LogicFlow 把自定义节点外观分为了`自定义节点样式属性`和`自定义节点形状属性`两种方式。更多详细定义方法，请查看[NodeModelApi](zh/api/nodeModelApi)
 
 #### 自定义节点的样式属性
 
-在 LogicFlow 中，外观属性表示控制着节点`边框`、`颜色`这类偏外观的属性。这些属性是可以直接通过[主题配置](/api/themeApi.html)来控制。自定义节点样式可以看做在主题的基础上基于当前节点的类型进行再次定义。例如在主题中对所有`rect`节点都定义其边框颜色为红色`stroke: red`。 那么可以在自定义节点`UserTask`的时候，重新定义`UserTask`边框为蓝色`stroke: blue`。
+在 LogicFlow 中，外观属性表示控制着节点`边框`、`颜色`这类偏外观的属性。这些属性是可以直接通过[主题配置](zh/api/themeApi)来控制。自定义节点样式可以看做在主题的基础上基于当前节点的类型进行再次定义。例如在主题中对所有`rect`节点都定义其边框颜色为红色`stroke: red`。 那么可以在自定义节点`UserTask`的时候，重新定义`UserTask`边框为蓝色`stroke: blue`。
 
-更细粒度的节点样式控制方法，详情见[API 样式属性](/api/nodeModelApi.html#样式属性)
+更细粒度的节点样式控制方法，详情见[API 样式属性](zh/api/nodeModelApi#样式属性)
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -140,7 +140,7 @@ class UserTaskModel extends RectNodeModel {
 
 在 LogicFlow 中，形状属性表示节点的宽`width`、高`height`，矩形的圆角`radius`, 圆形的半径`r`, 多边形的顶点`points`等这些控制着节点最终形状的属性。因为 LogicFlow 在计算节点的锚点、连线的起点终点的时候，会基于形状属性进行计算。对于形状属性的自定义，需要在`setAttributes`方法或`initNodeData`方法中进行。
 
-LogicFlow 对于不同的基础节点，存在一些各基础节点自己特有的形状属性。详情见[API 形状属性](/api/nodeModelApi.html#形状属性)
+LogicFlow 对于不同的基础节点，存在一些各基础节点自己特有的形状属性。详情见[API 形状属性](zh/api/nodeModelApi#形状属性)
 
 ```js
 class customRectModel extends RectNodeModel {
@@ -349,7 +349,7 @@ h("polygon", {
 LogicFlow 是基于`preact`开发的，我们自定义节点 view 的时候，可以通过`this.props`获取父组件传递过来的数据。`this.props`对象包含两个属性，分别为:
 
 - `model`: 表示自定义节点的 model
-- [graphModel](/api/graphModelApi.html): 表示 logicflow 整个图的 model
+- [graphModel](zh/api/graphModelApi): 表示 logicflow 整个图的 model
 
 #### 图标的 path 如何获取
 
@@ -535,7 +535,7 @@ class SquareModel extends RectNodeModel {
 
 ## 自定义节点文本
 
-LogicFlow 支持自定义节点文本的外观和编辑状态。参考[nodeModel API](../../api/nodeModelApi.md)中的`textObject`
+LogicFlow 支持自定义节点文本的外观和编辑状态。参考[nodeModel API](zh/api/nodeModelApi)中的`textObject`
 
 ```js
 class CustomNodeModel extends RectNodeModel {

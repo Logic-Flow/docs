@@ -30,7 +30,7 @@ import { BezierEdge, BezierEdgeModel } from "@logicflow/core";
 
 和节点一样，LogicFlow 的边也支持基于继承的自定义机制。同样也只需同时继承`view`和`model`。
 但是和节点不一样的是，由于边的编辑复杂度问题，绝大多数情况下，自定义边时不推荐自定义`view`。
-只需要在自定义[edgeModel](/api/edgeModelApi.html)中样式类即可。
+只需要在自定义[edgeModel](en/api/edgeModelApi)中样式类即可。
 
 ```js
 import { PolylineEdgeModel } from "@logicflow/core";

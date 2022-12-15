@@ -2,14 +2,16 @@
 
 LogicFlow 提供了设置主题的方法，便于用户统一设置其内部所有元素的样式。  
 设置方式有两种：
-- 初始化`LogicFlow`时作为配置传入
-- 初始化后，调用`LogicFlow`的 setTheme 方法  
 
-主题配置参数见[主题API](/api/themeApi.html)
+- 初始化`LogicFlow`时作为配置传入
+- 初始化后，调用`LogicFlow`的 setTheme 方法
+
+主题配置参数见[主题 API](zh/api/themeApi)
 
 ## 配置
-new LogicFlow时作为将主题配置作为参数进行初始化。
-  
+
+new LogicFlow 时作为将主题配置作为参数进行初始化。
+
 ```ts
 // 方法1：new LogicFlow时作为配置传入
 const config = {
@@ -29,7 +31,7 @@ const config = {
     edgeText: { // 边文本样式
       ...
     },
-    anchor: { // 锚点样式 
+    anchor: { // 锚点样式
       ...
     }
     ...
@@ -37,10 +39,13 @@ const config = {
 }
 const lf = new LogicFlow(config);
 ```
+
 ## setTheme
-调用LogicFlow的setTheme方法，`lf.setTheme`进行主题配置
+
+调用 LogicFlow 的 setTheme 方法，`lf.setTheme`进行主题配置
+
 ```ts
-// 方法2： 调用LogicFlow的setTheme方法 
+// 方法2： 调用LogicFlow的setTheme方法
 lf.setTheme({ // 设置默认主题样式
   rect: { // 矩形样式
     ...
@@ -54,7 +59,7 @@ lf.setTheme({ // 设置默认主题样式
   edgeText: { // 边文本样式
     ...
   },
-  anchor: { // 锚点样式 
+  anchor: { // 锚点样式
     ...
   }
   ...
@@ -67,5 +72,3 @@ lf.setTheme({ // 设置默认主题样式
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
-
-

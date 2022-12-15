@@ -29,7 +29,7 @@
 </div>
 
 [GitHub](https://github.com/didi/LogicFlow)
-[快速上手](zh/guide/start.md)
+[快速上手](zh/guide/start)
 
 [npm-url]: https://www.npmjs.com/package/@logicflow/core
 [npm-v-img]: https://img.shields.io/npm/v/@logicflow/core

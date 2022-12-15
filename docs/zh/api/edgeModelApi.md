@@ -1,6 +1,6 @@
 # edgeModel
 
-LogicFlow 中所有的边都会有一个 edgeModel 与其对应。由于数据驱动视图的机制，我们对边的所有操作事实上就是对 model 的操作。大多数情况下，我们不建议直接对 edgeModel 的属性进行赋值操作，而是调用 model 或者[graphModel](graphModelApi.md)上提供的方法。
+LogicFlow 中所有的边都会有一个 edgeModel 与其对应。由于数据驱动视图的机制，我们对边的所有操作事实上就是对 model 的操作。大多数情况下，我们不建议直接对 edgeModel 的属性进行赋值操作，而是调用 model 或者[graphModel](zh/api/graphModelApi)上提供的方法。
 
 ## 数据属性
 
@@ -44,7 +44,7 @@ LogicFlow 在`model`上还维护一些属性，开发者可以通过这些属性
 
 | 名称               | 类型    | 是否必须 | 描述                                                                                                                                                                                                           |
 | :----------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| graphModel         | object  | ✅       | 整个画布对应的 model，[详情见](/api/graphModelApi.html#width)                                                                                                                                                  |
+| graphModel         | object  | ✅       | 整个画布对应的 model，[详情见](zh/api/graphModelApi#width)                                                                                                                                                     |
 | zIndex             | number  | ✅       | 节点在 z 轴的高度，元素重合时，zIndex 高的在上面。默认为 0                                                                                                                                                     |
 | state              | number  | ✅       | 元素状态，不同的状态对应着元素显示效果。DEFAULT = 1 默认显示；TEXT_EDIT = 2 此元素正在进行文本编辑；ALLOW_CONNECT = 4, 此元素允许作为当前边的目标节点；NOT_ALLOW_CONNECT = 5, 此元素不允许作为当前边的目标节点 |
 | BaseType           | string  | ✅       | 当前 model 的基础类型，对于边，则固定为`edge`。主要用在节点和边混合的时候识别此`model`是节点还是边。                                                                                                           |
@@ -60,7 +60,7 @@ LogicFlow 所有的边最终都是以 SVG DOM 的方式渲染。svg 的样式相
 
 ## getEdgeStyle
 
-支持重写，自定义边文本样式属性. 默认为[主题 baseEdge](/api/themeApi.html#baseedge)
+支持重写，自定义边文本样式属性. 默认为[主题 baseEdge](zh/api/themeApi#baseedge)
 
 ```js
 class SequenceFlowModel extends PolylineModel {
@@ -89,7 +89,7 @@ class CustomBezierModel extends BezierEdgeModel {
 
 ## getTextStyle
 
-支持重写，自定义边文本样式属性，默认为[主题 edgeText](/api/themeApi.html#edgetext)
+支持重写，自定义边文本样式属性，默认为[主题 edgeText](zh/api/themeApi#edgetext)
 
 ```js
 class SequenceFlowModel extends PolylineModel {

@@ -1,6 +1,6 @@
 # 事件
 
-LogicFlow 提供了事件系统用于告知开发者当前流程图发生的事件。事件的详细用法见[事件](/guide/basic/event.html)。
+LogicFlow 提供了事件系统用于告知开发者当前流程图发生的事件。事件的详细用法见[事件](zh/guide/basic/event)。
 
 ## 节点事件
 
@@ -25,11 +25,11 @@ LogicFlow 提供了事件系统用于告知开发者当前流程图发生的事�
 
 事件对象包含如下内容：
 
-| 属性     | 类型       | 值                                                                                                  |
-| :------- | :--------- | :-------------------------------------------------------------------------------------------------- |
-| data     | Object     | 节点的[数据属性](/api/nodeModelApi.md#数据属性)                                                     |
-| e        | MouseEvent | 原生的鼠标事件对象                                                                                  |
-| position | Object     | 鼠标触发点在画布中的坐标（参照[getPointByClient](/api/logicFlowApi.html#getpointbyclient)的返回值） |
+| 属性     | 类型       | 值                                                                                               |
+| :------- | :--------- | :----------------------------------------------------------------------------------------------- |
+| data     | Object     | 节点的[数据属性](zh/api/nodeModelApi#数据属性)                                                   |
+| e        | MouseEvent | 原生的鼠标事件对象                                                                               |
+| position | Object     | 鼠标触发点在画布中的坐标（参照[getPointByClient](zh/api/logicFlowApi#getpointbyclient)的返回值） |
 
 ## 边事件
 
@@ -51,9 +51,9 @@ LogicFlow 提供了事件系统用于告知开发者当前流程图发生的事�
 
 | 属性     | 类型       | 值                                                                                                  |
 | :------- | :--------- | :-------------------------------------------------------------------------------------------------- |
-| data     | Object     | 边的[数据属性](/api/edgeModelApi.md#数据属性)                                                       |
+| data     | Object     | 边的[数据属性](zh/api/edgeModelApi#数据属性)                                                       |
 | e        | MouseEvent | 原生的鼠标事件对象                                                                                  |
-| position | Object     | 鼠标触发点在画布中的坐标（参照[getPointByClient](/api/logicFlowApi.html#getpointbyclient)的返回值） |
+| position | Object     | 鼠标触发点在画布中的坐标（参照[getPointByClient](zh/api/logicFlowApi#getpointbyclient)的返回值） |
 | msg      | String     | 边校验信息                                                                                          |
 
 ## 锚点事件
@@ -93,7 +93,7 @@ LogicFlow 提供了事件系统用于告知开发者当前流程图发生的事�
 | 属性     | 类型       | 值                                                                                                  |
 | :------- | :--------- | :-------------------------------------------------------------------------------------------------- |
 | e        | MouseEvent | 原生的鼠标事件对象                                                                                  |
-| position | Object     | 鼠标触发点在画布中的坐标（参照[getPointByClient](/api/logicFlowApi.html#getpointbyclient)的返回值） |
+| position | Object     | 鼠标触发点在画布中的坐标（参照[getPointByClient](zh/api/logicFlowApi#getpointbyclient)的返回值） |
 
 ## History 事件
 
@@ -132,7 +132,7 @@ History 用来记录画布上的每一次改动，当画布上的元素发生变
 | 属性     | 类型       | 值                                                                                                  |
 | :------- | :--------- | :-------------------------------------------------------------------------------------------------- |
 | e        | MouseEvent | 原生的鼠标事件对象                                                                                  |
-| position | Object     | 鼠标触发点在画布中的坐标（参照[getPointByClient](/api/logicFlowApi.html#getpointbyclient)的返回值） |
+| position | Object     | 鼠标触发点在画布中的坐标（参照[getPointByClient](zh/api/logicFlowApi#getpointbyclient)的返回值） |
 
 ## on
 

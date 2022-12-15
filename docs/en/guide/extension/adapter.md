@@ -4,9 +4,9 @@
 
 在 LogicFlow 中，一个流程图是由**节点**和**边**组成的。
 
-- 对于一个节点，我们需要知道这个节点的 **id**、[**类型**](./adapter.html#类型)、**位置**、**文本**、[**properties**](./adapter.html#properties)
-- 对于一个边，我们则需要知道这个边的 **id**、[**类型**](./adapter.html#类型)、起始节点id（**sourceNodeId**）、目标节点id（**targetNodeId**）、**文本**、[**properties**](./adapter.html#properties) 以及边的起点位置（**startPoint**），边的终点位置（**endPoint**）。
-  
+- 对于一个节点，我们需要知道这个节点的 **id**、[**类型**](en/guide/extension/adapter#类型)、**位置**、**文本**、[**properties**](en/guide/extension/adapter#properties)
+- 对于一个边，我们则需要知道这个边的 **id**、[**类型**](en/guide/extension/adapter#类型)、起始节点 id（**sourceNodeId**）、目标节点 id（**targetNodeId**）、**文本**、[**properties**](en/guide/extension/adapter#properties) 以及边的起点位置（**startPoint**），边的终点位置（**endPoint**）。
+
   - 折线的额外数据`pointsList`，因为折线是可以被用户手动调整的，所以增加此字段用于记录这个折线的具体路径。
 
 ### 类型
@@ -23,35 +23,35 @@ properties 是 LogicFlow 预留给开发者的一个空对象，开发者可以�
 lf.render({
   nodes: [
     {
-      id: '1',
-      type: 'rect',
+      id: "1",
+      type: "rect",
       x: 100,
       y: 100,
     },
     {
-      id: '2',
-      type: 'circle',
+      id: "2",
+      type: "circle",
       x: 300,
       y: 200,
-    }
+    },
   ],
   edges: [
     {
-      id: 'edge1',
-      type: 'polyline',
-      sourceNodeId: '1',
-      targetNodeId: '2',
-      startPoint: { x: 150, y: 100, },
-      endPoint: { x: 250, y: 200, },
+      id: "edge1",
+      type: "polyline",
+      sourceNodeId: "1",
+      targetNodeId: "2",
+      startPoint: { x: 150, y: 100 },
+      endPoint: { x: 250, y: 200 },
       pointList: [
-        { x: 150, y: 100, },
-        { x: 200, y: 100, },
-        { x: 200, y: 200, },
-        { x: 250, y: 200, },
-      ]
-    }
-  ]
-})
+        { x: 150, y: 100 },
+        { x: 200, y: 100 },
+        { x: 200, y: 200 },
+        { x: 250, y: 200 },
+      ],
+    },
+  ],
+});
 ```
 
 ## 什么是数据转换工具
@@ -64,26 +64,27 @@ lf.render({
 
 ```js
 const lf = new LogicFlow({
-  container: document.querySelector('#app')
-})
+  container: document.querySelector("#app"),
+});
 lf.adapterIn = function (userData) {
   // 这里把userData转换为LogicFlow支持的格式
   return logicFlowData;
-}
+};
 lf.adapterOut = function (logicFlowData) {
   // 这里把LogicFlow生成的数据转换为用户需要的格式。
   return userData;
-}
+};
 ```
 
 ## 使用内置的数据转换工具
 
 LogicFlow 内置通用的 bpmn-js 兼容的转换工具。可以支持将 LogicFlow 上绘制的图在 bpmn-js 上显示，也支持 bpmn-js 上绘制的图在 LogicFlow 上显示。[LogicFlow2Bpmn](https://github.com/didi/LogicFlow/tree/master/packages/extension/src/bpmn-adapter)
+
 ### bpmnAdapter
 
 ```ts
-import LogicFlow from '@logicflow/core';
-import { BpmnAdapter } from '@logicflow/extension';
+import LogicFlow from "@logicflow/core";
+import { BpmnAdapter } from "@logicflow/extension";
 
 // 注册插件
 LogicFlow.use(BpmnAdapter);

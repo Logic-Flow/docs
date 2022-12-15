@@ -136,7 +136,7 @@ const lf = new LogicFlow({
 
 ### `style`
 
-可以通过 style 配置主题，详细支持的样式选项见教程[主题 Theme](/guide/basic/theme.html)
+可以通过 style 配置主题，详细支持的样式选项见教程[主题 Theme](zh/guide/basic/theme)
 
 ### `snapline`
 
@@ -230,7 +230,7 @@ lf.renderRawData({
 
 ## setTheme
 
-设置主题, 详情见[主题](/api/themeApi.html)
+设置主题, 详情见[主题](zh/api/themeApi)
 
 ## changeNodeType
 
@@ -669,7 +669,7 @@ lf.setDefaultEdgeType("line");
 
 ## editText
 
-同[graphModel.editText](/api/graphModelApi.html#edittext)
+同[graphModel.editText](zh/api/graphModelApi#edittext)
 
 ## updateText
 
@@ -972,7 +972,7 @@ lf.clearData();
 
 更新流程编辑基本配置.
 
-详细参数见：[editConfig](/api/editConfigModelApi.html)
+详细参数见：[editConfig](zh/api/editConfigModelApi)
 
 ```js
 lf.updateEditConfig({
@@ -984,7 +984,7 @@ lf.updateEditConfig({
 
 获取流程编辑基本配置
 
-详细参数见：[editConfig](/api/editConfigModelApi.html)
+详细参数见：[editConfig](zh/api/editConfigModelApi)
 
 ```js
 lf.getEditConfig();
@@ -1179,7 +1179,7 @@ lf.fitView(deltaX, deltaY);
 
 ## on
 
-图的监听事件，更多事件请查看[事件](./eventCenterApi.md)
+图的监听事件，更多事件请查看[事件](zh/api/eventCenterApi)
 
 ```js
 on(evt: string, callback: Function): this
