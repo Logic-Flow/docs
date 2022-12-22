@@ -39,8 +39,10 @@ export default (
   <Switch>
     <Route path="/basic/node" exact component={Node} />
     <Route path="/basic/edge" exact component={Edge} />
+    {/* @ts-ignore */}
     <Route path="/basic/dnd" exact component={Dnd} />
     <Route path="/basic/keyboard" exact component={Keyboard} />
+    {/* @ts-ignore */}
     <Route path="/basic/grid" exact component={Grid} />
     <Route path="/basic/redoundo" exact component={RedoUndo} />
     <Route path="/basic/snapline" exact component={Snapline} />
@@ -66,6 +68,7 @@ export default (
     <Route path="/extension/adapter" exact component={AdapterExample} />
     <Route path="/extension/node-resize" exact component={NodeResizeExample} />
     <Route path="/extension/InserNodeInPolyline" exact component={InserNodeInPolyline} />
+    {/* @ts-ignore */}
     <Route path="/usage/bpmn" exact component={Bpmn} />
     <Route path="/usage/approve" exact component={Approve} />
     <Route path="/usage/approve/preview" exact component={ApprovePreview} />
