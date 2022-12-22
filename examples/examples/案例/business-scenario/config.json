@@ -14,20 +14,20 @@
     },
     {
       "name": "BPMN Demo",
-      "key": "BPMN Demo",
+      "key": "BPMN-Demo",
       "mode": "link",
       "link": "/demo/dist/examples/#/usage/approve?from=doc",
       "github": "https://github.com/Logic-Flow/docs/tree/master/demo/examples/src/pages/usage/bpmn"
     },
     {
-      "name": "logicflow-approve-demo",
+      "name": "审批流",
       "key": "logicflow-approve-demo",
       "mode": "link",
       "link": "/demo/dist/examples/#/usage/approve?from=doc",
       "github": "https://github.com/Logic-Flow/docs/tree/master/demo/examples/src/pages/usage/approve"
     },
     {
-      "name": "logicflow-mvp",
+      "name": "流程图绘制mvp",
       "key": "logicflow-mvp",
       "mode": "link",
       "link": "/demo/dist/mvp",
