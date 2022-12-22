@@ -1,9 +1,9 @@
 import React, { ReactElement, CSSProperties } from 'react';
-import { Tooltip, Button } from 'antd';
+// import { Tooltip, Button } from 'antd';
 // import { GithubOutlined } from '@ant-design/icons';
 import './style.css';
 
-const githubBaseLink = 'https://github.com/didi/LogicFlow/tree/master/examples/src/pages';
+// const githubBaseLink = 'https://github.com/didi/LogicFlow/tree/master/examples/src/pages';
 
 type IProps = {
   content?: string;
