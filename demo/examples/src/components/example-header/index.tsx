@@ -1,6 +1,6 @@
 import React, { ReactElement, CSSProperties } from 'react';
 import { Tooltip, Button } from 'antd';
-import { GithubOutlined } from '@ant-design/icons';
+// import { GithubOutlined } from '@ant-design/icons';
 import './style.css';
 
 const githubBaseLink = 'https://github.com/didi/LogicFlow/tree/master/examples/src/pages';
@@ -14,23 +14,23 @@ type IProps = {
 
 export default function ExampleHeader(props: IProps): ReactElement {
 
-  function getGithubTool() {
-    return (
-      <Tooltip
-        arrowPointAtCenter
-        placement="bottomRight"
-        title="在 Github 中查看"
-      >
-        <Button
-          type="text"
-          shape="circle"
-          target="_blank"
-          href={githubBaseLink + props.githubPath}
-          icon={<GithubOutlined />}
-        />
-      </Tooltip>
-    );
-  }
+  // function getGithubTool() {
+  //   return (
+  //     <Tooltip
+  //       arrowPointAtCenter
+  //       placement="bottomRight"
+  //       title="在 Github 中查看"
+  //     >
+  //       <Button
+  //         type="text"
+  //         shape="circle"
+  //         target="_blank"
+  //         href={githubBaseLink + props.githubPath}
+  //         icon={<GithubOutlined />}
+  //       />
+  //     </Tooltip>
+  //   );
+  // }
 
   return (
     <div className="example-header">
