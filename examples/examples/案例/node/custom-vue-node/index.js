@@ -23,7 +23,11 @@ const LFConfig = {
 
 const lf = new LogicFlow({
   ...LFConfig,
+  // 容器
   container: document.querySelector('#container'),
+  // 指定画布区域的宽高，默认使用容器宽高
+  width: 1000,
+  height: 1000,
 });
 
 lf.register(vueNode);
