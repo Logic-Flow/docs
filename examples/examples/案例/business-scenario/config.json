@@ -32,6 +32,13 @@
       "mode": "link",
       "link": "/demo/dist/mvp",
       "github": "https://github.com/Logic-Flow/docs/tree/master/demo/mvp"
+    },
+    {
+      "name": "比赛晋级图",
+      "key": "logicflow-promotion-demo",
+      "mode": "link",
+      "link": "https://hsole.github.io/S12/",
+      "github": "https://github.com/hsole/S12"
     }
   ]
 }
