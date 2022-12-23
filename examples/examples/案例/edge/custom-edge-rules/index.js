@@ -19,7 +19,11 @@ const container = document.querySelector('#container');
 
 const lf = new LogicFlow({
   ...LFConfig,
+  // 容器
   container,
+  // 指定画布区域的宽高，默认使用容器宽高
+  width: 1000,
+  height: 1000,
   // 默认边
   edgeType: 'polyline',
 });
