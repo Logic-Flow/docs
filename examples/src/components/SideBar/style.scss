@@ -18,7 +18,7 @@
     overflow: scroll;
     background-color: #fff;
     color: #000;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #e3e2e2;
 
     .menu-search-wrap {
         display: flex;
@@ -53,7 +53,7 @@
             display: flex;
             border-radius: 3px;
             background-color: #fff;
-            border: 1px solid #ccc;
+            border: 1px solid #e3e2e2;
         }
         .menu-search-icon {
             margin: 0px 5px;
@@ -74,6 +74,7 @@
     .menu-item {
         overflow: hidden;
         transition: 0.25s;
+        height: 50px;
     }
 
     .topic {
@@ -88,7 +89,7 @@
     }
 
     .examples-wrap {
-        background-color: #f9f9f9;
+        background-color: #f3f7ff;
         transition: 0.3s;
         overflow: hidden;
 
@@ -113,7 +114,7 @@
             align-items: center;
             justify-content: space-between;
             :first-child {
-                padding-left: 15px;
+                padding-left: 10px;
             }
             .fold-icon {
                 right: 20px;
@@ -122,7 +123,7 @@
 
         .sub-items {
             flex-direction: column;
-            background-color: #f3f3f3;
+            background-color: #f6faff;
             a {
                 display: flex;
                 img {
@@ -145,7 +146,7 @@
 
 .hover-bkg {
     &:hover {
-        background-color: #eef7ff;
+        background-color: #e2f2ff;
     }
 }
 .hover-font {
@@ -162,7 +163,7 @@
     border-radius: 0px 6px 6px 0px;
     padding: 0px 10px 0px 0px;
     color: #000;
-    border: 1px solid #ccc;
+    border: 1px solid #e3e2e2;
     border-left: none;
     position: relative;
     right: 1px;
@@ -235,7 +236,8 @@
     height: 100px;
     display: block;
     margin-left: 10px;
-    border: 1px solid transparent;
+    border: 1px solid #e8e8e8;
+    border-radius: 2px;
 }
 
 .selected {

@@ -46,6 +46,11 @@ html {
   padding: 0;
   margin: 0;
 }
+
+body {
+  background-color: white;
+}
+
 .wrap {
   height: 100%;
   width: 100%;
@@ -61,16 +66,16 @@ html {
 }
 .main {
   background-color: #fff;
-  width: calc(100% - 17rem);
+  width: calc(100% - 17rem - 10px);
   color: #000;
   transition: 0.5s;
 }
 
 .widthHidden {
-  width: calc(100% - 27px);
+  width: calc(100% - 27px - 10px);
 }
 
 .widthOpen {
-  width: calc(100% - 17rem);
+  width: calc(100% - 17rem - 10px);
 }
 </style>
