@@ -3,6 +3,7 @@
     width: 100%;
     overflow: scroll;
     scroll-behavior: smooth;
+    padding-left: 10px;
 }
 .case-wrap {
     display: flex;
@@ -23,7 +24,7 @@
             border-radius: 5px;
             display: flex;
             align-items: center;
-            padding: 2px 5px;
+            padding: 2px;
             width: 240px;
             height: 160px;
             img {
@@ -48,7 +49,12 @@
             }
         }
         .case-name {
+            width: 100%;
+            height: 100%;
             margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             a {
                 color: #0059f8;
                 &:link {
