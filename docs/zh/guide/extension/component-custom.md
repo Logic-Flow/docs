@@ -78,7 +78,7 @@ class ContextPad {
 
 **LogicFlow 的图分层**
 
-<img src="../assets/../../assets/images/overlay.png" width="200">
+<img src="zh/assets/images/overlay.png" width="200">
 
 所以这里我们只需要将菜单插入到`toolOverlay`, 然后将其菜单移动到对应的位置即可。
 
