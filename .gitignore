@@ -1,3 +1,4 @@
 node_modules
 demo/dist
 examples/dist
+demo/pool/dist
