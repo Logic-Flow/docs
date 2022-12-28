@@ -99,4 +99,6 @@ lf.getGraphData();
 
 ### 转换结果示例
 
-<example :height="400" href="/examples#/extension/adapter"></example>
+<iframe src="https://docs.logic-flow.cn/demo/dist/examples/#/extension/adapter?from=doc"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+></iframe>

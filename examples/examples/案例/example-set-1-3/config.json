@@ -23,6 +23,13 @@
       "mode": "link",
       "link": "https://xinxin93.github.io/logicflow_vue_demo/#/",
       "github": "https://github.com/xinxin93/logicflow_vue_demo"
+    },
+    {
+      "name":"泳道",
+      "key": "pool",
+      "mode": "link",
+      "link": "/demo/dist/pool",
+      "github": "https://github.com/Logic-Flow/docs/tree/master/demo/pool"
     }
   ]
 }

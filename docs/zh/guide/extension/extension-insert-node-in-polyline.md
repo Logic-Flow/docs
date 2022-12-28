@@ -4,7 +4,9 @@
 
 拖动节点到边中间，自动成为边中间的点。
 举例：存在一条节点 A 到节点 B 的折线 E，拖拽一个节点 N 到折线 E 上，当节点 N 的中心点恰好在折线 E 的路径上时松开鼠标，这时节点 N 就成为 A 与 B 的中间节点，原来的边 E 被删除，生成两条新的折线，分别是 A 到 N，N 到 B。示例如下。
-<example href="/examples/#/extension/InserNodeInPolyline" :height="450" ></example>
+<iframe src="https://docs.logic-flow.cn/demo/dist/examples/#/extension/InserNodeInPolyline?from=doc"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+></iframe>
 
 ## 支持
 

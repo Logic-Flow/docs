@@ -9,6 +9,7 @@
     display: flex;
     flex-wrap: wrap;
     transition: 0.25s;
+    padding-bottom: 25px;
     .case {
         width: 240px;
         // height: 180px;
@@ -73,6 +74,33 @@
                     text-decoration: none;
                 }
             }
+        }
+    }
+}
+
+.github-icon {
+    position: relative;
+    &:hover {
+        &::after {
+            color: white;
+            content: "view in github";
+            position: absolute;
+            top: 35px;
+            width: 101px;
+            left: -35px;
+            background: rgb(0 0 0);
+            padding: 6px;
+            border-radius: 2px;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            top: 32px;
+            left: 5px;
+            background: rgb(0 0 0);
+            width: 15px;
+            height: 15px;
+            transform: rotate(45deg);
         }
     }
 }
