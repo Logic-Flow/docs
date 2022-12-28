@@ -22,8 +22,8 @@ LogicFlow.use(Menu);
 
 ## 菜单配置项
 
-菜单中的每一项功能，可以用一条配置进行表示。具体字段如下
-|字段|类型| 作用| 是否必须|描述|
+菜单中的每一项功能，可以用一条配置进行表示。具体字段如下:
+|字段|类型|作用|是否必须|描述|
 |:--|:--|:-|:--|:-|
 |text|string|文案||菜单项展示的文案|
 |className|string|class 名称||每一项默认 class 为 lf-menu-item，设置了此字段，calss 会在原来的基础上添加 className。|
@@ -153,7 +153,7 @@ lf.extension.menu.setMenuByType({
 除了上面的为某种类型元素设置菜单外，还可以在自定义元素的时候，为节点处于不同业务状态下设置菜单。
 
 - 通过自定义节点，设置其 menu，从而为节点设置定制的自定义菜单。
-- 由于自定义的 model 中可能无法直接拿到 lf 实例对象，此时可以通过`this.graphModel`拿到 graphModel 对象。graphModel 对象详细说明请参考[API/graphModel](http://logic-flow.org/api/graphModelApi.html)。
+- 由于自定义的 model 中可能无法直接拿到 lf 实例对象，此时可以通过`this.graphModel`拿到 graphModel 对象。graphModel 对象详细说明请参考[API/graphModel](/zh/api/graphModelApi)。
 - 如果还希望在点击菜单后进行业务处理，可以通过`graphModel`的`eventCenter`发送自定义事件，然后自己在`lf`实例上监听此事件。
 - 优先级：指定业务状态设置菜单 > 指定类型元素配置菜单 > 通用菜单配置 > 默认菜单。
 
