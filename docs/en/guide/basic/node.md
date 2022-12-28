@@ -33,7 +33,7 @@ LogicFlow 是基于继承来实现自定义节点、边。开发者可以继承 
 
 ![logicflow-1.0-2.png](../../assets/images/logicflow-1.0-2.png)
 
-> 此图也是用 LogicFlow 画出来的。见[作图工具](en/mvp/index)。
+> 此图也是用 LogicFlow 画出来的。见[作图工具](https://docs.logic-flow.cn/demo/dist/mvp/)。
 
 ## 选择自定义节点继承的基础节点
 
