@@ -85,16 +85,12 @@ const graphData = {
 > {
 >   type: 'apply',
 >   properties: {
+>   isPass: true
+>   }
+> }
 > ```
-
-    isPass: true
-
-}
-}
-
-> ```
-> PS: 对于如何基于properties中的属性控制节点的样式，请查看后面的自定义节点。
-> ```
+>
+> PS: 对于如何基于 properties 中的属性控制节点的样式，请查看后面的自定义节点。
 
 > **type 的含义是什么？**
 >
