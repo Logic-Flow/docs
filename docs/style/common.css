@@ -49,7 +49,7 @@ pre{
   background: #282c34 !important;
   color: #ff7878 !important;
   font-size: 16px !important;
-  line-height: 1.7 !important;
+  line-height: 1.5 !important;
 }
 
 .sidebar li.active{
@@ -82,17 +82,21 @@ pre{
   color: #e1cb7a !important;
 }
 
-p strong{
+p{
   padding-right: 10px;
 }
+
+/* strong {
+  padding: 0px !important;
+} */
 
 .markdown-section p.warn {
   background-color: #fff6eb !important;
   border-bottom-right-radius: 2px;
   border-left: 4px solid #fe9430;
   border-top-right-radius: 2px;
-  margin: 2em 0;
-  padding: 12px 24px 12px 30px;
+  margin: 1.2em 0 !important;
+  padding: 16px !important;
   position: relative;
 }
 
@@ -116,6 +120,8 @@ p strong{
 .markdown-section p.tip {
   border-left: 4px solid rgb(43 129 66) !important;
   background: #ecfff1 !important;
+  padding: 16px !important;
+  margin: 1.2em 0 !important;
 }
 
 .markdown-section p.tip:before {
@@ -128,4 +134,24 @@ iframe{
   background: url(./loading.webp) no-repeat;
   background-position: center center;
   background-size: 200px;
+}
+
+a{
+  text-decoration:none
+}
+
+.markdown-section > :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) code {
+  font-size: 1rem !important;
+}
+
+.markdown-section pre{
+  padding: 0 10px 0px 0 !important;
+}
+
+.markdown-section h3 {
+  margin: 1.2rem 0 !important;
+}
+
+.markdown-section blockquote{
+  margin: 1.2rem 0 !important;
 }
