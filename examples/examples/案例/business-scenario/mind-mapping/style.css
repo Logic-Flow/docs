@@ -9,6 +9,7 @@
 .center-theme {
   height: 40px;
   flex: 1;
+  margin: 0 5px;
   border: 2px solid #0074d9;
   background-color: #0074d9;
   border-radius: 6px;
@@ -17,6 +18,7 @@
 .branch-theme {
   height: 30px;
   flex: 1;
+  margin: 0 5px;
   border: 2px solid #0074d9;
   background-color: #EFF4FF;
   border-radius: 6px;
@@ -25,17 +27,46 @@
 .child-theme {
   height: 30px;
   flex: 1;
+  margin: 0 5px;
   border-bottom: 4px solid #0074d9;
   position: relative;
   top: -15px;
 }
 
 .node-add {
-  width: 40px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.node-delete {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.staff-options {
+  height: 40px;
+  width: 20px;
+  text-align: center;
   display: flex;
-  z-index: 999;
   justify-content: center;
   align-items: center;
   visibility: hidden;
+}
+
+.staff-nodenum {
+  height: 15px;
+  width: 15px;
+  background-color: #b0d0ec;
+  font-size: 12px;
+  color: #0074d9;
+  border: 1px solid #0074d9;
+  border-radius: 15px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }

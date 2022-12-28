@@ -13,14 +13,22 @@ class HtmlCard extends HtmlNode {
         <div class="staff-position">${properties.position}</div>
         <div class="staff-department">${properties.department}</div>
       </div>
-      <div class="staff-options">
-        <div class="node-delete" onclick="updateNode('${properties.id}', 'delete')">
-          <img src="https://img-hxy021.didistatic.com/static/starimg/img/DyFI0DgXJb1669537739785.png" alt=""  width="20px" height="20px" />
+      ${
+        properties.isFold ? `
+        <div class="staff-nodenum" onclick="updateNode('${properties.id}', 'expand')">
+          ${properties.childNodeNum}
         </div>
-        <div class="node-add" onclick="updateNode('${properties.id}', 'add')">
-          <img src="https://img-hxy021.didistatic.com/static/starimg/img/4YJ5oVGRhF1669467073849.png" alt=""  width="20px" height="20px" />
+        ` : `
+        <div class="staff-options">
+          <div class="node-delete" onclick="updateNode('${properties.id}', 'fold')">
+            <img src="https://img-hxy021.didistatic.com/static/starimg/img/DyFI0DgXJb1669537739785.png" alt=""  width="20px" height="20px" />
+          </div>
+          <div class="node-add" onclick="updateNode('${properties.id}', 'add')">
+            <img src="https://img-hxy021.didistatic.com/static/starimg/img/4YJ5oVGRhF1669467073849.png" alt=""  width="20px" height="20px" />
+          </div>
         </div>
-      </div>
+        `
+      }
     `;
     const el = document.createElement('div');
     el.className = 'mind-mapping-node';
