@@ -3,10 +3,11 @@ import organizationEdge from './htmlEdge.js';
 
 // logicflow流程图配置
 const LFConfig = {
-  edgeTextDraggable: true,
+  edgeTextDraggable: false,
   adjustEdgeMiddle: true,
   hoverOutline: false,
   nodeSelectedOutline: false,
+  adjustNodePosition: false,
   hideAnchors: true,
   nodeTextEdit: false,
   background: {
@@ -32,6 +33,10 @@ const LFConfig = {
     },
   },
 };
+
+// 引入菜单插件
+LogicFlow.use(Menu);
+
 const container = document.querySelector('#container');
 
 const lf = new LogicFlow({
@@ -46,6 +51,20 @@ const lf = new LogicFlow({
 lf.register(organizationNode);
 lf.register(organizationEdge);
 
+lf.extension.menu.setMenuConfig({
+  nodeMenu: [
+    {
+      text: '删除',
+      callback(node) {
+        deleteNode(baseData, node.properties.id);
+        renderData(baseData);
+      },
+    },
+  ], // 覆盖默认的节点右键菜单
+  edgeMenu: false, // 删除默认的边右键菜单
+  graphMenu: [],  // 覆盖默认的画布右键菜单，与false表现一样
+});
+
 lf.setTheme({ 
   arrow: {
     offset: 0, // 箭头垂线长度
@@ -55,6 +74,7 @@ lf.setTheme({
 
 let enterNode = null;
 
+// 鼠标移入节点显示按钮
 lf.on('node:mouseenter', ({e}) => {
   enterNode = e.target;
   for (let index = 0; index < e.target.children.length; index++) {
@@ -65,6 +85,7 @@ lf.on('node:mouseenter', ({e}) => {
   }
 });
 
+// 鼠标离开节点隐藏按钮
 lf.on('node:mouseleave', (e) => {
   for (let index = 0; index < enterNode.children.length; index++) {
     const element = enterNode.children[index];
@@ -74,11 +95,13 @@ lf.on('node:mouseleave', (e) => {
   }
 });
 
+// 初始节点数据
 const baseData =  {
   id: '1',
   x: 100,
   y: 100,
   type: 'html-card',
+  isFold: false,
   gender: 'male',
   name: 'Employee 1',
   position: 'position',
@@ -87,6 +110,7 @@ const baseData =  {
     {
       id: '2',
       type: 'html-card',
+      isFold: false,
       gender: 'female',
       name: 'Employee 2',
       position: 'position',
@@ -95,6 +119,7 @@ const baseData =  {
         {
           id: '4',
           type: 'html-card',
+          isFold: false,
           gender: 'male',
           name: 'Employee 4',
           position: 'position',
@@ -103,6 +128,7 @@ const baseData =  {
         {
           id: '5',
           type: 'html-card',
+          isFold: false,
           gender: 'female',
           name: 'Employee 5',
           position: 'position',
@@ -113,6 +139,7 @@ const baseData =  {
     {
       id: '3',
       type: 'html-card',
+      isFold: false,
       gender: 'male',
       name: 'Employee 3',
       position: 'position',
@@ -121,6 +148,7 @@ const baseData =  {
         {
           id: '6',
           type: 'html-card',
+          isFold: false,
           gender: 'male',
           name: 'Employee 6',
           position: 'position',
@@ -131,22 +159,37 @@ const baseData =  {
   ]
 };
 
+// 注册节点添加/折叠/展开事件
 lf.on('custom:node-update', ({id, type}) => {
-  if (type === 'add') {
-    addNode(baseData, id);
-  } else {
-    deleteNode(baseData, id);
+  switch (type) {
+    case 'add':
+      addChildNode(baseData, id);
+      break;
+    case 'fold':
+      foldChildNode(baseData, id);
+      break;
+    case 'expand':
+      expandChildNode(baseData, id);
+      break;
+    default:
+      break;
   }
   renderData(baseData);
 });
 
-const addNode = (baseData, id) => {
+/**
+ * 添加指定节点的子节点
+ * @param {Object} baseData 节点数据
+ * @param {String} id 当前节点ID
+ */
+const addChildNode = (baseData, id) => {
   if (baseData.id === id) {
     baseData.children = baseData.children ? [
       ...baseData.children,
       {
         id: `${Math.round(Math.random() * 10000)}`,
         type: 'html-card',
+        isFold: false,
         gender: Math.round(Math.random() * 10) % 2 === 0 ? 'male' : 'female',
         name: 'New Employee',
         position: 'position',
@@ -156,6 +199,7 @@ const addNode = (baseData, id) => {
       {
         id: `${lf.graphModel.nodes.length + 1}`,
         type: 'html-card',
+        isFold: false,
         gender: Math.round(Math.random() * 10) % 2 === 0 ? 'male' : 'female',
         name: 'New Employee',
         position: 'position',
@@ -166,7 +210,53 @@ const addNode = (baseData, id) => {
   }
   if (baseData.children && baseData.children.length) {
     baseData.children.forEach((node) => {
-      addNode(node, id);
+      addChildNode(node, id);
+    });
+  }
+};
+
+/**
+ * 折叠指定节点的子节点
+ * @param {Object} baseData 节点数据
+ * @param {String} id 当前节点ID
+ */
+const foldChildNode = (baseData, id) => {
+  if (baseData.id === id) {
+    baseData.isFold = true;
+    baseData.childNodeNum = getChildNodeNum(baseData, id);
+    return;
+  }
+  if (baseData.children && baseData.children.length) {
+    baseData.children.forEach((node) => {
+      foldChildNode(node, id);
+    });
+  }
+}
+
+// 递归获取当前节点孩子节点数量
+const getChildNodeNum = (baseData, id) => {
+  let nodeNum = 0;
+  if (baseData.children && baseData.children.length) {
+    baseData.children.forEach((node) => {
+      nodeNum += getChildNodeNum(node, id) + 1;
+    });
+  }
+  return nodeNum;
+}
+
+/**
+ * 展开指定节点的子节点
+ * @param {Object} baseData 节点数据
+ * @param {String} id 当前节点ID
+ */
+const expandChildNode = (baseData, id) => {
+  if (baseData.id === id) {
+    baseData.isFold = false;
+    return;
+  }
+  if (baseData.children && baseData.children.length) {
+    baseData.children.forEach((node) => {
+      expandChildNode(node, id);
     });
   }
 };
@@ -192,7 +282,24 @@ const moveX = 600;
 const moveY = 200;
 
 const renderData = (baseData) => {
-  const rootNode = window.Hierarchy.compactBox(baseData, {
+  // baseData中折叠的子节点不参与渲染
+  const exclueFoldNodes = (data) => {
+    const newChildren = [];
+    if (data.children) {
+      data.children.forEach((item) => {
+        // 节点且未折叠
+        if (!data.isFold) {
+          const newItem = exclueFoldNodes(item);
+          newChildren.push(newItem);
+        }
+      });
+    }
+    return {
+      ...data,
+      children: newChildren,
+    };
+  };
+  const rootNode = window.Hierarchy.compactBox(exclueFoldNodes(baseData), {
     direction: 'TB',
     getId(d) {
       return d.id;
@@ -240,11 +347,7 @@ const renderData = (baseData) => {
   };
 
   const graphData = tansferNodes(rootNode);
-  console.log(graphData);
   lf.render(graphData);
 }
 
 renderData(baseData);
-// lf.focusOn({
-//   id: lf.graphModel.nodes[0].id,
-// });

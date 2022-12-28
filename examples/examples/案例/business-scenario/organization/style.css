@@ -54,3 +54,21 @@
   height: 20px;
   cursor: pointer;
 }
+
+.staff-nodenum {
+  height: 15px;
+  width: 15px;
+  position: relative;
+  left: -23px;
+  top: 14px;
+  background-color: #b0d0ec;
+  font-size: 12px;
+  color: #0074d9;
+  border: 1px solid #0074d9;
+  border-radius: 15px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
