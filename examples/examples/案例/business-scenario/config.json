@@ -16,7 +16,7 @@
       "name": "BPMN Demo",
       "key": "BPMN-Demo",
       "mode": "link",
-      "link": "/demo/dist/examples/#/usage/approve?from=doc",
+      "link": "/demo/dist/examples/#/usage/bpmn?from=doc",
       "github": "https://github.com/Logic-Flow/docs/tree/master/demo/examples/src/pages/usage/bpmn"
     },
     {

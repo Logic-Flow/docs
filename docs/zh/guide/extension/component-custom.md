@@ -22,7 +22,7 @@ class PluginCls {
 - 插件是一个类。
 - 这个类有个静态属性`pluginName`用于标识插件的名称。同名的插件在初始化`lf`实例的时候会覆盖。同时使用方可以通过`lf.extension.插件名称`获取插件这个类的实例。
 - 在初始化`lf`实例的时候，会同时初始化插件实例，此时会传入参数`lf`和`LogicFlow`。
-- 在`lf`渲染完成后，会调用插件实例的`render`方法(如有)。第二个参数 domOverlay 是表示`LogicFlow` Dom 层的节点。插件开发者可以直接在这个节点插入 html 内容。
+- 在`lf`渲染完成后，会调用插件实例的`render`方法(如有)。第二个参数 toolOverlay 是表示`LogicFlow` Dom 层的节点。插件开发者可以直接在这个节点插入 html 内容。
 - `destroy`是销毁插件是调用的方法。大多数情况下可以不写。
 
 ## 实现 context-pad 插件
