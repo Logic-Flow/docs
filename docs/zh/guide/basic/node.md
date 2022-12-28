@@ -33,11 +33,11 @@ LogicFlow 是基于继承来实现自定义节点、边。开发者可以继承 
 
 ![logicflow-1.0-2.png](../../assets/images/logicflow-1.0-2.png)
 
-> 此图也是用 LogicFlow 画出来的。见[作图工具](zh/mvp/index)。
+> 此图也是用 LogicFlow 画出来的。见[作图工具](https://docs.logic-flow.cn/demo/dist/mvp/)。
 
 ## 选择自定义节点继承的基础节点
 
-LogicFlow 内部存在 7 种基础节点, 自定义节点的时候可以基于需要选择任一一种来继承, 然后取一个符合自己业务意义的名字。
+LogicFlow 内部存在 7 种基础节点, 自定义节点的时候可以基于需要选择任意一种来继承, 然后取一个符合自己业务意义的名字。
 
 ```js
 // 矩形
@@ -278,7 +278,7 @@ LogicFlow 定义一个节点的外观有三种方式，分别为**主题**、**�
 
 ?> **注意**虽然`自定义节点view`优先级最高，功能也最完善，理论上我们可以完全通过`自定义节点view`实现任何我们想要的效果，但是此方式还是存在一些限制。
 
-1. `自定义节点view`最终生成的图形的形状属性必须和`model`中形状属性的一致，因为节点的锚点、外边框都是基于节点 model 中的`width`和`height`生成。
+1. `自定义节点view`最终生成的图形形状属性必须和`model`中的形状属性一致，因为节点的锚点、外边框都是基于节点 model 中的`width`和`height`生成。
 2. `自定义节点view`最终生成的图形整体轮廓必须和继承的基础图形一致，不能继承的`rect`而在 getShape 的时候返回的最终图形轮廓变成了圆形。因为 LogicFlow 对于节点上的连线调整、锚点生成等会基于基础图形进行计算。
 
 #### 为什么`rect`的`x`,`y`不是直接从`model`中获取的`x`, `y`?
@@ -402,11 +402,11 @@ class SquareModel extends RectNodeModel {
 
 在上例中，我们为`model`的`sourceRules`属性添加了一条校验规则，校验规则是一个对象，我们需要为其提供`messgage`和`validate`属性。
 
-`message`属性是当不满足校验规则时所抛出的错误信息，`validate`则是传入规则检验的回调函数。`validate`方法有两个参数，分别为边的起始节点（source）和目标节点（target），我们可以根据参数信息来决定是否通过校验，其返回值是一个布尔值。
+`message`属性是当不满足校验规则时所抛出的错误信息，`validate`则是传入规则检验的回调函数。`validate`方法有四个参数，分别为边的起始节点（source）、目标节点（target）、起始锚点（sourceAnchor）、 目标锚点（targetAnchor），我们可以根据参数信息来决定是否通过校验，其返回值是一个布尔值。
 
-> 当我们在面板上进行边操作的时候，Logic Flow 会校验每一条规则，只有**全部**通过后才能连接。
+>当我们在面板上进行边操作的时候，LogicFlow 会校验每一条规则，只有**全部**通过后才能连接。
 
-在边时，当鼠标松开后如果没有通过自定义规则（`validate`方法返回值为`false`），Logic Flow 会对外抛出事件`connection:not-allowed`。
+在连接边时，当鼠标松开后如果没有通过自定义规则（`validate`方法返回值为`false`），Logic Flow 会对外抛出事件`connection:not-allowed`。
 
 ```js
 lf.on("connection:not-allowed", (msg) => {
@@ -520,9 +520,9 @@ class SquareModel extends RectNodeModel {
 }
 ```
 
-上面的示例中，我们自定义锚点的时候，不仅可以定义锚点的数量和位置，还可以给锚点加上任意属性。有了这些属性，我们可以再做很多额外的事情。例如，我们增加一个校验规则，只允许节点从右边连出，从左边连入；或者加个 id, 在获取数据的时候保存当前连线从那个锚点连接到那个锚点。
+上面的示例中，我们自定义锚点的时候，不仅可以定义锚点的数量和位置，还可以给锚点加上任意属性。有了这些属性，我们可以再做很多额外的事情。例如，我们增加一个校验规则，只允许节点从右边连出，从左边连入；或者加个 id, 在获取数据的时候保存当前连线从哪个锚点连接到哪个锚点。
 
-?> **注意**一定要确保锚点 id 唯一，否则可能会出现在连线规则校验不准确的问题。
+?> **注意**一定要确保锚点 id 唯一，否则可能会出现连线规则校验不准确的问题。
 
 <iframe src="https://codesandbox.io/embed/logicflow-base15-ou2i0?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"

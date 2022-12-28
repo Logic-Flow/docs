@@ -26,4 +26,4 @@
     * [数据转换 Adapter](zh/guide/extension/adapter)
     * [BPMN元素 BpmnElement](zh/guide/extension/bpmn-element)
     * [导出 Snapshot](zh/guide/extension/snapshot)
-  * [自定义插件](zh/guide/extension/component-custom)
+  * [自定义插件 CustomPlugin](zh/guide/extension/component-custom)

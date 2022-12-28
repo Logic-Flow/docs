@@ -80,21 +80,14 @@ const graphData = {
 > properties 的 LogicFlow 保留给具体业务场景使用的数据。
 >
 > 例如：在审批流场景，我们定义某个节点，这个节点通过了，节点为绿色，不通过节点为红色。那么节点的数据描述可以为:
->
-> ```js
-> {
->   type: 'apply',
->   properties: {
-> ```
-
+```js
+{
+  type: 'apply',
+  properties: {
     isPass: true
-
+  }
 }
-}
-
-> ```
-> PS: 对于如何基于properties中的属性控制节点的样式，请查看后面的自定义节点。
-> ```
+```
 
 > **type 的含义是什么？**
 >

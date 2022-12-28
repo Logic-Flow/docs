@@ -5,7 +5,7 @@ LogicFlow core 包中内置了 直线(line)、直角折线(polyline)、贝塞尔
 圆角折线的使用方式和 LogicFlow 的自定义连线一样，开发者可以通过继承 CurvedEdgeModel 和 CurvedEdge
 
 ```js
-import { CurvedEdge, CurvedEdgeModel } from "@logicflow/core";
+import { CurvedEdge, CurvedEdgeModel } from "@logicflow/extension";
 
 class myCurvedEdge extends CurvedEdge {}
 class myCurvedEdgeModel extends CurvedEdgeModel {
