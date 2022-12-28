@@ -18,22 +18,22 @@ const PoolDemo = () => {
     lf?.dnd.startDrag({type})
   }
 
-  const deleteConfirm = (data:any) => {
+  const deleteConfirm = (data) => {
     const {type, id, children = []} = data
     if (type === 'lane') {
       // 通知上层泳池节点， 重新分配空间
-      console.log(currentLf.current?.extension.group.nodeGroupMap)
-      console.log(currentLf.current?.extension.group.nodeGroupMap.get(id))
       const groupId = currentLf.current?.extension.group.nodeGroupMap.get(id)
       if(groupId) {
         const group = currentLf.current?.getNodeModelById(groupId)
-        group?.removeChild(id)
-        group?.resize()
+        // group?.removeChild(id)
+        // group?.resize()
+        group?.deleteChild(id)
+        return false
       }
     }
     if (type === 'pool') {
       // 删除全部child
-      children.forEach ((childId:string) => {
+      children.forEach ((childId) => {
         currentLf.current?.deleteNode(childId)
       })
     }
@@ -41,7 +41,6 @@ const PoolDemo = () => {
   }
 
   const initLogicFlow = () => {
-    console.log('init')
     // 引入框选插件
     LogicFlow.use(Group)
     const newLf = new LogicFlow({
@@ -56,7 +55,7 @@ const PoolDemo = () => {
       },
       grid: {
         visible: false,
-        size: 5
+        size: 1
       },
       background: {
         backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2QwZDBkMCIgb3BhY2l0eT0iMC4yIiBzdHJva2Utd2lkdGg9IjEiLz48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDBkMGQwIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=")',
@@ -77,6 +76,46 @@ const PoolDemo = () => {
     // 注册自定义元素
     registerCustomElement(newLf)
     newLf.setDefaultEdgeType('pro-polyline')
+    newLf.render({
+      "nodes":[
+          {
+              "id":"d85739ef-e601-4752-8492-ff09b5fafa4a",
+              "type":"pool",
+              "x":285,
+              "y":200,
+              "properties":{
+              },
+              "zIndex":1,
+              "text":{
+                  "x":46,
+                  "y":340,
+                  "value":"泳池示例"
+              },
+              "children":[
+                  "75e3e4b0-c9b9-47bd-99d2-4d77dfeed08f"
+              ]
+          },
+          {
+              "id":"75e3e4b0-c9b9-47bd-99d2-4d77dfeed08f",
+              "type":"lane",
+              "x":300,
+              "y":200,
+              "properties":{
+                  "nodeSize":{
+                      "width":470,
+                      "height":260
+                  }
+              },
+              "zIndex":1,
+              "children":[
+  
+              ]
+          }
+      ],
+      "edges":[
+  
+      ]
+  });
     newLf.on('node:dnd-add, edge:add', ({data}) => {
       newLf.setProperties(data.id, defaultStyleRef.current || {})
       const {x,y,type, id} = data
@@ -100,15 +139,25 @@ const PoolDemo = () => {
     newLf.on('node:resize', ({oldNodeSize, newNodeSize}) => {
       const {id, type} = oldNodeSize
       const deltaHeight = newNodeSize.height - oldNodeSize.height
-      const resizeDir = newNodeSize.y - oldNodeSize.y > 0 ? 'below': 'above'
+      // const resizeDir = newNodeSize.y - oldNodeSize.y > 0 ? 'below': 'above'
+      // 节点高度变高，y下移， 方向为below
+      // 节点高度变高， y上移， 方向为above
+      // 节点高度变小， y下移， 方向为above
+      // 节点高度变小， y上移，方向为below
+      let resizeDir = 'below'
+      if (deltaHeight > 0 && (newNodeSize.y - oldNodeSize.y) < 0) {
+        resizeDir = 'above'
+      } else if (deltaHeight < 0 && (newNodeSize.y - oldNodeSize.y) > 0){
+        resizeDir = 'above'
+      }
       if (type === 'pool') {
         // 泳池缩放，泳道一起调整
         newLf.getNodeModelById(id).resizeChildren({resizeDir, deltaHeight})
-      } else {
+      } else if (type === 'lane') {
         // 泳道缩放， 调整泳池
         const groupId = newLf.extension.group.nodeGroupMap.get(id)
         if(groupId) {
-          newLf.getNodeModelById(groupId).resize(id)
+          newLf.getNodeModelById(groupId).resize(id, newNodeSize)
         }
       }
 
@@ -117,6 +166,7 @@ const PoolDemo = () => {
     newLf.keyboard.on('ctrl + a', selectAll)
     setLf(newLf)
     currentLf.current = newLf
+    window.lf = newLf
   }
 
   const selectAll = () => {
@@ -143,7 +193,6 @@ const PoolDemo = () => {
 
   return <div className="lf-diagram-page">
     <div className="diagram-main">
-      泳道
       <DiagramSidebar dragInNode={dragInNode}></DiagramSidebar>
       <div className="diagram-container">
         <div className="diagram-wrapper">

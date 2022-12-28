@@ -9,6 +9,7 @@ const DiagramSidebar = (props:any) => {
   return <div key="flow" className="diagram-sidebar">
           <div className="node-category">
             {/* 横泳道 */}
+            <div>拖动图标到画布以添加新的泳道</div>
             <div className="node-item" onMouseDown={() => dragInNode('pool')}>
               <Pool></Pool>
             </div>

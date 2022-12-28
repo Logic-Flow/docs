@@ -115,7 +115,11 @@ class LaneView extends GroupNode.view {
       {
         cursor: 'pointer',
         onClick: () => {
-          this.props.graphModel.deleteNode(id)
+          const groupId = this.props.graphModel.group.nodeGroupMap.get(id)
+          if (groupId) {
+            const groupModel = this.props.graphModel.getNodeModelById(groupId)
+            groupModel.deleteChild(id)
+          }
         },
       },
       [
