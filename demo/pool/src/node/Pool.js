@@ -61,7 +61,7 @@ class HorizontalLaneModel extends GroupNode.model {
     this.foldEdge(isFolded, allEdges);
   }
   // 感应泳道变化，调整宽高
-  resize(resizeId) {
+  resize(resizeId, newNodeSize) {
     if (!this.children.size) {
       return
     }
@@ -74,13 +74,13 @@ class HorizontalLaneModel extends GroupNode.model {
     this.children.forEach((elementId) => {
       const nodeModel = this.graphModel.getElement(elementId);
       const {x,y, width, height, type, id} = nodeModel
-      if (id === resizeId) {
-        minX = x - width/2
-        maxX = x + width/2
-        hasMaxX = true
-      }
       if (type !== 'lane') {
         return
+      }
+      if (id === resizeId) {
+        minX = newNodeSize.x - newNodeSize.width/2
+        maxX = newNodeSize.x + newNodeSize.width/2
+        hasMaxX = true
       }
       if (!hasMaxX && (!minX || (x - width/2 < minX))) {
         minX = x - width/2
@@ -106,7 +106,6 @@ class HorizontalLaneModel extends GroupNode.model {
   }
 
   resizeChildren({resizeDir='', deltaHeight=0}) {
-    console.log(resizeDir, deltaHeight)
     const {x,y,width} = this
     const laneChildren = []
     this.children.forEach(elementId => {
@@ -154,6 +153,7 @@ class HorizontalLaneModel extends GroupNode.model {
       })
       aboveNodeHeights += height
     })
+    this.height = poolHeight
   }
 
   addChild (childId) {
@@ -216,6 +216,23 @@ class HorizontalLaneModel extends GroupNode.model {
     this.height = this.height + 120
     this.y = this.y + 60
   }
+
+  deleteChild(childId) {
+    const laneChildren = []
+    this.children.forEach(elementId => {
+      const nodeModel = this.graphModel.getElement(elementId)
+      const {type} = nodeModel
+      if (type === 'lane') {
+        laneChildren.push(nodeModel)
+      }
+    })
+    if (laneChildren.length <= 1) {
+      return
+    }
+    this.removeChild(childId)
+    this.graphModel.deleteNode(childId)
+    this.resize()
+  }
 }
 
 class HorizontalLaneView extends GroupNode.view {
@@ -241,7 +258,7 @@ class HorizontalLaneView extends GroupNode.view {
       fill: 'transparent'
     }
     return h('g', {}, [
-      this.getAddAbleShape(),
+      // this.getAddAbleShape(),
       h('rect', {...foldRectAttrs}),
       h('rect', {...transRectAttrs}),
       this.getFoldIcon()
