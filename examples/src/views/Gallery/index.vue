@@ -24,7 +24,7 @@
                   {{ example.name }}
                 </strong>
               </div>
-              <a v-if="example.github" :href="example.github">
+              <a v-if="example.github" :href="example.github" class="github-icon">
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 16 16"
