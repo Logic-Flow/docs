@@ -126,6 +126,7 @@
             background-color: #f6faff;
             a {
                 display: flex;
+                justify-content: center;
                 img {
                     display: inline-block;
                 }
@@ -233,9 +234,9 @@
 }
 
 .thumbnail {
-    height: 100px;
+    height: 150px;
     display: block;
-    margin-left: 10px;
+    // margin-left: 10px;
     border: 1px solid #e8e8e8;
     border-radius: 2px;
 }
@@ -249,4 +250,27 @@
 .filter-font {
     padding-left: 0px !important;
     color: #306eff;
+}
+
+.popover-wrap {
+    position: relative;
+}
+.popover-in {
+    right: 0px !important;
+}
+// .popover-out {
+// }
+.title-popover {
+    display: flex;
+    color: white;
+    position: absolute;
+    bottom: 15px;
+    right: 100%;
+    transition: 0.16s;
+    .title-main {
+        font-size: 14px !important;
+        padding: 4px;
+        min-width: 70% !important;
+        background-color: #da0404a8;
+    }
 }

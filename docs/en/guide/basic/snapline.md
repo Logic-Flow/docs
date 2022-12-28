@@ -38,4 +38,4 @@ lf.setTheme({
 
 <example :height="400" ></example>
 
-更多样式修改参见[主题](en/guide/advance/theme)
+更多样式修改参见[主题](en/guide/basic/theme)

@@ -15,8 +15,20 @@
       </div>
       <CollapseTransition>
         <div v-show="!data.fold" class="sub-items">
-          <div v-for="(example, index) in data.examples" :key="example.key">
+          <div
+            v-for="(example, index) in data.examples"
+            :key="example.key"
+            class="popover-wrap"
+            @mouseover="handleSubItemMouseOver(`title-popover-${example.name}`)"
+            @mouseout="handleSubItemMouseOut(`title-popover-${example.name}`)"
+          >
             <template v-if="example.mode === 'playground'">
+              <div :class="`title-popover title-popover-${example.name}`">
+                <div class="title-main">
+                  {{ example?.name }}
+                </div>
+                <div></div>
+              </div>
               <a
                 draggable="false"
                 @click.stop="
@@ -52,7 +64,7 @@
 </template>
 
 <script setup>
-import { inject, computed } from "vue";
+import { inject, computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import CollapseTransition from "../SideBarTransition/transition.vue";
 // import { getScreenshot } from "../../utils";
@@ -73,6 +85,16 @@ const props = defineProps({
     },
   },
 });
+
+const handleSubItemMouseOver = (className) => {
+  const dom = document.querySelector(`.${className}`);
+  dom.classList.add("popover-in");
+};
+
+const handleSubItemMouseOut = (className) => {
+  const dom = document.querySelector(`.${className}`);
+  dom.classList.remove("popover-in");
+};
 
 const config = inject("config");
 const type = computed(() => {
