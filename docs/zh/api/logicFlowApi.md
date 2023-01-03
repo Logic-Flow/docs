@@ -165,9 +165,9 @@ lf.register(config):void
 
 ```js
 import { RectNode, RectNodeModel, h } from "@logicflow/core";
-// 提供节点
+// 节点View
 class UserNode extends RectNode {}
-// 提供节点的属性
+// 节点Model
 class UserModel extends RectNodeModel {
   constructor(data) {
     super(data);
@@ -513,7 +513,7 @@ lf.deleteEdge("edge_1");
 
 ## deleteEdgeByNodeId
 
-删除指定类型的边, 基于边起点和终点，可以只传其一。
+删除与指定节点相连的边, 基于边起点和终点。
 
 ```js
 deleteEdgeByNodeId(config: EdgeFilter): void
@@ -529,15 +529,16 @@ deleteEdgeByNodeId(config: EdgeFilter): void
 示例：
 
 ```js
+// 删除起点id为id1并且终点id为id2的边
 lf.removeEdge({
   sourceNodeId: "id1",
   targetNodeId: "id2",
 });
-
+// 删除起点id为id1的边
 lf.removeEdge({
   sourceNodeId: "id1",
 });
-
+// 删除终点id为id2的边
 lf.removeEdge({
   targetNodeId: "id2",
 });
@@ -717,12 +718,13 @@ lf.deleteElement("node_id");
 | 参数名   | 类型    | 必传 | 默认值 | 描述            |
 | :------- | :------ | :--- | :----- | :-------------- |
 | id       | string  | ✅   | -      | 节点或者连线 Id |
-| multiple | boolean |      | false  | 是否为多选      |
+| multiple | boolean |      | false  | 是否为多选，如果为true，不会将上一个选中的元素重置     |
+| toFront | boolean |      | true  | 是否将选中的元素置顶，默认为true  |
 
 示例：
 
 ```ts
-lf.selectElementById(id: string, multiple = false)
+lf.selectElementById(id: string, multiple = false, toFront = true)
 ```
 
 ## getGraphData
@@ -745,6 +747,7 @@ type GraphConfigData = {
     y: number;
     text?: TextConfig;
     properties?: Record<string, unknown>;
+    zIndex?: number;
   }[];
   edges: {
     id: string;
@@ -759,6 +762,8 @@ type GraphConfigData = {
       value: string;
     };
     properties: {};
+    zIndex?: number;
+    pointsList?: Point[], // 折线、曲线会输出pointsList
   }[];
 };
 ```
@@ -831,7 +836,7 @@ lf.getProperties("id");
 
 将某个元素放置到顶部。
 
-如果堆叠模式为默认模式，则将原置顶元素重新恢复原有层级。
+如果堆叠模式为默认模式，则将指定元素置顶zIndex设置为9999，原置顶元素重新恢复原有层级zIndex设置为1。
 
 如果堆叠模式为递增模式，则将需指定元素 zIndex 设置为当前最大 zIndex + 1。
 
@@ -905,6 +910,7 @@ lf.addElements({
 例如鼠标绘制选区后，获取选区内的所有元素。
 
 入参:
+
 |名称|类型|默认值|说明|
 |-|-|-|-|
 |leftTopPoint|PointTuple|无| 区域左上方的点 |
@@ -1043,11 +1049,11 @@ lf.getPointByClient(event.x, event.y);
 示例：
 
 ```ts
-// 定位到画布视口中心到node_1元素所处位置
+// 定位画布视口中心到node_1元素所处位置
 lf.focusOn({
   id: "node_1",
 });
-// 定位到画布视口中心到坐标[1000, 1000]处
+// 定位画布视口中心到坐标[1000, 1000]处
 lf.focusOn({
   coordinate: {
     x: 1000,
@@ -1058,14 +1064,14 @@ lf.focusOn({
 
 ## resize
 
-调整画布宽高
+调整画布宽高, 如果width或者height不传会自动计算画布宽高。
 
 参数：
 
 | 名称   | 类型   | 必传 | 默认值 | 描述     |
 | :----- | :----- | :--- | :----- | :------- |
-| width  | Number | ✅   | -      | 画布的宽 |
-| height | Number | ✅   | -      | 画布的高 |
+| width  | Number |    | -      | 画布的宽 |
+| height | Number |    | -      | 画布的高 |
 
 ```js
 lf.resize(1200, 600);
@@ -1079,18 +1085,25 @@ lf.resize(1200, 600);
 
 | 名称     | 类型              | 必传 | 默认值 | 描述                                                                                                                     |
 | :------- | :---------------- | :--- | :----- | :----------------------------------------------------------------------------------------------------------------------- |
-| isZoomIn | Boolean 或 Number |      | false  | 放大缩小的值，支持传入 0-n 之间的数字。小于 1 表示缩小，大于 1 表示放大。也支持传入 true 和 false 按照内置的刻度放大缩小 |
-| isZoomIn | [x,y]             |      | false  | 缩放的原点, 不传默认左上角                                                                                               |
+| zoomSize | Boolean 或 Number |      | false  | 放大缩小的值，支持传入 0-n 之间的数字。小于 1 表示缩小，大于 1 表示放大。也支持传入 true 和 false 按照内置的刻度放大缩小 |
+| point | [x,y]             |      | false  | 缩放的原点, 不传默认左上角                                                                                               |
 
 示例：
 
 ```js
+// 放大
 lf.zoom(true);
+// 缩小
+lf.zoom(false);
+// 缩放到指定比例
+lf.zoom(2);
+// 缩放到指定比例，并且缩放原点为[100, 100]
+lf.zoom(2, [100, 100]);
 ```
 
 ## resetZoom
 
-重置图形的放大缩写比例为默认
+重置图形的缩放比例为默认，默认是1。
 
 示例：
 
@@ -1100,7 +1113,7 @@ lf.resetZoom();
 
 ## setZoomMiniSize
 
-设置图形缩小时，能缩放到的最小倍数。参数为 0-1 自己。默认 0.2
+设置图形缩小时，能缩放到的最小倍数。参数一般为 0-1 之间，默认 0.2。
 
 ```js
 setZoomMiniSize(size: number): void
@@ -1120,7 +1133,7 @@ lf.setZoomMiniSize(0.3);
 
 ## setZoomMaxSize
 
-设置放大最大倍数
+设置图形放大时，能放大到的最大倍数，默认 16。
 
 ```js
 setZoomMaxSize(size: number): void
@@ -1152,6 +1165,7 @@ console.log(transform);
 平移图
 
 参数
+
 | 名称 | 类型 | 必传 | 默认值 | 描述 |
 | :- | :- | :- | :- | :- |
 | x | Number | ✅ | | x 轴平移距离 |
@@ -1171,7 +1185,14 @@ lf.resetTranslate();
 
 ## fitView
 
-将整个流程图缩小到画布能全部显示
+将整个流程图缩小到画布能全部显示。
+
+参数:
+
+| 名称 | 类型 | 必传 | 默认值 | 描述 |
+| :- | :- | :- | :- | :- |
+| verticalOffset | Number | ✅ | 20 | 距离盒子上下的距离， 默认为20 |
+| horizontalOffset | Number | ✅ | 20 | 距离盒子左右的距离， 默认为20 |
 
 ```js
 lf.fitView(deltaX, deltaY);
@@ -1277,7 +1298,7 @@ emit(evt: string, ...args): this
 示例：
 
 ```js
-lf.eventCenter.emit("custom:button-click", model);
+lf.emit("custom:button-click", model);
 ```
 
 ## undo
