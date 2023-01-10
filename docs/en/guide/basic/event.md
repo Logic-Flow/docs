@@ -1,24 +1,24 @@
-# 事件 Event
+# Event
 
-当我们使用鼠标或其它方式与画布交互时，会触发的对应的事件。通过监听这些事件，可以获取其在触发时所产生的数据，根据这些数据来实现需要的功能。详细可监听事件见[事件 API](en/api/eventCenterApi)
+When we use the mouse or otherwise interact with the canvas, some events will be triggered. By listening to these events, you can get the data generated when they are triggered, and then implement the required functions based on this data. For details of listenable events see [eventCenter API](en/api/eventCenterApi)
 
-## 监听事件
+## Event listener
 
-`lf`实例上提供`on`方法支持监听事件。
+The `on` method is provided on the `lf` instance to support listening to events.
 
 ```js
 lf.on("node:dnd-add", (data) => {});
 ```
 
-LogicFlow 支持用逗号分割事件名。
+LogicFlow supports splitting event names with commas.
 
 ```js
 lf.on("node:click,edge:click", (data) => {});
 ```
 
-## 自定义事件
+## custom event
 
-除了 lf 上支持的监听事件外，还可以使用[eventCenter](en/api/graphModelApi#eventcenter)对象来监听和触发事件。`eventCenter`是一个`graphModel`上的一个属性。所以在自定义节点的时候，我们可以使用`eventCenter`触发自定义事件。
+In addition to the listening events supported on lf, you can also use the [eventCenter](en/api/graphModelApi#eventcenter) object to listen for and trigger events. `eventCenter` is a property on `graphModel`. So when customizing a node, we can use `eventCenter` to trigger custom events.
 
 ```js
 class ButtonNode extends HtmlNode {
@@ -51,7 +51,7 @@ class ButtonNode extends HtmlNode {
 }
 ```
 
-## 示例
+## Example
 
 <iframe src="https://codesandbox.io/embed/logicflow-step7-dpmgb?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"

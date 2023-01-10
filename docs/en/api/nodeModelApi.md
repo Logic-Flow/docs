@@ -42,7 +42,7 @@ nodeModel 上节点属性有很多，由于用途不一样，我们对其进行�
 | isShowAnchor | boolean | ✅       | 是否显示锚点          |
 | visible      | boolean | ✅       | 是否显示, `1.1.0`新增 |
 
-## 形状属性
+## ShapeProperties
 
 LogicFlow 的形状属性主要是控制基础节点的主要外观。形状属性可以通过`setAttributes`或者`initNodeData`来设置。具体设置方式见[自定义节点的形状属性](en/guide/basic/node#自定义节点的形状属性)。
 
@@ -77,7 +77,7 @@ LogicFlow 在`model`上还维护一些属性，开发者可以通过这些属性
 
 !> **modelType 与 type 的区别是什么？**在自定义节点的时候，`type`可以是开发者自定义的任何值，但是在 LogicFlow 内部，涉及到这个节点的计算时，我们需要感知到这个节点的具体形状，这个时候不能用`type`, 而是要用`modelType`来判断。
 
-## 样式属性
+## StyleProperties
 
 LogicFlow 所有的节点最终都是以 SVG DOM 的方式渲染。但是除了形状属性之外，所有的其他属于 svg 的属性都不会直接存在`nodeModel`。当开发者想要对 SVG DOM 添加更多的[svg 属性](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute)时，可以通过重写`nodeModel`上获取节点样式属性方法来实现。
 

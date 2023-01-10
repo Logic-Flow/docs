@@ -1,12 +1,12 @@
-# BPMN 元素 BpmnElement
+# BpmnElement
 
-> BPMN 是目前较为著名的 workflow 的建模语言标准之一。LogicFlow 实现了 BPMN 扩展，可以直接使用 LogicFlow 来绘制兼容 BPMN2.0 规范的流程，并且其导出的数据可以在 Activiti 流程引擎上运行。
+> BPMN is one of the better known modeling language standards for workflow. LogicFlow implements a BPMN extension that allows you to use LogicFlow directly to draw BPMN 2.0 compliant processes, and its exported data can be run on the Activiti process engine.
 
-LogicFlow 提供了[自定义节点](en/guide/basic/node)和[自定义边](en/guide/basic/edge), 可以实现满足 BPMN2.0 规范的节点和边。然后在使用[数据转换](../extension/adapter)将生成的数据转换为 Activiti 需要的格式。
+LogicFlow provides [custom nodes](en/guide/basic/node) and [custom edges](en/guide/basic/edge) to implement nodes and edges that meet the BPMN2.0 specification. Then use [data adapter](en/guide/extension/adapter) to convert the generated data into the format Activiti needs.
 
-?> **注意**在实际项目中，我们推荐开发者完全自定义项目的节点和数据转换，而不是使用我们提供的 bpmnElement 和 bpmnAdapter 插件。我们内置的插件只包括了很基础的演示功能，不支持更多的 bpmn 元素和自定义属性。大家可以参考我们的 bpmnElement 和 bpmnAdapter 插件，自己在本地重新实现一套符合你们自己产品需求的节点和数据格式转换插件。我们开发 LogicFlow 的初衷之一就是希望前端能在代码中体现所有的业务逻辑，这样让前端研发更贴近的业务，而不是把业务逻辑交给第三方库。
+?> **Note** In real projects, we recommend developers to fully customize the project's nodes and data adapter instead of using the bpmnElement and bpmnAdapter plugins we provide. Our built-in plugins only include basic presentation functions, and do not support more bpmn elements and custom attributes. You can refer to our bpmnElement and bpmnAdapter plugins and reimplement a set of nodes and data adapter plugins locally to meet your own product requirements. One of the reasons we developed LogicFlow was to have the front-end reflect all the business logic in the code, so that the front-end R&D would be closer to the business, instead of leaving the business logic to third-party libraries.
 
-## 使用方式
+## Getting started
 
 ```html
 <script src="/logic-flow.js"></script>
@@ -20,9 +20,9 @@ LogicFlow 提供了[自定义节点](en/guide/basic/node)和[自定义边](en/gu
 
 <example href="/examples/#/extension/bpmn-elements" :height="360"></example>
 
-## 转换为 XML
+## Converting to XML
 
-`BpmnAdapter` 支持 bpmnjson 和 LogicFlow data 之间的相互转换，如果希望 LogicFlow data 与 XML 互相转换，可以使用`BpmnXmlAdapter`。
+`BpmnAdapter` supports interconversion between bpmnjson and LogicFlow data. If you want LogicFlow data to be interconverted with XML, you can use `BpmnXmlAdapter`.
 
 ```html
 <script src="/logic-flow.js"></script>
@@ -44,7 +44,7 @@ const data = {
       type: "bpmn:startEvent",
       x: 200,
       y: 80,
-      text: "开始",
+      text: "Start",
     },
   ],
 };
@@ -60,7 +60,7 @@ const data = {
       type: "bpmn:endEvent",
       x: 200,
       y: 80,
-      text: "结束",
+      text: "End",
     },
   ],
 };
@@ -76,7 +76,7 @@ const data = {
       type: "bpmn:userTask",
       x: 200,
       y: 80,
-      text: "用户任务",
+      text: "User Task",
     },
   ],
 };
@@ -92,7 +92,7 @@ const data = {
       type: "bpmn:serviceTask",
       x: 200,
       y: 80,
-      text: "系统任务",
+      text: "service Task",
     },
   ],
 };
@@ -113,4 +113,4 @@ const data = {
 };
 ```
 
-完整的 BPMN 案例工具请到[示例](en/usage/bpmn)中体验。
+For a complete BPMN example, please go to [example](en/usage/bpmn) to experience it.

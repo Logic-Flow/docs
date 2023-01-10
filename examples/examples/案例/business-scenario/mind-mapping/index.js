@@ -18,9 +18,6 @@ const LFConfig = {
     size: 1,
     visible: false,
   },
-  keyboard: {
-    enabled: true,
-  },
   style: {
     edgeText: {
       background: {

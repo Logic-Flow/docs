@@ -1,12 +1,12 @@
-# 边 Edge
+# Edge
 
-和节点一样，LogicFlow 也内置一些基础的边。LogicFlow 的内置边包括:
+Like nodes, LogicFlow also has some basic edges built in. LogicFlow's built-in edges include:
 
-- 直线(line)
-- 直角折线(polyline)
-- 贝塞尔曲线(bezier)
+- line
+- polyline
+- bezier
 
-效果如下：
+The effect is as follows:
 
 <iframe src="https://codesandbox.io/embed/condescending-nash-lx1n1?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -15,22 +15,20 @@
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## 选择自定义边继承的内置边
+## Select the built-in edge that the custom edge inherits from
 
 ```js
-// 直线
+// line
 import { LineEdge, PolylineEdgeModel } from "@logicflow/core";
-// 折线
+// polylineEdge
 import { PolylineEdge, PolylineEdgeModel } from "@logicflow/core";
-// 贝塞尔曲线
+// bezier
 import { BezierEdge, BezierEdgeModel } from "@logicflow/core";
 ```
 
-## 基于继承的自定义边
+## Custom Edges Based on Inheritance
 
-和节点一样，LogicFlow 的边也支持基于继承的自定义机制。同样也只需同时继承`view`和`model`。
-但是和节点不一样的是，由于边的编辑复杂度问题，绝大多数情况下，自定义边时不推荐自定义`view`。
-只需要在自定义[edgeModel](en/api/edgeModelApi)中样式类即可。
+Like nodes, LogicFlow's edges support an inheritance-based customization mechanism. It is also necessary to inherit both `view` and `model`. However, unlike nodes, customizing `view` is not recommended in most cases due to the complexity of editing edges. Just customize [edgeModel](en/api/edgeModelApi).
 
 ```js
 import { PolylineEdgeModel } from "@logicflow/core";
@@ -70,11 +68,11 @@ export default {
 };
 ```
 
-[去 codesandbox 中编辑](https://codesandbox.io/s/logicflow-step5-i4xes?file=/step5/sequence.js)
+[Edit in codesandbox](https://codesandbox.io/s/logicflow-step5-i4xes?file=/step5/sequence.js)
 
-## 基于 React 组件自定义边
+## Custom edges based on React components
 
-使用以下方法可以基于 React 组件自定义边，你可以在边上添加任何你想要的 React 组件，甚至将原有的边通过样式隐藏，使用 React 重新绘制
+Use the following methods to customize edges based on React components. You can add any React components you want on the side, and even hide the original side through styles and use React to redraw it.
 
 ```js
 import React from "react";
@@ -87,7 +85,7 @@ const DEFAULT_HEIGHT = 32;
 class CustomEdgeModel extends BaseEdgeModel {
   getEdgeStyle() {
     const edgeStyle = super.getEdgeStyle();
-    //可以自己设置线的显示样式，甚至隐藏掉原本的线，自己用react绘制
+    // You can set the style of the line by yourself, even hide the original line, and draw it with react
     edgeStyle.strokeDasharray = "4 4";
     edgeStyle.stroke = "#DDDFE3";
     return edgeStyle;
@@ -154,7 +152,7 @@ export default {
 };
 ```
 
-### 示例
+### Example
 
 <iframe src="https://codesandbox.io/embed/zealous-monad-2q21no?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -163,14 +161,14 @@ export default {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## 保存锚点信息
+## Save anchor information
 
-默认情况下，LogicFlow 只记录节点与节点的信息。但是在一些业务场景下，需要关注到锚点，比如在 UML 类图中的关联关系；或者锚点表示节点的入口和出口之类。这个时候需要重写连线的保存方法，将锚点信息也一起保存。
+By default, LogicFlow only records information about nodes and edges. However, in some business scenarios, attention needs to be paid to anchor points, such as associative relationships in UML. This time you need to rewrite the save method of the edge to save the anchor information as well.
 
 ```js
 class CustomEdgeModel2 extends LineEdgeModel {
   /**
-   * 重写此方法，使保存数据是能带上锚点数据。
+   * Override this method so that the saved data contains anchor information.
    */
   getData() {
     const data = super.getData();
@@ -188,15 +186,15 @@ class CustomEdgeModel2 extends LineEdgeModel {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## 自定义边文本位置
+## Customize side text position
 
-默认情况下，边上文本的位置是用户双击点击边时的位置。如果是通过 API 的方式给边添加的文本，文本位置按照如下规则。
+By default, the position of the text on the edge is where it was when the user double-clicked on the edge. If the text is added to the edge through the API, the text position follows the following rules:
 
-- line: 起点和终点中间
-- polyline: 最长线段中间
-- bezier: 起点、终点、调整点中间
+- line: Middle of start point and end point
+- polyline: Middle of longest line segment
+- bezier: Middle of start point, end point and adjustment point
 
-LogicFlow 支持开发者自定义文本位置，例如文本位置永远在边起点旁边。定义方式为将属性`customTextPosition`设置为 true, 然后重写`getTextPosition`方法, 此方法发回的坐标就是文本的坐标。
+LogicFlow supports developers to customize the text position, for example, the text position is always next to the starting point. This is achieved by setting the property `customTextPosition` to true, and then overriding the `getTextPosition` method, which returns the coordinates of the text.
 
 ```js
 class CustomEdgeModel extends PolylineEdgeModel {
@@ -219,7 +217,7 @@ class CustomEdgeModel extends PolylineEdgeModel {
       x2 = Number(x2);
       y2 = Number(y2);
       if (x1 === x2) {
-        // 垂直
+        // vertical
         if (y2 < y1) {
           distance = -50;
         }
@@ -238,7 +236,7 @@ class CustomEdgeModel extends PolylineEdgeModel {
 }
 ```
 
-### 示例
+### Example
 
 <iframe src="https://codesandbox.io/embed/laughing-dream-x3v87?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -247,9 +245,9 @@ class CustomEdgeModel extends PolylineEdgeModel {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## 给边开启动画
+## Opening the animation of edge
 
-由于 LogicFlow 是基于 svg 的流程图编辑框架，所以我们可以给 svg 添加动画的方式来给流程图添加动画效果。为了方便使用，我们也内置了基础的动画效果。在定义边的时候，可以将属性`isAnimation`设置为 true 就可以让边动起来，也可以使用`lf.openEdgeAnimation(edgeId)`来开启边的默认动画。
+Since LogicFlow is an svg-based flowchart editing framework, we can add animation to the flowchart by adding animation to svg. For ease of use, we have built in basic animations. When defining an edge, you can set the property `isAnimation` to true to make the edge animate, or you can use `lf.openEdgeAnimation(edgeId)` to enable the default animation of the edge.
 
 ```js
 class CustomEdgeModel extends PolylineEdgeModel {
@@ -265,7 +263,7 @@ class CustomEdgeModel extends PolylineEdgeModel {
 }
 ```
 
-### 示例
+### Example
 
 <iframe src="https://codesandbox.io/embed/suspicious-tree-hw82v8?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -274,44 +272,44 @@ class CustomEdgeModel extends PolylineEdgeModel {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## 自定义节点之间边的类型
+## Customize the type of edges between nodes
 
-默认情况下，通过从锚点手动连接节点生成的边为初始化`edgeType`指定的类型，也可以通过`lf.setDefaultEdgeType(edgeType)`来指定。但是当需要不同的节点之间连接的边类型不一样时，就只有自定义节点之间边的类型了。
+By default, the edges generated by manually connecting nodes from anchor points are of the type specified by `edgeType` during Logicflow initialization, or can be specified by `lf.setDefaultEdgeType(edgeType)`. But when different types of edges are needed to connect between different nodes, the only way is to customize the types of edges between nodes.
 
 ```js
 const lf = new LogicFlow({
   ...,
-  // 默认边
+  // Default side
   edgeType: 'bezier',
-  // 移动已有边时会有 currentEdge 信息, 否则为空
+  // The currentEdge information is available when moving an existing edge, otherwise it is empty.
   edgeGenerator: (sourceNode, targetNode, currentEdge) => {
-    // 起始节点类型 rect 时使用 自定义的边 custom-edge
+    // Use custom-edge when source node type is rect
     if (sourceNode.type === 'rect') return 'custom-edge'
   }
 })
 
 ```
 
-## 自定义箭头
+## Custom arrows
 
-在`1.1.27`版本后，LogicFlow 支持单独自定义连线两端的箭头。和之前的自定义方式一样，支持通过主题自定义大小等基本数据和通过重写对应的方法实现完全的自定义。
+After `1.1.27` version, LogicFlow supports custom arrows at both ends of the sides. Like the previous customization method, you can customize the basic data such as size by theme or achieve complete customization by rewriting the corresponding method.
 
-### 主题设置
+### Theme configuration
 
 ```js
 lf.setTheme({
   arrow: {
-    offset: 4, // 箭头垂线长度
-    verticalLength: 2, // 箭头底线长度
+    offset: 4,
+    verticalLength: 2,
   },
 });
 ```
 
-### 自定义箭头形状
+### Customize the shape of the arrow
 
-在自定义连线 view 的时候，可以重写`getEndArrow`和`getStartArrow`方法来实现自定义连线两端的图形，这两个方法可以返回的任意`svg`图形。
+When customizing the view of the edge, you can rewrite the `getEndArrow` and `getStartArrow` methods to realize the arrows at both ends of the custom edge. These two methods can return any `svg` graphics.
 
-这里以通过连线属性中的 arrowType 来控制连线不同的外观为例。
+Here is an example of controlling the different appearance of an edge by using the arrowType in the edge property.
 
 ```js
 class Connection extends PolylineEdge {
@@ -327,14 +325,14 @@ class Connection extends PolylineEdge {
       strokeWidth,
     };
     if (arrowType === "empty") {
-      // 空心箭头
+      // Hollow arrow
       return h("path", {
         ...pathAttr,
         fill: "#FFF",
         d: "M -10 0  -20 -5 -30 0 -20 5 z",
       });
     } else if (arrowType === "half") {
-      // 半箭头
+      // Half arrow
       return h("path", {
         ...pathAttr,
         d: "M 0 0 -10 5",
