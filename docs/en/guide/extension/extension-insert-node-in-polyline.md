@@ -1,16 +1,19 @@
-# 边上插入节点 InsertNodeInPolyline
+# InsertNodeInPolyline
 
-## 功能
+## Function
 
-拖动节点到边中间，自动成为边中间的点。
-举例：存在一条节点 A 到节点 B 的折线 E，拖拽一个节点 N 到折线 E 上，当节点 N 的中心点恰好在折线 E 的路径上时松开鼠标，这时节点 N 就成为 A 与 B 的中间节点，原来的边 E 被删除，生成两条新的折线，分别是 A 到 N，N 到 B。示例如下。
-<example href="/examples/#/extension/InserNodeInPolyline" :height="450" ></example>
+Drag a node to the middle of an edge and the node will automatically become part of the middle of the edge.
+Example: There exists a polyline E from node A to node B. Drag a node N onto the polyline E. Release the mouse when the center point of node N is exactly on the path of the polyline E. Then node N becomes an intermediate node between A and B. The original edge E will be deleted and two new polylines will be generated, A to N and N to B respectively.
 
-## 支持
+<iframe src="https://docs.logic-flow.cn/demo/dist/examples/#/extension/InserNodeInPolyline?from=doc"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+></iframe>
 
-目前仅支持折线
+## support
 
-## 使用
+Currently, only polylines are supported.
+
+## Getting started
 
 ```js
 import LogicFlow from "@logicflow/core";
@@ -20,15 +23,15 @@ import "@logicflow/extension/lib/style/index.css";
 LogicFlow.use(InsertNodeInPolyline);
 ```
 
-## 个性化配置
+## Personalized configuration
 
-节点拖拽分为 2 种情况：
+Node dragging can be divided into two situations:
 
-- 第一种是从控制面板拖拽到画布中，调用 Dnd 的 Api 进行节点添加，本插件默认支持。关闭此功能设置如下：
+- The first one is to drag nodes from the control panel to the canvas and call Dnd's Api to add nodes, which is supported by this plugin by default. Disable this function with the following settings:
   ```js
   InsertNodeInPolyline.dndAdd = false;
   ```
-- 第二种是画布中的游离节点，即与其他节点没有边的节点，拖拽调整位置到边上，本插件默认支持。关闭此功能设置如下：
+- The second is a free node in the canvas, that is, a node that is not connected to other nodes, dragging the position to the edge, which is supported by this plug-in by default. Turn off this function is set as follows:
   ```js
   InsertNodeInPolyline.dropAdd = false;
   ```

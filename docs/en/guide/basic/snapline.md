@@ -1,41 +1,41 @@
-# 对齐线 Snapline
+# Snapline
 
-对齐线能够在节点移动过程中，将移动节点的位置与画布中其他节点位置进行对比，辅助位置调整。位置对比有如下两个方面。
+The snapline can assist in position adjustment by comparing the position of the moving node with the position of other nodes in the canvas. The position comparison includes the following two aspects.
 
-- 节点中心位置
-- 节点的边框
+- The center position of the node
+- The border of node
 
-## 对齐线使用
+## Use snapline
 
-普通编辑模式下，默认开启对齐线，也可通过配置进行关闭。  
-在[静默模式](en/guide/basic/silent-mode)下，无法移动节点，所以关闭了对齐线功能，无法通过配置开启。
+The snapline is turned on by default in edit mode, and can be turned off by configuration.  
+In [silent-mode](en/guide/basic/silent-mode), it is not possible to move nodes, so the snapline is turned off and cannot be turned on by configuration.
 
 ```ts
-// 关闭对齐线功能
+// Turn off the snapline
 const lf = new LogicFlow({
   snapline: false,
 });
 ```
 
-## 对齐线样式设置
+## Set the style of the snapline
 
-对齐线的样式包括颜色和宽度，可以通过设置主题的方式进行修改。
+The style of the alignment line includes color and width, which can be modified by setting the theme.
 
 ```ts
-// 默认配置
+// Default configuration
 {
   stroke: '#1E90FF',
   strokeWidth: 1,
 }
-// 修改对齐线样式
+// Modify the snapline style
 lf.setTheme({
   snapline: {
-    stroke: '#1E90FF', // 对齐线颜色
-    strokeWidth: 1, // 对齐线宽度
+    stroke: '#1E90FF', // the color of snapline
+    strokeWidth: 1, // the width of snapline
   },
 })
 ```
 
 <example :height="400" ></example>
 
-更多样式修改参见[主题](en/guide/basic/theme)
+See [theme](en/guide/basic/theme) for more style modifications

@@ -1,15 +1,15 @@
-# 拖拽创建节点 Dnd
+# Dnd
 
-> 在流程图编辑场景中比起通过代码配置注册节点以外，我们可能更需要通过图形用户界面来操作创建流程图，这时候就可以通过拖拽的方式来实现。
+> In the flowchart editing scenario, in addition to configuring the registration nodes by code, we may also need to create flowcharts through GUI operations, which can be achieved by dragging and dropping.
 
-拖拽需要结合图形面板来实现，步骤：创建面板 → 拖拽初始化 → 监听 drop 事件创建节点
+Dragging needs to be implemented in combination with a graphical panel, steps: create panel → drag initialization → listen to drop event and create node
 
-示例如下：
+Example:
 
 ```js
 lf.dnd.startDrag({
   type,
-  text: `${type}节点`,
+  text: `${type}node`,
 });
 ```
 
@@ -20,24 +20,24 @@ lf.dnd.startDrag({
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-通过上面的代码可以看出，将节点通过`div`标签+`css`样式的方式绘制到面板中，并为其绑定`onMouseDown`事件，当拖拽图形时，会触发`lf.dnd.startDrag`函数，表示开始拖拽，并传入选中图形的配置，`startDrag`入参格式：
+As can be seen from the above code, the node is drawn into the panel through the `div` tag + `css` style, and the `onMouseDown` event is bound to it. When dragging the graphics, the `lf.dnd.startDrag` function will be triggered, which means that the dragging will start. The input parameters of `startDrag`:
 
 ```js
 lf.dnd.startDrag(nodeConfig: NodeConfig):void
 
 type NodeConfig = {
-  id?: string; // 不建议直接传id, logicflow id不允许重复
+  id?: string; // It is not recommended to pass id directly, the id of logicflow is not allowed to be repeated
   type: string;
   text?: TextConfig;
   properties?: Record<string, unknown>;
 };
 ```
 
-拖拽结束鼠标松开时，将当前鼠标的位置转换为画布上的坐标，并以此为节点的中心点坐标`x`、`y`，合并拖拽节点传入的`nodeConfig`，监听到 drop 事件后会调用`lf.addNode`方法创建节点。
+When the mouse is released at the end of the drag, the current mouse position is converted to coordinates on the canvas and used as the node's center point coordinates `x`, `y`, and then the coordinates are merged with the `nodeConfig` passed in by the dragged node. Call the `lf.addNode` method to create the node after listening to the drop event.
 
-!> **注意**  
-如果是用图片作为配置面板中添加节点的元素，需要将其设置为不可拖动的。详细请参考[#267](https://github.com/didi/LogicFlow/issues/267)
+!> **Note**   
+If you are using an image as a node added in the configuration panel, you need to set it to be non-draggable. For details, please refer to [#267](https://github.com/didi/LogicFlow/issues/267)
 
-**使用拖拽面板插件**
+**Using the Drag and Drop Panel Plugin**
 
-LogicFlow 在 extension 中内置了**拖拽面板插件**，如果不想自定义图形面板，可以使用此插件快速实现。详情见[拖拽面板](en/guide/extension/component-dnd-panel)。
+LogicFlow has a built-in **Drag and Drop Panel Plugin** in the extension package. If you don't want to customize the graphics panel, you can use this plug-in for a quick implementation. See [dnd-panel](en/guide/extension/component-dnd-panel)。

@@ -89,7 +89,7 @@ import { BpmnAdapter } from "@logicflow/extension";
 // 注册插件
 LogicFlow.use(BpmnAdapter);
 
-// 示例化 LogicFlow
+// 实例化 LogicFlow
 const lf = new LogicFlow();
 lf.render();
 

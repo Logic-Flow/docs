@@ -1,8 +1,8 @@
-# 键盘快捷键 Keyboard
+# Keyboard Shortcuts
 
-## 快捷键配置
-通过创建 `LogicFlow` 实例时传入 options 的 keyboard 属性可以开启快捷键，
-可以只配置 enabled 属性，为 true 时，代表开启默认的快捷键。
+## Shortcut configuration
+Shortcut keys can be enabled by passing the keyboard property of options when creating a `LogicFlow` instance.
+When the enabled attribute is true, it means that the default shortcut key is enabled.
 ```ts
 const lf = new LogicFlow({
   container: document.querySelector('#app'),
@@ -11,24 +11,24 @@ const lf = new LogicFlow({
   },
 });
 ```
-## 内置快捷键功能
+## Built-in shortcut keys
 
-参考不同的产品，内置了复制，粘贴，redo/undo，删除 的快捷键。
+Logicflow has built-in shortcuts for copy, paste, redo/undo, and delete.
 
-| 快捷键   | 功能   |
+| Shortcut Keys  | Function  |
 | :----- | :----- |
-| cmd + c 或 ctrl + c | 复制节点 |
-| cmd + v 或 ctrl + v | 粘贴节点 |
-| cmd + z 或 ctrl + z | 撤销操作 |
-| cmd + y 或 ctrl + y | 回退操作 |
-| backspace | 删除操作 |
+| cmd + c or ctrl + c | Copy node |
+| cmd + v or ctrl + v | Paste node |
+| cmd + z or ctrl + z | Undo |
+| cmd + y or ctrl + y | Redo |
+| backspace | Delete |
 
-## 自定义快捷键
+## Customized shortcut keys
 
-shortcuts 则可以定义用户自定义的一组快捷键
-值得一提的是 keys 的规则，与[mousetrap](https://www.npmjs.com/package/mousetrap)一致。
+The shortcuts property allows the user to customize a set of shortcut keys
+The rules for keys, consistent with [mousetrap](https://www.npmjs.com/package/mousetrap).
 
-我们已自定义删除功能为例，在删除之前添加一个确认操作。
+The following example is a custom delete function that adds a confirmation action before the delete.
 
 ```js
 const lf = new LogicFlow({
@@ -39,7 +39,7 @@ const lf = new LogicFlow({
       {
         keys: ["backspace"],
         callback: () => {
-          const r = window.confirm("确定要删除吗？");
+          const r = window.confirm("Sure you want to delete it?");
           if (r) {
             const elements = lf.getSelectElements(true);
             lf.clearSelectElements();

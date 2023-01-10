@@ -1,8 +1,8 @@
-# 自定义插件 CustomPlugin
+# CustomPlugin
 
-LogicFlow 提供了很多的插件，但是这些插件都是一些具有普适性的插件，不一定都符合业务需求。这时候可以基于自己的业务场景进行自定义插件。
+LogicFlow provides many generic plug-ins that may not always match your business needs. You can customize plug-ins based on your own business scenarios.
 
-## 插件的基础格式
+## The basic format of the plug-in
 
 ```js
 class PluginCls {
@@ -19,24 +19,24 @@ class PluginCls {
 }
 ```
 
-- 插件是一个类。
-- 这个类有个静态属性`pluginName`用于标识插件的名称。同名的插件在初始化`lf`实例的时候会覆盖。同时使用方可以通过`lf.extension.插件名称`获取插件这个类的实例。
-- 在初始化`lf`实例的时候，会同时初始化插件实例，此时会传入参数`lf`和`LogicFlow`。
-- 在`lf`渲染完成后，会调用插件实例的`render`方法(如有)。第二个参数 domOverlay 是表示`LogicFlow` Dom 层的节点。插件开发者可以直接在这个节点插入 html 内容。
-- `destroy`是销毁插件是调用的方法。大多数情况下可以不写。
+- A plugin is a class.
+- This class has a static property `pluginName` to identify the name of the plugin. Plugins with the same name are overwritten when the `lf` instance is initialized. You can obtain an instance of the plugin class through `lf.extension.[your plugin name]`.
+- When initializing the `lf` instance, the plugin instance is initialized at the same time. And the parameters `lf` and `LogicFlow` will be passed in when initializing the plugin instance.
+- The `render` method (if any) of the plugin instance will be called after `lf` rendering is complete. The second parameter, domOverlay, represents the node of the `LogicFlow` Dom layer. Plugin developers can insert html content directly into this node.
+- `destroy` is the method called when the plugin is destroyed. It can be left out in most cases.
 
-## 实现 context-pad 插件
+## Implementing the context-pad plugin
 
-下面实现一个`context-pad`示例，向大家介绍如何定义符合自己业务的插件。`context-pad`插件是一个点击节点后，在节点旁边出现可选的快捷操作，可以看做是左键点击出现的菜单。
+The following implements a `context-pad` example to show you how to define a plugin that fits your business. The `context-pad` plugin is used to bring up an optional shortcut menu next to the node after the user left-clicks on it.
 
-### 增加插入选项方法
+### Adding plug-in method
 
-LogicFlow 会将插件的实例以插件名称的形式挂载到`lf.extension`上，这样我们在`class`中的方法就可以用`lf.extension.插件名称.插件方法`调用了。
+LogicFlow will mount the instance of plugin to `lf.extension` so that our methods in `class` can be called with `lf.extension.[plugin name].[plugin method]`.
 
 ```js
 class ContextPad {
   /**
-   * 设置通用的菜单选项
+   * Set general menu options
    */
   setContextMenuItems(items) {
     this.commonMenuItems = items;
@@ -45,7 +45,7 @@ class ContextPad {
 
 ContextPad.pluginName = "contextPad";
 
-// 调用方法
+// Calling Methods
 
 lf.extension.contextPad.setContextMenuItems([
   {
@@ -55,9 +55,9 @@ lf.extension.contextPad.setContextMenuItems([
 ]);
 ```
 
-### 监听节点被点击
+### Listening for events when the node is clicked
 
-在插件被初始化时，会将`lf`以参数的形式传递给插件，这时可以利用`lf`监听画布上发生的事件。
+When the plugin is initialized, `lf` is passed as a parameter to the plugin, which can then be used to listen for events that occur on the canvas.
 
 ```js
 class ContextPad {
@@ -72,15 +72,15 @@ class ContextPad {
 }
 ```
 
-### 在画布指定位置显示 HTML 内容
+### Display HTML content at the specified position on the canvas
 
-插件的 render 函数有两个参数，一个是`lf`, 第二个参数是`toolOverlay`, 也就是组件层。LogicFlow 的画布是由多个图层组成，而组件层则是专门用来渲染自定义的组件。
+The render function of the plugin has two arguments, one is `lf` and the second is `toolOverlay`, which is the component layer. the canvas of LogicFlow is composed of multiple layers, while the component layer is dedicated to rendering custom components.
 
-**LogicFlow 的图分层**
+**Layering of LogicFlow's graphs**
 
 <img src="en/assets/images/overlay.png" width="200">
 
-所以这里我们只需要将菜单插入到`toolOverlay`, 然后将其菜单移动到对应的位置即可。
+So here we just need to insert the menu into `toolOverlay`, and then move the menu to the right place.
 
 ```js
 class ContextPad {
@@ -90,7 +90,7 @@ class ContextPad {
   createMenu() {
     this.__menuDOM = document.createElement("div");
   }
-  // 计算出菜单应该显示的位置（节点的右上角）
+  // Calculate where the menu should be displayed (top right corner of the node)
   getContextMenuPosition() {
     const data = this._activeData;
     const Model = this.lf.graphModel.getElement(data.id);
@@ -105,7 +105,7 @@ class ContextPad {
   showMenu() {
     const [x, y] = this.getContextMenuPosition();
     this.__menuDOM.style.display = "flex";
-    // 将菜单显示到对应的位置
+    // Display the menu to the corresponding position
     this.__menuDOM.style.top = `${y}px`;
     this.__menuDOM.style.left = `${x + 10}px`;
     this.toolOverlay.appendChild(this.__menuDOM);
@@ -113,7 +113,7 @@ class ContextPad {
 }
 ```
 
-## 完整示例
+## Full Example
 
 <iframe src="https://codesandbox.io/embed/logicflow-base22-rl301?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"

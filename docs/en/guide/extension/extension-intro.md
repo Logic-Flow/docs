@@ -1,36 +1,36 @@
-# 简介
+# Introduction
 
-> LogicFlow 最初的目标就是支持一个扩展性强的流程绘制工具，用来满足各种业务需求。为了让LogicFlow的拓展性足够强，LogicFlow将所有的非核心功能都使用插件的方式开发，然后将这些插件放到`@logicflow/extension`包中。
+> The initial goal of LogicFlow was to develop a extensible flowchart drawing tool that could be used to meet a variety of business needs. In order to make LogicFlow extensible enough, LogicFlow develops all non-core functionality using plugins, which are then placed in the `@logicflow/extension` package.
 
-### 安装全局插件
+### Install global plug-ins
 
-npm方式
+Using from npm
 ```js
 import { BpmnElement } from '@logicflow/extension';
 LogicFlow.use(BpmnElement);
 ```
 
-cdn方式
+Using from cdn
 
 ```html
-<!--LogicFlow core包css-->
+<!--the css file of the LogicFlow core package-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@logicflow/core/dist/style/index.css" />
-<!--LogicFlow extension包css-->
+<!--the css file of the LogicFlow extension package-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@logicflow/extension/lib/style/index.css" />
-<!--LogicFlow core包js-->
+<!--the js file of the LogicFlow core package-->
 <script src="https://cdn.jsdelivr.net/npm/@logicflow/core/dist/logic-flow.js"></script>
-<!--LogicFlow的插件支持单个引入，这里以菜单插件为例-->
+<!--LogicFlow's plug-ins support individual imports, here is an example of a menu plug-in-->
 <script src="https://cdn.jsdelivr.net/npm/@logicflow/extension/lib/Menu.js"></script>
 <script>
   LogicFlow.use(Menu);
 </script>
 ```
 
-### 安装插件到实例上
+### Install the plugin on the instance
 
-`v1.0.7` 新增
+Added in `v1.0.7`
 
-当一个单页面应用存在多个使用LogicFlow的页面时，不同的页面使用的插件可能不一样。LogicFlow初始化的时候，将插件作为参数传入到构造函数中，此时插件会覆盖全局的插件。
+When multiple pages using LogicFlow exist for a single-page application, the plug-ins used may be different for different pages. When LogicFlow is initialized, the plug-in is passed as a parameter to the constructor, at which point the plug-in overrides the global plug-in.
 
 ```js
 import LogicFlow from "@logicflow/core";

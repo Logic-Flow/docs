@@ -1,10 +1,10 @@
-# 菜单 Menu
+# Menu
 
-> 菜单指的是右键菜单
+> Menu refers to the right-click menu
 
-## 启用
+## Getting started
 
-引入组件，启用默认菜单
+Importing components to enabling the default menu.
 
 ```ts
 import LogicFlow from "@logicflow/core";
@@ -14,85 +14,86 @@ import "@logicflow/extension/lib/style/index.css";
 LogicFlow.use(Menu);
 ```
 
-`Menu`组件支持菜单包括节点右键菜单、边右键菜单、画布右键菜单，默认情况下，`Menu`在各个菜单内置了以下功能。
+The menus supported by the `Menu` component include right-click menus for nodes, edges, and graphs. By default, `Menu` has the following functions built into each menu:
 
-- 节点右键菜单(nodeMenu)： 删除、复制、编辑文案
-- 边右键菜单(edgeMenu)：删除、编辑文案
-- 画布右键菜单(graphMenu)：无
+- nodeMenu： Delete, copy, and edit text
+- edgeMenu：Delete and edit text
+- graphMenu：none
 
-## 菜单配置项
+## Configuration items of the menu
 
-菜单中的每一项功能，可以用一条配置进行表示。具体字段如下
-|字段|类型| 作用| 是否必须|描述|
+Each function in the menu can be represented by a single configuration. The specific fields are as follows:
+
+|Fields|Type| function| Required|Description|
 |:--|:--|:-|:--|:-|
-|text|string|文案||菜单项展示的文案|
-|className|string|class 名称||每一项默认 class 为 lf-menu-item，设置了此字段，calss 会在原来的基础上添加 className。|
-|icon|boolean|是否创建 icon 的 span 展位||如果简单的文案不能丰富表示菜单，可以加个 icon 设置为 true,对应的菜单项会增加 class 为 lf-menu-icon 的 span，通过为其设置背景的方式，丰富菜单的表示，一般与 className 配合使用。|
-|callback|Function|点击后执行的回调|✅|三种菜单回调中分别可以拿到节点数据/边数据/事件信息。|
+|text|string|menu text||text for menu items|
+|className|string|class name||The default class is lf-menu-item. Setting this field will add a new className to the default class.|
+|icon|boolean|Whether to create the span tag for the icon||If the simple text is not enough to represent the menu, you can set icon to true, and then the corresponding menu item will add the span with class lf-menu-icon. you can enrich the content of the menu by setting the background for lf-menu-icon.|
+|callback|Function|Callback functions executed after a click|✅|In the three menu callbacks, node data/edge data/event information can be obtained respectively.|
 
-节点右键菜单删除功能，示例如下：
+The delete function of the node right-click menu, example is:
 
 ```ts
 {
-  text: '删除',
+  text: 'Delete',
   callback(node) {
-    // node为该节点数据
+    // node is the data of the node
     lf.deleteNode(node.id);
   },
 },
 ```
 
-## 追加菜单选项
+## Adding menu options
 
-通过`lf.extension.menu.addMenuConfig`方法可以在原有菜单的基础上追加新的选项，具体配置示例如下：
+The `lf.extension.menu.addMenuConfig` method allows you to append new options to the original menu.
 
 ```ts
 import LogicFlow from "@logicflow/core";
 import { Menu } from "@logicflow/extension";
 
-// 实例化 Logic Flow
+// Instantiating LogicFlow
 const lf = new LogicFlow({
   container: document.getElementById("app"),
-  // 注册组件
+  // register component
   plugins: [Menu],
 });
-// 为菜单追加选项（必须在 lf.render() 之前设置）
+// Append new options to the menu (must be set before lf.render())
 lf.extension.menu.addMenuConfig({
   nodeMenu: [
     {
-      text: "分享",
+      text: "Share",
       callback() {
-        alert("分享成功！");
+        alert("Share successfully!");
       },
     },
     {
-      text: "属性",
+      text: "Properties",
       callback(node: any) {
         alert(`
-          节点id：${node.id}
-          节点类型：${node.type}
-          节点坐标：(x: ${node.x}, y: ${node.y})`);
+          Node id：${node.id}
+          Node type：${node.type}
+          Node coordinates：(x: ${node.x}, y: ${node.y})`);
       },
     },
   ],
   edgeMenu: [
     {
-      text: "属性",
+      text: "Properties",
       callback(edge: any) {
         alert(`
-          边id：${edge.id}
-          边类型：${edge.type}
-          边坐标：(x: ${edge.x}, y: ${edge.y})
-          源节点id：${edge.sourceNodeId}
-          目标节点id：${edge.targetNodeId}`);
+          Edge id：${edge.id}
+          Edge type：${edge.type}
+          Edge coordinates：(x: ${edge.x}, y: ${edge.y})
+          Source node id：${edge.sourceNodeId}
+          Target node id：${edge.targetNodeId}`);
       },
     },
   ],
   graphMenu: [
     {
-      text: "分享",
+      text: "Share",
       callback() {
-        alert("分享成功！");
+        alert("Share successfully!");
       },
     },
   ],
@@ -100,46 +101,46 @@ lf.extension.menu.addMenuConfig({
 lf.render();
 ```
 
-## 重置菜单
+## Customized Menu
 
-如果默认菜单中存在不需要的选项，或者无法满足需求，可以通过`lf.setMenuConfig`重置菜单，更换为自定义菜单。
+If there are unwanted options in the default menu, you can reset the menu by `lf.setMenuConfig` and replace it with a custom menu.
 
 ```ts
 lf.extension.menu.setMenuConfig({
   nodeMenu: [
     {
-      text: "删除",
+      text: "Delete",
       callback(node) {
         lf.deleteNode(node.id);
       },
     },
-  ], // 覆盖默认的节点右键菜单
-  edgeMenu: false, // 删除默认的边右键菜单
-  graphMenu: [], // 覆盖默认的边右键菜单，与false表现一样
+  ], // Override the default node right-click menu
+  edgeMenu: false, // Remove the default edge right click menu
+  graphMenu: [], // Override the default graph right-click menu, same effect as false
 });
 ```
 
-## 指定类型元素配置菜单
+## Configure the menu for the specified type of element
 
-除了上面的为所有的节点、元素、画布自定义通用菜单外，还可以使用`lf.setMenuByType`为指定类型的节点或边定义菜单。
+Use `lf.setMenuByType` to define a menu for a specific type of node or edge.
 
 ```ts
 lf.extension.menu.setMenuByType({
   type: "bpmn:startEvent",
   menu: [
     {
-      text: "分享111",
+      text: "Share111",
       callback() {
-        console.log("分享成功222！");
+        console.log("Share successfully222!");
       },
     },
   ],
 });
 ```
 
-## 设置选区菜单
+## Set the menu for the selection component
 
-在使用了选区插件后，选区组件也会出现菜单，可以通过设置菜单项为空来实现不显示菜单效果。
+After using the selection plug-in, the selection component will also have a menu. You can hide the menu by setting the menu item to empty.
 
 ```ts
 lf.extension.menu.setMenuByType({
@@ -148,14 +149,14 @@ lf.extension.menu.setMenuByType({
 });
 ```
 
-## 指定业务状态设置菜单
+## Set the menu for a specific business state
 
-除了上面的为某种类型元素设置菜单外，还可以在自定义元素的时候，为节点处于不同业务状态下设置菜单。
+In addition to setting menus for certain types of elements, you can also set menus for nodes in different business states.
 
-- 通过自定义节点，设置其 menu，从而为节点设置定制的自定义菜单。
-- 由于自定义的 model 中可能无法直接拿到 lf 实例对象，此时可以通过`this.graphModel`拿到 graphModel 对象。graphModel 对象详细说明请参考[API/graphModel](http://logic-flow.org/api/graphModelApi.html)。
-- 如果还希望在点击菜单后进行业务处理，可以通过`graphModel`的`eventCenter`发送自定义事件，然后自己在`lf`实例上监听此事件。
-- 优先级：指定业务状态设置菜单 > 指定类型元素配置菜单 > 通用菜单配置 > 默认菜单。
+- You can set a custom menu for a node by setting its menu property.
+- Since the custom model may not be able to get the lf instance directly, you can get the graphModel through `this.graphModel`. The graphModel is described in [API/graphModel](http://logic-flow.org/api/graphModelApi.html)。
+- If you want to perform business processing after clicking the menu, you can send a custom event through the `eventCenter` of `graphModel`, and then listen to this event on the `lf` instance yourself.
+- Priority: Set the menu for a specific business state > Set the menu for the specified type of element > General menu configuration > Default menu.
 
 ```ts
 // customNode.ts
@@ -170,7 +171,7 @@ class CustomeModel extends RectNodeModel {
       properties: { isDisabledNode },
     } = this;
     if (!isDisabledNode) {
-      // 单独为非禁用的元素设置菜单。
+      // Set menus individually for non-disabled elements.
       this.menu = [
         {
           className: "lf-menu-delete",
@@ -212,20 +213,20 @@ lf.on("custom:event", (r) => {
 });
 ```
 
-- 通过自定义边，设置其 menu，从而为边设置定制的自定义菜单
+- Set custom menus for edges
 
 ```ts
 // custom.ts
 import { PolylineEdge, PolylineEdgeModel } from "@logicflow/core";
 class CustomModel extends PolylineEdgeModel {
   setAttributes() {
-    // 右键菜单
+    // Right click menu
     this.menu = [
       {
         className: "lf-menu-delete",
         icon: true,
         callback(edge) {
-          const comfirm = window.confirm("你确定要删除吗？");
+          const comfirm = window.confirm("Sure to delete?");
           comfirm && this.graphModel.deleteEdgeById(edge.id);
         },
       },
@@ -238,12 +239,12 @@ lf.register({
   view: PolylineEdge,
   model: CustomeModel,
 });
-// 设置默认边的类型为自定义边类型
+//  Set the default type of the edge to custome_edge
 lf.setDefaultEdgeType("custome_edge");
 ```
 
 ```css
-// css 设置
+// Set css
 .lf-menu-delete .lf-menu-item-icon {
   display: inline-block;
   width: 20px;
@@ -253,19 +254,20 @@ lf.setDefaultEdgeType("custome_edge");
 }
 ```
 
-### 菜单样式
+### menu style
 
-根据菜单结构中的 class 覆盖原有样式，设置符合宿主风格的样式。
+Overwrite the original style according to the class in the menu structure, and set the style in line with the host style.
 
-- 菜单：lf-menu
-- 菜单项：lf-menu-item、用户自定义的 className
-- 菜单项-文案：lf-menu-item-text
-- 菜单项-文案：lf-menu-item-icon,需要将菜单项配置 icon 设置为 true
-  通过对设置这些 class，可以覆盖默认样式，美化字体颜色，设置菜单项 icon 等。
+- Menu：lf-menu
+- Menu items：lf-menu-item、User-defined className
+- Menu Items - text：lf-menu-item-text
+- Menu Items - icon：lf-menu-item-icon, The icon configuration needs to be set to true.
 
-注意，以上介绍的菜单配置必须在 `lf.render()`之前调用。
+By setting these classes, you can override the default style and then achieve effects such as beautifying font colors and setting menu item icons.
 
-### 示例
+Note that the menu configuration described above must be called before `lf.render()`.
+
+### Example
 
 <iframe src="https://codesandbox.io/embed/dazzling-hypatia-en8s9?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"

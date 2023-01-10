@@ -1,6 +1,6 @@
-# 控制面板 Control
+# Control Panel
 
-### 启用
+### Getting started
 
 ```ts
 import LogicFlow from "@logicflow/core";
@@ -10,17 +10,17 @@ import "@logicflow/extension/lib/style/index.css";
 LogicFlow.use(Control);
 ```
 
-注册`Control`组件后，Logic Flow 会在画布右上方创建一个控制面板，如下所示
+After registering the `Control` component, LogicFlow will create a control panel at the top right of the canvas, as follows.
 
-控制面板提供了常见的能力，放大缩小或者自适应画布的能力，同时也内置了 redo 和 undo 的功能，当然如果你不喜欢这样的 UI 或功能，也可以基于`LogicFlow`提供的 [API](en/api/logicFlowApi) 自己定义。
+The control panel provides the usual ability to zoom in and out or adapt to the canvas, and also has built-in redo and undo functionality. If you don't like this UI or functionality, you can also define your own based on the [API](en/api/logicFlowApi) provided by `LogicFlow`.
 
-### 添加选项
+### Add options
 
 ```js
 lf.extension.control.addItem({
   iconClass: "custom-minimap",
   title: "",
-  text: "导航",
+  text: "Navigation",
   onMouseEnter: (lf, ev) => {
     const position = lf.getPointByClient(ev.x, ev.y);
     lf.extension.miniMap.showMiniMap.show(
@@ -38,7 +38,7 @@ lf.extension.control.addItem({
 });
 ```
 
-### 示例
+### Example
 
 <iframe src="https://codesandbox.io/embed/intelligent-matsumoto-t1dc5?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
