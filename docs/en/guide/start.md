@@ -1,44 +1,44 @@
-# 介绍
+# Getting started
 
-## LogicFlow 是什么
+## What is LogicFlow
 
-LogicFlow 是一款流程图编辑框架，提供了一系列流程图交互、编辑所必需的功能和灵活的节点自定义、插件等拓展机制。LogicFlow 支持前端研发自定义开发各种逻辑编排场景，如流程图、ER 图、BPMN 流程等。在工作审批配置、机器人逻辑编排、无代码平台流程配置都有较好的应用。
+LogicFlow is a flowchart editing framework that provides a series of functions necessary for flowchart interaction and editing, as well as flexible node customization, plug-ins and other expansion mechanisms. LogicFlow supports front-end R&D to develop various logic orchestration scenarios, such as flowcharts, ER diagrams, BPMN processes, etc. It has good applications in work approval configuration, robot logic orchestration, and process configuration in no code platform.
 
-更多资料请查看[LogicFlow 系列文章](en/article/article01)
+For more information, see [the LogicFlow article series](en/article/article01)
 
-## 安装
+## Quick start
 
-### 直接用`<script>`引入
+### Import directly with `<script>`
 
-LogicFlow 分为`core`包和`extension`包。由于 LogicFlow 本身会有一些预置样式，所以除了需要引入 js, 还需要引入 css。
+LogicFlow is divided into the `core` package and the `extension` package. Since LogicFlow has some preset styles, you need to import css files in addition to js files.
 
 ```html
-<!--LogicFlow core包css-->
+<!--the css file of the LogicFlow core package-->
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@logicflow/core/dist/style/index.css"
 />
-<!--LogicFlow extension包css-->
+<!--the css file of the LogicFlow extension package-->
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@logicflow/extension/lib/style/index.css"
 />
-<!--LogicFlow core包js-->
+<!--the js file of the LogicFlow core package-->
 <script src="https://cdn.jsdelivr.net/npm/@logicflow/core/dist/logic-flow.js"></script>
-<!--LogicFlow的插件支持单个引入，这里以菜单插件为例-->
+<!--LogicFlow's plug-ins support individual imports, here is an example of a menu plug-in-->
 <script src="https://cdn.jsdelivr.net/npm/@logicflow/extension/lib/Menu.js"></script>
 ```
 
-LogicFlow 所有的插件地址：[https://cdn.jsdelivr.net/npm/@logicflow/extension/lib/](https://cdn.jsdelivr.net/npm/@logicflow/extension/lib/)
+All plugins of LogicFlow are located at：[https://cdn.jsdelivr.net/npm/@logicflow/extension/lib/](https://cdn.jsdelivr.net/npm/@logicflow/extension/lib/)
 
-### 使用 npm 引入
+### Import using npm
 
 ```shell
 npm install @logicflow/core
 npm install @logicflow/extension
 ```
 
-## 绘制一个简单的流程图
+## Draw a simple flowchart
 
 ```js
 import LogicFlow from "@logicflow/core";
@@ -56,14 +56,14 @@ lf.render({
       type: "rect",
       x: 100,
       y: 100,
-      text: "节点1",
+      text: "node1",
     },
     {
       id: "2",
       type: "circle",
       x: 300,
       y: 200,
-      text: "节点2",
+      text: "node2",
     },
   ],
   edges: [
@@ -71,7 +71,7 @@ lf.render({
       sourceNodeId: "1",
       targetNodeId: "2",
       type: "polyline",
-      text: "连线",
+      text: "polyline",
     },
   ],
 });
@@ -84,13 +84,13 @@ lf.render({
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-### 在 vue 或者 react 等前端框架中使用 logicflow
+### Use logicflow in front-end frameworks such as vue or react
 
-LogicFlow 本身是以 umd 打包为纯 JS 的包，所以不论是 vue 还是 react 中都可以使用。这里需要注意一个点，那就是初始化 LogicFlow 实例的时候，传入的参数 container,必须要 dom 上存在这个节点，不然会报错`请检查 container 参数是否有效`。
+LogicFlow is packaged as a JS file via umd, so it can be used in either vue or react. Note that when initializing a LogicFlow instance, the parameter container must exist on the dom, otherwise it will report an error `Check if the container parameter is valid`.
 
-?> **注意**LogicFlow 支持初始化不传容器宽高参数，这个时候默认会使用 container 的宽高。请保证初始化 LogicFlow 的时候，container 已经存在宽高了。
+?> **Note** LogicFlow will use the container's width and height by default if no container width and height parameter is provided during initialization. Please make sure that the container already has a width and height when you initialize LogicFlow.
 
-[在 Sandbox 查看 vue 示例](https://codesandbox.io/s/github/towersxu/logicflow-vue-base/tree/main/?fontsize=14&hidenavigation=1&theme=dark)
+[View vue examples in Sandbox](https://codesandbox.io/s/github/towersxu/logicflow-vue-base/tree/main/?fontsize=14&hidenavigation=1&theme=dark)
 
 ```vue
 <template>
@@ -120,7 +120,7 @@ export default {
 </style>
 ```
 
-[在 Sandbox 查看 react 示例](https://codesandbox.io/s/github/towersxu/logicflow-react-base/tree/main/?fontsize=14&hidenavigation=1&theme=dark)
+[View react examples in Sandbox](https://codesandbox.io/s/github/towersxu/logicflow-react-base/tree/main/?fontsize=14&hidenavigation=1&theme=dark)
 
 ```js
 import LogicFlow from "@logicflow/core";

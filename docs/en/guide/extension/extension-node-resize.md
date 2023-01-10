@@ -1,13 +1,12 @@
-# 节点缩放 NodeResize
+# Node Resize
+## Getting started
 
-## 使用
+LogicFlow provides `RectResize`, `EllipseResize`, `DiamonResize`, `HtmlResize` in the extension package, which are four kinds of basic nodes that support scaling, each with `view` and `model` properties. Scaling of nodes utilizes LogicFlow's custom node mechanism. Developers can inherit these 4 types of nodes that can be scaled to achieve node scaling.
 
-LogicFlow 在 extension 包中提供了`RectResize`、`EllipseResize`、`DiamonResize`、`HtmlResize`这 4 种支持缩放的基础节点, 每个节点都有`view`和`model`这两个属性。节点的缩放也是利用 LogicFlow 的自定义节点机制，使开发者可以继承这 4 种可以缩放的节点，来实现节点的缩放。
-
-以我们需要一个可以缩放的矩形为例，在以前我们不支持节点缩放时，我们自定义节点方式为：
+Take for example that we need a rectangle that can be scaled. Our previous way of customizing nodes did not support node scaling：
 
 ```js
-// 不可以缩放的节点
+// Nodes that do not scale
 import { RectNode, RectNodeModel } from "@logicflow/core";
 class CustomNode extends RectNode {}
 class CustomNodeModel extends RectNodeModel {}
@@ -18,10 +17,10 @@ export default {
 };
 ```
 
-如果我们期望自定义的节点可以缩放，那么则改成：
+If we expect the custom node to scale, then change it to:
 
 ```js
-// 支持缩放的节点
+// Scalable Nodes
 import { RectResize } from "@logicflow/extension";
 class CustomNode extends RectResize.view {}
 class CustomNodeModel extends RectResize.model {}
@@ -32,9 +31,9 @@ export default {
 };
 ```
 
-### 设置节点的形状属性
+### Set the shape property of the node
 
-LogicFlow 把节点的宽高、半径等属性称之为[形状属性](en/api/nodeModelApi.html#形状属性)，我们可以重写 model 中的[initNodeData](en/api/nodeModelApi#getoutlinestyle)或者[setAttributes](en/api/nodeModelApi#setattributes)方法来设置节点的形状属性。但是当节点可以缩放后，我们不能在`setAttributes`中设置宽高，只能在`initNodeData`中设置。
+LogicFlow refers to attributes such as width, height, and radius of nodes as [shape attributes](en/api/nodeModelApi#ShapeProperties). We can override the [initNodeData](en/api/nodeModelApi#getoutlinestyle) or [setAttributes](en/api/nodeModelApi#setattributes) methods in the model to set the shape attributes of the node. But when the node can be scaled, we can't set the width and height in `setAttributes`, only in `initNodeData`.
 
 ```js
 class ResizableRectModel extends RectResize.model {
@@ -46,9 +45,9 @@ class ResizableRectModel extends RectResize.model {
 }
 ```
 
-### 自定义节点的 view
+### Customizing the view of the node
 
-在自定义节点中提到过，对于样式属性比较复杂的节点，我们可以重写`view`中的`getShape`方法来实现自定义节点真实渲染的外观。但是由于自定义节点需要在节点外观上填加用于缩放的调整点，所以对于自定义可缩放节点的 view，我们需要重写`getResizeShape`, 而不是`getShape`。
+As mentioned in the tutorial on custom nodes, for nodes with complex style properties, we can override the `getShape` method in `view` to achieve the true rendered appearance of the custom node. But for the view of custom resizable nodes, we need to override `getResizeShape`, not `getShape`.
 
 ```js
 import { RectResize } from "@logicflow/extension";
@@ -63,7 +62,7 @@ class ResizableRectModel extends RectResize.model {
 }
 class ResizableRectView extends RectResize.view {
   /**
-   * 此方法替代自定义节点的getShape方法。
+   * This method replaces the getShape method of the custom node.
    */
   getResizeShape() {
     const { model } = this.props;
@@ -90,23 +89,23 @@ export default {
 };
 ```
 
-!> **提示**对于继承`HtmlResize`的节点，自定义`view`请继续使用自定义 HTML 节点的`view`的`setHtml`方法。
+!> **Tip** For nodes that inherit from `HtmlResize`, custom `view` please continue to use the `setHtml` method of the `view` of the custom HTML node.
 
-## 事件
+## Event
 
-节点缩放后抛出事件`node:resize`，抛出数据包括节点缩放前后的节点位置、节点大小信息， 数据为{oldNodeSize, newNodeSize}, 详细字段如下。
+The event `node:resize` is triggered after node scaling, the event parameters include node position and node size before and after node scaling, the data is {oldNodeSize, newNodeSize}, the details of the fields are as follows:
 
-| 名称      | 类型   | 描述                     |
+| Name      | Type   | Description                     |
 | :-------- | :----- | :----------------------- |
-| id        | String | 节点 id                  |
-| type      | String | 节点类型                 |
-| modelType | String | 节点图形类型，已内部定义 |
-| x         | Number | 节点中心 x 轴坐标        |
-| y         | Number | 节点中心 y 轴坐标        |
-| rx        | Number | x 轴半径(椭圆、菱形)     |
-| ry        | Number | y 轴半径(椭圆、菱形)     |
-| width     | Number | 节点宽度(矩形)           |
-| height    | Number | 节点高度(矩形)           |
+| id        | String | Node id                  |
+| type      | String | Node type                 |
+| modelType | String | Node graph type, defined internally |
+| x         | Number | X-axis coordinates of the center of the node       |
+| y         | Number | Y-axis coordinates of the center of the node       |
+| rx        | Number | X-axis radius (ellipse, diamond)     |
+| ry        | Number | Y-axis radius (ellipse, diamond)     |
+| width     | Number | Node width (rectangle)           |
+| height    | Number | Node height (rectangle)        |
 
 ```js
 lf.on("node:resize", ({ oldNodeSize, newNodeSize }) => {
@@ -114,9 +113,9 @@ lf.on("node:resize", ({ oldNodeSize, newNodeSize }) => {
 });
 ```
 
-## 设置放大缩小的最大最小值
+## Set the maximum and minimum value of zoom in and out
 
-`v1.1.8`后，节点的放大缩小支持设置最大值和最小值。
+After `v1.1.8`, the zoom-in and zoom-out of nodes support setting the maximum and minimum values.
 
 ```js
 class ResizableRectModel extends RectResize.model {
@@ -130,9 +129,9 @@ class ResizableRectModel extends RectResize.model {
 }
 ```
 
-## 设置放大缩小的调整默认距离
+## Set the default resize distance for zooming in and out
 
-`v1.1.8`后，支持设置节点的`girdSize`属性，用来控制鼠标移动多少距离后开始缩放节点。
+After `v1.1.8`, it supports setting the `girdSize` property of the node, which is used to control how much distance the mouse moves before starting to scale the node.
 
 ```js
 class ResizableRectModel extends RectResize.model {
@@ -143,11 +142,11 @@ class ResizableRectModel extends RectResize.model {
 }
 ```
 
-!> **关于节点缩放的 gridSize**大多数情况下，为了保证节点的`整齐`，便于节点之间的上下左右对齐。`logicflow`默认在放大缩小时，只有鼠标移动的距离达到初始化画布传入的`gridSize`两倍时才改变节点的大小。但是这样会有一个缺点，那就是调整的时候有卡顿的感觉。可以再不改变初始化`gridSize`的情况下，单独设置每个节点的`gridSize`来让放大缩小节点更流畅。
+!> **About the gridSize of node scaling** In most cases, in order to ensure the neatness of the nodes, Logicflow will change the size of the nodes only when the mouse moves twice as far as the `gridSize` passed in by initializing the canvas when zooming in and out. But this will have a disadvantage that there is a lagging feeling when adjusting. You can set the `gridSize` of each node individually without changing the initial `gridSize` to make zooming in and out nodes smoother.
 
-## 设置调整边框样式
+## Set the dashed box style
 
-可放大缩小节点在被选中时，会贴着节点显示一个虚线框（矩形没有）。可以通过重写`getResizeOutlineStyle`方法实现自定义其样式。
+Zoomable nodes display a dashed box against the node when it is selected (the rectangle does not). You can customize its style by overriding the `getResizeOutlineStyle` method.
 
 ```js
 class ResizableRectModel extends RectResize.model {
@@ -161,9 +160,9 @@ class ResizableRectModel extends RectResize.model {
 }
 ```
 
-## 设置调整点样式
+## Set resize point style
 
-可放大缩小节点在被选中时，会在虚线框的四个角生成调整节点大小的操作点，可以通过重写`getControlPointStyle`方法实现自定义其样式。
+The resizable node generates resize action points in the four corners of the dashed box when it is selected. The style can be customized by overriding the `getControlPointStyle` method.
 
 ```js
 class ResizableRectModel extends RectResize.model {
@@ -178,7 +177,7 @@ class ResizableRectModel extends RectResize.model {
 }
 ```
 
-地址: [https://codesandbox.io/s/prod-resonance-ztpvtv](https://codesandbox.io/s/prod-resonance-ztpvtv?file=/step_26_nodeResize/index.js)
+Address: [https://codesandbox.io/s/prod-resonance-ztpvtv](https://codesandbox.io/s/prod-resonance-ztpvtv?file=/step_26_nodeResize/index.js)
 
 <iframe src="https://codesandbox.io/embed/prod-resonance-ztpvtv?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"

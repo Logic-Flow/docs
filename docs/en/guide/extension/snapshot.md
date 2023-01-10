@@ -1,10 +1,10 @@
-# 导出 Snapshot
+# Snapshot
 
-## 导出图片
+## Exporting images
 
-### 使用方式
+### Getting started
 
-**第一步**: 注册插件
+**Step 1**: Register plugin
 
 ```ts
 import LogicFlow from "@logicflow/core";
@@ -13,8 +13,8 @@ import { Snapshot } from "@logicflow/extension";
 LogicFlow.use(Snapshot);
 ```
 
-**第二步**:
-通过第一步，将插件注册到`LogicFlow`上，使`LogicFlow`实例上多了一个实例方法 lf.getSnapshot
+**Step 2**:
+By registering the plugin to `LogicFlow` in the first step, an additiona method lf.getSnapshot is added to the `LogicFlow` instance.
 
 ```ts
 const lf = new LogicFlow({
@@ -22,21 +22,21 @@ const lf = new LogicFlow({
   width: 700,
   height: 600,
 });
-// 可以使用任意方式触发，然后将绘制的图形下载到本地磁盘上
+// You can use any method to trigger and then download the drawn graph to the local disk
 document.getElementById("download").addEventListener("click", () => {
   lf.getSnapshot();
-  // 或者 1.1.13版本
+  // Or v1.1.13
   // lf.extension.snapshot.getSnapshot()
 });
 ```
 
-值得一提的是：通过此插件截取下载的图片不会因为偏移、缩放受到影响。
+Tip: Images downloaded through this plugin will not be affected by offsetting or scaling.
 
-## 导出 xml
+## Exporting xml
 
-1.0.7 新增
+Added in v1.0.7
 
-LogicFlow 默认生成的数据是 json 格式，可能会有一些流程引擎需要前端提供 xml 格式数据。`@logicflow/extension`提供了`lfJson2Xml`和`lfXml2Json`两个插件，用于将 json 和 xml 进行互相转换。
+LogicFlow generates data in json format by default, there may be some process engines that require xml format data from the front-end. `@logicflow/extension` provides two plugins `lfJson2Xml` and `lfXml2Json` for converting json and xml to each other.
 
 ```ts
 import LogicFlow from "@logicflow/core";
@@ -50,9 +50,9 @@ lf.render(data);
 const xml = lfJson2Xml(lf.getGraphData());
 ```
 
-### 自定义下载 css
+### Customizing css
 
-为了保持流程图生成的图片与画布上效果一致，`snapshot`插件默认会将当前页面所有的 css 规则都加载克隆到 canvas 中, 但是可能会因为 CSS 文件跨域引起报错，参考 issue[575](https://github.com/didi/LogicFlow/issues/575)。可以修改`useGlobalRules`来禁止加载所有 css 规则，然后通过`customCssRules`来自定义下载流程图属性。
+To keep the generated images consistent with the flowchart, the `snapshot` plugin will clone all the css rules of the current page to canvas by default, but it may cause errors due to cross-domain CSS files, see issue[575](https://github.com/didi/LogicFlow/issues /575). You can modify `useGlobalRules` to disable loading of all css rules and then customize the css properties with `customCssRules`.
 
 ```js
 lf.extension.snapshot.useGlobalRules = false;
@@ -70,7 +70,7 @@ lf.extension.snapshot.customCssRules = `
   `;
 ```
 
-### 示例
+### Example
 
 <iframe src="https://codesandbox.io/embed/logicflow-base21-o3vqi?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"

@@ -260,8 +260,8 @@ lf.setDefaultEdgeType("custome_edge");
 - 菜单：lf-menu
 - 菜单项：lf-menu-item、用户自定义的 className
 - 菜单项-文案：lf-menu-item-text
-- 菜单项-文案：lf-menu-item-icon,需要将菜单项配置 icon 设置为 true
-  通过对设置这些 class，可以覆盖默认样式，美化字体颜色，设置菜单项 icon 等。
+- 菜单项-图标：lf-menu-item-icon,需要将菜单项配置 icon 设置为 true
+  通过设置这些 class，可以覆盖默认样式，美化字体颜色，设置菜单项 icon 等。
 
 注意，以上介绍的菜单配置必须在 `lf.render()`之前调用。
 

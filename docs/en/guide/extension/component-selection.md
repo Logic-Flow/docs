@@ -1,4 +1,4 @@
-# 框选 SelectionSelect
+# Box selection
 
 ```ts
 import LogicFlow from "@logicflow/core";
@@ -8,28 +8,28 @@ import "@logicflow/extension/lib/style/index.css";
 LogicFlow.use(SelectionSelect);
 ```
 
-### 开启
+### Getting started
 
 ```ts
 lf.openSelectionSelect();
 
-// 1.1.0新增用法
+// New usage in version 1.1.0
 lf.extension.selectionSelect.openSelectionSelect();
 ```
 
-### 关闭
+### Close
 
 ```ts
 lf.closeSelectionSelect();
-// 1.1.0新增用法
+// New usage in version 1.1.0
 lf.extension.selectionSelect.closeSelectionSelect();
 ```
 
 <!-- <example href="/examples/#/extension/components/selection" :height="300" ></example> -->
 
-### 默认状态
+### Default State
 
-默认是否开启框选功能，受到页面是否允许拖动画布影响。画布可以拖动与选区不能同时存在。
+Whether box selection is enabled by default is affected by whether the canvas is allowed to be dragged. The canvas can be dragged and the box selection cannot exist at the same time.
 
 ```js
 const lf = new LogicFlow({
@@ -38,31 +38,31 @@ const lf = new LogicFlow({
 });
 ```
 
-如果`stopMoveGraph`为 true，也就是不允许拖动画布，那么默认则可以进行框选。
+If `stopMoveGraph` is true, which means that dragging the canvas is not allowed, then box selection is allowed by default.
 
-如果`stopMoveGraph`不为 true, 也就是允许拖动画布，那么默认则不可以进行框选。
+If `stopMoveGraph` is not true, which means that dragging the canvas is allowed, then box selection is not allowed by default.
 
-大多数情况下，我们期望允许拖动画布，当用户点击拖拽面板后才开启选区。请参考[拖拽面板插件](en/guide/extension/component-dnd-panel)
+In most cases, we expect to allow dragging of the canvas and open the box selection only when the user clicks on the drag and drop panel. Please refer to [the dnd panel plugin](zh/guide/extension/component-dnd-panel).
 
-### 设置选区灵敏度
+### Set the sensitivity of the selected area
 
-- 默认需要框选整个节点才选中节点
-- 默认需要框选边的起点、终点才选中边
+- By default you need to box the entire node to select it.
+- By default, you need to box the start and end of the edge to select it.
 
-可以调用插件方法`setSelectionSense`来重新设置
+You can call the method `setSelectionSense` in the plugin to reset the rules
 
-| 参数        | 默认值 | 描述                                   |
+| Parameters       | Default Value | Description                               |
 | ----------- | ------ | -------------------------------------- |
-| isWholeEdge | true   | 是否要边的起点终点都在选区范围才算选中 |
-| isWholeNode | true   | 是否要节点的全部点都在选区范围才算选中 |
+| isWholeEdge | true   | When the value is true, the start and end points of the edge are all within the range of the selection area, which means it is selected |
+| isWholeNode | true   | When the value is true, all points of the node are in the range of the selection area, which means it is selected |
 
-用法：
+usage:
 
 ```js
 lf.extension.selectionSelect.setSelectionSense(false, true);
 ```
 
-### 示例
+### Example
 
 <iframe src="https://codesandbox.io/embed/trusting-archimedes-m0bn4r?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"

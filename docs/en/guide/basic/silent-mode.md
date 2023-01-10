@@ -1,19 +1,19 @@
-# 设置图编辑方式
+# Set the editing method of flowchart
 
-LogicFlow 提供了非常多的控制图如何编辑的配置，详情见[editConfigModel](en/api/editConfigModelApi)。
+LogicFlow provides a lot of configurations on how to edit flowcharts, see [editConfigModel](en/api/editConfigModelApi)。
 
-## 初始化
+## Initialization
 
-LogicFlow 支持在初始化的时候传入很多配置参数，图编辑的配置也可以在初始化的时候传入。
+LogicFlow supports passing in the configuration for flowchart editing at initialization time.
 
 ```js
 const lf = new LogicFlow({
-  stopZoomGraph: true, // 禁止缩放
-  stopScrollGraph: true, // 禁止鼠标滚动移动画布
+  stopZoomGraph: true, // No scaling
+  stopScrollGraph: true, // Disallow moving the canvas by mouse scrolling
 });
 ```
 
-## 更新图编辑方式
+## Update the flowchart editing method
 
 ```js
 lf.updateEditConfig({
@@ -22,15 +22,15 @@ lf.updateEditConfig({
 });
 ```
 
-## 静默模式
+## Silent mode
 
-画布的静默模式可以简单理解为”只读“模式，这种模式下，画布中的节点和边不可移动，不可进行文案修改，没有锚点。
+The silent mode of the canvas can be simply understood as a "read-only" mode. In this mode, the nodes and edges in the canvas cannot be moved, have no anchors, and their text cannot be modified.
 
-> **提示**  
-> 静默模式只是 LogicFlow 内置的流程图编辑控制的一种快捷方式。
+> **Tip**  
+> Silent mode is a shortcut to control how flowcharts are edited.
 
 ```ts
-// 开启静默模式
+// Turn on silent mode
 const lf = new LogicFlow({
   isSilentMode: true,
 });

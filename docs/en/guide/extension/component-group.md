@@ -1,8 +1,8 @@
-# 分组 Group
+# Group
 
-LogicFlow 支持分组。分组是 LogicFlow 内置的自定义节点, 所以开发者可以在分组的基础上，参考自定义节点进行更多场景的自定义。
+LogicFlow supports grouping. Grouping is a custom node built into LogicFlow, so developers can refer to custom nodes for further customization based on grouping.
 
-## 默认分组
+## Default group
 
 ```js
 import LogicFlow from "@logicflow/core";
@@ -25,9 +25,9 @@ lf.render({
 });
 ```
 
-## group 的数据格式
+## Data format of group
 
-`group`对 LogicFlow 来说是一种特殊的节点，所以其数据格式仍然和节点基本一致。但是相对于普通的节点，`group`节点多了一个`children`属性，用来存储其子节点 Id.
+`group` is a special kind of node for LogicFlow, so its data format is still basically the same as that of a node. However, the `group` node has an additional `children` attribute to store its child node Id.
 
 ```js
 lf.render({
@@ -48,9 +48,9 @@ lf.render({
 });
 ```
 
-## 自定义分组
+## custom grouping
 
-在实际业务中，我们建议和自定义节点一样，开发者基于自己的业务自定义分组，然后给分组取个符合自己业务的名字。例如在 bpmn 中的子分组，取名叫做`subProcess`，然后自定义分组节点的样式。
+In practice, we recommend that, as with custom nodes, developers customize the grouping based on their own business and then give the grouping a name that matches their business. For example, for a subgroup in bpmn, name it `subProcess` and then customize the style of the group node.
 
 ```js
 import { GroupNode } from "@logicflow/extension";
@@ -73,25 +73,25 @@ lf.register({
 });
 ```
 
-## groupModel 的属性和方法
+## properties and methods of groupModel
 
-分组节点除了节点本身的属性以外，还有一些属于分组的特殊属性。我们可以在自定义的时候，控制这些属性来实现各种效果的分组。节点本身的属性和方法见[nodeModel](en/api/nodeModelApi)。
+In addition to the attributes of the node itself, the grouping node also has some special attributes belonging to the grouping. We can control these attributes to achieve various effects of grouping when customizing. See [nodeModel](en/api/nodeModelApi) for the properties and methods of the node itself.
 
-### 状态属性
+### Status Properties
 
-| 名称         | 类型    | 描述                                          |
+| Name         | Type    | Description                                          |
 | :----------- | :------ | :-------------------------------------------- |
-| isRestrict   | boolean | 是否限制分组子节点拖出分组，默认 false        |
-| resizable    | boolean | 分组是否支持手动调整大小，默认 false          |
-| foldable     | boolean | 分组是否显示展开收起按钮，默认 false          |
-| width        | number  | 分组宽度                                      |
-| height       | number  | 分组高度                                      |
-| foldedWidth  | number  | 分组折叠后的宽度                              |
-| foldedHeight | number  | 分组折叠后的高度                              |
-| isFolded     | boolean | 只读，表示分组是否被折叠。                    |
-| isGroup      | boolean | 只读，永远为 true, 用于识别`model`为`group`。 |
+| isRestrict   | boolean | Whether to restrict the group's children from being dragged out of the group, default false        |
+| resizable    | boolean | Whether the group supports manual resizing, default false          |
+| foldable     | boolean | Whether or not to show the expand-collapse button for the group, default false         |
+| width        | number  | Grouping width                                      |
+| height       | number  | Grouping height                                      |
+| foldedWidth  | number  | Width after folding grouping                             |
+| foldedHeight | number  | Height after folding grouping                              |
+| isFolded     | boolean | Read-only, indicating whether the group is collapsed                    |
+| isGroup      | boolean | Read-only, always true, used to identify `model` as `group` |
 
-group 的属性设置方式和节点一样，可以在`groupModel`的`initNodeData`或`setAttributes`方法中设置。
+The attributes of group are set in the same way as nodes, either in the `initNodeData` or `setAttributes` methods of `groupModel`.
 
 ```js
 class MyGroupModel extends GroupNode.model {
@@ -110,7 +110,7 @@ class MyGroupModel extends GroupNode.model {
 
 ### addChild
 
-将某个节点设置为分组的子节点。注意，此方法只会添加关系，不会自动将节点移动到分组里面。
+Set a node as a child of a grouping. Note that this method only adds relationships and does not automatically move the node into the group.
 
 ```js
 const groupModel = lf.getNodeModelById("group_id");
@@ -124,7 +124,7 @@ groupModel.addChild(node.id);
 
 ### removeChild
 
-从分组中移除某个子节点。
+Remove a child node from the group.
 
 ```js
 const groupModel = lf.getNodeModelById("group_id");
@@ -133,7 +133,7 @@ groupModel.removeChild("node_id_1");
 
 ### foldGroup
 
-收起分组, 参数为`true`表示收起分组、false 表示展开分组
+Collapse the group. The parameter is `true` means to collapse the group, false means to expand the group.
 
 ```js
 const groupModel = lf.getNodeModelById("group_id");
@@ -142,22 +142,22 @@ groupModel.foldGroup(true);
 
 ### isAllowAppendIn(nodeData)
 
-校验是否允许传入节点添加到此分组中，默认所有的节点都可以。
+Checks if incoming nodes are allowed to be added to this grouping, by default all nodes are allowed.
 
 ```js
 class MyGroupModel extends GroupNode.model {
   isAllowAppendIn(nodeData) {
-    // 设置只允许custom-rect节点被添加到此分组中
+    // Set to allow only custom-rect nodes to be added to this group
     return nodeData.type === "custom-rect";
   }
 }
 ```
 
-!> **提示**在节点不被允许添加到分组中时，节点仍然会显示在用户放的位置，只是这个节点不属于分组。如果你希望添加的节点被删除，可以监听`group:not-allowed`事件，然后手动删除这个节点。
+!> **Tip** In case a node is not allowed to be added to a group, the node is still displayed where the user put it and the node is not part of the group. If you want the added node to be deleted, you can listen to the `group:not-allowed` event and then delete the node manually.
 
 ### getAddableOutlineStyle
 
-设置拖动节点到分组上时，分组高亮的提示效果样式。
+Set the style of the group's highlighting effect when dragging nodes onto the group.
 
 ```js
 class MyGroupModel extends GroupNode.model {
@@ -170,9 +170,9 @@ class MyGroupModel extends GroupNode.model {
 }
 ```
 
-?> **如何阻止节点连接到分组上?** 分组是一种特殊的节点，所以仍然可以通过[自定义连接规则校验](http://logic-flow.org/guide/basic/node.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9E%E6%8E%A5%E8%A7%84%E5%88%99%E6%A0%A1%E9%AA%8C)来实现不允许节点和分组直接相连。但是请不要将分组的锚点数量设置为 0，因为在分组被折叠时，会通过分组的锚点与外部节点相连来表示分组内部节点与外部节点的关系。
+?> **How to prevent nodes from connecting to groups?**  grouping is a special kind of node, so it is still possible to disallow direct connection between nodes and groupings by [customizing the connection rule](http://logic-flow.org/guide/basic/node.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9E%E6%8E%A5%E8%A7%84%E5%88%99%E6%A0%A1%E9%AA%8C). However, please do not set the number of anchor points of the group to 0, because when the group is collapsed, the relationship between the internal nodes of the group and the external nodes will be indicated by the anchor points of the group being connected to the external nodes.
 
-## 示例
+## Example
 
 <iframe src="https://codesandbox.io/embed/bold-moore-vgvpf?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -181,4 +181,4 @@ class MyGroupModel extends GroupNode.model {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-!> **关于泳道**分组功能不是泳道，需要开发者在分组的基础上自己实现。后续 LogicFlow 提供的 Bpmn 全功能支持会支持 BPMN 泳道。也欢迎自己实现了的同学给我们 PR。
+!> **About the swim lanes**  The grouping feature is not a swim lane, the swim lane needs to be implemented by the developers themselves on the basis of grouping. The full functionality of Bpmn provided by LogicFlow will support BPMN swimlanes later. We also welcome those who have implemented it themselves to give us PR.

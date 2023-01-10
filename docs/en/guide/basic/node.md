@@ -1,20 +1,21 @@
-# 节点 Node
+# Node
 
-LogicFlow 的内置了一些基础节点，开发者在实际应用场景中，可以基于这些基础节点，定义符合自己业务逻辑的节点。
+LogicFlow has some built-in basic nodes. In actual application scenarios, developers can define nodes that conform to their own business logic based on these basic nodes.
 
-## 认识 LogicFlow 的基础节点
+## Get to know the basic nodes of LogicFlow
 
-LogicFlow 是基于 svg 做的流程图编辑框架，所以我们的节点和连线都是 svg 基本形状，对 LogicFlow 节点样式的修改，也就是对 svg 基本形状的修改。LogicFlow 内部存在 7 种基础节点，分别为：
+LogicFlow is a flowchart editing framework based on svg, so our nodes and lines are svg basic shapes, and the modification of the LogicFlow node style is also the modification of the svg basic shape.
+There are 7 basic nodes in LogicFlow:
 
-- 矩形：[rect](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/rect)
-- 圆形: [circle](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/circle)
-- 椭圆: [ellipse](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/ellipse)
-- 多边形: [polygon](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/polygon)
-- 菱形: `diamond`
-- 文本: [text](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/text)
-- HTML: `html`
+- [rect](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/rect)
+- [circle](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/circle)
+- [ellipse](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/ellipse)
+- [polygon](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/polygon)
+- `diamond`
+- [text](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/text)
+- `html`
 
-下面我们看看把基础节点渲染到画布效果
+Let's see the effect of rendering the base node to the canvas
 
 <iframe src="https://codesandbox.io/embed/logicflow-step2-spxng?fontsize=14&hidenavigation=1&theme=dark"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -23,44 +24,44 @@ LogicFlow 是基于 svg 做的流程图编辑框架，所以我们的节点和�
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## 基于继承的自定义节点
+## Custom nodes based on class inheritance
 
-LogicFlow 的基础节点是比较简单的，但是在业务中对节点外观要求可能有各种情况。LogicFlow 提供了非常强大的自定义节点功能，可以支持开发者自定义各种节点。
+The basic nodes of LogicFlow are relatively simple, but there may be various requirements for the appearance of nodes in business. LogicFlow provides a very powerful custom node feature that allows developers to customize various nodes.
 
-?> **注意**LogicFlow 推荐在实际应用场景中，所有的节点都使用自定义节点，将节点的 type 定义为符合项目业务意义的名称。而不是使用圆形、矩形这种仅表示外观的节点。
+?> **Note**
+LogicFlow recommends that in actual application scenarios, all nodes use custom nodes, and the type of the node is defined as a name that conforms to the business meaning of the project, instead of using circle and rect that only represent appearance.
 
-LogicFlow 是基于继承来实现自定义节点、边。开发者可以继承 LogicFlow 内置的节点，然后利用面向对象的[重写](https://baike.baidu.com/item/%E9%87%8D%E5%86%99/9355942?fr=aladdin)机制。重写节点样式相关的方法，来达到自定义节点样式的效果。
-
+LogicFlow is based on class inheritance to implement custom nodes, edges. Developers can inherit LogicFlow's built-in nodes and then use the object-oriented [overriding mechanism](https://baike.baidu.com/item/%E9%87%8D%E5%86%99/9355942?fr=aladdin) to override the node style-related methods to achieve the effect of customizing the node style.
 ![logicflow-1.0-2.png](../../assets/images/logicflow-1.0-2.png)
 
-> 此图也是用 LogicFlow 画出来的。见[作图工具](https://docs.logic-flow.cn/demo/dist/mvp/)。
+> This diagram was also drawn using LogicFlow. See [graphing tools](https://docs.logic-flow.cn/demo/dist/mvp/)。
 
-## 选择自定义节点继承的基础节点
+## Select the base node that the custom node inherits from
 
-LogicFlow 内部存在 7 种基础节点, 自定义节点的时候可以基于需要选择任一一种来继承, 然后取一个符合自己业务意义的名字。
+There are 7 types of base nodes inside LogicFlow, and you can choose any one of them to inherit when you customize the node, and then take a name that fits your business meaning.
 
 ```js
-// 矩形
+// rectangle
 import { RectNode, RectNodeModel } from "@logicflow/core";
-// 圆形
+// Circle
 import { CircleNode, CircleNodeModel } from "@logicflow/core";
-// 椭圆
+// Ellipse
 import { EllipseNode, EllipseNodeModel } from "@logicflow/core";
-// 多边形
+// Polygon
 import { PolygonNode, PolygonNodeModel } from "@logicflow/core";
-// 菱形
+// Diamond
 import { DiamondNode, DiamondNodeModel } from "@logicflow/core";
-// 文本
+// Text
 import { TextNode, TextNodeModel } from "@logicflow/core";
 // HTML
 import { HtmlNode, HtmlNodeModel } from "@logicflow/core";
 ```
 
-### 二次自定义
+### Secondary customization
 
-由于基于继承的自定义机制，LogicFlow 还支持基于自定义节点的基础上，进行二次自定义。以`@logicflow/extension`中提供的可缩放节点为例。
+Due to the inheritance-based customization mechanism, LogicFlow also supports secondary customization based on custom nodes. Take the scalable node provided in `@logicflow/extension` as an example.
 
-LogicFlow 基础节点不支持节点缩放，于是 LogicFlow 在`extension`包中，基于基础节点，封装了对节点缩放的逻辑，然后发布出去。这样开发者可以直接基于`extension`中的可缩放节点进行自定义。
+LogicFlow base node does not support node scaling, so LogicFlow encapsulates the logic for scaling nodes based on the base node in the `extension` package, and then publish it. This allows developers to customize nodes directly based on the scalable nodes in `extension`.
 
 ```js
 import { RectResize } from "@logicflow/extension";
@@ -68,11 +69,11 @@ class CustomNodeModel extends RectResize.model {}
 class CustomNode extends RectResize.view {}
 ```
 
-## 自定义一个业务节点
+## Customize a business node
 
-我们以定义一个如下图所示的用户任务节点为例，来实现一个基于内置矩形节点的自定义节点。
+Let's take the example of defining a user task node as shown below to implement a custom node based on the built-in rect node.
 
-### 步骤 1: 定义节点并注册
+### Step 1: Define a node and register it
 
 ```js
 // UserTaskNode.js
@@ -109,21 +110,20 @@ lf.render({
 });
 ```
 
-#### `model`和`view`
+#### `model` and `view`
 
-从上面的代码，可以看到，在自定义一个节点的时候，我们需要定义节点的`model`和`view`。这是因为由于 LogicFlow 基于 MVVM 模式，所有自定义节点和连线的时候，我们需要自定义`view`和`model`。大多数情况下，需要通过重写定义`model`上获取样式相关的方法和重写`view`上的`getShape`来定义更复杂的节点外观。
+From the above code, you can see that when customizing a node, we need to define the `model` and `view` of the node. This is because LogicFlow is based on the MVVM pattern, so when customizing nodes and lines, we need to customize `view` and `model`. In most cases, you need to define more complex node appearances by overriding methods related to getting styles on `model` and rewriting `getShape` on `view`.
 
-!> **提示**LogicFlow 为了开发的时候将开发体验和现在前端流行的开发体验对齐，也为了在代码层面更好的理解，让更多的人可以参与进来，我们基于 preact、mobx 以 MVVM 模式进行开发。如果大家熟悉 react 开发的话，可以直接阅读我们的源码，你们可以发现整个项目阅读起来难度和你自己开发的项目差不多。**我们欢迎大家一起参与进来。**
+!> **Tip** LogicFlow was developed based on preact, mobx and MVVM patterns in order to align the development experience with what is popular in front-end development nowadays, and also for better understanding at the code so that more people can participate in it. If you are familiar with react, you can read our source code directly. You can see that the whole project is about as easy to read as your own development project. **We welcome everyone to participate together.**
 
-### 步骤 2: 自定义节点 model
+### Step 2: Customize the node model
 
-LogicFlow 把自定义节点外观分为了`自定义节点样式属性`和`自定义节点形状属性`两种方式。更多详细定义方法，请查看[NodeModelApi](en/api/nodeModelApi)
+LogicFlow divides custom node appearance into `custom node style property` and `custom node shape property`. For more detailed definition methods, please see [NodeModelApi](en/api/nodeModelApi)
 
-#### 自定义节点的样式属性
+#### Customize the style properties of the node
 
-在 LogicFlow 中，外观属性表示控制着节点`边框`、`颜色`这类偏外观的属性。这些属性是可以直接通过[主题配置](en/api/themeApi)来控制。自定义节点样式可以看做在主题的基础上基于当前节点的类型进行再次定义。例如在主题中对所有`rect`节点都定义其边框颜色为红色`stroke: red`。 那么可以在自定义节点`UserTask`的时候，重新定义`UserTask`边框为蓝色`stroke: blue`。
-
-更细粒度的节点样式控制方法，详情见[API 样式属性](en/api/nodeModelApi#样式属性)
+In LogicFlow, the Appearance property controls the `borders`, `colors` of the nodes. These properties are configurable directly through the [theme](en/api/themeApi). Custom node styles can be seen as redefining the current node type based on the theme. For example, in the theme, all `rect` nodes are defined to have a red `stroke: red` border color. Then you can redefine the border to be blue `stroke: blue` when you customize the node `UserTask`.
+For a more fine-grained approach to node style control, see [API Style Properties](en/api/nodeModelApi#StyleProperties)
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -136,11 +136,11 @@ class UserTaskModel extends RectNodeModel {
 }
 ```
 
-#### 自定义节点的形状属性
+#### Customize the shape properties of the node
 
-在 LogicFlow 中，形状属性表示节点的宽`width`、高`height`，矩形的圆角`radius`, 圆形的半径`r`, 多边形的顶点`points`等这些控制着节点最终形状的属性。因为 LogicFlow 在计算节点的锚点、连线的起点终点的时候，会基于形状属性进行计算。对于形状属性的自定义，需要在`setAttributes`方法或`initNodeData`方法中进行。
+In LogicFlow, shape properties represent the node's width `width` and height `height`, the rounded corners of a rectangle `radius`, the radius of a circle `r`, the vertices of a polygon `points`, and other properties that control the final shape of the node. This is because LogicFlow calculates the anchor points of nodes and the start and end points of lines based on shape attributes. For the customization of shape attributes, you need to do it in `setAttributes` method or `initNodeData` method.
 
-LogicFlow 对于不同的基础节点，存在一些各基础节点自己特有的形状属性。详情见[API 形状属性](en/api/nodeModelApi#形状属性)
+Different basic nodes in LogicFlow have unique shape properties. See [API Shape Properties](en/api/nodeModelApi#ShapeProperties)
 
 ```js
 class customRectModel extends RectNodeModel {
@@ -160,13 +160,13 @@ class customRectModel extends RectNodeModel {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-?> **注意**如果不在`model`中设置形状属性，而是直接在`view`中直接定义生成图形的宽高这种形状属性，会出现锚点位置、outline 大小不正确的情况。同时，连线的位置也可能会出现错乱。
+?> **Note** If you don't set the shape properties in `model`, but define the width and height of the generated graphics directly in `view`, the anchor point position and outline size will be incorrect. At the same time, the position of the line may also be confused.
 
-#### 基于 properties 属性自定义节点样式
+#### Customizing node styles based on properties attributes
 
-在实际业务中，存在这样的情况，例如在审批场景中，自定义的审批节点存在 3 种状态：
+For example, in the approval scenario, the custom approval node has 3 states:
 
-一种是流程还没有走到这个节点的默认状态，一种是流程审批通过状态，一种是审批不通过的驳回状态。在外观上我们需要对不同的状态显示不同的颜色。LogicFlow 的图数据中提到，不论是节点还是边，LogicFlow 都保留了 properties 字段，用于给开发者存放自己的业务属性。示例如下，`properties`的`statu`属性就是一个自定义的业务属性，开发者在自定义节点样式的时候，可以基于`properties`中的属性来控制节点显示不同的样式。
+One is the default status that the process has not yet gone to this node, one is the process approval passed status, and one is the rejected status that the approval did not pass. In appearance we need to display different colors for different states. As mentioned in the graph data of LogicFlow, whether it is a node or an edge, LogicFlow reserves the properties field for developers to store their own business attributes. The example is as follows. The `statu` property of `properties` is a custom business property. Developers can control the node to display different styles based on the properties in `properties` when customizing the node style.
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -191,11 +191,11 @@ class UserTaskModel extends RectNodeModel {
 }
 ```
 
-!> **提示**如果不了解为什么`this.properties`打印出来是一个 Proxy 对象, 无法看到属性。请查看 issue [https://github.com/didi/LogicFlow/issues/530](https://github.com/didi/LogicFlow/issues/530)
+!> **Tip** If you don't understand why `this.properties` prints out as a Proxy object, and you can't see its properties. Please see issue [https://github.com/didi/LogicFlow/issues/530](https://github.com/didi/LogicFlow/issues/530)
 
-### 步骤 3: 自定义节点 view
+### Step 3: Customize the node view
 
-LogicFlow 在自定义节点的`model`时,可以定义节点的基础形状、样式等属性。但是当开发者需要一个更加复杂的节点时，可以使用 LogicFlow 提供的自定义节点`view`的方式。
+LogicFlow allows you to define the shape, style, and other properties of a node when you customize the node's `model`. But when developers need a more complex node, they can customize the `view` of node.
 
 ```js
 class UserTaskView extends RectNode {
@@ -220,7 +220,7 @@ class UserTaskView extends RectNode {
     );
   }
   /**
-   * 完全自定义节点外观方法
+   * Customize node appearance
    */
   getShape() {
     const { model, graphModel } = this.props;
@@ -242,50 +242,50 @@ class UserTaskView extends RectNode {
 }
 ```
 
-#### h 函数
+#### h function
 
-`h`方法是 LogicFlow 对外暴露的渲染函数，其用法与`react`、`vue`的[createElement](https://cn.vuejs.org/v2/guide/render-function.html#createElement-%E5%8F%82%E6%95%B0)一致。但是这里我们需要创建的是`svg`标签，所以需要有一定的 svg 基础知识。但是大多数情况下，我们不会涉及太复杂的知识，只是简单的矩形、圆形、多边形这种。
+The `h` method is the rendering function exposed by LogicFlow, and its usage is consistent with `react`, `vue`'s [createElement](ttps://cn.vuejs.org/v2/guide/render-function.html#createElement-%E5%8F%82%E6%95%B0). But here we need to create `svg` tags, so we need to have some basic knowledge of svg. But in most cases, we won't involve too complicated knowledge, just simple rectangles, circles, polygons like this.
 
 ```js
 h(nodeName, attributes, [...children])
 
-// <text x="100" y="100">文本内容</text>
-h('text', { x: 100, y: 100 }, ['文本内容'])
+// <text x="100" y="100">Text content</text>
+h('text', { x: 100, y: 100 }, ['Text content'])
 
 /**
  * <g>
  *   <rect x="100" y="100" stroke="#000000" strokeDasharray="3 3"></rect>
- *   <text x="100" y="100">文本内容</text>
+ *   <text x="100" y="100">Text content</text>
  * </g>
  */
 
 h('g',{}, [
   h('rect', { x: 100, y: 100, stroke: "#000000", strokeDasharray="3 3"}),
-  h('text', { x: 100, y: 100 }, ['文本内容'])
+  h('text', { x: 100, y: 100 }, ['Text content'])
 ])
 
 ```
 
 #### getShape
 
-此方法作用就是定义最终渲染的图形, LogicFlow 内部会将其返回的内容插入到 svg DOM 上。开发者不是一定需要重写此方法，只有在期望改变最终渲染图形 svg DOM 的时候才使用此方法。以上面是例子来说，`rect`节点最终渲染的 svg DOM 只是一个矩形。但是当我们想要在上面加一个图标的时候，那边必定需要修改到最终渲染图形的 svg DOM 了，这个时候就需要通过重写`getShape`来实现了。
+This method defines the final rendered graphics, and LogicFlow internally inserts the returned content into the svg DOM. Developers do not necessarily need to override this method, but use it only if they expect to change the final rendered graphics svg DOM. In the example above, the final rendered svg DOM of the `rect` node is just a rectangle. But when we want to add an icon to it, we must modify the svg DOM of the final rendered graphics, and this is achieved by overriding `getShape`.
 
-LogicFlow 定义一个节点的外观有三种方式，分别为**主题**、**自定义节点 model**、**自定义节点 view**。这三种方式优先级为`主题 < 自定义节点model < 自定义节点view`。他们的差异是：
+LogicFlow defines the appearance of a node in three ways, **theme**, **custom node model**, **custom node view**. The priority of these three approaches is ` topic < custom node model < custom node view`. Their differences are:
 
-- 主题：定义所有此基础类型节点的通用样式，例如定义所有`rect`节点的边框颜色、宽度等。
-- 自定义节点 model：定义此注册类型节点的样式。
-- 自定义节点 view: 定义此注册类型节点 svg dom。
+- Theme: Define the common style of all nodes, for example, define the border color, width, etc. of all `rect` nodes.
+- Custom node model: Defines the style of the registered type node.
+- Custom node view: Defines the svg dom of the registered type node.
 
-?> **注意**虽然`自定义节点view`优先级最高，功能也最完善，理论上我们可以完全通过`自定义节点view`实现任何我们想要的效果，但是此方式还是存在一些限制。
+?> **Note** Although `custom node view` has the highest priority and the most complete functionality, we can theoretically achieve any effect we want with `custom node view`, but there are still some limitations in this way.
 
-1. `自定义节点view`最终生成的图形的形状属性必须和`model`中形状属性的一致，因为节点的锚点、外边框都是基于节点 model 中的`width`和`height`生成。
-2. `自定义节点view`最终生成的图形整体轮廓必须和继承的基础图形一致，不能继承的`rect`而在 getShape 的时候返回的最终图形轮廓变成了圆形。因为 LogicFlow 对于节点上的连线调整、锚点生成等会基于基础图形进行计算。
+1. The shape attribute of the graph finally generated by `custom node view` must be consistent with the shape attribute in `model`, because the anchor point and outer border of the node are generated based on `width` and `height` in the node model.
+2. The overall outline of the final generated shape of `custom node view` must match the inherited base shape. You can't inherit `rect` but return a circle in the getShape function. This is because LogicFlow calculates the position of lines and anchor points based on the base graphics.
 
-#### 为什么`rect`的`x`,`y`不是直接从`model`中获取的`x`, `y`?
+#### Why are the `x`,`y` of `rect` not obtained directly from the `model`?
 
-在 LogicFlow 所有的基础节点中，`model`里面的`x`,`y`都是统一表示中心点。但是`getShape`方法给我们提供直接生成 svg dom 的方式，在 svg 中, 对图形位置的控制则存在差异：
+In all LogicFlow base nodes, the `x`,`y` inside the `model` represent the center point uniformly. But the `getShape` method gives us a way to generate the svg dom directly, and in svg, there is a difference in the control over the position of the shape:
 
-- `rect`: 通过`x`, `y`表示图形的位置，但是表示是图形左上角坐标。 所以一般通过中心点，然后减去节点的宽高的一半计算出左上角坐标。
+- `rect`: The position of the graphic is represented by the coordinates `x`, `y` of the upper left corner. So the coordinates of the upper left corner are generally calculated by subtracting half of the width and height of the node from the center point.
 
 ```js
 const { x, y, width, height, radius } = this.props.model;
@@ -294,26 +294,26 @@ h("rect", {
   ...style,
   x: x - width / 2,
   y: y - height / 2,
-  rx: radius, // 注意这里是rx而不是radius
+  rx: radius, // Note here is rx instead of radius
   ry: radius,
   width,
   height
 }),
 ```
 
-- `circle`和`ellipse`: 通过`cx`, `cy`表示图形的位置，含义为中心点的坐标。
+- `circle` and `ellipse`: indicate the position of the graph by `cx`, `cy`, meaning the coordinates of the center point.
 
 ```js
 const { x, y, r } = this.props.model;
 // svg dom <circle cx="100", cy="100", r="20">
 h("circle", {
   ...style,
-  r, // 半径保持不变
+  r, // Radius
   cx: x,
   cy: y,
 });
 
-// 椭圆
+// ellipse
 const { x, y, rx, ry } = this.props.model;
 // svg dom <ellipse cx="100", cy="100", rx="20" ry="10">
 h("ellipse", {
@@ -325,7 +325,7 @@ h("ellipse", {
 });
 ```
 
-- `polygon`: 所有的顶点坐标已包含位置
+- `polygon`: All vertex coordinates already include the position
 
 ```js
 const { x, y, points } = this.props.model;
@@ -337,35 +337,35 @@ const pointStr = points
 // svg dom <polygon points="100,10 250,150 200,110" >
 h("polygon", {
   ...style,
-  r, // 半径保持不变
-  points: pointStr, //
+  r, // Radius
+  points: pointStr,
 });
 ```
 
-!> **自定义矩形的 view 时 radius 设置**在`model`中，`radius`是矩形节点的形状属性。但是在自定义`view`时需要注意，svg 里面设置矩形的圆角并不是用`radius`，而是使用[rx](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/rx), ry。所以在自定义`view`的矩形时，需要将 model 中`radius`的赋值给`rx`和`ry`，否则圆角将不生效。
+!> **How to set the radius when customizing the view of a rectangle** In `model`, `radius` is the shape property of the rectangle node. However, when customizing the `view`, it should be noted that the rounded corners of the rectangle in svg are not set with `radius`, but with [rx](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/rx), ry. So when you customize the rectangle of `view`, you need to assign the `radius` of the model to `rx` and `ry`, otherwise the rounded corners will not take effect.
 
 #### props
 
-LogicFlow 是基于`preact`开发的，我们自定义节点 view 的时候，可以通过`this.props`获取父组件传递过来的数据。`this.props`对象包含两个属性，分别为:
+LogicFlow is developed based on `preact`. When we customize the node view, we can get the data passed from the parent component through `this.props`. The `this.props` object contains two properties, which are:
 
-- `model`: 表示自定义节点的 model
-- [graphModel](en/api/graphModelApi): 表示 logicflow 整个图的 model
+- `model`: represent the model of the custom node
+- [graphModel](en/api/graphModelApi): represent the model of the entire graph of logicflow
 
-#### 图标的 path 如何获取
+#### How to get the path of the icon
 
-一般情况下，图标我们可以找 UI 或者去[iconfont.cn](https://www.iconfont.cn/)获得一个 svg 格式的文件。然后再 IDE 中以文本的方式打开，然后格式化，就可以看到代码。
+In general, for icons we can look for UI or go to [iconfont.cn](https://www.iconfont.cn/) to get a file in svg format. Then open it as text in the IDE and format it to see the code.
 
-代码中一般是最外层一个 svg 标签，里面是一个或者多个 path。这个时候，我们使用前面提到的`h`方法来实现 svg 文件中的代码即可。
+The code generally has an outermost svg tag and one or more paths inside. At this time, we can use the `h` method mentioned above to implement the code in the svg file.
 
-svg 标签一般包括如下属性：
+The svg tag generally includes the following attributes:
 
-- `viewBox`: [viewBox](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/viewBox)属性允许指定一个给定的一组图形伸展以适应特定的容器元素。一般把 svg 标签上的`viewBox`属性值复制过来就行。
-- `width`和`height`: 这个不需要使用 svg 标签上的`width`和`height`, 直接写成你期望的宽高就行。
+- `viewBox`: The [viewBox](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/viewBox) property allows to specify a given set of graphical stretches to fit a specific container element.  It is generally sufficient to copy the value of the `viewBox` property from the svg tag.
+- `width` and `height`: Instead of using the `width` and `height` on the svg tag, just write the width and height as you expect.
 
-path 标签属性：
+Attributes of the path tag:
 
-- `d`: 该属性定义了一个路径。直接复制 svg 代码过来即可, 不需要去关系 d 具体内容表示的含义。
-- `fill`: 路径的填充颜色, 一般和节点的边框颜色一致，但是也可以按照业务需求自定义。
+- `d`: This property defines a path. Just copy the svg code over, and don't worry about what d means.
+- `fill`: Indicates the fill color of the path. Generally the same as the node border color, but can also be customized according to business needs.
 
 <iframe src="https://codesandbox.io/embed/logicflow-step3-mhge5?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -374,14 +374,14 @@ path 标签属性：
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## 自定义连接规则校验
+## Custom edge connection rules
 
-在某些时候，我们可能需要控制边的连接方式，比如开始节点不能被其它节点连接、结束节点不能连接其他节点、用户节点后面必须是判断节点等，要想达到这种效果，我们需要为节点设置以下两个属性。
+At some point, we may need to control how the edges are connected, such as the start node cannot be connected by other nodes, the end node cannot be connected to other nodes, the user node must be followed by a judgment node, etc. To achieve this effect, we need to set the following two properties for the node:
 
-- `sourceRules` - 当节点作为边的起始节点（source）时的校验规则
-- `targetRules` - 当节点作为边的目标节点（target）时的校验规则
+- `sourceRules` - Validation rules when the node is the starting node (source) of an edge
+- `targetRules` - Validation rules when the node is the target node (target) of the edge
 
-以正方形（square）为例，在边时我们希望它的下一节点只能是圆形节点（circle），那么我们应该给`square`添加作为`source`节点的校验规则。
+Take square as an example, we want its next node to be a circle node only, then we should add validation rules to `square` as a `source` node.
 
 ```ts
 import { RectNode, RectNodeModel } from "@logicflow/core";
@@ -390,7 +390,7 @@ class SquareModel extends RectNodeModel {
     super.initNodeData(data);
 
     const circleOnlyAsTarget = {
-      message: "正方形节点下一个节点只能是圆形节点",
+      message: "The next node of a square node can only be a circular node",
       validate: (sourceNode, targetNode, sourceAnchor, targetAnchor) => {
         return targetNode.type === "circle";
       },
@@ -400,13 +400,13 @@ class SquareModel extends RectNodeModel {
 }
 ```
 
-在上例中，我们为`model`的`sourceRules`属性添加了一条校验规则，校验规则是一个对象，我们需要为其提供`messgage`和`validate`属性。
+In the above example, we added a validation rule to the `sourceRules` property of `model`. The validation rule is an object for which we need to provide the `messgage` and `validate` properties.
 
-`message`属性是当不满足校验规则时所抛出的错误信息，`validate`则是传入规则检验的回调函数。`validate`方法有两个参数，分别为边的起始节点（source）和目标节点（target），我们可以根据参数信息来决定是否通过校验，其返回值是一个布尔值。
+The `message` attribute is the error message thrown when the validation rule is not satisfied, and `validate` is the callback function that triggers the validation or not. The `validate` method has two parameters, the start node (source) and the target node (target) of the edge. We can decide whether to pass the validation based on the parameter information, and its return value is a Boolean value.
 
-> 当我们在面板上进行边操作的时候，Logic Flow 会校验每一条规则，只有**全部**通过后才能连接。
+> When we operate on the edges on the panel, LogicFlow will verify each rule, and only after **all** of them pass can we connect.
 
-在边时，当鼠标松开后如果没有通过自定义规则（`validate`方法返回值为`false`），Logic Flow 会对外抛出事件`connection:not-allowed`。
+When adding an edge, if the custom rule is not passed after the mouse is released (the return value of the `validate` method is `false`), LogicFlow will throw the event `connection:not-allowed` externally.
 
 ```js
 lf.on("connection:not-allowed", (msg) => {
@@ -414,9 +414,9 @@ lf.on("connection:not-allowed", (msg) => {
 });
 ```
 
-**设置不同状态下节点的样式**
+**Set the style of the node in different states**
 
-在节点 model 中，有个 state 属性，当节点连接规则校验不通过时，state 属性值为 5。我们可以通过这个属性来实现连线是节点的提示效果。
+In the node model, there is a state attribute. When the node connection rule check fails, the state attribute value is 5. We can use this attribute to realize the prompt effect of the node when connecting.
 
 <iframe src="https://codesandbox.io/embed/long-star-d4j86e?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -425,18 +425,17 @@ lf.on("connection:not-allowed", (msg) => {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## 限制节点移动
+## Restrict node movement
 
-有些时候，我们需要更加细粒度的控制节点什么时候可以移动，什么时候不可以移动，比如在实现分组插件时，需要控制分组节点子节点不允许移动出分组。
+Sometimes, we need to control when nodes can move and when they cannot. For example, when implementing a grouping plug-in, you need to control that the children of a grouping node are not allowed to move out of the group.
 
-和连线规则类似，我们可以给节点的`moveRules`添加规则函数。
-
+Similar to the concatenation rules, we can add rule functions to the node's `moveRules`.
 ```ts
 class MovableNodeModel extends RectNodeModel {
   initNodeData(data) {
     super.initNodeData(data);
     this.moveRules.push((model, deltaX, deltaY) => {
-      // 不允许移动到坐标为负值的地方
+      // Not allowed to move to a place with negative coordinates
       if (
         model.x + deltaX - this.width / 2 < 0 ||
         model.y + deltaY - this.height / 2 < 0
@@ -449,11 +448,11 @@ class MovableNodeModel extends RectNodeModel {
 }
 ```
 
-在`graphModel`中支持添加全局移动规则，例如在移动 A 节点的时候，期望把 B 节点也一起移动了。
+Adding global move rules is supported in `graphModel`, e.g. when moving A node, expect to move B node with it.
 
 ```js
 lf.graphModel.addNodeMoveRules((model, deltaX, deltaY) => {
-  // 如果移动的是分组，那么分组的子节点也跟着移动。
+  // If a group is moved, then the children of the group are moved along with it.
   if (model.isGroup && model.children) {
     lf.graphModel.moveNodes(model.children, deltaX, deltaY, true);
   }
@@ -468,9 +467,9 @@ lf.graphModel.addNodeMoveRules((model, deltaX, deltaY) => {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## 自定义节点的锚点
+## Custom anchor points of nodes
 
-对于各种基础类型节点，我们都内置了默认锚点。LogicFlow 支持通过重写获取锚点的方法来实现自定义节点的锚点。
+For various base type nodes, we have built-in default anchor points. LogicFlow implements custom anchors of nodes by overriding the method for getting anchors.
 
 ```ts
 import { RectNode, RectNodeModel } from "@logicflow/core";
@@ -480,7 +479,7 @@ class SquareModel extends RectNodeModel {
     super.initNodeData(data);
 
     const rule = {
-      message: "只允许从右边的锚点连出",
+      message: "Only allow connection from the right anchor point",
       validate: (sourceNode, targetNode, sourceAnchor, targetAnchor) => {
         return sourceAnchor.name === "right";
       },
@@ -506,7 +505,7 @@ class SquareModel extends RectNodeModel {
         x: x - width / 2,
         y,
         type: "left",
-        edgeAddable: false, // 控制锚点是否可以从此锚点手动创建连线。默认为true。
+        edgeAddable: false, // Controls if the link can be created manually from this anchor. Default is true.
         id: `${id}_0`,
       },
       {
@@ -520,9 +519,9 @@ class SquareModel extends RectNodeModel {
 }
 ```
 
-上面的示例中，我们自定义锚点的时候，不仅可以定义锚点的数量和位置，还可以给锚点加上任意属性。有了这些属性，我们可以再做很多额外的事情。例如，我们增加一个校验规则，只允许节点从右边连出，从左边连入；或者加个 id, 在获取数据的时候保存当前连线从那个锚点连接到那个锚点。
+In the above example, when we customize the anchor points, we can not only define the number and position of the anchor points, but also add any attributes to the anchor points. With these extra attributes, we can then do many additional things. For example, we add a rule that allows the right side of the node to only connect out, and the left side to only connect in; Or add an id, to save which two anchor points are currently connected when fetching data.
 
-?> **注意**一定要确保锚点 id 唯一，否则可能会出现在连线规则校验不准确的问题。
+?> **Note** Make sure that the id of the anchor is unique, otherwise there may be problems with inaccurate validation of the connecting rules.
 
 <iframe src="https://codesandbox.io/embed/logicflow-base15-ou2i0?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -531,18 +530,18 @@ class SquareModel extends RectNodeModel {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-!> **提示**在实际开发中，存在隐藏锚点的需求，可以参考 github issue [如何隐藏锚点？](https://github.com/didi/LogicFlow/issues/454)，可以查看 code sandbox [示例](https://codesandbox.io/s/reverent-haslett-dkb9n?file=/step_14_hideAnchor/index.js)
+!> **Tip** In actual development, there may be a need to hide anchor points, you can refer to the github issue [How to hide anchor points?](https://github.com/didi/LogicFlow/issues/454)，You can see code sandbox [Example](https://codesandbox.io/s/reverent-haslett-dkb9n?file=/step_14_hideAnchor/index.js)
 
-## 自定义节点文本
+## Custom node text
 
-LogicFlow 支持自定义节点文本的外观和编辑状态。参考[nodeModel API](en/api/nodeModelApi)中的`textObject`
+LogicFlow supports customizing the appearance and editing state of node text. Refer `textObject` in [nodeModel API](en/api/nodeModelApi)
 
 ```js
 class CustomNodeModel extends RectNodeModel {
   initNodeData(data) {
     super.initNodeData(data);
-    this.text.draggable = false; // 不允许文本被拖动
-    this.text.editable = false; // 不允许文本被编辑
+    this.text.draggable = false; //Do not allow text to be dragged
+    this.text.editable = false; // Do not allow text to be edited
   }
   getTextStyle() {
     const style = super.getTextStyle();
@@ -553,15 +552,15 @@ class CustomNodeModel extends RectNodeModel {
 }
 ```
 
-## 自定义 HTML 节点
+## Custom HTML nodes
 
-LogicFlow 内置了基础的 HTML 节点和其他基础节点不一样，我们可以利用 LogicFlow 的自定义机制，实现各种形态的 HTML 节点，而且 HTML 节点内部可以使用任意框架进行渲染。
+The basic HTML node built into LogicFlow is different from other basic nodes, and we can use LogicFlow's customization mechanism to implement various forms of HTML nodes. HTML nodes can be rendered using any framework.
 
 ```ts
 class UmlModel extends HtmlNodeModel {
   setAttributes() {
-    this.text.editable = false; // 禁止节点文本编辑
-    // 设置节点宽高和锚点
+    this.text.editable = false; // Disallow editing node text
+    // Set the width and height and the anchor points of the node
     const width = 200;
     const height = 130;
     this.width = width;
@@ -595,16 +594,16 @@ class UmlNode extends HtmlNode {
       </div>
     `;
     el.innerHTML = html;
-    // 需要先把之前渲染的子节点清除掉。
+    // The previously rendered child nodes need to be cleared out first.
     rootEl.innerHTML = "";
     rootEl.appendChild(el);
   }
 }
 ```
 
-### 使用 react 编写 html 节点
+### Creating html nodes with react
 
-以为自定义 html 节点对外暴露的是一个 DOM 节点，所以你可以使用框架现有的能力来渲染节点。在 react 中，我们利用`reactDom`的`render`方法，将 react 组件渲染到 dom 节点上。
+Since the custom html node exposes a DOM node to the public, you can use the framework's existing capabilities to render the node. In react, we use the `render` method of `reactDom` to render the react component to the dom node.
 
 ```jsx
 import { HtmlNodeModel, HtmlNode } from "@logicflow/core";
@@ -700,7 +699,7 @@ export default function PageIndex() {
 }
 ```
 
-### 自定义 HTML 节点示例
+### Example of a custom HTML node
 
 <iframe src="https://codesandbox.io/embed/logicflow-step7-dpmgb?fontsize=14&hidenavigation=1&module=%2Fstep7%2FcustomNode.js&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"

@@ -30,7 +30,7 @@ PatternItem：
 | text       | string | 非必须 | 无     | 创建节点的文本                                                                             |
 | properties | object | 非必须 | 无     | 创建节点的 properties                                                                      |
 | label      | string | 非必须 | 无     | 拖拽面板节点文本描述                                                                       |
-| icon       | string | 非必须 | 无     | 拖拽面试上显示的图标，可以传入图标 url 地址或 base64 编码                                  |
+| icon       | string | 非必须 | 无     | 拖拽面板上显示的图标，可以传入图标 url 地址或 base64 编码                                  |
 | className  | string | 非必须 | 无     | 额外传入可以拖拽项的 class, 用于自定义拖拽项的样式                                         |
 | callback   | fn     | 非必须 | 无     | 用户鼠标按下拖拽项后触发的回调                                                             |
 
@@ -93,7 +93,7 @@ lf.extension.dndPanel.setPatternItems([
 
 ### 效果
 
-使用`DndPanel`组件，可以快捷的拖拽面板，如下所示
+使用`DndPanel`组件，可以快捷地创建拖拽面板，如下所示
 
 <iframe src="https://codesandbox.io/embed/elastic-mahavira-1ucwp?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"

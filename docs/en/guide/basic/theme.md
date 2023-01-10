@@ -1,37 +1,37 @@
-# 主题 Theme
+# Theme
 
-LogicFlow 提供了设置主题的方法，便于用户统一设置其内部所有元素的样式。  
-设置方式有两种：
+LogicFlow provides a method to set the theme, which facilitates users to set the style of all internal elements in a uniform way. 
+There are two ways of setting:
 
-- 初始化`LogicFlow`时作为配置传入
-- 初始化后，调用`LogicFlow`的 setTheme 方法
+- Passed in as configuration when initializing `LogicFlow`
+- After initialization, call the setTheme method of `LogicFlow`
 
-主题配置参数见[主题 API](en/api/themeApi)
+The parameters for theme configuration are described in [Theme API](en/api/themeApi)
 
-## 配置
+## Configuration
 
-new LogicFlow 时作为将主题配置作为参数进行初始化。
+When calling new LogicFlow, use the theme configuration as a parameter to initialize Logicflow.
 
 ```ts
-// 方法1：new LogicFlow时作为配置传入
+// Method 1: Pass in as configuration when calling new LogicFlow
 const config = {
   domId: 'app',
   width: 1000,
   height: 800,
-  style: { // 设置默认主题样式
-    rect: { // 矩形样式
+  style: { // Set default theme style
+    rect: { // Rectangle style
       ...
     },
-    circle: { // 圆形样式
+    circle: { // Circular style
       ...
     },
-    nodeText: { // 节点文本样式
+    nodeText: { // Node text style
       ...
     },
-    edgeText: { // 边文本样式
+    edgeText: { // Edge text style
       ...
     },
-    anchor: { // 锚点样式
+    anchor: { // Anchor style
       ...
     }
     ...
@@ -42,24 +42,24 @@ const lf = new LogicFlow(config);
 
 ## setTheme
 
-调用 LogicFlow 的 setTheme 方法，`lf.setTheme`进行主题配置
+Call LogicFlow's setTheme method, `lf.setTheme`, to configure the theme.
 
 ```ts
-// 方法2： 调用LogicFlow的setTheme方法
-lf.setTheme({ // 设置默认主题样式
-  rect: { // 矩形样式
+// Method 2: Call LogicFlow's setTheme method
+lf.setTheme({ // Set default theme style
+  rect: { // Rectangle style
     ...
   },
-  circle: { // 圆形样式
+  circle: { // Circular style
     ...
   },
-  nodeText: { // 节点文本样式
+  nodeText: { // Node text style
     ...
   },
-  edgeText: { // 边文本样式
+  edgeText: { // Edge text style
     ...
   },
-  anchor: { // 锚点样式
+  anchor: { // Anchor style
     ...
   }
   ...

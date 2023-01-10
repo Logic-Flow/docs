@@ -1,25 +1,25 @@
-# 网格 Grid
+# Grid
 
-网格是指渲染/移动节点的最小单位。网格最主要的作用是在移动节点的时候，保证每个节点中心点的位置都是在网格上。这样更有利于节点直接的对齐。一般来说，网格的间隔越大，在编辑流程图的时候，节点就更好对齐；网格的间隔越小，拖动节点的感觉就更加流畅。
+A grid is the smallest unit for rendering/moving nodes. The main purpose of the grid is to ensure that the position of the center point of each node is on the grid when moving the nodes. This is better for node alignment. Generally speaking, the larger the interval of the grid, the easier it is for the nodes to align when editing the flowchart; the smaller the interval of the grid, the smoother the feeling of dragging the nodes.
 
-网格默认关闭，渲染/移动最小单位为 1px，若开启网格，则网格默认大小为 20px，渲染节点时表示以 20 为最小单位对齐到网络，移动节点时表示每次移动最小距离为 20px。
+The grid is off by default and the minimum unit of rendering/movement is 1px. If grid is turned on, the default grid size is 20px. When rendering a node, it means aligning to the grid with a minimum unit of 20 px, and when moving a node, it means that the minimum distance of each movement is 20 px.
 
-?> **注意**在设置节点坐标时候会按照网格的大小来对坐标进行转换，如设置中心点位置`{ x: 124, y: 138 }` 的节点渲染到画布后的实际位置为 `{ x: 120, y: 140 }`。所以使用 LogicFlow 替换项目中旧的流程设计器时，需要对历史数据的坐标进行处理。
+?> **Note** When setting the node coordinates, the coordinates are converted according to the size of the grid, e.g. the actual position of the node rendered to the canvas after setting the center position `{ x: 124, y: 138 }` is `{ x: 120, y: 140 }`. So when you use LogicFlow to replace the old process designer in your project, you need to work with the coordinates of the historical data.
 
-!> **提示**在实际开发中，如果期望节点既可以中心对齐，也可以按照两边对齐。那么自定义节点的宽高需要是 grid 的偶数倍。也就是假设 grid 为 20，那么所有的节点宽度最好是 20、40、80、120 这种偶数倍的宽度。
+!> **Tip** In actual development, if it is expected that the nodes can be center-aligned or aligned on both sides, then the width and height of the custom nodes need to be an even multiple of the grid. Assuming a grid of 20, all node widths should preferably be 20, 40, 80, 120.
 
-## 开启网格
+## Open Grid
 
-在创建画布的时候通过配置 `grid` 来设置网格属性
+Set the grid properties by configuring `grid` when creating the canvas.
 
-开启网格并应用默认属性：
+Turn on the grid and apply the default properties.
 
 ```js
 const lf = new LogicFlow({
   grid: true,
 });
 
-// 等同于默认属性如下
+// Equivalent to the default properties as follows
 const lf = new LogicFlow({
   grid: {
     size: 20,
@@ -33,23 +33,23 @@ const lf = new LogicFlow({
 });
 ```
 
-## 设置网格属性
+## Set grid properties
 
-支持设置网格大小、类型、网格线颜色和宽度等属性。
+Support setting properties such as grid size, type, grid line color and width.
 
 ```js
 export type GridOptions = {
-  size?: number  // 设置网格大小
-  visible?: boolean,  // 设置是否可见，若设置为false则不显示网格线但是仍然保留size栅格的效果
-  type?: 'dot' | 'mesh', // 设置网格类型，目前支持 dot 点状和 mesh 线状两种
+  size?: number  // Grid size
+  visible?: boolean,  // Visible or not, if set to false, the grid lines are not displayed but the grid effect is still retained
+  type?: 'dot' | 'mesh', // Grid type, currently supports dot and mesh
   config?: {
-    color: string,  // 设置网格的颜色
-    thickness?: number,  // 设置网格线的宽度
+    color: string,  // Grid color
+    thickness?: number,  // Width of grid lines
   }
 };
 ```
 
-## 示例
+## Example
 
 <iframe src="https://codesandbox.io/embed/logicflow-base8-hxtqr?fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
