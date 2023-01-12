@@ -1,0 +1,157 @@
+body{
+  font-size: 16px !important;
+  line-height: 1.7 !important;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.navbar-icon {
+  color: #aaa;
+  margin-left: 5px;
+  font-size: 14px !important;
+}
+.sidebar ul li.active > a {
+  color: var(--theme-color, #0074d9) !important;
+}
+
+.search input{
+  transition: 0.25s;
+}
+
+.search input:focus {
+  box-shadow: 0 0 5px var(--theme-color, #0074d9) !important;
+  border: 1px solid var(--theme-color, #0074d9) !important;
+}
+
+.edit > a{
+  text-decoration: none !important;
+}
+
+img{
+  box-shadow: 0px 0px 8px 0px #dcdcdc;
+  border-radius: 10px;
+
+}
+
+img[class='logo'], img[alt*='npm'],img[alt='license']{
+  border-radius: 0px !important;
+  box-shadow: none;
+}
+
+pre{
+  border-radius: 10px;
+  background: #282c34 !important; 
+  box-shadow: 0px 0px 8px 0px #acacac;
+  border-left: 0px !important
+}
+
+[class^='lang-']{
+  background: #282c34 !important;
+  color: #ff7878 !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+}
+
+.sidebar li.active{
+  background: #ecf3ff !important;
+  border-radius: 5px 0px 0px 5px;
+  padding-left: 10px !important; 
+}
+
+.sidebar li{
+  transition: 0.25s;
+}
+
+
+.markdown-section blockquote{
+  padding: 5px;
+  padding-right: 20px;
+  background: #ecf3ff;
+  color: #282c34 !important;
+}
+
+.app-sub-sidebar li::before{
+  content: ' ' !important;
+}
+
+.token.comment {
+  color: #577f62 !important;
+}
+
+.token.attr-value{
+  color: #e1cb7a !important;
+}
+
+p{
+  padding-right: 10px;
+}
+
+/* strong {
+  padding: 0px !important;
+} */
+
+.markdown-section p.warn {
+  background-color: #fff6eb !important;
+  border-bottom-right-radius: 2px;
+  border-left: 4px solid #fe9430;
+  border-top-right-radius: 2px;
+  margin: 1.2em 0 !important;
+  padding: 16px !important;
+  position: relative;
+}
+
+.markdown-section p.warn:before {
+  background-color: #fe9430;
+  border-radius: 100%;
+  color: #fff;
+  content: '!';
+  font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  left: -12px;
+  line-height: 20px;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  top: 14px;
+}
+
+.markdown-section p.tip {
+  border-left: 4px solid rgb(43 129 66) !important;
+  background: #ecfff1 !important;
+  padding: 16px !important;
+  margin: 1.2em 0 !important;
+}
+
+.markdown-section p.tip:before {
+  background-color: rgb(43 129 66) !important;
+  content: 'i' !important;
+}
+
+iframe{
+  box-shadow: 0px 0px 8px 0px #acacac;
+  background: url(./loading.webp) no-repeat;
+  background-position: center center;
+  background-size: 200px;
+}
+
+a{
+  text-decoration:none
+}
+
+.markdown-section > :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) code {
+  font-size: 1rem !important;
+}
+
+.markdown-section pre{
+  padding: 0 10px 0px 0 !important;
+}
+
+.markdown-section h3 {
+  margin: 1.2rem 0 !important;
+}
+
+.markdown-section blockquote{
+  margin: 1.2rem 0 !important;
+}
