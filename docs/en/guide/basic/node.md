@@ -123,7 +123,7 @@ LogicFlow divides custom node appearance into `custom node style property` and `
 #### Customize the style properties of the node
 
 In LogicFlow, the Appearance property controls the `borders`, `colors` of the nodes. These properties are configurable directly through the [theme](en/api/themeApi). Custom node styles can be seen as redefining the current node type based on the theme. For example, in the theme, all `rect` nodes are defined to have a red `stroke: red` border color. Then you can redefine the border to be blue `stroke: blue` when you customize the node `UserTask`.
-For a more fine-grained approach to node style control, see [API Style Properties](en/api/nodeModelApi#StyleProperties)
+For a more fine-grained approach to node style control, see [API Style Attributes](en/api/nodeModelApi#StyleAttributes)
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -136,11 +136,11 @@ class UserTaskModel extends RectNodeModel {
 }
 ```
 
-#### Customize the shape properties of the node
+#### Customize the shape properties of the node :id=custom-shape-properties
 
 In LogicFlow, shape properties represent the node's width `width` and height `height`, the rounded corners of a rectangle `radius`, the radius of a circle `r`, the vertices of a polygon `points`, and other properties that control the final shape of the node. This is because LogicFlow calculates the anchor points of nodes and the start and end points of lines based on shape attributes. For the customization of shape attributes, you need to do it in `setAttributes` method or `initNodeData` method.
 
-Different basic nodes in LogicFlow have unique shape properties. See [API Shape Properties](en/api/nodeModelApi#ShapeProperties)
+Different basic nodes in LogicFlow have unique shape properties. See [API Shape Attributes](en/api/nodeModelApi#ShapeAttributes)
 
 ```js
 class customRectModel extends RectNodeModel {
@@ -162,7 +162,7 @@ class customRectModel extends RectNodeModel {
 
 ?> **Note** If you don't set the shape properties in `model`, but define the width and height of the generated graphics directly in `view`, the anchor point position and outline size will be incorrect. At the same time, the position of the line may also be confused.
 
-#### Customizing node styles based on properties attributes
+#### Customizing node styles based on properties
 
 For example, in the approval scenario, the custom approval node has 3 states:
 
