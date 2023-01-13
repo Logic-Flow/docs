@@ -1,89 +1,89 @@
 # nodeModel
 
-LogicFlow 中所有的节点都会有一个 nodeModel 与其对应。由于数据驱动视图的机制，我们对节点的所有操作事实上就是对 model 的操作。大多数情况下，我们不建议直接对 nodeModel 的属性进行赋值操作，而是调用 model 或者[graphModel](en/api/graphModelApi)上提供的方法。
+All nodes in LogicFlow will have a nodeModel corresponding to them. Due to the mechanism of data driven view, all operations on nodes are in fact operations on models. In most cases, we do not recommend assigning values to nodeModel properties directly, but rather calling the methods provided on model or [graphModel](en/api/graphModelApi).
 
-?> **警告**在对 LogicFlow 内部源码不熟悉的情况，对 model 的属性进行赋值操作可能会引起很多不符合预期的问题。例如在 model 中`x`,`y`表示节点的位置，如果想要移动节点直接修改`x`,`y`的话，会出现节点被移动了，而节点上的文本、节点相连的边都没有动。所以想要移动节点，最好的方法还是调用`graphModel`上的`moveNode`方法来实现。
+?> **Note** In cases where you are not familiar with LogicFlow's internal source code, assigning values to the model's properties can cause a lot of unintended problems. For example, in the model `x`,`y` indicates the position of the node, if the node is moved by directly modifying `x`,`y`, it will appear that the node is moved, but the text and edges on the node are not moved. So the best way to move a node is to call the `moveNode` method on `graphModel`.
 
-nodeModel 上节点属性有很多，由于用途不一样，我们对其进行了分类。
+There are many node properties on nodeModel, which are categorized due to their different uses.
 
-## 数据属性
+## DataAttributes
 
-节点的数据属性是指 LogicFlow 图数据是用于标识节点的数据。在流程图保存时一般都只保存节点的数据属性。
+The data attribute of the node is the LogicFlow graph data, which is the data used to identify the node. Only the data attributes of the nodes are generally saved when the flowchart is saved.
 
-| 名称       | 类型       | 是否必须 | 描述               |
+| Name       | Type       | Required| Description               |
 | :--------- | :--------- | :------- | :----------------- |
-| id         | String     | ✅       | 节点 id            |
-| type       | String     | ✅       | 节点类型           |
-| x          | number     | ✅       | 节点中心 x 轴坐标  |
-| y          | number     | ✅       | 节点中心 y 轴坐标  |
-| text       | TextObject |          | 节点文本           |
-| properties | Object     |          | 节点业务自定义属性 |
+| id         | String     | ✅       | Node id            |
+| type       | String     | ✅       | Node type          |
+| x          | number     | ✅       | The x-axis coordinates of the node center  |
+| y          | number     | ✅       | The y-axis coordinates of the node center  |
+| text       | TextObject |          | Node text          |
+| properties | Object     |          | Business customization properties for nodes |
 
 **TextObject**
 
-| 名称      | 类型    | 是否必须 | 描述                                             |
+| Name      | Type    | Required | Description                                             |
 | :-------- | :------ | :------- | :----------------------------------------------- |
-| value     | String  |          | 文本内容                                         |
-| x         | number  | ✅       | 文本中心 x 轴坐标                                |
-| y         | number  | ✅       | 文本中心 y 轴坐标                                |
-| draggable | boolean | ✅       | 文本是否允许被拖动调整位置，保存时不会保存此属性 |
-| editable  | boolean | ✅       | 文本是否允许被双击编辑，保存时不会保存此属性     |
+| value     | String  |          | Node text                                         |
+| x         | number  | ✅       | The x-axis coordinates of the node center                              |
+| y         | number  | ✅       | The y-axis coordinates of the node center                                |
+| draggable | boolean | ✅       | Whether the text is allowed to be dragged to adjust the position, this property will not be saved when saving |
+| editable  | boolean | ✅       | Whether the text is allowed to be edited by double-clicking, this property will not be saved when saving    |
 
-## 状态属性
+## StatusAttributes
 
-一般用于自定义节点的时候，基于状态属性进行更细粒度的样式显示。
+Status attributes are generally used when customizing nodes for more fine-grained style display.
 
-| 名称         | 类型    | 是否必须 | 描述                  |
+| Name         | Type    | Required | Description                  |
 | :----------- | :------ | :------- | :-------------------- |
-| isSelected   | boolean | ✅       | 节点是否被选中        |
-| isHovered    | boolean | ✅       | 节点是否在 hover 状态 |
-| isHitable    | boolean | ✅       | 节点是否可点击        |
-| draggable    | boolean | ✅       | 节点是否可拖动        |
-| isShowAnchor | boolean | ✅       | 是否显示锚点          |
-| visible      | boolean | ✅       | 是否显示, `1.1.0`新增 |
+| isSelected   | boolean | ✅       | Whether the node is selected or not        |
+| isHovered    | boolean | ✅       | Whether the node is in the hover state |
+| isHitable    | boolean | ✅       | Whether the node is clickable        |
+| draggable    | boolean | ✅       | Whether the node is draggable        |
+| isShowAnchor | boolean | ✅       | Whether to show anchor points          |
+| visible      | boolean | ✅       | Show or not, added in `1.1.0` |
 
-## ShapeProperties
+## ShapeAttributes
 
-LogicFlow 的形状属性主要是控制基础节点的主要外观。形状属性可以通过`setAttributes`或者`initNodeData`来设置。具体设置方式见[自定义节点的形状属性](en/guide/basic/node#自定义节点的形状属性)。
+The shape attributes of LogicFlow mainly controls the main appearance of the base node. Shape attributes can be set by `setAttributes` or `initNodeData`. See [Custom node shape properties](en/guide/basic/node#custom-shape-properties) for details on how to set them.
 
-| 名称   | 类型              | 是否必须 | 描述                                                                       |
+| Name   | Type              | Required | Description                                                                       |
 | :----- | :---------------- | :------- | :------------------------------------------------------------------------- |
-| width  | number            | ✅       | 节点的宽度                                                                 |
-| height | number            | ✅       | 高度的高度                                                                 |
-| radius | number            |          | 矩形节点特有，节点的圆角                                                   |
-| r      | number            |          | 圆形节点特有，圆的半径。对于圆形节点，会自动基于半径计算出节点的高度和宽度 |
-| rx     | number            |          | 椭圆节点和菱形节点存在，水平圆角的半径。会自动基于半径计算出节点的宽度     |
-| ry     | number            |          | 椭圆节点和菱形节点存在，垂直圆角的半径。会自动基于半径计算出节点的高度     |
-| points | [number,number][] |          | 多边形节点特有，多边形顶点。会自定基于顶点计算出节点的宽度和高度           |
+| width  | number            | ✅       | Width of nodes                                                                 |
+| height | number            | ✅       | Height of nodes                                                                 |
+| radius | number            |          | Special attributes of rectangular nodes, rounded corners of nodes                                                   |
+| r      | number            |          | Special attributes of circle nodes，the radius of the circle。For circular nodes, the height and width of the node are automatically calculated based on the radius |
+| rx     | number            |          | Special attributes of ellipse nodes and diamond nodes，Radius of horizontal rounded corners. The width of the node is automatically calculated based on the radius     |
+| ry     | number            |          | Special attributes of ellipse nodes and diamond nodes，Radius of vertical rounded corners. The width of the node is automatically calculated based on the radius     |
+| points | [number,number][] |          | Special attributes of polygon nodes，the vertices of a polygon. The width and height of the nodes are automatically calculated based on the vertices           |
 
-## 其它属性
+## Other attributes
 
-LogicFlow 在`model`上还维护一些属性，开发者可以通过这些属性拿到一些信息。例如拿到`graphModel`, 节点的基础`model`类型等。
+LogicFlow also maintains some properties on `model` that developers can use to get some information. For example, you can get `graphModel`, the base `model` type of the node, etc.
 
-| 名称        | 类型    | 是否必须 | 描述                                                                                                                                                                                                           |
+| Name        | Type    | Required | Description                                                                                                                                                                       |
 | :---------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| graphModel  | object  | ✅       | 整个画布对应的 model，[详情见](en/api/graphModelApi#width)                                                                                                                                                     |
-| zIndex      | number  | ✅       | 节点在 z 轴的高度，元素重合时，zIndex 高的在上面, 默认为 1                                                                                                                                                     |
-| state       | number  | ✅       | 元素状态，不同的状态对应着元素显示效果。DEFAULT = 1 默认显示；TEXT_EDIT = 2 此元素正在进行文本编辑；ALLOW_CONNECT = 4, 此元素允许作为当前边的目标节点；NOT_ALLOW_CONNECT = 5, 此元素不允许作为当前边的目标节点 |
-| BaseType    | string  | ✅       | 当前 model 的基础类型，对于节点，则固定为`node`。主要用在节点和边混合的时候识别此`model`是节点还是边。                                                                                                         |
-| modelType   | string  | ✅       | 当前 model 的类型，可取值有`node`, `rect-node`,`circle-node`,`polygon-node`,`ellipse-node`,`diamond-node`, `html-node`,`text-node`                                                                             |
-| moveRules   | array   |          | 节点被移动之前的校验规则                                                                                                                                                                                       |
-| sourceRules | array   |          | 节点连接其它节点时的校验规则                                                                                                                                                                                   |
-| targetRules | array   |          | 节点被其它节点连接时的校验规则                                                                                                                                                                                 |
-| autoToFront | boolean | ✅       | 控制节点选中时是否自动置顶，默认为 true.                                                                                                                                                                       |
-| incoming    | object  | ✅       | 进入当前节点的所有边和节点，`v1.1.4`                                                                                                                                                                           |
-| outgoing    | object  | ✅       | 离开当前节点的所有边和节点, `v1.1.4`                                                                                                                                                                           |
-| virtual     | boolean | -        | 是否为虚拟节点，默认 false。当为 true 时导出数据不会包含此元素。 `v1.1.24`                                                                                                                                     |
+| graphModel  | object  | ✅       | The model corresponding to the entire canvas. For details, see [graphModelApi](en/api/graphModelApi#width)                                                                                                                                                     |
+| zIndex      | number  | ✅       | The height of the node on the z-axis. When elements overlap, the higher zIndex is on top, default is 1                                                                                                                                                     |
+| state       | number  | ✅       | Element state. Different states correspond to the display effect of the element. DEFAULT = 1 means the default display effect; TEXT_EDIT = 2 means the element is being edited; ALLOW_CONNECT = 4, means the element is allowed to be the target node of the current edge; NOT_ALLOW_CONNECT = 5 means the element is not allowed to be the target node of the current edge |
+| BaseType    | string  | ✅       | The base type of the current model, which is fixed to `node` for nodes. It is mainly used to identify whether this `model` is a node or an edge when nodes and edges are mixed.                                                                                                 |
+| modelType   | string  | ✅       | The type of the current model, the values are `node`, `rect-node`, `circle-node`, `polygon-node`, `ellipse-node`, `diamond-node`, `html-node`, `text-node`.                                                                             |
+| moveRules   | array   |          | Verification rules before the node is moved                                                                                                                                                                                      |
+| sourceRules | array   |          | Verification rules when nodes connect to other nodes                                                                                                                                                                                   |
+| targetRules | array   |          | Verification rules when a node is connected by other nodes                                                                                                                                                                                 |
+| autoToFront | boolean | ✅       | Control whether the node is automatically topped when it is selected, the default is true.                                                                                                                                                                       |
+| incoming    | object  | ✅       | All edges and nodes connected to the current node, `v1.1.4`                                                                                                                                                                           |
+| outgoing    | object  | ✅       | All edges and nodes leaving the current node, `v1.1.4`                                                                                                                                                                           |
+| virtual     | boolean | -        | Whether it is a virtual node, the default is false. Export data will not include this node when the value is true. `v1.1.24`                                                                                                                                     |
 
-!> **modelType 与 type 的区别是什么？**在自定义节点的时候，`type`可以是开发者自定义的任何值，但是在 LogicFlow 内部，涉及到这个节点的计算时，我们需要感知到这个节点的具体形状，这个时候不能用`type`, 而是要用`modelType`来判断。
+!> **What is the difference between modelType and type?** When customizing a node, `type` can be any value that the developer defines. But inside LogicFlow, when it comes to the computation of this node, we need to sense the specific shape of this node, which cannot be determined by `type`, but by `modelType`.
 
-## StyleProperties
+## StyleAttributes
 
-LogicFlow 所有的节点最终都是以 SVG DOM 的方式渲染。但是除了形状属性之外，所有的其他属于 svg 的属性都不会直接存在`nodeModel`。当开发者想要对 SVG DOM 添加更多的[svg 属性](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute)时，可以通过重写`nodeModel`上获取节点样式属性方法来实现。
+All nodes of LogicFlow are eventually rendered as SVG DOM. But except for the shape attributes, all other properties belonging to svg do not exist directly in `nodeModel`. When developers want to add more [svg attributes](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute) to the SVG DOM, they can do so by overriding the method on `nodeModel` that gets the node style attributes.
 
 ## getNodeStyle
 
-支持重写，自定义节点样式属性. 默认为[主题 baseNode](en/api/themeApi#basenode)
+Supports overriding this method to customize node style attributes. Default is [theme baseNode](en/api/themeApi#basenode)
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -98,7 +98,7 @@ class UserTaskModel extends RectNodeModel {
 
 ## getTextStyle
 
-支持重写，自定义节点文本样式属性，默认为[主题 nodeText](en/api/themeApi#nodetext)
+Support overriding this method to customize node text style attributes, default is [theme nodeText](en/api/themeApi#nodetext)
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -112,7 +112,7 @@ class UserTaskModel extends RectNodeModel {
 
 ## getAnchorStyle
 
-支持重写，自定义节点锚点样式属性，默认为[主题 anchor](en/api/themeApi#anchor)
+Support overriding this method to customize the node anchor style attribute, default is [theme anchor](en/api/themeApi#anchor)
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -130,7 +130,7 @@ class UserTaskModel extends RectNodeModel {
 
 ## getAnchorLineStyle
 
-支持重写，自定义节点锚点拖出连接线的样式属性，默认为[主题 anchorline](en/api/themeApi#anchorline)
+Support overriding this method to customize the style attributes of the dashed line generated when the node anchor is dragged by the mouse, defaulting to [theme anchorline](en/api/themeApi#anchorline)
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -144,7 +144,7 @@ class UserTaskModel extends RectNodeModel {
 
 ## getOutlineStyle
 
-支持重写，自定义节点轮廓框的样式属性，默认为[主题 outline](en/api/themeApi#outline)
+Support overriding this method to customize the style attribute of the node outline box, default is [theme outline](en/api/themeApi#outline)
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -159,15 +159,15 @@ class UserTaskModel extends RectNodeModel {
 
 ## initNodeData
 
-支持重写，初始化节点数据，将传入的图数据（data）转换为节点属性, 所以需要调用`super.initNodeData`触发转换方法。
+Support overriding this method to initialize the node data and convert the incoming graph data to node attributes, so you need to call `super.initNodeData` to trigger the conversion method.
 
-- 在`super.initNodeData`之前，对图数据进行处理。
-- 在`super.initNodeData`之后，对节点属性进行初始化。
+- The graph data can be processed before `super.initNodeData`.
+- After `super.initNodeData`, you can modify the node properties.
 
 ```js
 class UserTaskModel extends RectResize.model {
   initNodeData(data) {
-    // 可以在super之前，强制设置节点文本位置不居中，而且在节点下面
+    // You can force the node text position to be uncentered and below the node before super.initNodeData
     if (!data.text || typeof data.text === "string") {
       data.text = {
         value: data.text || "",
@@ -182,16 +182,16 @@ class UserTaskModel extends RectResize.model {
 }
 ```
 
-!> **提示**initNodeData 和 setAttributes 都可以对 nodeModel 的属性进行赋值，但是两者的区别在于：
+!> **Tip** Both initNodeData and setAttributes can assign values to the attributes of a nodeModel, but the difference between the two is that:
 
-- `initNodeData`只在节点初始化的时候调用，用于初始化节点的属性。
-- `setAttributes`除了初始化调用外，还会在 properties 发生变化了调用。
+- `initNodeData` is called only when the node is initialized and is used to initialize the node's properties.
+- `setAttributes` is not only called when the node is initialized, but also when properties change.
 
-以上面代码为例，由于节点缩放的时候，会更新 properties 中的缩放后的大小，也就会触发`setAttributes`。如果在`setAttributes`中定义节点的初始大小的话，会导致节点无法缩放。
+Take the above code as an example. As the node scales, it will update the width and height in properties, which will also trigger `setAttributes`. If the width and height of the node are defined in `setAttributes`, the node will not be scaled.
 
 ## setAttributes
 
-设置 model 形状属性，每次 properties 发生变化会触发
+Set the shape properties of the model, which will be triggered every time the properties change.
 
 ```js
 class UserTaskModel extends RectNodeModel {
@@ -205,9 +205,9 @@ class UserTaskModel extends RectNodeModel {
 
 ## createId
 
-支持重写，自定义节点 id 的生成规则.
+It is supported to override this method to customize the generation rules of node id.
 
-?> **注意**1. 请保证此方法返回 id 的唯一性。 2. 此方法为同步方法，如果想要异步修改节点 id, 请参考[#272](https://github.com/didi/LogicFlow/issues/272)
+?> **Note** 1. Please ensure the uniqueness of the id returned by this method. 2. This method is synchronous, if you want to modify the node id asynchronously, please refer to [#272](https://github.com/didi/LogicFlow/issues/272)
 
 ```js
 import { v4 as uuidv4 } from "uuid";
@@ -221,9 +221,9 @@ class UserTaskModel extends RectNodeModel {
 
 ## getData
 
-获取被保存时返回的数据。LogicFlow 有固定节点数据格式。如果期望在保存数据上添加数据，请添加到 properties 上。
+Get the data returned when saved. LogicFlow has a fixed node data format. If you expect to add more data to the saved data, please add it to properties.
 
-不支持重写此方法
+This method is not allowed to be overridden.
 
 ```js
 const nodeModel = lf.getNodeModelById("node_1");
@@ -232,9 +232,9 @@ const nodeData = nodeModel.getData();
 
 ## getProperties
 
-获取节点属性
+Get the properties of a node
 
-不支持重写此方法
+This method is not allowed to be overridden.
 
 ```js
 const nodeModel = lf.getNodeModelById("node_1");
@@ -243,11 +243,11 @@ const properties = nodeModel.getProperties();
 
 ## getDefaultAnchor
 
-重新设置默认锚点, 可以给锚点加上 id 等自定义属性，用于对锚点的验证。
+Reset the default anchor point. You can add custom attributes such as id to the anchor point for validation of the anchor point.
 
 ```ts
 class cNode extend RectNodeModel {
-  // 定义节点只有左右两个锚点. 锚点位置通过中心点和宽度算出来。
+  // Define nodes with only two anchor points, left and right. The anchor point position is calculated by the center point and width.
   getDefaultAnchor() {
     const { width, height, x, y, id } = this;
     return [
@@ -269,27 +269,27 @@ class cNode extend RectNodeModel {
 }
 ```
 
-锚点属性
+Anchor Attributes
 
-| 名称        | 类型    | 是否必须 | 描述                                    |
+| Name       | Type    | Required | Description                                    |
 | :---------- | :------ | :------- | :-------------------------------------- |
-| x           | number  | ✅       | 锚点 x 坐标                             |
-| y           | number  | ✅       | 锚点 y 坐标                             |
-| id          | string  | ✅       | 锚点 id                                 |
-| edgeAddable | boolean | ✅       | 是否允许此锚点手动创建连线，默认为 true |
+| x           | number  | ✅       | The x-coordinate of the anchor point                             |
+| y           | number  | ✅       | The y-coordinate of the anchor point                             |
+| id          | string  | ✅       | Anchor id                                 |
+| edgeAddable | boolean | ✅       | Whether to allow manual creation of edges based on this anchor point, default is true |
 
 ## getConnectedSourceRules
 
-获取当前节点作为边的起始节点规则。
+Get the rule when the current node is the starting node of an edge.
 
-支持重写，重写的时候，可以自定义添加额外规则。所有的规则中，有任一规则不满足，则禁止连线。
+Overriding this method is supported. When overriding, additional rules can be added. If any of the rules are not satisfied in all the rules, the connection is prohibited.
 
 ```ts
 class EndNodeModel extends CircleNodeModel {
   getConnectedSourceRules(): ConnectRule[] {
     const rules = super.getConnectedSourceRules();
     const geteWayOnlyAsTarget = {
-      message: "结束节点只能连入，不能连出！",
+      message: "End nodes can only be connected in, not out!",
       validate: (
         source: BaseNodeModel,
         target: BaseNodeModel,
@@ -311,16 +311,16 @@ class EndNodeModel extends CircleNodeModel {
 
 ## getConnectedTargetRules
 
-获取当前节点作为边的目标节点规则。
+Get the rule when the current node is the target node of an edge.
 
-支持重写，重写的时候，可以自定义添加额外规则。所有的规则中，有任一规则不满足，则禁止连线。
+Overriding this method is supported. When overriding, additional rules can be added. If any of the rules are not satisfied in all the rules, the connection is prohibited.
 
 ```js
 class StartEventModel extends CircleNodeModel {
   getConnectedTargetRules() {
     const rules = super.getConnectedTargetRules();
     const notAsTarget = {
-      message: "起始节点不能作为边的终点",
+      message: "The start node cannot be the end of an edge",
       validate: () => false,
     };
     rules.push(notAsTarget);
@@ -331,13 +331,13 @@ class StartEventModel extends CircleNodeModel {
 
 ## updateText
 
-修改节点文本内容
+Modify the text content of a node
 
-参数
+Parameters
 
-| 名称  | 类型   | 必传 | 默认值 | 描述   |
+| Name  | Type   | Required | Default | Description   |
 | :---- | :----- | :--- | :----- | :----- |
-| value | string | true | 无     | 文本值 |
+| value | string | true | 无     | Text value |
 
 ```js
 const nodeModel = lf.getNodeModelById("node_1");
@@ -346,7 +346,7 @@ nodeModel.updateText("hello world");
 
 ## setZIndex
 
-设置节点 zIndex
+Set the zIndex of the node
 
 ```js
 const nodeModel = lf.getNodeModelById("node_1");
@@ -355,7 +355,7 @@ nodeModel.setZIndex(999);
 
 ## setProperties
 
-设置节点 properties
+Set the properties of the node
 
 ```js
 lf.on("node:click", ({ data }) => {
@@ -368,7 +368,7 @@ lf.on("node:click", ({ data }) => {
 
 ## deleteProperty
 
-删除节点的某个属性
+Delete a property of a node
 
 ```js
 lf.on("node:click", ({ data }) => {
