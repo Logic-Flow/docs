@@ -1,6 +1,7 @@
 {
-  "name": "playgroundex",
+  "name": "examples",
   "private": true,
+  "description": "示例",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

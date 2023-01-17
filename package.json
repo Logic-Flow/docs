@@ -1,16 +1,17 @@
 {
   "name": "docs",
   "version": "1.0.0",
-  "description": "## 文档开发",
+  "description": "文档&示例开发",
   "directories": {
     "doc": "docs",
     "example": "examples"
   },
   "workspaces": [
     "demo/*",
-    "examples"
+    "examples",
+    "docs"
   ],
-  "private": "true",
+  "private": true,
   "scripts": {
     "build": "lerna run build",
     "build:local": "lerna run build && sh remove.sh",

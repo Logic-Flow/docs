@@ -41,7 +41,13 @@
     <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script>
     <script>
-      const language = navigator.language;
+      const zh =
+        navigator.language.includes("zh") ||
+        window.location.href.includes("zh");
+      const en =
+        navigator.language.includes("en") ||
+        window.location.href.includes("en");
+      const language = zh ? (en ? "en" : "zh") : "en";
       window.$docsify = {
         name: "LogicFlow",
         repo: "https://github.com/didi/LogicFlow",
@@ -55,7 +61,7 @@
         auto2top: true,
         // coverpage: ['/en/', '/zh/'],
         coverpage: {
-          "/": `./${language === "zh-CN" ? "zh" : "en"}/_coverpage.md`,
+          "/": `./${language}/_coverpage.md`,
           "/zh/": "_coverpage.md",
           "/en/": "_coverpage.md",
         },
@@ -84,7 +90,7 @@
               if (file.indexOf("en") === -1) {
                 return "<div class='edit'>📝   编辑</div>";
               } else {
-                return "<div class='edit'>📝   Edit on git</div>";
+                return "<div class='edit'>📝   Edit on github</div>";
               }
             }
           ),
@@ -93,7 +99,7 @@
           countable: true,
           fontsize: "0.9em",
           color: "rgb(90,90,90)",
-          language: "chinese",
+          language: language === "zh" ? "chinese" : "english",
         },
       };
     </script>
