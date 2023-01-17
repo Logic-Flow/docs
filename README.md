@@ -35,6 +35,6 @@
 
 具体参考项目已有的 config.json
 
-3. 开发完示例之后，如需使用自动截图工具请解除`examples/scripts/screenshot.js`文件的注释，并自行安装相关依赖，执行`yarn dev:screenshot`生成新的截图，或者手动截图并放在`examples/src/screenshots`中
+3. 添加截图。开发完示例之后，如需使用自动截图工具（暂不保证其可用性），请解除`examples/scripts/screenshot.js`文件的注释，并自行安装相关依赖，执行`yarn dev:screenshot`以自动生成截图，或者手动截图放在`examples/src/screenshots`中
 
-**开发完成后将开发分支的代码合并至 master 以部署项目到 github pages**
+**开发完成后将开发分支的代码合并至`master`(必要时`rebase master`以保证`master`分支线性时间线)以部署项目`github pages`**
