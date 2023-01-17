@@ -27,7 +27,11 @@ function findPath(data) {
       });
       path.pop();
     } else {
-      res.push(data.key);
+      res.push({
+        key: data?.key,
+        type: data?.mode,
+        link: data?.link,
+      });
     }
   };
   data.forEach((item) => {
@@ -38,36 +42,55 @@ function findPath(data) {
 }
 
 async function scrape() {
-  const browser = await puppeteer.launch({ headless: true });
-  const p = path.resolve("playgroundEx", "../examples/config.json");
-  const config = JSON.parse(fs.readFileSync(p));
-  const examples = findPath(config.topic);
-  for (const example of examples) {
+  try {
+    const browser = await puppeteer.launch({ headless: true });
+    const p = path.resolve("playgroundEx", "../examples/config.json");
+    const config = JSON.parse(fs.readFileSync(p));
+    const examples = findPath(config.topic);
     const pages = await browser.pages();
     const page = pages[0];
-    try {
-      spinner.start();
-      await page.setViewport({
-        width: 1920,
-        height: 1080,
-        deviceScaleFactor: 1,
-      });
-      await page.goto(
-        `http://127.0.0.1:${port}/examples/#/playground#${example}`
-      );
-      await waitTime(4000);
-      const rs = await page.$eval(".urlDiv", (el) => el.textContent);
-      const iframe = await browser.newPage();
-      await iframe.goto(rs);
-      await iframe.screenshot({
-        path: `src/screenshots/${example}.png`,
-      });
-      await page.close();
-      spinner.succeed(`Screenshot of ${example} saved!`);
-    } catch (error) {
-      spinner.error(`Could not save screenshot of ${example}!`);
+    await page.setViewport({
+      width: 1920,
+      height: 1080,
+      deviceScaleFactor: 1,
+    });
+    for (const example of examples) {
+      const { type, key, link } = example;
+      try {
+        spinner.start();
+        if (type === "playground") {
+          await page.goto(
+            `http://127.0.0.1:${port}/examples/#/playground#${key}`
+          );
+          await waitTime(5000);
+          const rs = await page.$eval(".urlDiv", (el) => el.textContent);
+          if (rs && rs !== "1") {
+            const iframe = await browser.newPage();
+            await iframe.goto(rs);
+            await iframe.screenshot({
+              path: `src/screenshots/${key}.png`,
+            });
+            await iframe.close();
+          }
+        } else if (type === "link" && link) {
+          if (link.includes("http")) {
+            await page.goto(link);
+          } else {
+            await page.goto(`https://docs.logic-flow.cn/${link}`);
+          }
+          await page.screenshot({
+            path: `src/screenshots/${key}.png`,
+          });
+        }
+        spinner.succeed(`Screenshot of ${key} saved!`);
+      } catch (error) {
+        console.log("error ------- ", error);
+        spinner.error(`Could not save screenshot of ${key}!`);
+      }
     }
+    await browser.close();
+  } catch (error) {
+    console.log(error);
   }
-  await browser.close();
 }
 scrape();
