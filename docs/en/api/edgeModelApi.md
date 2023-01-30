@@ -1,66 +1,66 @@
 # edgeModel
 
-LogicFlow 中所有的边都会有一个 edgeModel 与其对应。由于数据驱动视图的机制，我们对边的所有操作事实上就是对 model 的操作。大多数情况下，我们不建议直接对 edgeModel 的属性进行赋值操作，而是调用 model 或者[graphModel](graphModelApi.md)上提供的方法。
+All edges in LogicFlow will have an edgeModel corresponding to them. Due to the mechanism of Data Driven View, all our operations on edges are in fact operations on models. In most cases, it is not recommended to assign values to edgeModel properties directly, but to call the methods provided on model or [graphModel](graphModelApi.md).
 
-## 数据属性
+## Data attributes
 
-边的数据属性是指在 LogicFlow 流程图保存时，保存边的数据。
+The data attributes of an edge is the data of the edge that is included in the LogicFlow flowchart when it is saved.
 
-| 名称         | 类型          | 是否必须 | 描述                                             |
+| Name         | Type          | Required | Description                                             |
 | :----------- | :------------ | :------- | :----------------------------------------------- |
-| id           | String        | ✅       | 边 id                                            |
-| type         | String        | ✅       | 边类型                                           |
-| sourceNodeId | string        | ✅       | 开始节点 Id                                      |
-| targetNodeId | string        | ✅       | 结束节点 Id                                      |
-| startPoint   | Point         | ✅       | 边的开始坐标                                     |
-| endPoint     | Point         | ✅       | 边的坐标                                         |
-| text         | Object/String |          | 边文本                                           |
-| pointsList   | Array         |          | 控制边的轨迹，`polyline`和`bezier`有，`line`没有 |
-| properties   | Object        |          | 边的自定义属性                                   |
+| id           | String        | ✅       | Edge id                                            |
+| type         | String        | ✅       | Edge Type                                          |
+| sourceNodeId | string        | ✅       | Start Node Id                                     |
+| targetNodeId | string        | ✅       | End Node Id                                     |
+| startPoint   | Point         | ✅       | Start coordinates of the edge                                     |
+| endPoint     | Point         | ✅       | End coordinates of the edge                                        |
+| text         | Object/String |          | Edge text                                           |
+| pointsList   | Array         |          | Control edge trajectory, `polyline` and `bezier` have it, `line` does not |
+| properties   | Object        |          | Custom properties of the edge                                   |
 
-## 状态属性
+## Status attributes
 
-一般用于自定义边的时候，基于状态属性进行更细粒度的样式显示。
+Generally used when customizing edges for more fine-grained style display based on status attributes.
 
-| 名称       | 类型    | 是否必须 | 描述                    |
+| Name       | Type    | Required | Description                    |
 | :--------- | :------ | :------- | :---------------------- |
-| isSelected | boolean | ✅       | 边是否被选中            |
-| isHovered  | boolean | ✅       | 边是否在 hover 状态     |
-| isHitable  | boolean | ✅       | 边是否可点击            |
-| draggable  | boolean | ✅       | 边是否可拖动            |
-| visible    | boolean | ✅       | 边是否显示, `1.1.0`新增 |
+| isSelected | boolean | ✅       | Whether the edge is selected or not            |
+| isHovered  | boolean | ✅       | Whether the edge is in the hover state     |
+| isHitable  | boolean | ✅       | Whether the edge is clickable            |
+| draggable  | boolean | ✅       | Whether the edge is draggable           |
+| visible    | boolean | ✅       | Whether to display edges, new in `1.1.0` |
 
-## 形状属性
+## Shape attributes
 
-一般用于自定义边的时候，形状属性可以通过`setAttributes`来设置。
+When customizing edges, the shape attributes can be set by `setAttributes`.
 
-| 名称   | 类型   | 是否必须 | 描述                                                                        |
+| Name  | Type  | Required | Description                                                                        |
 | :----- | :----- | :------- | :-------------------------------------------------------------------------- |
-| offset | number |          | polyline 表示折线转折点基于节点的距离。 bezier 表示控制曲线调整手柄的长度。 |
+| offset | number |          | If the line is of type polyline, offset indicates the distance from the turning point of the fold to the node. If the line is of type bezier, offset indicates the length of the control curve adjustment handle. |
 
-## 其它属性
+## Other attributes
 
-LogicFlow 在`model`上还维护一些属性，开发者可以通过这些属性拿到一些信息。例如拿到`graphModel`, 节点的基础`model`类型等。
+LogicFlow also maintains some properties on `model` that developers can use to get some information. For example, you can get `graphModel`,  `model` , etc.
 
-| 名称               | 类型    | 是否必须 | 描述                                                                                                                                                                                                           |
+| Name               | Type    | Required | Description                                                                                                                                                                |
 | :----------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| graphModel         | object  | ✅       | 整个画布对应的 model，[详情见](en/api/graphModelApi#width)                                                                                                                                                     |
-| zIndex             | number  | ✅       | 节点在 z 轴的高度，元素重合时，zIndex 高的在上面。默认为 0                                                                                                                                                     |
-| state              | number  | ✅       | 元素状态，不同的状态对应着元素显示效果。DEFAULT = 1 默认显示；TEXT_EDIT = 2 此元素正在进行文本编辑；ALLOW_CONNECT = 4, 此元素允许作为当前边的目标节点；NOT_ALLOW_CONNECT = 5, 此元素不允许作为当前边的目标节点 |
-| BaseType           | string  | ✅       | 当前 model 的基础类型，对于边，则固定为`edge`。主要用在节点和边混合的时候识别此`model`是节点还是边。                                                                                                           |
-| modelType          | string  | ✅       | 当前 model 的类型，可取值有`edge`,`polyline`,`bezier`,`line`                                                                                                                                                   |
-| sourceAnchorId     | string  | -        | 连线起点锚点 id                                                                                                                                                                                                |
-| targetAnchorId     | string  | -        | 连线终点锚点 id                                                                                                                                                                                                |
-| customTextPosition | boolean | -        | 自定义连线文本位置                                                                                                                                                                                             |
-| virtual            | boolean | -        | 是否为虚拟节点，默认 false。当为 true 时导出数据不会包含此元素。 `v1.1.24`                                                                                                                                     |
+| graphModel         | object  | ✅       | The model corresponding to the entire canvas. For details, see [graphModelApi](en/api/graphModelApi#width)                                                                                                                                                    |
+| zIndex             | number  | ✅       | The height of the node on the z-axis. When elements overlap, the higher zIndex is on top, default is 0                                                                                                                                                    |
+| state              | number  | ✅       | Element state. Different states correspond to the display effect of the element. DEFAULT = 1 means the default display effect; TEXT_EDIT = 2 means the element is being edited; ALLOW_CONNECT = 4, means the element is allowed to be the target node of the current edge; NOT_ALLOW_CONNECT = 5 means the element is not allowed to be the target node of the current edge |
+| BaseType           | string  | ✅       | The base type of the current model, which is fixed to `edge` for edges. It is mainly used to identify whether this `model` is a node or an edge when nodes and edges are mixed.                                                                                                           |
+| modelType          | string  | ✅       | The type of the current model, the values are `edge`,`polyline`,`bezier`,`line`                                                                                                                                                   |
+| sourceAnchorId     | string  | -        | The id of the anchor point at the start of the edge                                                                                                                                                                                                |
+| targetAnchorId     | string  | -        | The id of the anchor point at the end of the edge                                                                                                                                                                                               |
+| customTextPosition | boolean | -        | Customize the position of the edge text                                                                                                                                                                                             |
+| virtual            | boolean | -        | Whether it is a virtual node, the default is false. Export data will not include this node when the value is true. `v1.1.24`                                                                                                                                     |
 
-## 样式属性
+## Style attributes
 
-LogicFlow 所有的边最终都是以 SVG DOM 的方式渲染。svg 的样式相关属性都不会直接存在`edgeModel`。当开发者想要对 SVG DOM 添加更多的[svg 属性](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute)时，可以通过重写`edgeModel`上获取边样式属性方法来实现。
+All edges of LogicFlow are eventually rendered as SVG DOM. But except for the shape attributes, all other properties belonging to svg do not exist directly in `edgeModel`. When developers want to add more [svg attributes](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute) to the SVG DOM, they can do so by overriding the method on `edgeModel` that gets the node style attributes.
 
 ## getEdgeStyle
 
-支持重写，自定义边文本样式属性. 默认为[主题 baseEdge](en/api/themeApi#baseedge)
+Supports overriding this method to customize edge style attributes. Default is [theme baseNode](en/api/themeApi#baseedge)
 
 ```js
 class SequenceFlowModel extends PolylineModel {
@@ -75,7 +75,7 @@ class SequenceFlowModel extends PolylineModel {
 
 ## getAnimation
 
-支持重写，自定义边的流向动画
+Support overriding this method to customize the animation of the edges.
 
 ```js
 class CustomBezierModel extends BezierEdgeModel {
@@ -89,7 +89,7 @@ class CustomBezierModel extends BezierEdgeModel {
 
 ## getTextStyle
 
-支持重写，自定义边文本样式属性，默认为[主题 edgeText](en/api/themeApi#edgetext)
+Support overriding this method to customize edge text style attributes, default is [theme edgeText](en/api/themeApi#edgetext)
 
 ```js
 class SequenceFlowModel extends PolylineModel {
@@ -104,7 +104,7 @@ class SequenceFlowModel extends PolylineModel {
 
 ## initEdgeData
 
-支持重写，初始化边数据。
+Support overriding this method to initialize the edge data.
 
 ```js
 class UserEdgeModel extends PolylineEdgeModel {
@@ -115,14 +115,14 @@ class UserEdgeModel extends PolylineEdgeModel {
 }
 ```
 
-!> **提示**initEdgeData 和 setAttributes 都可以对 edgeModel 的属性进行赋值，但是两者的区别在于：
+!> **Tip** Both initNodeData and setAttributes can assign values to the attributes of a edgeModel, but the difference between the two is that:
 
-- `initEdgeData`只在初始化的时候调用，用于初始化的属性。
-- `setAttributes`除了初始化调用外，还会在 properties 发生变化了调用。
+- `initNodeData` is called only when the node is initialized and is used to initialize the node's properties.
+- `setAttributes` is not only called when the node is initialized, but also when properties change.
 
 ## setAttributes
 
-设置 model 形状属性，每次 properties 发生变化会触发
+Set the shape properties of the model, which will be triggered every time the properties change.
 
 ```js
 class UserEdgeModel extends PolylineEdgeModel {
@@ -135,9 +135,9 @@ class UserEdgeModel extends PolylineEdgeModel {
 
 ## createId
 
-支持重写，自定义节点 id 的生成规则.
+It is supported to override this method to customize the generation rules of node id.
 
-?> **注意**1. 请保证此方法返回 id 的唯一性。 2. 此方法为同步方法，如果想要异步修改节点 id, 请参考[#272](https://github.com/didi/LogicFlow/issues/272)
+?> **Tip** 1. Please ensure the uniqueness of the id returned by this method. 2. This method is synchronous, if you want to modify the node id asynchronously, please refer to [#272](https://github.com/didi/LogicFlow/issues/272)
 
 ```js
 import { v4 as uuidv4 } from "uuid";
@@ -151,9 +151,9 @@ class UserTaskModel extends RectNodeModel {
 
 ## getData
 
-获取被保存时返回的数据。LogicFlow 有固定边数据格式。如果期望在保存数据上添加数据，请添加到 properties 上。
+Get the data returned when saved. LogicFlow has a fixed edge data format. If you expect to add more data to the saved data, please add it to properties.
 
-不支持重写此方法
+This method is not allowed to be overridden.
 
 ```js
 const edgeModel = lf.getEdgeModelById("edge_1");
@@ -162,9 +162,9 @@ const edgeData = edgeModel.getData();
 
 ## getProperties
 
-获取边属性
+Get the properties of a node.
 
-不支持重写此方法
+This method is not allowed to be overridden.
 
 ```js
 const edgeModel = lf.getEdgeModelById("edge_1");
@@ -173,18 +173,18 @@ const properties = edgeModel.getProperties();
 
 ## setProperties
 
-设置边 properties
+Set the properties of the edge
 
 ```js
 const edgeModel = lf.getEdgeModelById("edge_1");
 edgeModel.setProperties({
-  // 自定义properties
+  // Customizing properties
 });
 ```
 
 ## deleteProperty
 
-删除边的某个属性
+Delete a property of a node
 
 ```js
 lf.on("edge:click", ({ data }) => {
@@ -195,13 +195,13 @@ lf.on("edge:click", ({ data }) => {
 
 ## updateText
 
-修改边文本内容
+Modify the text content of a edge
 
-参数
+Parameters
 
-| 名称  | 类型   | 必传 | 默认值 | 描述   |
+| Name  | Type   | Required | Default | Description   |
 | :---- | :----- | :--- | :----- | :----- |
-| value | string | true | 无     | 文本值 |
+| value | string | true | 无     | Text value |
 
 ```js
 const edgeModel = lf.getEdgeModelById("edge_1");
@@ -210,4 +210,4 @@ edgeModel.updateText("hello world");
 
 ## getTextPosition
 
-支持重写，自定义连线上文本位置。
+Support overriding this method to customize the text position on the edge.
