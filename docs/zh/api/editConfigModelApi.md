@@ -16,11 +16,13 @@ editConfigModel是控制页面编辑状态。详细用法见[设置图编辑方�
 | adjustEdgeStartAndEnd   | boolean | false  | 允许调整边起点/终点                                                  |
 | adjustNodePosition      | boolean | true   | 允许拖动节点                                                           |
 | hideAnchors             | boolean | false  | 隐藏节点所有锚点                                                       |
+| hoverOutline            | boolean | true  | 显示节点悬浮时的外框                                                       |
 | nodeTextEdit            | boolean | true   | 允许节点文本可以编辑                                                   |
 | edgeTextEdit            | boolean | true   | 允许边文本可以编辑                                                   |
 | nodeTextDraggable       | boolean | false  | 允许节点文本可以拖拽                                                   |
 | edgeTextDraggable       | boolean | false  | 允许边文本可以拖拽                                                   |
 | metaKeyMultipleSelected | boolean | false  | 允许按照 meta 键多选元素                                               |
+| autoExpand              | boolean | true  | 节点/边超出画布后自动扩展画布                                               |
 
 
 ## updateEditConfig

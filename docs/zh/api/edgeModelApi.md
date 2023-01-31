@@ -52,7 +52,7 @@ LogicFlow 在`model`上还维护一些属性，开发者可以通过这些属性
 | sourceAnchorId     | string  | -        | 连线起点锚点 id                                                                                                                                                                                                |
 | targetAnchorId     | string  | -        | 连线终点锚点 id                                                                                                                                                                                                |
 | customTextPosition | boolean | -        | 自定义连线文本位置                                                                                                                                                                                             |
-| virtual            | boolean | -        | 是否为虚拟节点，默认 false。当为 true 时导出数据不会包含此元素。 `v1.1.24`                                                                                                                                     |
+| virtual            | boolean | -        | 是否为虚拟连线，默认 false。当为 true 时导出数据不会包含此元素。 `v1.1.24`                                                                                                                                     |
 
 ## 样式属性
 
@@ -137,7 +137,7 @@ class UserEdgeModel extends PolylineEdgeModel {
 
 支持重写，自定义节点 id 的生成规则.
 
-?> **注意**1. 请保证此方法返回 id 的唯一性。 2. 此方法为同步方法，如果想要异步修改节点 id, 请参考[#272](https://github.com/didi/LogicFlow/issues/272)
+?> **注意**1. 请保证此方法返回 id 的唯一性。 2. 此方法为同步方法，如果想要异步修改边 id, 请参考[#272](https://github.com/didi/LogicFlow/issues/272)
 
 ```js
 import { v4 as uuidv4 } from "uuid";
