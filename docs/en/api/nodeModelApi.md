@@ -232,7 +232,7 @@ const nodeData = nodeModel.getData();
 
 ## getProperties
 
-Get the properties of a node
+Get the properties of a node.
 
 This method is not allowed to be overridden.
 
@@ -337,7 +337,7 @@ Parameters
 
 | Name  | Type   | Required | Default | Description   |
 | :---- | :----- | :--- | :----- | :----- |
-| value | string | true | 无     | Text value |
+| value | string | true | none     | Text value |
 
 ```js
 const nodeModel = lf.getNodeModelById("node_1");
