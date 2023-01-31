@@ -2,7 +2,8 @@
 
 LogicFlow 中所有的节点都会有一个 nodeModel 与其对应。由于数据驱动视图的机制，我们对节点的所有操作事实上就是对 model 的操作。大多数情况下，我们不建议直接对 nodeModel 的属性进行赋值操作，而是调用 model 或者[graphModel](zh/api/graphModelApi)上提供的方法。
 
-?> **警告**在对 LogicFlow 内部源码不熟悉的情况，对 model 的属性进行赋值操作可能会引起很多不符合预期的问题。例如在 model 中`x`,`y`表示节点的位置，如果想要移动节点直接修改`x`,`y`的话，会出现节点被移动了，而节点上的文本、节点相连的边都没有动。所以想要移动节点，最好的方法还是调用`graphModel`上的`moveNode`方法来实现。
+?> **警告**
+在对 LogicFlow 内部源码不熟悉的情况下，对 model 的属性进行赋值操作可能会引起很多不符合预期的问题。例如在 model 中`x`,`y`表示节点的位置，如果想要移动节点直接修改`x`,`y`的话，会出现节点被移动了，而节点上的文本、节点相连的边都没有动。所以想要移动节点，最好的方法还是调用`graphModel`上的`moveNode`方法来实现。
 
 nodeModel 上节点属性有很多，由于用途不一样，我们对其进行了分类。
 
@@ -62,7 +63,7 @@ LogicFlow 在`model`上还维护一些属性，开发者可以通过这些属性
 
 | 名称        | 类型    | 是否必须 | 描述                                                                                                                                                                                                           |
 | :---------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| graphModel  | object  | ✅       | 整个画布对应的 model，[详情见](zh/api/graphModelApi#width)                                                                                                                                                     |
+| graphModel  | object  | ✅       | 整个画布对应的 model，详情见[graphModelApi](zh/api/graphModelApi#width)                                                                                                                                                     |
 | zIndex      | number  | ✅       | 节点在 z 轴的高度，元素重合时，zIndex 高的在上面, 默认为 1                                                                                                                                                     |
 | state       | number  | ✅       | 元素状态，不同的状态对应着元素显示效果。DEFAULT = 1 默认显示；TEXT_EDIT = 2 此元素正在进行文本编辑；ALLOW_CONNECT = 4, 此元素允许作为当前边的目标节点；NOT_ALLOW_CONNECT = 5, 此元素不允许作为当前边的目标节点 |
 | BaseType    | string  | ✅       | 当前 model 的基础类型，对于节点，则固定为`node`。主要用在节点和边混合的时候识别此`model`是节点还是边。                                                                                                         |
@@ -75,7 +76,8 @@ LogicFlow 在`model`上还维护一些属性，开发者可以通过这些属性
 | outgoing    | object  | ✅       | 离开当前节点的所有边和节点, `v1.1.4`                                                                                                                                                                           |
 | virtual     | boolean | -        | 是否为虚拟节点，默认 false。当为 true 时导出数据不会包含此元素。 `v1.1.24`                                                                                                                                     |
 
-!> **modelType 与 type 的区别是什么？**在自定义节点的时候，`type`可以是开发者自定义的任何值，但是在 LogicFlow 内部，涉及到这个节点的计算时，我们需要感知到这个节点的具体形状，这个时候不能用`type`, 而是要用`modelType`来判断。
+!> **modelType 与 type 的区别是什么？**
+在自定义节点的时候，`type`可以是开发者自定义的任何值，但是在 LogicFlow 内部，涉及到这个节点的计算时，我们需要感知到这个节点的具体形状，这个时候不能用`type`, 而是要用`modelType`来判断。
 
 ## 样式属性
 
@@ -83,7 +85,7 @@ LogicFlow 所有的节点最终都是以 SVG DOM 的方式渲染。但是除了�
 
 ## getNodeStyle
 
-支持重写，自定义节点样式属性. 默认为[主题 baseNode](zh/api/themeApi#basenode)
+支持重写，自定义节点样式属性， 默认为[主题 baseNode](zh/api/themeApi#basenode)
 
 ```js
 class UserTaskModel extends RectNodeModel {

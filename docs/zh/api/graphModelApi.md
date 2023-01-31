@@ -87,19 +87,21 @@ lf.on("user:detail", (res) => {});
 `属性`
 
 位于当前画布顶部的元素。
+
 此元素只在堆叠模式为默认模式下存在。
-用于在默认模式下将之前的顶部元素恢复初始高度。
+
+用于在默认模式下将之前的顶部元素恢复初始顺序。
 
 ## nodeMoveRules
 
 `属性`
-节点移动规则判断, 在节点移动的时候，会出发此数组中的所有规则判断
+节点移动规则, 在节点移动的时候，会触发此数组中的所有规则判断。
 
 ## edgeType
 
 `属性`
 
-在图上操作创建边时，默认使用的边类型.
+在图上操作创建边时，默认使用的边类型。
 
 ## nodes
 
@@ -111,7 +113,7 @@ lf.on("user:detail", (res) => {});
 
 `属性`
 
-画布所有的连接对象
+画布所有的连线对象
 
 ## overlapMode
 
@@ -170,7 +172,7 @@ lf.on("user:detail", (res) => {});
 
 `属性`
 
-按照 zIndex 排序后的元素、zIndex 控制元素叠加的时候谁在上面。
+按照 zIndex 排序后的元素，基于zIndex对元素进行排序。
 
 ## textEditElement
 
@@ -196,7 +198,6 @@ lf.on("user:detail", (res) => {});
 | ----------------- | ---------- | ------ | -------------------------- |
 | leftTopPoint      | PointTuple | 无     | 区域左上方的点             |
 | rightBottomPoint  | PointTuple | 无     | 区域右下角的点             |
-| rightBottomPoint  | PointTuple | 无     | 区域右下角的点             |
 | wholeEdge         | boolean    | 无     | 是否要整个边都在区域内部   |
 | wholeNode         | boolean    | 无     | 是否要整个节点都在区域内部 |
 | ignoreHideElement | boolean    | 无     | 是否忽略隐藏的节点         |
@@ -219,7 +220,7 @@ graphModel.getAreaElement([100, 100], [800, 800]);
 
 返回值:
 
-[NodeModel](zh/api/baseNodeModelApi) 或 [EdgeModel](zh/api/baseEdgeModelApi)
+[NodeModel](zh/api/nodeModelApi) 或 [EdgeModel](zh/api/edgeModelApi)
 
 ```js
 graphModel.getModel("rect");
@@ -239,7 +240,7 @@ graphModel.getModel("rect");
 
 返回值
 
-[NodeModel](zh/api/baseNodeModelApi)
+[NodeModel](zh/api/nodeModelApi)
 
 ```js
 graphModel.getNodeModelById("node_1");
@@ -251,7 +252,7 @@ graphModel.getNodeModelById("node_1");
 
 获取鼠标点击的位置在画布上的坐标
 
-> 因为流程图所在的位置可以是页面任何地方,当内部事件需要获取触发事件时，其相对于画布左上角的位置.需要事件触发位置减去画布相对于 client 的位置.
+> 因为流程图所在的位置可以是页面任何地方,当内部事件需要获取触发事件时，其相对于画布左上角的位置需要事件触发位置减去画布相对于 client 的位置。
 
 入参:
 
@@ -291,7 +292,8 @@ graphModel.getPointByClient({ x: 200, y: 200 });
 | element   | NodeModel 或 EdgeModel | 无     | 元素的 model                 |
 | lt        | PointTuple             | 无     | 左上角点                     |
 | rb        | PointTuple             | 无     | 右下角点                     |
-| wholeEdge | boolean                | true   | 边是否要所有的节点都在区域内 |
+| wholeEdge | boolean                | true   | 边的起点和终点都在区域内才算 |
+| wholeNode | boolean                | true   | 节点的box都在区域内才算 |
 
 返回值
 
@@ -411,7 +413,7 @@ console.log(edgeModel)
 
 返回值
 
-[EdgeModel](zh/api/baseEdgeModelApi) 或者 [NodeModel](zh/api/baseNodeModelApi)
+[EdgeModel](zh/api/edgeModelApi) 或者 [NodeModel](zh/api/nodeModelApi)
 
 ```js
 cosnt edgeModel = graphModel.getElement('edge_id');
@@ -432,7 +434,7 @@ console.log(edgeModel)
 
 返回值
 
-[EdgeModel](zh/api/baseEdgeModelApi)
+[EdgeModel](zh/api/edgeModelApi)
 
 ```js
 cosnt edgeModels = graphModel.getNodeEdges('node_id_1');
@@ -465,7 +467,7 @@ console.log(elements)
 !> **警告**  
 注意：此方法慎用，除非您对 logicflow 内部有足够的了解。  
 大多数情况下，请使用 setProperties、updateText、changeNodeId 等方法。  
-例如直接使用此方法修改节点的 id,那么就是会导致连接到此节点的边的 sourceNodeId 出现找不到的情况。
+例如:直接使用此方法修改节点的 id,那么就是会导致连接到此节点的边的 sourceNodeId 出现找不到的情况。
 
 入参:
 
@@ -516,7 +518,7 @@ graphModel.changeEdgeId("edge_id_1", "edge_id_2");
 
 将指定节点或者边放置在前面
 
-如果堆叠模式为默认模式，则将原置顶元素重新恢复原有层级。
+如果堆叠模式为默认模式，则将指定元素置顶zIndex设置为9999，原置顶元素重新恢复原有层级zIndex设置为1。
 
 如果堆叠模式为递增模式，则将需指定元素 zIndex 设置为当前最大 zIndex + 1。
 
@@ -543,7 +545,7 @@ graphModel.toFront("edge_id_1");
 | 名称   | 类型                    | 默认值 | 说明            |
 | ------ | ----------------------- | ------ | --------------- |
 | id     | string                  | 无     | 节点 id 或边 id |
-| zIndex | number\|'top'\|'bottom' | 无     | 节点 id 或边 id |
+| zIndex | number\|'top'\|'bottom' | 无     | 可以传数字，也支持传入`top` 和 `bottom` |
 
 ```js
 graphModel.setElementZIndex("top");
