@@ -84,10 +84,12 @@ async function scrape() {
         }
         spinner.succeed(`Screenshot of ${key} saved!`);
       } catch (error) {
-        console.log("error ------- ", error);
-        spinner.error(`Could not save screenshot of ${key}!`);
+        spinner.fail(
+          `Could not save the screenshot of ${key} because of ${error}!`
+        );
       }
     }
+    await page.close();
     await browser.close();
   } catch (error) {
     console.log(error);
