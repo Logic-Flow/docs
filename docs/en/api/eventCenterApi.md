@@ -1,151 +1,151 @@
-# 事件
+# Event
 
-LogicFlow 提供了事件系统用于告知开发者当前流程图发生的事件。事件的详细用法见[事件](en/guide/basic/event)。
+LogicFlow provides an event system to inform the developer of events that occur in the current flowchart. The detailed usage of events is described in [Events](en/guide/basic/event).
 
-## 节点事件
+## Node Events
 
-| 事件名           | 说明                   | 事件对象          |
+| Event names           | Description                   | Event object         |
 | :--------------- | :--------------------- | :---------------- |
-| element:click    | 元素单击               | data, e, position |
-| node:click       | 节点单击               | data, e, position |
-| node:dbclick     | 节点双击               | data, e, position |
-| node:mousedown   | 鼠标按下节点           | data, e           |
-| node:mouseup     | 鼠标抬起节点           | data, e           |
-| node:mousemove   | 鼠标移动节点           | data, e           |
-| node:mouseenter  | 鼠标进入节点           | data, e           |
-| node:mouseleave  | 鼠标离开节点           | data, e           |
-| node:delete      | 节点的删除             | data              |
-| node:add         | 节点的添加             | data              |
-| node:dnd-add     | 外部拖入节点添加时触发 | data              |
-| node:dnd-drag    | 外部拖入节点拖拽中触发 | data              |
-| node:dragstart   | 节点开始拖拽           | data, e           |
-| node:drag        | 节点拖拽               | data, e           |
-| node:drop        | 节点拖拽放开           | data, e           |
-| node:contextmenu | 右键点击节点           | data, e, position |
+| element:click    | Click on the element               | data, e, position |
+| node:click       | Click on the node               | data, e, position |
+| node:dbclick     | Double-click on the node              | data, e, position |
+| node:mousedown   | Mouse down node           | data, e           |
+| node:mouseup     | Mouse up node           | data, e           |
+| node:mousemove   | Mouse move node           | data, e           |
+| node:mouseenter  | Mouse enter node           | data, e           |
+| node:mouseleave  | Mouse leave node            | data, e           |
+| node:delete      | Delete node             | data              |
+| node:add         | Add node            | data              |
+| node:dnd-add     | When a node is dragged in from outside, the node added will trigger the event | data              |
+| node:dnd-drag    | When a node is dragged in from outside, the node in the dragged state will trigger the event | data              |
+| node:dragstart   | Start dragging nodes           | data, e           |
+| node:drag        | Nodes in dragging               | data, e           |
+| node:drop        | End of node dragging           | data, e           |
+| node:contextmenu | Right-click on the node           | data, e, position |
 
-事件对象包含如下内容：
+The event object contains the following:
 
-| 属性     | 类型       | 值                                                                                                  |
+| Properties     | Type       | Description                                                                                                  |
 | :------- | :--------- | :-------------------------------------------------------------------------------------------------- |
-| data     | Object     | 节点的[数据属性](en/api/nodeModelApi#数据属性)                                                     |
-| e        | MouseEvent | 原生的鼠标事件对象                                                                                  |
-| position | Object     | 鼠标触发点在画布中的坐标（参照[getPointByClient](en/api/logicFlowApi#getpointbyclient)的返回值） |
+| data     | Object     | The [data attribute](en/api/nodeModelApi#DataAttributes) of the node                                                     |
+| e        | MouseEvent | Native mouse event object                                                                                  |
+| position | Object     | Coordinates of the mouse trigger point in the canvas(Refer to the return value of [getPointByClient](en/api/logicFlowApi#getpointbyclient) |
 
-## 边事件
+## Edge Events
 
-| 事件名                 | 说明              | 事件对象          |
+| Event names                 | Description              | Event object          |
 | :--------------------- | :---------------- | :---------------- |
-| element:click          | 元素单击          | data, e, position |
-| edge:click             | 边单击            | data, e, position |
-| edge:dbclick           | 边双击            | data, e           |
-| edge:mouseenter        | 鼠标进入边        | data, e           |
-| edge:mouseleave        | 鼠标离开边        | data, e           |
-| edge:add               | 边增加            | data              |
-| edge:delete            | 边删除            | data              |
-| edge:contextmenu       | 边右键            | data, e, position |
-| edge:adjust            | 边拖拽调整        | data              |
-| edge:exchange-node     | 调整边的起点/终点 | data              |
-| connection:not-allowed | 不允许建立连接    | data, msg         |
+| element:click          | Click on the element          | data, e, position |
+| edge:click             | Click on the edge            | data, e, position |
+| edge:dbclick           | Double-click on the edge            | data, e           |
+| edge:mouseenter        | Mouse enter edge        | data, e           |
+| edge:mouseleave        | Mouse leave edge        | data, e           |
+| edge:add               | Add edge            | data              |
+| edge:delete            | Delete edge            | data              |
+| edge:contextmenu       | Right-click on the edge            | data, e, position |
+| edge:adjust            | Drag to adjust the edge        | data              |
+| edge:exchange-node     | Adjust the start/end of the edge | data              |
+| connection:not-allowed | Connection not allowed    | data, msg         |
 
-事件对象包含如下内容：
+The event object contains the following:
 
-| 属性     | 类型       | 值                                                                                                  |
+| Properties     | Type       | Description                                                                                                  |
 | :------- | :--------- | :-------------------------------------------------------------------------------------------------- |
-| data     | Object     | 边的[数据属性](en/api/edgeModelApi#数据属性)                                                       |
-| e        | MouseEvent | 原生的鼠标事件对象                                                                                  |
-| position | Object     | 鼠标触发点在画布中的坐标（参照[getPointByClient](en/api/logicFlowApi#getpointbyclient)的返回值） |
-| msg      | String     | 边校验信息                                                                                          |
+| data     | Object     | The [data attribute](en/api/edgeModelApi#DataAttributes) of the edge                                                      |
+| e        | MouseEvent | Native mouse event object                                                                                  |
+| position | Object     | Coordinates of the mouse trigger point in the canvas(Refer to the return value of [getPointByClient](en/api/logicFlowApi#getpointbyclient) |
+| msg      | String     | Verification information of the edge                                                                                         |
 
-## 锚点事件
+## Anchor Events
 
-| 事件名           | 说明                                                                                                    | 事件对象                      |
+| Event names           |Description                                                                                                    | Event object                     |
 | :--------------- | :------------------------------------------------------------------------------------------------------ | :---------------------------- |
-| anchor:dragstart | 锚点连线开始拖动                                                                                        | data, e, nodeModel            |
-| anchor:drop      | 锚点连线拖动连线成功,只有在创建连线成功的时候才触发。用于区分手动创建的连线和自动创建的连线(`edge:add`) | data, e, nodeModel, edgeModel |
-| anchor:dragend   | 锚点连线结束，不管是否创建连线都会触发。                                                                | data, e, nodeModel            |
+| anchor:dragstart | Start connecting based on anchor points                                                                                        | data, e, nodeModel            |
+| anchor:drop      | Manual connection success based on anchor points. Triggered only if the edge is created successfully. Used to distinguish between manually created edges and automatically created edges (`edge:add`) | data, e, nodeModel, edgeModel |
+| anchor:dragend   | End of manual connection based on anchor points. This is triggered whether or not the edge is successfully created.                                                                | data, e, nodeModel            |
 
-事件对象包含如下内容：
+The event object contains the following:
 
-| 属性      | 类型       | 值                 |
+| Properties      | Type       | Description                 |
 | :-------- | :--------- | :----------------- |
-| data      | Object     | 锚点数据           |
-| e         | MouseEvent | 原生的鼠标事件对象 |
-| nodeModel | Object     | 锚点所属的节点     |
+| data      | Object     | Anchor data           |
+| e         | MouseEvent | Native mouse event object |
+| nodeModel | Object     | The node to which the anchor point belongs     |
 
-## 画布事件
+## Graph Events
 
-| 事件名            | 说明                                                                       | 事件对象    |
+| Event names            | Description                                                                       | Event object    |
 | :---------------- | :------------------------------------------------------------------------- | :---------- |
-| blank:mousedown   | 画布鼠标按下                                                               | e           |
-| blank:mousemove   | 画布鼠标移动                                                               | e           |
-| blank:mouseup     | 画布鼠标抬起                                                               | e           |
-| blank:click       | 画布单击                                                                   | e           |
-| blank:contextmenu | 画布右键                                                                   | e, position |
-| blank:dragstart   | 画布开始拖拽                                                               | e           |
-| blank:drag        | 画布拖拽                                                                   | e           |
-| blank:drop        | 画布拖拽放开                                                               | e           |
-| text:update       | 文案更新                                                                   | data        |
-| graph:transform   | 画布平移或者缩放触发                                                       | data        |
-| graph:rendered    | 画布渲染数据后触发. 即 lf.render(graphData)方法被调用后触发。 `v1.1.0新增` | graphData   |
+| blank:mousedown   | Mouse down on the canvas                                                               | e           |
+| blank:mousemove   | Mouse move on the canvas                                                               | e           |
+| blank:mouseup     | Mouse up on the canvas                                                              | e           |
+| blank:click       | Click on the canvas                                                                    | e           |
+| blank:contextmenu | Right-click on the canvas                                                                   | e, position |
+| blank:dragstart   | Start dragging canvas                                                               | e           |
+| blank:drag        | Canvas in dragging                                                                   | e           |
+| blank:drop        | End of canvas dragging                                                               | e           |
+| text:update       | Update text                                                                   | data        |
+| graph:transform   | Triggered when panning or zooming the canvas                                                       | data        |
+| graph:rendered    | Triggered after the canvas renders data, i.e. after the lf.render(graphData) method is called. `Add in v1.1.0` | graphData   |
 
-事件对象包含如下内容：
+The event object contains the following:
 
-| 属性     | 类型       | 值                                                                                                  |
+| Properties     | Type       | Description                                                                                                  |
 | :------- | :--------- | :-------------------------------------------------------------------------------------------------- |
-| e        | MouseEvent | 原生的鼠标事件对象                                                                                  |
-| position | Object     | 鼠标触发点在画布中的坐标（参照[getPointByClient](en/api/logicFlowApi#getpointbyclient)的返回值） |
+| e        | MouseEvent | Native mouse event object                                                                                  |
+| position | Object     | Coordinates of the mouse trigger point in the canvas(Refer to the return value of [getPointByClient](en/api/logicFlowApi#getpointbyclient) |
 
-## History 事件
+## History Events
 
-History 用来记录画布上的每一次改动，当画布上的元素发生变化时会触发`history:change`事件。
+History is used to record every change on the canvas. The `history:change` event is triggered when an element on the canvas changes.
 
-| 事件名         | 说明     | 事件对象 |
+| Event names         | Description     | Event object |
 | :------------- | :------- | :------- |
-| history:change | 画布变化 | data     |
+| history:change | The canvas changes | data     |
 
-事件对象中的 data 属性包含以下内容。
+The data property in the event object contains the following content:
 
-| 属性     | 类型    | 说明                |
+| Properties     | Type    | Description                |
 | :------- | :------ | :------------------ |
-| undos    | Array   | 可撤销的 graph 快照 |
-| redos    | Array   | 可重做的 graph 快照 |
-| undoAble | Boolean | 是否可以撤销        |
-| redoAble | Boolean | 是否可以重做        |
+| undos    | Array   | Undoable graph snapshots |
+| redos    | Array   | Redoable graph snapshots |
+| undoAble | Boolean | Whether it can be undone        |
+| redoAble | Boolean | Whether it can be redone       |
 
-## 选区事件
+## Selection Events
 
-当同时选中多个节点形成选区是，选区触发的事件
+Events triggered when multiple nodes are selected at the same time to form a selection.
 
-| 事件名                | 说明           | 事件对象       |
+| Event names                | Description           | Event object       |
 | :-------------------- | :------------- | :------------- |
-| selection:selected    | 选区框选后触发 | 所有选中的元素 |
-| selection:mousedown   | 选区鼠标按下   | e              |
-| selection:dragstart   | 选区开始拖拽   | e              |
-| selection:drag        | 选区拖拽       | e              |
-| selection:drop        | 选区拖拽放开   | e              |
-| selection:mousemove   | 选区鼠标移动   | e, position    |
-| selection:mouseup     | 选区鼠标松开   | e              |
-| selection:contextmenu | 选区右键       | e              |
+| selection:selected    | Triggered when the selection is selected | All selected elements |
+| selection:mousedown   | Mouse down on the selection   | e              |
+| selection:dragstart   | Start dragging the selection   | e              |
+| selection:drag        | Selection in dragging       | e              |
+| selection:drop        | End of selection dragging   | e              |
+| selection:mousemove   | Move the mouse on the selection   | e, position    |
+| selection:mouseup     | Release the mouse on the selection   | e              |
+| selection:contextmenu | Right-click on the selection       | e              |
 
-事件对象包含如下内容：
+The event object contains the following:
 
-| 属性     | 类型       | 值                                                                                                  |
+| Properties     | Type       | Description                                                                                                  |
 | :------- | :--------- | :-------------------------------------------------------------------------------------------------- |
-| e        | MouseEvent | 原生的鼠标事件对象                                                                                  |
-| position | Object     | 鼠标触发点在画布中的坐标（参照[getPointByClient](en/api/logicFlowApi#getpointbyclient)的返回值） |
+| e        | MouseEvent | Native mouse event                                                                                  |
+| position | Object     | Coordinates of the mouse trigger point in the canvas(Refer to the return value of [getPointByClient](en/api/logicFlowApi#getpointbyclient) |
 
 ## on
 
-图的监听事件
+Register events.
 
-参数：
+Parameters:
 
-| 名称     | 类型   | 必传 | 默认值 | 描述     |
+| Name    | Type  | Required | Default | Description     |
 | :------- | :----- | :--- | :----- | :------- |
-| evt      | String | ✅   | -      | 事件名称 |
-| callback | String | ✅   | -      | 回调函数 |
+| evt      | String | ✅   | -      | Event Name |
+| callback | String | ✅   | -      | Callback function |
 
-示例：
+Example:
 
 ```js
 const { eventCenter } = lf.graphModel;
@@ -160,16 +160,16 @@ eventCenter.on("element:click", (args) => {
 
 ## off
 
-删除事件监听
+Delete registered events.
 
-参数：
+Parameters:
 
-| 名称     | 类型   | 必传 | 默认值 | 描述     |
+| Name     | Type   | Required | Default | Description     |
 | :------- | :----- | :--- | :----- | :------- |
-| evt      | String | ✅   | -      | 事件名称 |
-| callback | String | ✅   | -      | 回调函数 |
+| evt      | String | ✅   | -      | Event Name |
+| callback | String | ✅   | -      | Callback function |
 
-示例：
+Example:
 
 ```js
 const { eventCenter } = lf.graphModel;
@@ -183,16 +183,16 @@ eventCenter.off("element:click", () => {
 
 ## once
 
-事件监听一次
+The event are triggered only once.
 
-参数：
+Parameters:
 
-| 名称     | 类型   | 必传 | 默认值 | 描述     |
+| Name    | Type   | Required | Default | Description    |
 | :------- | :----- | :--- | :----- | :------- |
-| evt      | String | ✅   | -      | 事件名称 |
-| callback | String | ✅   | -      | 回调函数 |
+| evt      | String | ✅   | -      | Event Name |
+| callback | String | ✅   | -      | Callback function |
 
-示例：
+Example:
 
 ```js
 const { eventCenter } = lf.graphModel;
@@ -204,16 +204,16 @@ eventCenter.once("node:click", () => {
 
 ## emit
 
-触发事件
+Trigger the event.
 
-参数：
+Parameters:
 
-| 名称 | 类型   | 必传 | 默认值 | 描述         |
+| Name | Type   | Required | Default | Description         |
 | :--- | :----- | :--- | :----- | :----------- |
-| evt  | String | ✅   | -      | 事件名称     |
-| args | Array  | ✅   | -      | 触发事件参数 |
+| evt  | String | ✅   | -      | Event Name     |
+| args | Array  | ✅   | -      | Callback function |
 
-示例：
+Example:
 
 ```js
 const { eventCenter } = lf.graphModel;

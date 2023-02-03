@@ -1,27 +1,27 @@
-# 主题
+# Theme
 
-主题可以对 LogicFlow 基础图形的外观进行统一设置。其属性与[svg 属性](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute)保持一致。
-大多数情况下，我们只需要设置一些常用属性即可。
+Themes allow you to uniformly set the appearance of LogicFlow base graphics. Its properties are consistent with [svg attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute).
+In most cases, we only need to set a few common properties.
 
-## 常用属性
+## Common Attributes
 
-- [stroke](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/stroke)属性定义了给定图形元素的外轮廓的颜色。
-- [stroke-dasharray](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/stroke-dasharray)属性可控制用来描边的点划线的图案范式。
-- [stroke-width](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/stroke-width)属性指定了当前对象的轮廓的宽度。
-- [fill](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/fill)属性用来定义给定图形元素内部的颜色。
-- [fill-opacity](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/fill-opacity)属性指定了填色的不透明度或当前对象的内容物的不透明度。
-- [font-size](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/font-size)属性定义文本字体大小
-- [color](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/color)属性定义文本颜色
+- The [stroke](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke) attribute is a presentation attribute defining the color used to paint the outline of the shape.
+- The [stroke-dasharray](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray) attribute is a presentation attribute defining the pattern of dashes and gaps used to paint the outline of the shape.
+- The [stroke-width](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-width) attribute is a presentation attribute defining the width of the stroke to be applied to the shape.
+- The [fill](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill) attribute is a presentation attribute that defines the color used to paint the element.
+- The [fill-opacity](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-opacity) attribute is a presentation attribute defining the opacity of the paint server (color, gradient, pattern, etc.) applied to a shape.
+- The [font-size](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/font-size) attribute defines the text font size.
+- The [color](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/color) attribute defines the text color.
 
-由于 LogicFlow 推荐在实际业务中完全自定义节点的外观和样式，所以 LogicFlow 本身内置的主题样式只包含极少数必须的样式。开发者可以基于自己业务场景对其进行重新定义和扩展。
+Since LogicFlow recommends full customization of node appearance and style in actual business, LogicFlow's own built-in theme styles contain only a very few required styles. You can redefine and extend it based on your own business scenarios.
 
-## 形状属性
+## Shape Attributes
 
-LogicFlow 将`width`、`height`、`r`这些影响节点大小的属性叫做`形状属性`, `形状属性`会影响锚点位置、连线计算。所以不支持在主题中配置，只支持在自定义时配置，详情见[NodeModel 形状属性](en/api/nodeModelApi#形状属性)。
+LogicFlow calls the attributes `width`, `height`, and `r` that affect the size of nodes `shape attributes`. The `shape attributes` affect the anchor position and the related calculation when the nodes are connected. So it is not supported to be configured in the theme, but only when customizing the node. See [NodeModel Shape Attributes](en/api/nodeModelApi#ShapeAttributes) for details.
 
 ## baseNode
 
-LogicFlow 内置所有的节点都是白色填充，黑色 2 边框。
+All nodes built into LogicFlow are white filled with a black border of width 2.
 
 ```js
 lf.setTheme({
@@ -35,7 +35,7 @@ lf.setTheme({
 
 ## rect
 
-LogicFlow 内置`rect`节点都是白色填充，黑色 2 边框。
+LogicFlow's built-in `rect` nodes are all white filled with a black border of width 2.
 
 ```js
 lf.setTheme({
@@ -49,7 +49,7 @@ lf.setTheme({
 
 ## circle
 
-LogicFlow 内置`circle`节点都是白色填充，黑色 2 边框。
+LogicFlow's built-in `circle` nodes are all white filled with a black border of width 2.
 
 ```js
 lf.setTheme({
@@ -63,7 +63,7 @@ lf.setTheme({
 
 ## diamond
 
-LogicFlow 内置`diamond`节点都是白色填充，黑色 2 边框。
+LogicFlow's built-in `diamond` nodes are all white filled with a black border of width 2.
 
 ```js
 lf.setTheme({
@@ -77,7 +77,7 @@ lf.setTheme({
 
 ## ellipse
 
-LogicFlow 内置`ellipse`节点都是白色填充，黑色 2 边框。
+LogicFlow's built-in `ellipse` nodes are all white filled with a black border of width 2.
 
 ```js
 lf.setTheme({
@@ -91,7 +91,7 @@ lf.setTheme({
 
 ## polygon
 
-LogicFlow 内置`polygon`节点都是白色填充，黑色 2 边框。
+LogicFlow's built-in `polygon` nodes are all white filled with a black border of width 2.
 
 ```js
 lf.setTheme({
@@ -105,7 +105,7 @@ lf.setTheme({
 
 ## text
 
-LogicFlow 内置`text`节点字体大小为 12, 颜色为黑色。
+LogicFlow's built-in `text` node has a font size of 12 and a black color.
 
 ```js
 lf.setTheme({
@@ -121,7 +121,7 @@ lf.setTheme({
 
 ## anchor
 
-LogicFlow 内置的锚点是一个半径为 4 的圆。在 hover 状态下回显示一个半径为 10 的圆。
+LogicFlow's built-in anchor point is a circle with a radius of 4. In the hover state, a circle of radius 10 is displayed.
 
 ```js
 lf.setTheme({
@@ -141,12 +141,12 @@ lf.setTheme({
 
 ## nodeText
 
-LogicFlow 内置的节点文本
+LogicFlow's built-in node text
 
-- `overflowMode`: 用于控制节点文本超出节点后的显示效果:
-  - `default`为默认，即超出不处理。
-  - `autoWrap`为超出了自动换行。
-  - `ellipsis`为超出了隐藏，显示省略符号。
+- `overflowMode`: Controls the display of node text when it exceeds the node:
+  - `default`: No processing after exceeding.
+  - `autoWrap`: Wrap automatically after exceeding.
+  - `ellipsis`: Hide excess and show ellipsis.
 
 ```js
 lf.setTheme({
@@ -161,7 +161,7 @@ lf.setTheme({
 
 ## baseEdge
 
-LogicFlow 内置所有的连线都是黑色连线，宽 2。
+All edges of LogicFlow built-in are black and have a width of 2.
 
 ```js
 lf.setTheme({
@@ -174,7 +174,7 @@ lf.setTheme({
 
 ## line
 
-LogicFlow 内置`line`都是黑色连线，宽 2。
+All `line` of LogicFlow built-in are black and have a width of 2.
 
 ```js
 lf.setTheme({
@@ -187,7 +187,7 @@ lf.setTheme({
 
 ## polyline
 
-LogicFlow 内置`polyline`都是黑色连线，宽 2。
+All `polyline` of LogicFlow built-in are black and have a width of 2.
 
 ```js
 lf.setTheme({
@@ -200,10 +200,10 @@ lf.setTheme({
 
 ## bezier
 
-LogicFlow 内置`bezier`都是黑色连线，宽 2。
+All `bezier` of LogicFlow built-in are black and have a width of 2.
 
-- `adjustLine`: 曲线调整手柄的样式。
-- `adjustAnchor`: 曲线调整点的样式。
+- `adjustLine`: The style of the handle when adjusting the bezier.
+- `adjustAnchor`: The style of the anchor points when adjusting the bezier.
 
 ```js
 lf.setTheme({
@@ -226,14 +226,14 @@ lf.setTheme({
 
 ## edgeText
 
-LogicFlow 内置的连线文本
+LogicFlow's built-in edge text
 
-- `textWidth`: 用于控制连线文本最大宽度。
-- `overflowMode`: 用于控制连线文本超出节点后的显示效果。
-  - `default`为默认，即超出不处理。
-  - `autoWrap`为超出了自动换行。
-  - `ellipsis`为超出了隐藏，显示省略符号。
-- `background`: 用于控制连线文本对应的背景。
+- `textWidth`: Control the maximum width of the edge text.
+- `overflowMode`: Control how the edge text is displayed when it exceeds the node.
+  - `default`: No processing after exceeding.
+  - `autoWrap`: Wrap automatically after exceeding.
+  - `ellipsis`: Hide excess and show ellipsis.
+- `background`: Control the background of the edge text.
 
 ```js
 lf.setTheme({
@@ -250,10 +250,10 @@ lf.setTheme({
 
 ## arrow
 
-箭头的样式
+Style of arrows
 
-- `offset`: 箭头长度
-- `verticalLength`: 箭头垂直于边的距离
+- `offset`: Length of the arrow
+- `verticalLength`: Vertical width of the arrow
 
 ```js
 lf.setTheme({
@@ -266,7 +266,7 @@ lf.setTheme({
 
 ## anchorLine
 
-在连线是，从锚点拖出的直线样式
+Style of the straight line dragged from an anchor point when manually connecting nodes.
 
 ```js
 lf.setTheme({
@@ -280,7 +280,7 @@ lf.setTheme({
 
 ## snapline
 
-对齐线样式
+Style of the snapline
 
 ```js
 lf.setTheme({
@@ -293,7 +293,7 @@ lf.setTheme({
 
 ## edgeAdjust
 
-当设置允许调整连线起点和终点时，连线两端调整点样式。
+The style of the adjustment points at both ends of the edge, when the setting allows adjusting the start and end points of the edge.
 
 ```js
 lf.setTheme({
@@ -308,7 +308,7 @@ lf.setTheme({
 
 ## outline
 
-节点和连线选中或者 hover 状态下的状态框样式。
+Style of the status box in the selected or hover state for nodes and edges.
 
 ```js
 lf.setTheme({
