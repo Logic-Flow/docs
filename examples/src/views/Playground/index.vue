@@ -25,7 +25,7 @@ const src = computed(() => {
 const project = ref(null);
 onMounted(() => {
   project.value = "ide-project";
-  const count = 0;
+  let count = 0;
   const timer = setInterval(() => {
     if (count > 20) {
       clearInterval(timer);
