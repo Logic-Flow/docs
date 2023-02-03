@@ -2,7 +2,7 @@
 
 All edges in LogicFlow will have an edgeModel corresponding to them. Due to the mechanism of Data Driven View, all our operations on edges are in fact operations on models. In most cases, it is not recommended to assign values to edgeModel properties directly, but to call the methods provided on model or [graphModel](graphModelApi.md).
 
-## Data attributes
+## Data attributes :id=DataAttributes
 
 The data attributes of an edge is the data of the edge that is included in the LogicFlow flowchart when it is saved.
 
