@@ -30,9 +30,9 @@
       </div>
       <IntervalMenuVue :data="config" :topic="true"></IntervalMenuVue>
     </div>
-    <div class="fold-tool" @click="handleWidthHidden">
+    <!-- <div class="fold-tool" @click="handleWidthHidden">
       <span :class="`${widthHidden && 'fold-tool-transform'}`">〈 </span>
-    </div>
+    </div> -->
   </div>
 </template>
 

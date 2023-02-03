@@ -64,7 +64,7 @@ async function scrape() {
           );
           await waitTime(5000);
           const rs = await page.$eval(".urlDiv", (el) => el.textContent);
-          if (rs && rs !== "1") {
+          if (rs && rs !== "nothing") {
             const iframe = await browser.newPage();
             await iframe.goto(rs);
             await iframe.screenshot({

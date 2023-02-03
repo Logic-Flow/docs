@@ -18,7 +18,7 @@
     overflow: scroll;
     background-color: #fff;
     color: #000;
-    border-right: 1px solid #e3e2e2;
+    border-right: 1px solid #f6f6f6;
 
     .menu-search-wrap {
         display: flex;
@@ -158,15 +158,16 @@
 
 .fold-tool {
     background-color: #fff;
-    height: 90px;
+    height: 56px;
     display: flex;
     align-items: center;
     border-radius: 0px 6px 6px 0px;
     padding: 0px 10px 0px 0px;
     color: #000;
-    border: 1px solid #e3e2e2;
+    border: 1px solid #e6e6e6;
     border-left: none;
     position: relative;
+    top: -27%;
     right: 1px;
     transition: 0.25s;
 }

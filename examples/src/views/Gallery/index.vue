@@ -7,7 +7,10 @@
         :key="examples.key"
         :id="examples.key"
       >
-        <h2>{{ examples.name }}</h2>
+        <div class="sub-title">
+          <h2>{{ examples.name }}</h2>
+          <h4>{{ examples.key }}</h4>
+        </div>
         <div class="case-wrap">
           <div
             v-for="example in examples.examples"
@@ -24,7 +27,11 @@
                   {{ example.name }}
                 </strong>
               </div>
-              <a v-if="example.github" :href="example.github" class="github-icon">
+              <a
+                v-if="example.github"
+                :href="example.github"
+                class="github-icon"
+              >
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 16 16"
@@ -40,10 +47,6 @@
                   ></path>
                 </svg>
               </a>
-
-              <!-- <a v-if="example.github" :href="example.github"
-                >🔗 view in github
-              </a> -->
             </div>
           </div>
         </div>
