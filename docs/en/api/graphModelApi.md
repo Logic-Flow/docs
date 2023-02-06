@@ -384,7 +384,7 @@ Parameters:
 
 | Name   | Type   | Default | Description  |
 | ------ | ------ | ------ | ----- |
-| edgeId | string | -     | egde Id |
+| edgeId | string | -     | egde id |
 
 Return value
 
@@ -609,8 +609,8 @@ Parameters:
 | Name         | Type    | Default | Description                 |
 | ------------ | ------- | ------ | -------------------- |
 | nodeId       | string  | -     | node id              |
-| deltaX       | number  | -     | Distance moved by x-axis        |
-| deltaY       | number  | -     | Distance moved by y-axis        |
+| deltaX       | number  | -     | x-axis translation distance        |
+| deltaY       | number  | -     | y-axis translation distance        |
 | isignoreRule | boolean | false  | Whether to ignore movement rule restrictions |
 
 ```js
@@ -628,8 +628,8 @@ Parameters:
 | Name         | Type    | Default | Description                 |
 | ------------ | ------- | ------ | -------------------- |
 | nodeId       | string  | -     | node id              |
-| x            | number  | -     | Distance moved by x-axis        |
-| y            | number  | -     | Distance moved by y-axis        |
+| x            | number  | -     | x-axis translation distance        |
+| y            | number  | -     | y-axis translation distance        |
 | isignoreRule | boolean | false  | Whether to ignore movement rule restrictions |
 
 ```js
@@ -847,8 +847,8 @@ Parameters
 | Name    | Type     | Required | Default | Description            |
 | :------ | :------- | :--- | :----- | :-------------- |
 | nodeIds | string[] | true | -     | All node ids     |
-| deltaX  | number   | true | -     | Distance moved by x-axis  |
-| deltaY  | number   | true | -     | Distance moved by y-axis  |
+| deltaX  | number   | true | -     | x-axis translation distance  |
+| deltaY  | number   | true | -     | y-axis translation distance  |
 
 ```js
 graphModel.moveNodes(["node_id", "node_2"], 10, 10);
