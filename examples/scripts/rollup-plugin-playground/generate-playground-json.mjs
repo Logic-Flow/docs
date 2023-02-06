@@ -9,9 +9,11 @@ function findPath(data) {
     if (tmp) {
       path.push(data.key || data.name);
       tmp.forEach((i) => {
-        const r = backTracking(i, path);
-        if (r) {
-          res.push([...path, r]);
+        if (i?.examples || i?.mode === "playground") {
+          const r = backTracking(i, path);
+          if (r) {
+            res.push([...path, r]);
+          }
         }
       });
       path.pop();
@@ -53,6 +55,8 @@ export default function generatePlaygroundJson() {
       jsonObject[el[el.length - 1]] = {
         files: jsonFiles,
       };
+    } else {
+      console.log(`cant find the file in path ${p}`);
     }
   }
   return jsonObject;
