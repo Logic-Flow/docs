@@ -1,0 +1,31 @@
+{
+  "name": "自定义节点",
+  "key": "custom-node",
+  "examples": [
+    {
+      "name": "自定义节点样式、形状",
+      "key": "custom-node-style",
+      "mode": "playground"
+    },
+    {
+      "name": "自定义svg节点",
+      "key": "custom-svg-node",
+      "mode": "playground"
+    },
+    {
+      "name": "自定义html节点",
+      "key": "custom-html-node",
+      "mode": "playground"
+    },
+    {
+      "name": "自定义React节点",
+      "key": "custom-react-node",
+      "mode": "playground"
+    },
+    {
+      "name": "自定义Vue节点",
+      "key": "custom-vue-node",
+      "mode": "playground"
+    }
+  ]
+}

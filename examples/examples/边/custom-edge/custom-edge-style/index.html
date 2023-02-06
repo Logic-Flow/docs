@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="//unpkg.com/@logicflow/core/dist/style/index.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #container {
+      height: calc(100% - 20px);
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <div class="custom-node-style">
+    <div class="custom-node-fill">
+      边类型：
+      <input type="radio" name="type" value="custom-line-edge" oninput="handleTypeChange(this)">直线
+      <input type="radio" name="type" value="custom-polyline-edge" checked="checked" oninput="handleTypeChange(this)">直角折线
+      <input type="radio" name="type" value="custom-bezier-edge" oninput="handleTypeChange(this)">贝塞尔曲线
+    </div>
+    <div class="custom-node-fill">
+      是否开启边动画
+      <input type="radio" name="animation" value="open" oninput="handleAnimationChange(this)">开启
+      <input type="radio" name="animation" value="close" checked="checked" oninput="handleAnimationChange(this)">关闭
+    </div>
+    <div class="custom-node-fill">
+      边颜色：
+      <div class="custom-red" onclick="handleColorChange('stroke', 'red')"></div>
+      <div class="custom-blue" onclick="handleColorChange('stroke', 'blue')"></div>
+      <div class="custom-green" onclick="handleColorChange('stroke', 'green')"></div>
+    </div>
+    <div class="custom-node-stroke">
+      边宽度：
+      <input type="text" oninput="handleStrokeWidth(this)">
+    </div>
+    <div class="custom-text-color">
+      线文本颜色：
+      <div class="custom-red" onclick="handleColorChange('text', 'red')"></div>
+      <div class="custom-blue" onclick="handleColorChange('text', 'blue')"></div>
+      <div class="custom-green" onclick="handleColorChange('text', 'green')"></div>
+    </div>
+    <div class="custom-text-size">
+      线文本字体大小：<input type="text" oninput="handleFontSize(this)">
+    </div>
+    <div class="custom-text-position">
+      线文本位置（基于默认位置平移）：<br>
+      水平：<input type="text" oninput="handleHorizontalMove(this)">
+      垂直：<input type="text" oninput="handleVerticalMove(this)">
+    </div>
+  </div>
+  <script src="//unpkg.com/@logicflow/core/dist/logic-flow.js"></script>
+  <script type="module" src="./index.js"></script>
+</body>
+</html>
