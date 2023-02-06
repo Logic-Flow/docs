@@ -6,12 +6,14 @@ function findPath(data) {
   const res = [];
   const backTracking = (data, path) => {
     const tmp = data.children || data.examples;
-    if (tmp && tmp?.mode === "playground") {
+    if (tmp) {
       path.push(data.key || data.name);
       tmp.forEach((i) => {
-        const r = backTracking(i, path);
-        if (r) {
-          res.push([...path, r]);
+        if (i?.examples || i?.mode === "playground") {
+          const r = backTracking(i, path);
+          if (r) {
+            res.push([...path, r]);
+          }
         }
       });
       path.pop();
