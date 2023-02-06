@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --mode production --host 127.0.0.1",
+    "dev": "vite --mode  production --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview",
     "dev:screenshot": "vite --mode development & node --unhandled-rejections=strict scripts/screenshot.js && exit 0 && vite --mode production"

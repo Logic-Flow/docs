@@ -6,7 +6,7 @@ function findPath(data) {
   const res = [];
   const backTracking = (data, path) => {
     const tmp = data.children || data.examples;
-    if (tmp) {
+    if (tmp && tmp?.mode === "playground") {
       path.push(data.key || data.name);
       tmp.forEach((i) => {
         const r = backTracking(i, path);
@@ -53,6 +53,8 @@ export default function generatePlaygroundJson() {
       jsonObject[el[el.length - 1]] = {
         files: jsonFiles,
       };
+    } else {
+      console.log(`cant find the file in path ${p}`);
     }
   }
   return jsonObject;
