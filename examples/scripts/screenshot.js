@@ -64,7 +64,7 @@ async function scrape() {
           );
           await waitTime(5000);
           const rs = await page.$eval(".urlDiv", (el) => el.textContent);
-          if (rs && rs !== "1") {
+          if (rs && rs !== "nothing") {
             const iframe = await browser.newPage();
             await iframe.goto(rs);
             await iframe.screenshot({
@@ -84,10 +84,12 @@ async function scrape() {
         }
         spinner.succeed(`Screenshot of ${key} saved!`);
       } catch (error) {
-        console.log("error ------- ", error);
-        spinner.error(`Could not save screenshot of ${key}!`);
+        spinner.fail(
+          `Could not save the screenshot of ${key} because of ${error}!`
+        );
       }
     }
+    await page.close();
     await browser.close();
   } catch (error) {
     console.log(error);

@@ -3,7 +3,7 @@
   "key": "business-scenario",
   "examples": [
     {
-      "name": "思维导图1",
+      "name": "思维导图",
       "key": "mind-mapping",
       "mode": "playground"
     },
@@ -13,7 +13,7 @@
       "mode": "playground"
     },
     {
-      "name": "BPMN Demo",
+      "name": "BPMN",
       "key": "BPMN-Demo",
       "mode": "link",
       "link": "/demo/dist/examples/#/usage/bpmn?from=doc",
@@ -27,7 +27,7 @@
       "github": "https://github.com/Logic-Flow/docs/tree/master/demo/examples/src/pages/usage/approve"
     },
     {
-      "name": "流程图绘制mvp",
+      "name": "流程图绘制MVP",
       "key": "logicflow-mvp",
       "mode": "link",
       "link": "/demo/dist/mvp",

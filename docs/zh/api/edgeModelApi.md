@@ -13,7 +13,7 @@ LogicFlow 中所有的边都会有一个 edgeModel 与其对应。由于数据�
 | sourceNodeId | string        | ✅       | 开始节点 Id                                      |
 | targetNodeId | string        | ✅       | 结束节点 Id                                      |
 | startPoint   | Point         | ✅       | 边的开始坐标                                     |
-| endPoint     | Point         | ✅       | 边的坐标                                         |
+| endPoint     | Point         | ✅       | 边的结束坐标                                         |
 | text         | Object/String |          | 边文本                                           |
 | pointsList   | Array         |          | 控制边的轨迹，`polyline`和`bezier`有，`line`没有 |
 | properties   | Object        |          | 边的自定义属性                                   |
@@ -52,7 +52,7 @@ LogicFlow 在`model`上还维护一些属性，开发者可以通过这些属性
 | sourceAnchorId     | string  | -        | 连线起点锚点 id                                                                                                                                                                                                |
 | targetAnchorId     | string  | -        | 连线终点锚点 id                                                                                                                                                                                                |
 | customTextPosition | boolean | -        | 自定义连线文本位置                                                                                                                                                                                             |
-| virtual            | boolean | -        | 是否为虚拟节点，默认 false。当为 true 时导出数据不会包含此元素。 `v1.1.24`                                                                                                                                     |
+| virtual            | boolean | -        | 是否为虚拟连线，默认 false。当为 true 时导出数据不会包含此元素。 `v1.1.24`                                                                                                                                     |
 
 ## 样式属性
 
@@ -60,7 +60,7 @@ LogicFlow 所有的边最终都是以 SVG DOM 的方式渲染。svg 的样式相
 
 ## getEdgeStyle
 
-支持重写，自定义边文本样式属性. 默认为[主题 baseEdge](zh/api/themeApi#baseedge)
+支持重写，自定义边样式属性. 默认为[主题 baseEdge](zh/api/themeApi#baseedge)
 
 ```js
 class SequenceFlowModel extends PolylineModel {
@@ -137,7 +137,7 @@ class UserEdgeModel extends PolylineEdgeModel {
 
 支持重写，自定义节点 id 的生成规则.
 
-?> **注意**1. 请保证此方法返回 id 的唯一性。 2. 此方法为同步方法，如果想要异步修改节点 id, 请参考[#272](https://github.com/didi/LogicFlow/issues/272)
+?> **注意**1. 请保证此方法返回 id 的唯一性。 2. 此方法为同步方法，如果想要异步修改边 id, 请参考[#272](https://github.com/didi/LogicFlow/issues/272)
 
 ```js
 import { v4 as uuidv4 } from "uuid";
