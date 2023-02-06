@@ -1,6 +1,6 @@
-# TransformModel
+# transformModel
 
-控制画布的放大、缩小、平移
+Control the zoom in, zoom out, and pan of the canvas
 
 ```ts
 type PointTuple = [number, number]
@@ -8,12 +8,12 @@ type PointTuple = [number, number]
 
 ## zoom(zoomSize, point)
 
-放大缩小画布. 放大缩小的刻度是`transformModel.ZOOM_SIZE`
+Zoom in and out of the canvas. The scale for zooming in and out is `transformModel.ZOOM_SIZE`
 
-|名称|类型|默认值|说明|
+|Name|Type|Default|Description|
 |-|-|-|-|
-|isZoomIn|boolean|false| 放大缩小的值，支持传入0-n之间的数字。小于1表示缩小，大于1表示放大。也支持传入true和false按照内置的刻度放大缩小|
-|point|PointTuple|无|放大缩小基准点，可以理解为transform-origin|
+|isZoomIn|boolean|false| Zoom in/out value. Support passing in a number between 0 and n, less than 1 means zoom in, more than 1 means zoom out. It also supports passing true and false to zoom in and out according to the built-in scale. |
+|point|PointTuple|-|Zoom in and out of the reference point, which can be understood as transform-origin|
 
 ```js
 const { transformModel } = lf.graphModel;
@@ -22,12 +22,12 @@ transformModel.zoom(true)
 
 ## translate(x, y)
 
-移动画布
+Move the canvas
 
-|名称|类型|默认值|说明|
+|Name|Type|Default|Description|
 |-|-|-|-|
-|x|number|无|移动的X轴距离|
-|y|number|无|移动的Y轴距离|
+|x|number|-|x-axis translation distance|
+|y|number|-|y-axis translation distance|
 
 ```js
 const { transformModel } = lf.graphModel;
@@ -37,14 +37,14 @@ transformModel.translate(100, 100);
 
 ## focusOn(targetX, targetY, width, height)
 
-将图形移动到画布中心
+Move the target to the center of the canvas
 
-|名称|类型|默认值|说明|
+|Name|Type|Default|Description|
 |-|-|-|-|
-|targetX|number|无|图形当前x坐标|
-|targetY|number|无|图形当前y坐标|
-|width|number|无|画布宽|
-|height|number|无|画布高|
+|targetX|number|-|Current x coordinate of the target|
+|targetY|number|-|Current y coordinate of the target|
+|width|number|-|Canvas width|
+|height|number|-|Canvas height|
 
 ```js
 const { transformModel, width, height } = lf.graphModel;
@@ -53,11 +53,11 @@ transformModel.focusOn(100, 100, width, height);
 
 ## setZoomMiniSize(size)
 
-设置缩放时的最小值
+Set the minimum value for scaling
 
-|名称|类型|默认值|说明|
+|Name|Type|Default|Description|
 |-|-|-|-|
-|size|number|无|缩小的倍数，0-1之间|
+|size|number|-|Reduction multiple, between 0-1|
 
 ```js
 const { transformModel } = lf.graphModel;
@@ -66,11 +66,11 @@ transformModel.setZoomMiniSize(0.1);
 
 ## setZoomMaxSize(size)
 
-设置缩放的最大值
+Set the maximum value for scaling
 
-|名称|类型|默认值|说明|
+|Name|Type|Default|Description|
 |-|-|-|-|
-|size|number|无|放大的倍数，大于1|
+|size|number|-|Magnification, greater than 1|
 
 ```js
 const { transformModel } = lf.graphModel;
@@ -78,44 +78,44 @@ transformModel.setZoomMaxSize(10);
 ```
 ## HtmlPointToCanvasPoint
 
-`方法`
+`Method`
 
-将toolOverlay点基于缩放转换为canvasOverlay层上的点
+Converts points on the toolOverlay layer to points on the canvasOverlay layer based on scaling.
 
-参数
+Parameters
 
-| 名称 | 类型 | 必传 | 默认值 | 描述 |
+| Name | Type | Required | Default | Description |
 | :- | :- | :- | :- | :- |
-| point | PointTuple | true | 无 | 坐标 |
+| point | PointTuple | true | - | coordinate |
 
-返回值
+Return value
 
 PointTuple
 
 ```js
 const { transformModel } = lf.graphModel;
 const point = transformModel.HtmlPointToCanvasPoint([100, 100]);
-// 如果画布x轴平移了+100，那么返回的值为[0, 100]
+// If the canvas x-axis is panned by +100, then the returned value is [0, 100]
 ```
 
 ## CanvasPointToHtmlPoint
 
-`方法`
+`Method`
 
-将canvasOverlay层上的点基于缩放转换为toolOverlay上的点。
+Converts points on the canvasOverlay layer to points on the toolOverlay layer based on scaling.
 
-参数
+Parameters
 
-| 名称 | 类型 | 必传 | 默认值 | 描述 |
+| Name | Type | Required | Default | Description |
 | :- | :- | :- | :- | :- |
-| point | PointTuple | true | 无 | 坐标 |
+| point | PointTuple | true | - | coordinate |
 
-返回值
+Return value
 
 PointTuple
 
 ```js
 const { transformModel } = lf.graphModel;
 const point = transformModel.CanvasPointToHtmlPoint([100, 100]);
-// 如果画布x轴平移了+100，那么返回的值为[200, 100]
+// If the canvas x-axis is panned by +100, then the returned value is [200, 100]
 ```

@@ -5,7 +5,7 @@
   - [nodeModel](en/api/nodeModelApi)
   - [edgeModel](en/api/edgeModelApi)
   - [eventCenter](en/api/eventCenterApi)
-  - [TransformModel](en/api/transformModelApi)
+  - [transformModel](en/api/transformModelApi)
   - [editConfigModel](en/api/editConfigModelApi)
   - [Theme](en/api/themeApi)
 - [Examples <i class="fa fa-external-link navbar-icon"></i>](https://logic-flow.github.io/docs/examples)
