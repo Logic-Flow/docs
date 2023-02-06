@@ -1,38 +1,39 @@
-import { reactive } from 'vue';
-import { TypeOf } from '../../utils';
+import { reactive } from "vue";
+import { TypeOf } from "../../utils";
 
 export const useMenuItemEvent = (props) => {
   const el = reactive({
     cur: {
-      name: '',
-      node: '',
+      name: "",
+      node: "",
     },
   });
 
   let path = reactive({
     value: [],
-    string: '',
+    string: "",
   });
 
   const clickItem = (className) => {
-    if (el.cur.name === '') {
+    console.log("---------》", className);
+    if (el.cur.name === "") {
       el.cur.name = className;
     } else {
-      if (el.cur.node.classList.contains('item-active')) {
-        el.cur.node.classList.toggle('item-active');
+      if (el.cur.node.classList.contains("item-active")) {
+        el.cur.node.classList.toggle("item-active");
       }
-      if (el.cur.node.classList.contains('thumbnail-active')) {
-        el.cur.node.classList.toggle('thumbnail-active');
+      if (el.cur.node.classList.contains("thumbnail-active")) {
+        el.cur.node.classList.toggle("thumbnail-active");
       }
     }
     el.cur.name = className;
     el.cur.node = document.querySelector(`.${el.cur.name}`);
-    el.cur.node.classList.toggle('item-active');
-    el.cur.node.classList.toggle('thumbnail-active');
+    el.cur.node.classList.toggle("item-active");
+    el.cur.node.classList.toggle("thumbnail-active");
   };
 
   const handleExamplesItemClick = (className) => {
-    props.type !== 'thumbnail' && clickItem(className);
+    props.type !== "thumbnail" && clickItem(className);
   };
 
   const findSelectedPath = (source, name) => {
@@ -62,11 +63,11 @@ export const useMenuItemEvent = (props) => {
   const toggleSelectedByPath = (source, name) => {
     const res = findSelectedPath(source, name);
     const str = res.toString();
-    if (path.string !== '') {
+    if (path.string !== "") {
       if (path.string === str) return;
       path.value.forEach((item) => {
         const el = document.querySelector(`.${item}`);
-        el.classList.remove('selected');
+        el.classList.remove("selected");
       });
       path.value = res;
       path.string = str;
@@ -75,7 +76,7 @@ export const useMenuItemEvent = (props) => {
     path.string = str;
     path.value.forEach((item) => {
       const el = document.querySelector(`.${item}`);
-      el.classList.add('selected');
+      el.classList.add("selected");
     });
   };
 
@@ -92,7 +93,7 @@ export const useAnimations = () => {
   };
 
   const handleIconFold = (flag) => {
-    return flag ? 'fold-icon-collapse' : 'fold-icon-open';
+    return flag ? "fold-icon-collapse" : "fold-icon-open";
   };
 
   return {
@@ -111,7 +112,7 @@ export const useTools = () => {
       item.fold = true;
       if (
         item.children &&
-        TypeOf(item.children, 'Array') &&
+        TypeOf(item.children, "Array") &&
         item.children.length > 0
       ) {
         initConfig(item.children);
@@ -176,7 +177,7 @@ export const useTools = () => {
     return item.has
       ? item.name.replace(
           inputValue,
-          `<strong class='filter-font'>${inputValue}</strong>`,
+          `<strong class='filter-font'>${inputValue}</strong>`
         )
       : item.name;
   };

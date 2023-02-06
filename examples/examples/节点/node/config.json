@@ -1,6 +1,6 @@
 {
-  "name": "节点",
-  "key": "node",
+  "name": "自定义节点",
+  "key": " user-defined node",
   "examples": [
     {
       "name": "自定义节点样式、形状",

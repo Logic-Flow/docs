@@ -68,7 +68,8 @@ const jumpTo = (example) => {
       hash: `#${key}`,
     });
   } else {
-    console.log(link);
+    (link.includes("http") && window.open(link)) ||
+      window.open(`https://docs.logic-flow.cn/${link}`);
     window.open(link);
   }
 };
