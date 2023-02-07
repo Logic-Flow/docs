@@ -54,7 +54,7 @@ LogicFlow also maintains some properties on `model` that developers can use to g
 | customTextPosition | boolean | -        | Customize the position of the edge text                                                                                                                                                                                             |
 | virtual            | boolean | -        | Whether it is a virtual node, the default is false. Export data will not include this node when the value is true. `v1.1.24`                                                                                                                                     |
 
-## Style attributes
+## Style attributes :id=StyleAttributes
 
 All edges of LogicFlow are eventually rendered as SVG DOM. But except for the shape attributes, all other properties belonging to svg do not exist directly in `edgeModel`. When developers want to add more [svg attributes](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute) to the SVG DOM, they can do so by overriding the method on `edgeModel` that gets the node style attributes.
 
