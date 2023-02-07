@@ -42,7 +42,7 @@ Status attributes are generally used when customizing nodes for more fine-graine
 | isShowAnchor | boolean | ✅       | Whether to show anchor points          |
 | visible      | boolean | ✅       | Show or not, added in `1.1.0` |
 
-## ShapeAttributes
+## Shape attributes :id=ShapeAttributes
 
 The shape attributes of LogicFlow mainly controls the main appearance of the base node. Shape attributes can be set by `setAttributes` or `initNodeData`. See [Custom node shape properties](en/guide/basic/node#custom-shape-properties) for details on how to set them.
 
@@ -77,7 +77,7 @@ LogicFlow also maintains some properties on `model` that developers can use to g
 
 !> **What is the difference between modelType and type?** When customizing a node, `type` can be any value that the developer defines. But inside LogicFlow, when it comes to the computation of this node, we need to sense the specific shape of this node, which cannot be determined by `type`, but by `modelType`.
 
-## StyleAttributes
+## Style attributes :id=StyleAttributes 
 
 All nodes of LogicFlow are eventually rendered as SVG DOM. But except for the shape attributes, all other properties belonging to svg do not exist directly in `nodeModel`. When developers want to add more [svg attributes](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute) to the SVG DOM, they can do so by overriding the method on `nodeModel` that gets the node style attributes.
 
