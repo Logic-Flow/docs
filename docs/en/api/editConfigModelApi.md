@@ -1,36 +1,41 @@
 # editConfigModel
 
-editConfigModel 是控制页面编辑状态。详细用法见[设置图编辑方式](en/guide/basic/silent-mode)
+EditConfigModel is to control the page editing status. See [set diagram edit mode](en/guide/basic/silent-mode) for detailed usage
 
-## 属性说明
 
-| 属性名                  | 类型    | 默认值 | 说明                                                                 |
-| ----------------------- | ------- | ------ | -------------------------------------------------------------------- |
-| isSilentMode            | boolean | false  | 是否为静默模式                                                       |
-| stopZoomGraph           | boolean | false  | 禁止缩放画布                                                         |
-| stopScrollGraph         | boolean | false  | 禁止鼠标滚动移动画布                                                 |
-| stopMoveGraph           | boolean | false  | 禁止拖动画布                                                         |
-| adjustEdge              | boolean | true   | 允许调整边                                                           |
-| adjustEdgeMiddle        | boolean | false  | 只对折线生效，只允许调整边的中间线段，不允许调整与起点终点相连的线段 |
-| adjustEdgeStartAndEnd   | boolean | false  | 允许调整边起点/终点                                                  |
-| adjustNodePosition      | boolean | true   | 允许拖动节点                                                         |
-| hideAnchors             | boolean | false  | 隐藏节点所有锚点                                                     |
-| nodeTextEdit            | boolean | true   | 允许节点文本可以编辑                                                 |
-| edgeTextEdit            | boolean | true   | 允许边文本可以编辑                                                   |
-| nodeTextDraggable       | boolean | false  | 允许节点文本可以拖拽                                                 |
-| edgeTextDraggable       | boolean | false  | 允许边文本可以拖拽                                                   |
-| metaKeyMultipleSelected | boolean | false  | 允许按照 meta 键多选元素                                             |
+## Property Description
+
+| Name                  | Type    | Default | Description                                                                   |
+| ----------------------- | ------- | ------ | ---------------------------------------------------------------------- |
+| isSilentMode           | boolean | false  | Whether to be in silent mode                                                           |
+| stopZoomGraph           | boolean | false  | Disable scaling of the canvas                                                           |
+| stopScrollGraph         | boolean | false  | Disable mouse scrolling to move the canvas                                                   |
+| stopMoveGraph           | boolean | false  | Disable dragging the canvas                                                           |
+| adjustEdge              | boolean | true   | Allow adjustment of sides                                                           |
+| adjustEdgeMiddle        | boolean | false  | Only effective for the fold line, only the middle segment of the edge is allowed to be adjusted, not the segment connected to the starting end |
+| adjustEdgeStartAndEnd   | boolean | false  | Allow adjustment of edge start/end point                                                  |
+| adjustNodePosition      | boolean | true   | Allow dragging of the node                                                           |
+| hideAnchors             | boolean | false  | Hide all anchors of the node                                                       |
+| hoverOutline            | boolean | true  | Show the outer frame of the node when it is hovered                                                       |
+| nodeTextEdit            | boolean | true   | Allow node text to be editable                                                   |
+| edgeTextEdit            | boolean | true   | Allow edge text to be editable                                                   |
+| nodeTextDraggable       | boolean | false  | Allow node text to be draggable                                                   |
+| edgeTextDraggable       | boolean | false  | Allow edge text to be draggable                                                   |
+| metaKeyMultipleSelected | boolean | false  | Allow multiple selection of elements by meta key                                               |
+| autoExpand              | boolean | true  | Whether the node/edge automatically expands the canvas when it goes beyond the canvas                                               |
+
 
 ## updateEditConfig
 
-`方法`
+`Method`
 
-修改流程表编辑状态
+Modify flow edit status
 
-入参:
-|名称|类型|默认值|说明|
-|-|-|-|-|
-|config|object|无| 页面编辑状态配置 |
+Parameters:
+
+|Name|Type|Default|Description|
+|-|-|-|-| 
+|config|object|-| page edit status configuration |
 
 ```ts
 const { editConfigModel } = lf.graphModel;
@@ -41,9 +46,9 @@ editConfigModel.updateEditConfig({
 
 ## getConfig
 
-`方法`
+`Method`
 
-获得当前页面编辑状态
+Get the current page edit status
 
 ```ts
 const { editConfigModel } = lf.graphModel;

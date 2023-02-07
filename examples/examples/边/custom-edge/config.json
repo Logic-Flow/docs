@@ -1,6 +1,6 @@
 {
-  "name": "边",
-  "key": "edge",
+  "name": "自定义边",
+  "key": "custom-edge",
   "examples": [
     {
       "name": "自定义边样式",

@@ -1,31 +1,16 @@
-.ide,
-.preview,
-.editor {
+#ide {
+    display: flex;
+    height: 100%;
+    --playground-bar-height: 54px;
+    --playground-preview-width: 55%;
     scrollbar-width: none !important; /* firefox */
     -ms-overflow-style: none !important; /* ie10+ */
+    & ::-webkit-scrollbar {
+        /* chrome */
+        display: none !important;
+    }
 }
 
-.ide {
-    display: flex;
-    & ::-webkit-scrollbar {
-        /* chrome */
-        display: none !important;
-    }
-}
-.preview {
-    flex: 2;
-    & ::-webkit-scrollbar {
-        /* chrome */
-        display: none !important;
-    }
-}
-.editor {
-    flex: 1.5;
-    & ::-webkit-scrollbar {
-        /* chrome */
-        display: none !important;
-    }
-}
 .urlDiv {
     position: absolute;
     width: 0;
@@ -35,10 +20,4 @@
 div {
     height: 100%;
     overflow: scroll;
-}
-#ide-preview {
-    height: 99%;
-}
-#ide-editor {
-    height: calc(100% - 51px);
 }

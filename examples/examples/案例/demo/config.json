@@ -1,0 +1,25 @@
+{
+  "name": "示例",
+  "key": "demo",
+  "examples": [
+    {
+      "name": "logicflow-node-red-vue3",
+      "key": "logicflow-node-red-vue3",
+      "mode": "link",
+      "link": "/demo/dist/logicflow-node-red-vue3",
+      "github": "https://github.com/Logic-Flow/docs/tree/master/demo/logicflow-node-red-vue3"
+    },
+    {
+      "name": "Vue demo",
+      "key": "logicflow-vue-demo",
+      "mode": "link",
+      "link": "https://xinxin93.github.io/logicflow_vue_demo/#/",
+      "github": "https://github.com/xinxin93/logicflow_vue_demo"
+    },
+    {
+      "name": "HTML卡片demo",
+      "key": "html-card",
+      "mode": "playground"
+    }
+  ]
+}

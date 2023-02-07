@@ -5,7 +5,7 @@
   - [nodeModel](zh/api/nodeModelApi)
   - [edgeModel](zh/api/edgeModelApi)
   - [事件](zh/api/eventCenterApi)
-  - [TransformModel](zh/api/transformModelApi)
+  - [transformModel](zh/api/transformModelApi)
   - [editConfigModel](zh/api/editConfigModelApi)
   - [主题](zh/api/themeApi)
 - [示例 <i class="fa fa-external-link navbar-icon"></i>](https://logic-flow.github.io/docs/examples)

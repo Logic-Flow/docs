@@ -78,7 +78,7 @@ The event object contains the following:
 | :---------------- | :------------------------------------------------------------------------- | :---------- |
 | blank:mousedown   | Press the mouse on the canvas                                                               | e           |
 | blank:mousemove   | Move the mouse pointer on the canvas                                                                | e           |
-| blank:mouseup     | Release the mouse on the canvas                                                              | e           |
+| blank:mouseup     | Release the mouse on the canvas 
 | blank:click       | Click on the canvas                                                                    | e           |
 | blank:contextmenu | Right-click on the canvas                                                                   | e, position |
 | blank:dragstart   | Start dragging canvas                                                               | e           |
