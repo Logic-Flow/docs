@@ -9,11 +9,11 @@ LogicFlow provides an event system to inform the developer of events that occur 
 | element:click    | Click on the element               | data, e, position |
 | node:click       | Click on the node               | data, e, position |
 | node:dbclick     | Double-click on the node              | data, e, position |
-| node:mousedown   | Mouse down node           | data, e           |
-| node:mouseup     | Mouse up node           | data, e           |
-| node:mousemove   | Mouse move node           | data, e           |
-| node:mouseenter  | Mouse enter node           | data, e           |
-| node:mouseleave  | Mouse leave node            | data, e           |
+| node:mousedown   | Press the mouse on the node          | data, e           |
+| node:mouseup     | Release the mouse on the node           | data, e           |
+| node:mousemove   | Move the mouse pointer on the node           | data, e           |
+| node:mouseenter  | Move the mouse pointer into the node           | data, e           |
+| node:mouseleave  | Move the mouse pointer out of the node            | data, e           |
 | node:delete      | Delete node             | data              |
 | node:add         | Add node            | data              |
 | node:dnd-add     | When a node is dragged in from outside, the node added will trigger the event | data              |
@@ -38,8 +38,8 @@ The event object contains the following:
 | element:click          | Click on the element          | data, e, position |
 | edge:click             | Click on the edge            | data, e, position |
 | edge:dbclick           | Double-click on the edge            | data, e           |
-| edge:mouseenter        | Mouse enter edge        | data, e           |
-| edge:mouseleave        | Mouse leave edge        | data, e           |
+| edge:mouseenter        | Move the mouse pointer into the edge       | data, e           |
+| edge:mouseleave        | Move the mouse pointer out of the edge        | data, e           |
 | edge:add               | Add edge            | data              |
 | edge:delete            | Delete edge            | data              |
 | edge:contextmenu       | Right-click on the edge            | data, e, position |
@@ -76,9 +76,9 @@ The event object contains the following:
 
 | Event names            | Description                                                                       | Event object    |
 | :---------------- | :------------------------------------------------------------------------- | :---------- |
-| blank:mousedown   | Mouse down on the canvas                                                               | e           |
-| blank:mousemove   | Mouse move on the canvas                                                               | e           |
-| blank:mouseup     | Mouse up on the canvas                                                              | e           |
+| blank:mousedown   | Press the mouse on the canvas                                                               | e           |
+| blank:mousemove   | Move the mouse pointer on the canvas                                                                | e           |
+| blank:mouseup     | Release the mouse on the canvas                                                              | e           |
 | blank:click       | Click on the canvas                                                                    | e           |
 | blank:contextmenu | Right-click on the canvas                                                                   | e, position |
 | blank:dragstart   | Start dragging canvas                                                               | e           |
@@ -119,11 +119,11 @@ Events triggered when multiple nodes are selected at the same time to form a sel
 | Event names                | Description           | Event object       |
 | :-------------------- | :------------- | :------------- |
 | selection:selected    | Triggered when the selection is selected | All selected elements |
-| selection:mousedown   | Mouse down on the selection   | e              |
+| selection:mousedown   | Press the mouse on the selection    | e              |
 | selection:dragstart   | Start dragging the selection   | e              |
 | selection:drag        | Selection in dragging       | e              |
 | selection:drop        | End of selection dragging   | e              |
-| selection:mousemove   | Move the mouse on the selection   | e, position    |
+| selection:mousemove   | Move the mouse pointer on the selection   | e, position    |
 | selection:mouseup     | Release the mouse on the selection   | e              |
 | selection:contextmenu | Right-click on the selection       | e              |
 
