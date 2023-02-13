@@ -9,7 +9,8 @@
   - [editConfigModel](zh/api/editConfigModelApi)
   - [主题](zh/api/themeApi)
 - [示例 <i class="fa fa-external-link navbar-icon"></i>](https://logic-flow.github.io/docs/examples)
-- <font size=4>v1.1.x <i class="fa fa-caret-down navbar-icon"></i></font>
+- <font>版本发布 <i class="fa fa-caret-down navbar-icon"></i></font>
+  - [v1.2.x](zh/release/1.2)
   - [v1.1.x](zh/release/1.1)
   - [v1.0.x](zh/release/1.0)
   - [v0.7.x <i class="fa fa-external-link navbar-icon"></i>](https://07.logic-flow.cn/)
