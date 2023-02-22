@@ -3,6 +3,20 @@
   "key": "demo",
   "examples": [
     {
+      "name": "脑图和一键美化",
+      "key": "mindmap-and-one-click-beautification",
+      "mode": "link",
+      "link": "https://hsole.github.io/layoutFlow",
+      "github": "https://github.com/hsole/layoutFlow"
+    },
+    {
+      "name": "自定义BPMN边界事件",
+      "key": "bpmn-boundary-events",
+      "mode": "link",
+      "link": "https://hsole.github.io/BoundaryEvents/",
+      "github": "https://github.com/hsole/BoundaryEvents"
+    },
+    {
       "name": "logicflow-node-red-vue3",
       "key": "logicflow-node-red-vue3",
       "mode": "link",
