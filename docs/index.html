@@ -41,6 +41,8 @@
 
   <body>
     <nav>
+      <a id="a_guide" href="#/zh/guide/start"> 教程 </a>
+      <a id="a_api" href="#/zh/api/logicFlowApi"> API </a>
       <a target="_blank" href="https://github.com/didi/LogicFlow">
         <i class="fa fa-github fa-lg"></i> Github
       </a>
@@ -65,6 +67,11 @@
         navigator.language.includes("en") ||
         window.location.href.includes("en");
       const language = zh ? (en ? "en" : "zh") : "en";
+      const guide = document.querySelector("#a_guide");
+      const api = document.querySelector("#a_api");
+      guide.href = `#/${language}/guide/start`;
+      guide.innerText = language === "zh" ? "教程" : "Guide";
+      api.href = `#/${language}/api/logicFlowApi`;
       window.$docsify = {
         name: "LogicFlow",
         repo: "https://github.com/didi/LogicFlow",
