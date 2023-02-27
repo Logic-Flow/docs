@@ -39,6 +39,13 @@
       "mode": "link",
       "link": "https://hsole.github.io/S12/",
       "github": "https://github.com/hsole/S12"
+    },
+    {
+      "name": "手绘风格流程图",
+      "key": "logicflow-draft-demo",
+      "mode": "link",
+      "link": "https://github.com/towersxu/draft-flow",
+      "github": "https://github.com/towersxu/draft-flow"
     }
   ]
 }
