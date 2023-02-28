@@ -1,13 +1,16 @@
 <template>
-  <div v-for="item in data" :key="item.key">
+  <div v-for="(item, index) in data" :key="item.key">
     <div v-if="topic">
       <div :class="`menu-item  ${item.name}`" v-show="item.has">
         <span
           :class="`topic hover-font ${animations.handleIconFold(item.fold)}`"
           @click.stop="animations.toggleFold(item)"
         >
-          <p v-html="tools.hightLight(item, inputValue)"></p>
-          <span class="fold-icon"></span>
+          <div class="topic-content">
+            <i :class="`categorize_icon categorize_${index}`"></i>
+            <p v-html="tools.hightLight(item, inputValue)"></p>
+          </div>
+          <span class="fa fa-caret-down"></span>
         </span>
       </div>
     </div>

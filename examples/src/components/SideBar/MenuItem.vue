@@ -10,7 +10,10 @@
         :class="`hover-font sub-title ${animations.handleIconFold(data.fold)}`"
         @click.stop="animations.toggleFold(data)"
       >
-        <p v-html="tools.hightLight(data, inputValue)"></p>
+        <div>
+          <i :class="`categorize_icon categorize_${data.key}`"></i>
+          <p v-html="tools.hightLight(data, inputValue)"></p>
+        </div>
         <span class="fold-icon"></span>
       </div>
       <CollapseTransition>
@@ -55,6 +58,7 @@
     <div v-else :class="`${data.name} hover-bkg`">
       <a
         href="javascript:void(0)"
+        class="menu-content"
         @click="handleAtagClick(data.name, data.key)"
         v-html="tools.hightLight(data, inputValue)"
       >

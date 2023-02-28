@@ -33,6 +33,7 @@
             justify-content: space-between;
             align-items: center;
             font-size: 12px;
+            margin: 10px 0 30px;
             div {
                 margin: 0px 15px;
                 display: flex;
@@ -40,7 +41,7 @@
                 cursor: pointer;
             }
             img {
-                height: 24px;
+                height: 40px;
             }
         }
         .menu-sh {
@@ -78,8 +79,8 @@
     }
 
     .topic {
-        height: 40px;
-        padding: 0px 10px;
+        height: 50px;
+        padding: 0px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -89,7 +90,7 @@
     }
 
     .examples-wrap {
-        background-color: #f3f7ff;
+        background-color: #fafafb;
         transition: 0.3s;
         overflow: hidden;
 
@@ -105,7 +106,7 @@
 
         .item-active {
             background: #cae4ff;
-            box-shadow: inset -5px 0px #214393;
+            box-shadow: inset -5px 0px #306eff;
         }
 
         .sub-title {
@@ -141,6 +142,10 @@
             display: flex;
             flex-direction: column;
             overflow: scroll;
+        }
+        .menu-content {
+            padding-left: 35px;
+            font-size: 14px;
         }
     }
 }
@@ -191,18 +196,8 @@
 }
 
 .fold-icon-open {
-    .fold-icon {
-        // opacity: 1;
-        &::after {
-            // transform: translate(1px, 2.5px);
-            transform: translate(-2px, 0px) rotate(90deg);
-            // transform: translateX(2.5px) rotate(-45deg);
-        }
-        &::before {
-            // transform: translate(-14px, 2.5px);
-            transform: translate(-12px, 0px) rotate(-90deg);
-            // transform: translateX(-1.5px) rotate(45deg);
-        }
+    .fa-caret-down {
+        transform: rotate(180deg);
     }
 }
 
@@ -274,4 +269,30 @@
         min-width: 70% !important;
         background-color: #da0404a8;
     }
+}
+.topic-content {
+    display: flex;
+    align-items: center;
+    p {
+        margin: 0px;
+        line-height: 50px;
+    }
+}
+.selected .categorize_icon::before {
+    color: #306eff;
+}
+.categorize_icon::before {
+    display: inline-block;
+    font-family: FontAwesome;
+    margin-right: 10px;
+    color: #4D4D5D;
+}
+.categorize_0::before {
+    content: "\f0e4";
+}
+.categorize_1::before {
+    content: "\f02d";
+}
+.categorize_2::before {
+    content: "\f02c";
 }

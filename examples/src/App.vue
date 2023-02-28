@@ -5,6 +5,7 @@ import { provide, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 
 import MenuVue from "./components/SideBar/Menu.vue";
+import Banner from "./components/Banner/Banner.vue"
 import config from "../examples/config.json";
 import { getScreenshots } from "./utils";
 
@@ -33,6 +34,7 @@ provide("screenshots", screenshots);
       :toggleHidden="toggleHidden"
     ></MenuVue>
     <div :class="`main ${sideBarHidden ? 'widthHidden' : 'widthOpen'}`">
+      <Banner />
       <router-view />
     </div>
     <!-- <div class="contact-us" v-if="route.name === 'Gallery'">
@@ -79,13 +81,16 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
+  // padding-top: 60px;
 }
 .main {
   flex: 1;
-  background-color: #f6f6f6;
+  background-color: #FFFFFF;
   // width: calc(100% - 17rem - 10px);
   color: #000;
   transition: 0.5s;
+  position: relative;
+  padding-top: 70px;
 }
 
 .widthHidden {
