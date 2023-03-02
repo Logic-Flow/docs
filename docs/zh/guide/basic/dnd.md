@@ -38,6 +38,10 @@ type NodeConfig = {
 !> **注意**  
 如果是用图片作为配置面板中添加节点的元素，需要将其设置为不可拖动的。详细请参考[#267](https://github.com/didi/LogicFlow/issues/267)
 
+!> **注意**
+如果遇到拖拽添加节点报错“不存在id为xx的节点”，需要在mousedown时触发`dnd.startDrag`。详情参考[#185](https://github.com/didi/LogicFlow/issues/185)
+
+
 **使用拖拽面板插件**
 
 LogicFlow 在 extension 中内置了**拖拽面板插件**，如果不想自定义图形面板，可以使用此插件快速实现。详情见[拖拽面板](zh/guide/extension/component-dnd-panel)。
