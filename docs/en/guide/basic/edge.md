@@ -99,49 +99,43 @@ const CustomLine: React.FC = () => {
 class CustomEdgeView extends LineEdge {
   getEdge() {
     const { model } = this.props;
-    const { customWidth = DEFAULT_WIDTH, customHeight = DEFAULT_HEIGHT } =
-      model.getProperties();
+    const {
+      customWidth = DEFAULT_WIDTH,
+      customHeight = DEFAULT_HEIGHT
+    } = model.getProperties();
     const id = model.id;
     const edgeStyle = model.getEdgeStyle();
-    const { startPoint, endPoint } = model;
+    const { startPoint, endPoint, arrowConfig } = model;
     const lineData = {
       x1: startPoint.x,
       y1: startPoint.y,
       x2: endPoint.x,
-      y2: endPoint.y,
+      y2: endPoint.y
     };
     const positionData = {
       x: (startPoint.x + endPoint.x - customWidth) / 2,
       y: (startPoint.y + endPoint.y - customHeight) / 2,
       width: customWidth,
-      height: customHeight,
+      height: customHeight
     };
     const wrapperStyle = {
       width: customWidth,
-      height: customHeight,
+      height: customHeight
     };
 
     setTimeout(() => {
       ReactDOM.render(<CustomLine />, document.querySelector("#" + id));
     }, 0);
     return h("g", {}, [
-      h("line", { ...lineData, ...edgeStyle }),
+      h("line", { ...lineData, ...edgeStyle, ...arrowConfig }),
       h("foreignObject", { ...positionData }, [
         h("div", {
           id,
           style: wrapperStyle,
-          className: "lf-custom-edge-wrapper",
-        }),
-      ]),
+          className: "lf-custom-edge-wrapper"
+        })
+      ])
     ]);
-  }
-
-  getArrow() {
-    return h("g", {}, []);
-  }
-
-  getAppend() {
-    return h("g", {}, []);
   }
 }
 
@@ -154,9 +148,9 @@ export default {
 
 ### Example
 
-<iframe src="https://codesandbox.io/embed/zealous-monad-2q21no?fontsize=14&hidenavigation=1&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/affectionate-visvesvaraya-uexl0y?fontsize=14&hidenavigation=1&theme=dark"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-base25"
+     title="affectionate-visvesvaraya-uexl0y"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
