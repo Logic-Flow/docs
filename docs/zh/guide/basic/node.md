@@ -708,3 +708,51 @@ export default function PageIndex() {
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+
+### 自定义节点与外部通信
+
+当需要自定义节点与外部交互时，比如点击自定义HTML节点上的按钮，触发外部方法，可以用 LogicFlow 的自定义事件机制来实现。
+
+```js
+// view.js
+class VueHtmlNode extends HtmlNode {
+  constructor (props) {
+    super(props)
+    this.isMounted = false
+    this.r = h(VueNode, {
+      properties: props.model.getProperties(),
+      text: props.model.inputData,
+      onBtnClick: (i) => {
+        props.graphModel.eventCenter.emit('custom:onBtnClick', i)
+      }
+    })
+    this.app = createApp({
+      render: () => this.r
+    })
+  }
+  setHtml(rootEl) {
+    if (!this.isMounted) {
+      this.isMounted = true
+      const node = document.createElement('div')
+      rootEl.appendChild(node)
+      this.app.mount(node)
+    } else {
+      this.r.component.props.properties = this.props.model.getProperties()
+    }
+  }
+  getText () {
+    return null
+  }
+}
+
+// flow.js
+const lf = new LogicFlow()
+lf.render()
+lf.on('custom:onBtnClick', () => {
+})
+
+```
+
+!> **提示** 如果期望从外部传递一个方案给自定义节点使用。由于自定义节点中无法直接访问到`lf`实例，所以不支持直接给lf绑定一个方法。但是自定义节点可以拿到整个图的model对象，也就是`graphModel`，所以可以把这个方法绑定到`graphModel`上。另外`lf`内置的方法`graphModel`中基本都有，所以在开发自定义节点的时候可以使用`graphModel`获取流程图相关数据即可。
+
