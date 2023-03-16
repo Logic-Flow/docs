@@ -77,12 +77,12 @@ lf.render({
 });
 ```
 
-<iframe src="https://codesandbox.io/embed/cranky-rubin-700y0?fontsize=14&hidenavigation=1&theme=dark"
-  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-  title="cranky-rubin-700y0"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
+<iframe src="https://codesandbox.io/embed/logicflow-base1-forked-zy3o85?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="LogicFlow-example-1"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
 
 ### Use logicflow in front-end frameworks such as vue or react
 
@@ -120,7 +120,7 @@ export default {
 </style>
 ```
 
-[View react examples in Sandbox](https://codesandbox.io/s/github/towersxu/logicflow-react-base/tree/main/?fontsize=14&hidenavigation=1&theme=dark)
+[View react examples in Sandbox](https://codesandbox.io/s/empty-waterfall-2x7eql)
 
 ```js
 import LogicFlow from "@logicflow/core";
