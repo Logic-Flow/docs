@@ -5,24 +5,12 @@
     <title>Documentation · LogicFlow</title>
     <link rel="icon" type="image/svg+xml" href="./_images/logo.svg" />
     <link href="./style/common.css" rel="stylesheet" />
-    <link
-      href="./static/vue.css"
-      rel="stylesheet"
-    />
-    <link
-      href="./static/font-awesome.min.css"
-      rel="stylesheet"
-    />
+    <link href="./static/vue.css" rel="stylesheet" />
+    <link href="./static/font-awesome.min.css" rel="stylesheet" />
 
-    <link
-      rel="stylesheet"
-      href="./static/buble.css"
-    />
+    <link rel="stylesheet" href="./static/buble.css" />
 
-    <link
-      rel="stylesheet"
-      href="./static/prism-tomorrow.min.css"
-    />
+    <link rel="stylesheet" href="./static/prism-tomorrow.min.css" />
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -34,8 +22,44 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-NDWZBYVHN9");
+
+      window.addEventListener("load", () => {
+        const t = window.performance.timing;
+        const times = {};
+        // 页面加载完成的时间
+        // 从页面开始载入到绑定在 load 事件上的函数全部执行完毕
+        times.PageLoadTime = t.loadEventEnd - t.navigationStart;
+        // DOM 用时（包括资源加载和 DOM 树的解析和构建）
+        times.DOMReady = t.domComplete - t.responseEnd;
+        // 服务器响应用时
+        // 同时这也是 Chrome Dev Tools 的对 TTFB 的定义
+        times.ServerResponseTime = t.responseStart - t.requestStart;
+        // DOM 交互用时
+        times.DOMInteractiveTime = t.domInteractive - t.domLoading;
+        // 从页面加载到 DOMContentLoaded 用时
+        times.ContentLoadingTime =
+          t.domContentLoadedEventStart - t.navigationStart;
+        gtag("set", "PageLoadTime(页面加载完成的时间)", times.PageLoadTime);
+        gtag("set", "DOMReady(DOM 用时)", times.DOMReady);
+        gtag(
+          "set",
+          "ServerResponseTime(服务器响应用时)",
+          times.ServerResponseTime
+        );
+        gtag(
+          "set",
+          "DOMInteractiveTime(DOM 交互用时)",
+          times.DOMInteractiveTime
+        );
+        gtag(
+          "set",
+          "ContentLoadingTime(从页面加载到 DOMContentLoaded 用时)",
+          times.ContentLoadingTime
+        );
+
+        console.log(ga_data);
+      });
     </script>
     <script>
     var _hmt = _hmt || [];
@@ -145,5 +169,6 @@
     <script src="./static/prism-typescript.min.js"></script>
     <script src="./static/prism-powershell.min.js"></script>
     <script src="./static/prism-jsx.min.js"></script>
+    <script></script>
   </body>
 </html>
