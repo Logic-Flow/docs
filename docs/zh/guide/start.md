@@ -76,13 +76,7 @@ lf.render({
   ],
 });
 ```
-
-<iframe src="https://codesandbox.io/embed/logicflow-base1-forked-zy3o85?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="LogicFlow-example-1"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+[去 CodeSandbox 查看示例](https://codesandbox.io/s/logicflow-example-1-zy3o85)
 
 ### 在 vue 或者 react 等前端框架中使用 logicflow
 
@@ -90,7 +84,7 @@ LogicFlow 本身是以 umd 打包为纯 JS 的包，所以不论是 vue 还是 r
 
 ?> **注意**LogicFlow 支持初始化不传容器宽高参数，这个时候默认会使用 container 的宽高。请保证初始化 LogicFlow 的时候，container 已经存在宽高了。
 
-[在 Sandbox 查看 vue 示例](https://codesandbox.io/s/small-resonance-h4u0fx)
+[去 CodeSandbox 查看 vue 示例](https://codesandbox.io/s/small-resonance-h4u0fx)
 
 ```vue
 <template>
@@ -120,7 +114,7 @@ export default {
 </style>
 ```
 
-[在 Sandbox 查看 react 示例](https://codesandbox.io/s/empty-waterfall-2x7eql)
+[去 CodeSandbox 查看 react 示例](https://codesandbox.io/s/empty-waterfall-2x7eql)
 
 ```js
 import LogicFlow from "@logicflow/core";
