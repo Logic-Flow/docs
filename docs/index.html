@@ -2,11 +2,47 @@
 <html>
   <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N5HWZZV');</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-NDWZBYVHN9");
+
+      window.addEventListener("load", () => {
+        let timing = performance.timing,
+          start = timing.navigationStart,
+          dns_time = 0,
+          tcp_time = 0,
+          first_paint_Time = 0,
+          dom_render_time = 0,
+          page_load_time = 0;
+        //根据提供的api和属性，拿到对应的时间
+        dns_time = timing.domainLookupEnd - timing.domainLookupStart;
+        tcp_time = timing.connectEnd - timing.connectStart;
+        first_paint_Time = timing.responseStart - start;
+        dom_render_time = timing.domContentLoadedEventEnd - start;
+        page_load_time = timing.loadEventStart - start;
+        gtag("config", "G-NDWZBYVHN9", {
+          custom_map: {
+            metric1: "page_load_time",
+            metric2: "dns_time",
+            metric3: "tcp_time",
+            metric4: "dom_render_time",
+            metric5: "first_paint_Time",
+          },
+        });
+        gtag("event", "performance", {
+          page_load_time,
+          dns_time,
+          tcp_time,
+          first_paint_Time,
+          dom_render_time,
+          page_load_time,
+        });
+      });
+    </script>
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8" />
     <title>Documentation · LogicFlow</title>
@@ -18,23 +54,33 @@
     <link rel="stylesheet" href="./static/buble.css" />
 
     <link rel="stylesheet" href="./static/prism-tomorrow.min.css" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NDWZBYVHN9"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-NDWZBYVHN9"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-NDWZBYVHN9');
-      gtag('event', 'page_view', { 'send_to': 'G-NDWZBYVHN9' });
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-NDWZBYVHN9");
+      gtag("event", "page_view", { send_to: "G-NDWZBYVHN9" });
     </script>
-   
   </head>
 
   <body>
     <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5HWZZV"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-N5HWZZV"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <nav>
       <a id="a_guide" href="#/zh/guide/start"> 教程 </a>
       <a id="a_api" href="#/zh/api/logicFlowApi"> API </a>
