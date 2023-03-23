@@ -25,38 +25,36 @@
       gtag("config", "G-NDWZBYVHN9");
 
       window.addEventListener("load", () => {
-        const t = window.performance.timing;
-        const times = {};
-        // 页面加载完成的时间
-        // 从页面开始载入到绑定在 load 事件上的函数全部执行完毕
-        times.PageLoadTime = t.loadEventEnd - t.navigationStart;
-        // DOM 用时（包括资源加载和 DOM 树的解析和构建）
-        times.DOMReady = t.domComplete - t.responseEnd;
-        // 服务器响应用时
-        // 同时这也是 Chrome Dev Tools 的对 TTFB 的定义
-        times.ServerResponseTime = t.responseStart - t.requestStart;
-        // DOM 交互用时
-        times.DOMInteractiveTime = t.domInteractive - t.domLoading;
-        // 从页面加载到 DOMContentLoaded 用时
-        times.ContentLoadingTime =
-          t.domContentLoadedEventStart - t.navigationStart;
-        gtag("set", "PageLoadTime(页面加载完成的时间)", times.PageLoadTime);
-        gtag("set", "DOMReady(DOM 用时)", times.DOMReady);
-        gtag(
-          "set",
-          "ServerResponseTime(服务器响应用时)",
-          times.ServerResponseTime
-        );
-        gtag(
-          "set",
-          "DOMInteractiveTime(DOM 交互用时)",
-          times.DOMInteractiveTime
-        );
-        gtag(
-          "set",
-          "ContentLoadingTime(从页面加载到 DOMContentLoaded 用时)",
-          times.ContentLoadingTime
-        );
+        let timing = performance.timing,
+          start = timing.navigationStart,
+          dns_time = 0,
+          tcp_time = 0,
+          first_paint_Time = 0,
+          dom_render_time = 0,
+          page_load_time = 0;
+        //根据提供的api和属性，拿到对应的时间
+        dns_time = timing.domainLookupEnd - timing.domainLookupStart;
+        tcp_time = timing.connectEnd - timing.connectStart;
+        first_paint_Time = timing.responseStart - start;
+        dom_render_time = timing.domContentLoadedEventEnd - start;
+        page_load_time = timing.loadEventStart - start;
+        gtag("config", "G-NDWZBYVHN9", {
+          custom_map: {
+            metric1: "page_load_time",
+            metric2: "dns_time",
+            metric3: "tcp_time",
+            metric4: "dom_render_time",
+            metric5: "first_paint_Time",
+          },
+        });
+        gtag("event", "performance", {
+          page_load_time,
+          dns_time,
+          tcp_time,
+          first_paint_Time,
+          dom_render_time,
+          page_load_time,
+        });
       });
     </script>
     <script>
