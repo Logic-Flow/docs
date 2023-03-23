@@ -23,8 +23,13 @@
       }
       gtag("js", new Date());
       gtag("config", "G-NDWZBYVHN9");
-
+      const _time_start = Date.now();
       window.addEventListener("load", () => {
+        gtag('event', 'timing_complete', {
+          'name' : 'load',
+          'value' : Date.now() - _time_start,
+          'event_category' : 'JS Dependencies'
+        })
         let timing = performance.timing,
           start = timing.navigationStart,
           dns_time = 0,
@@ -56,15 +61,6 @@
           page_load_time,
         });
       });
-    </script>
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?4d288b5d69feca224103c25485d7d04d";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
     </script>
   </head>
 
