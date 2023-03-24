@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script>
+      var config = {
+        appKey: "omega32096b582a",
+        autoPerformance: true,
+        autoWhiteScreenMonitor: {
+          // 监听的根节点 默认为'body'
+          container: "body",
+          // 监听深度 默认为2 监听到根节点下一层
+          childrenDepth: 2,
+          // 白屏持续时间 单位ms
+          durationSeconds: 3000,
+        },
+      };
+      var Omega = Omega || config;
+    </script>
+    <script
+      crossorigin="Anonymous"
+      src="//tracker.didistatic.com/static/tracker/latest2x/omega.min.js"
+    ></script>
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
