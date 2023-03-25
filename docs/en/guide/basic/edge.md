@@ -339,3 +339,40 @@ class Connection extends PolylineEdge {
   }
 }
 ```
+
+### Customize Adjusting-node styling
+
+When initializing the LogicFlow instance, you can enable the feature to adjust the start and end points of edges by using the parameter adjustEdgeStartAndEnd.
+
+When customizing the connection view, you can override the getAdjustPointShape method to implement custom styling for the adjustment points.
+
+```js
+// lf.js
+const lf = new LogicFlow({
+  adjustEdgeStartAndEnd: true
+});
+// edge.js
+class CustomEdge extends LineEdge {
+  getAdjustPointShape(x, y, edgeModel) {
+    return h("g", {}, [
+      h("image", {
+        x: x - 9,
+        y: y - 9,
+        width: 18,
+        height: 18,
+        cursor: "move",
+        href:
+          "data:image/svg+xml;base64,PCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMnB4IiBoZWlnaHQ9IjIycHgiIHZlcnNpb249IjEuMSI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iNyIgc3Ryb2tlPSIjZmZmIiBmaWxsPSIjMjliNmYyIi8+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iMyIgc3Ryb2tlPSIjZmZmIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjwvc3ZnPg=="
+      })
+    ]);
+  }
+}
+
+```
+
+<iframe src="https://codesandbox.io/embed/logicflow026-edgeanimation-forked-fdg3v0?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="logicflow026-edgeAnimation (forked)"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
