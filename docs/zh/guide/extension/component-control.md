@@ -23,7 +23,7 @@ lf.extension.control.addItem({
   text: "导航",
   onMouseEnter: (lf, ev) => {
     const position = lf.getPointByClient(ev.x, ev.y);
-    lf.extension.miniMap.showMiniMap.show(
+    lf.extension.miniMap.show(
       position.domOverlayPosition.x - 120,
       position.domOverlayPosition.y + 35
     );
