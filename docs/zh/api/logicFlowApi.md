@@ -121,7 +121,7 @@ const lf = new LogicFlow({
 ```js
 const lf = new LogicFlow({
   keyboard: {
-    enable: true,
+    enabled: true,
     shortcuts: [
       {
         keys: ["cmd + o", "ctrl + o"],
