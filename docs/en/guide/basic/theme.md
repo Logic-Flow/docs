@@ -1,6 +1,6 @@
 # Theme
 
-LogicFlow provides a method to set the theme, which facilitates users to set the style of all internal elements in a uniform way. 
+LogicFlow provides a method to set the theme, which facilitates users to set the style of all internal elements in a uniform way.
 There are two ways of setting:
 
 - Passed in as configuration when initializing `LogicFlow`
@@ -66,9 +66,4 @@ lf.setTheme({ // Set default theme style
 })
 ```
 
-<iframe src="https://codesandbox.io/embed/logicflow-step6-err2o?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-step6"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-step6-err2o?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>

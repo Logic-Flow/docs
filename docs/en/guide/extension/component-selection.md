@@ -51,10 +51,10 @@ In most cases, we expect to allow dragging of the canvas and open the box select
 
 You can call the method `setSelectionSense` in the plugin to reset the rules
 
-| Parameters       | Default Value | Description                               |
-| ----------- | ------ | -------------------------------------- |
-| isWholeEdge | true   | When the value is true, the start and end points of the edge are all within the range of the selection area, which means it is selected |
-| isWholeNode | true   | When the value is true, all points of the node are in the range of the selection area, which means it is selected |
+| Parameters  | Default Value | Description                                                                                                                             |
+| ----------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| isWholeEdge | true          | When the value is true, the start and end points of the edge are all within the range of the selection area, which means it is selected |
+| isWholeNode | true          | When the value is true, all points of the node are in the range of the selection area, which means it is selected                       |
 
 usage:
 
@@ -64,9 +64,4 @@ lf.extension.selectionSelect.setSelectionSense(false, true);
 
 ### Example
 
-<iframe src="https://codesandbox.io/embed/trusting-archimedes-m0bn4r?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-selection"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/trusting-archimedes-m0bn4r?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>

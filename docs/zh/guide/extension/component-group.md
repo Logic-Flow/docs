@@ -174,11 +174,6 @@ class MyGroupModel extends GroupNode.model {
 
 ## 示例
 
-<iframe src="https://codesandbox.io/embed/bold-moore-vgvpf?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="bold-moore-vgvpf"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/bold-moore-vgvpf?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
 
 !> **关于泳道**分组功能不是泳道，需要开发者在分组的基础上自己实现。后续 LogicFlow 提供的 Bpmn 全功能支持会支持 BPMN 泳道。也欢迎自己实现了的同学给我们 PR。

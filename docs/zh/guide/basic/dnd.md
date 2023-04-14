@@ -13,12 +13,7 @@ lf.dnd.startDrag({
 });
 ```
 
-<iframe src="https://codesandbox.io/embed/logicflow-base18-odj3g?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-base18"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-base18-odj3g?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
 
 通过上面的代码可以看出，将节点通过`div`标签+`css`样式的方式绘制到面板中，并为其绑定`onMouseDown`事件，当拖拽图形时，会触发`lf.dnd.startDrag`函数，表示开始拖拽，并传入选中图形的配置，`startDrag`入参格式：
 
@@ -39,8 +34,7 @@ type NodeConfig = {
 如果是用图片作为配置面板中添加节点的元素，需要将其设置为不可拖动的。详细请参考[#267](https://github.com/didi/LogicFlow/issues/267)
 
 !> **注意**
-如果遇到拖拽添加节点报错“不存在id为xx的节点”，需要在mousedown时触发`dnd.startDrag`。详情参考[#185](https://github.com/didi/LogicFlow/issues/185)
-
+如果遇到拖拽添加节点报错“不存在 id 为 xx 的节点”，需要在 mousedown 时触发`dnd.startDrag`。详情参考[#185](https://github.com/didi/LogicFlow/issues/185)
 
 **使用拖拽面板插件**
 

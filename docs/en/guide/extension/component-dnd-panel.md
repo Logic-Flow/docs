@@ -24,15 +24,15 @@ lf.extension.dndPanel.setPatternItems(patternItems: PatternItem[])
 
 PatternItem：
 
-| Name      | Type  | Required   | Default Value | Description  |
-| :--------- | :----- | :----- | :----- | :----------------------------------------------------------------------------------------- |
-| type       | string | Not required | None     | Specify the type of node the user can drag in with the mouse, including custom node types. If you don't pass type, no node will be created, but the callback will be triggered |
-| text       | string | Not required | None     | Create the text of the node |
-| properties | object | Not required | None     | Create properties for the node |
-| label      | string | Not required | None     | The description of the drag and drop panel's node  |
-| icon       | string | Not required | None     | The icon displayed on the panel, you can pass in the icon url address or base64 encoding        |
-| className  | string | Not required | None     | Customizing the style of the dragged elements |
-| callback   | fn     | Not required | None     | The callback function triggered after user mouse presses the dragged item  |
+| Name       | Type   | Required     | Default Value | Description                                                                                                                                                                    |
+| :--------- | :----- | :----------- | :------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type       | string | Not required | None          | Specify the type of node the user can drag in with the mouse, including custom node types. If you don't pass type, no node will be created, but the callback will be triggered |
+| text       | string | Not required | None          | Create the text of the node                                                                                                                                                    |
+| properties | object | Not required | None          | Create properties for the node                                                                                                                                                 |
+| label      | string | Not required | None          | The description of the drag and drop panel's node                                                                                                                              |
+| icon       | string | Not required | None          | The icon displayed on the panel, you can pass in the icon url address or base64 encoding                                                                                       |
+| className  | string | Not required | None          | Customizing the style of the dragged elements                                                                                                                                  |
+| callback   | fn     | Not required | None          | The callback function triggered after user mouse presses the dragged item                                                                                                      |
 
 ### Example
 
@@ -95,9 +95,4 @@ lf.extension.dndPanel.setPatternItems([
 
 Using the `DndPanel` component, you can quickly create a drag panel, as shown below:
 
-<iframe src="https://codesandbox.io/embed/elastic-mahavira-1ucwp?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="elastic-mahavira-1ucwp"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/elastic-mahavira-1ucwp?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>

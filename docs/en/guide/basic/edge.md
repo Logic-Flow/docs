@@ -8,12 +8,7 @@ Like nodes, LogicFlow also has some basic edges built in. LogicFlow's built-in e
 
 The effect is as follows:
 
-<iframe src="https://codesandbox.io/embed/condescending-nash-lx1n1?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="condescending-nash-lx1n1"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/condescending-nash-lx1n1?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>
 
 ## Select the built-in edge that the custom edge inherits from
 
@@ -99,10 +94,8 @@ const CustomLine: React.FC = () => {
 class CustomEdgeView extends LineEdge {
   getEdge() {
     const { model } = this.props;
-    const {
-      customWidth = DEFAULT_WIDTH,
-      customHeight = DEFAULT_HEIGHT
-    } = model.getProperties();
+    const { customWidth = DEFAULT_WIDTH, customHeight = DEFAULT_HEIGHT } =
+      model.getProperties();
     const id = model.id;
     const edgeStyle = model.getEdgeStyle();
     const { startPoint, endPoint, arrowConfig } = model;
@@ -110,17 +103,17 @@ class CustomEdgeView extends LineEdge {
       x1: startPoint.x,
       y1: startPoint.y,
       x2: endPoint.x,
-      y2: endPoint.y
+      y2: endPoint.y,
     };
     const positionData = {
       x: (startPoint.x + endPoint.x - customWidth) / 2,
       y: (startPoint.y + endPoint.y - customHeight) / 2,
       width: customWidth,
-      height: customHeight
+      height: customHeight,
     };
     const wrapperStyle = {
       width: customWidth,
-      height: customHeight
+      height: customHeight,
     };
 
     setTimeout(() => {
@@ -132,9 +125,9 @@ class CustomEdgeView extends LineEdge {
         h("div", {
           id,
           style: wrapperStyle,
-          className: "lf-custom-edge-wrapper"
-        })
-      ])
+          className: "lf-custom-edge-wrapper",
+        }),
+      ]),
     ]);
   }
 }
@@ -148,12 +141,7 @@ export default {
 
 ### Example
 
-<iframe src="https://codesandbox.io/embed/affectionate-visvesvaraya-uexl0y?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="affectionate-visvesvaraya-uexl0y"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/affectionate-visvesvaraya-uexl0y?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> Demo in CodeSandBox</a>
 
 ## Save anchor information
 
@@ -173,12 +161,7 @@ class CustomEdgeModel2 extends LineEdgeModel {
 }
 ```
 
-<iframe src="https://codesandbox.io/embed/logicflow-base17-h5pis?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-base17"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-base17-h5pis?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>
 
 ## Customize side text position
 
@@ -232,12 +215,7 @@ class CustomEdgeModel extends PolylineEdgeModel {
 
 ### Example
 
-<iframe src="https://codesandbox.io/embed/laughing-dream-x3v87?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-base25"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/laughing-dream-x3v87?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>
 
 ## Opening the animation of edge
 
@@ -259,12 +237,7 @@ class CustomEdgeModel extends PolylineEdgeModel {
 
 ### Example
 
-<iframe src="https://codesandbox.io/embed/suspicious-tree-hw82v8?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow026-edgeAnimation"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/suspicious-tree-hw82v8?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>
 
 ## Customize the type of edges between nodes
 
@@ -349,7 +322,7 @@ When customizing the connection view, you can override the getAdjustPointShape m
 ```js
 // lf.js
 const lf = new LogicFlow({
-  adjustEdgeStartAndEnd: true
+  adjustEdgeStartAndEnd: true,
 });
 // edge.js
 class CustomEdge extends LineEdge {
@@ -361,18 +334,11 @@ class CustomEdge extends LineEdge {
         width: 18,
         height: 18,
         cursor: "move",
-        href:
-          "data:image/svg+xml;base64,PCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMnB4IiBoZWlnaHQ9IjIycHgiIHZlcnNpb249IjEuMSI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iNyIgc3Ryb2tlPSIjZmZmIiBmaWxsPSIjMjliNmYyIi8+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iMyIgc3Ryb2tlPSIjZmZmIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjwvc3ZnPg=="
-      })
+        href: "data:image/svg+xml;base64,PCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMnB4IiBoZWlnaHQ9IjIycHgiIHZlcnNpb249IjEuMSI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iNyIgc3Ryb2tlPSIjZmZmIiBmaWxsPSIjMjliNmYyIi8+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iMyIgc3Ryb2tlPSIjZmZmIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjwvc3ZnPg==",
+      }),
     ]);
   }
 }
-
 ```
 
-<iframe src="https://codesandbox.io/embed/logicflow026-edgeanimation-forked-fdg3v0?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow026-edgeAnimation (forked)"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow026-edgeanimation-forked-fdg3v0?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> Demo in CodeSandBox</a>

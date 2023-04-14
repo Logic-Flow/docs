@@ -17,9 +17,8 @@ LogicFlow 提供了[自定义节点](zh/guide/basic/node)和[自定义边](zh/gu
   LogicFlow.use(BpmnAdapter);
 </script>
 ```
-<iframe src="https://docs.logic-flow.cn/demo/dist/examples/#/extension/bpmn-elements?from=doc"
-  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-></iframe>
+
+<a href="https://docs.logic-flow.cn/demo/dist/examples/#/extension/bpmn-elements?from=doc" target="_blank"> 去 CodeSandbox 查看</a>
 
 ## 转换为 XML
 

@@ -1,27 +1,30 @@
 # 键盘快捷键 Keyboard
 
 ## 快捷键配置
+
 通过创建 `LogicFlow` 实例时传入 options 的 keyboard 属性可以开启快捷键，
 可以只配置 enabled 属性，为 true 时，代表开启默认的快捷键。
+
 ```ts
 const lf = new LogicFlow({
-  container: document.querySelector('#app'),
+  container: document.querySelector("#app"),
   keyboard: {
-    enabled: true
+    enabled: true,
   },
 });
 ```
+
 ## 内置快捷键功能
 
 参考不同的产品，内置了复制，粘贴，redo/undo，删除 的快捷键。
 
-| 快捷键   | 功能   |
-| :----- | :----- |
+| 快捷键              | 功能     |
+| :------------------ | :------- |
 | cmd + c 或 ctrl + c | 复制节点 |
 | cmd + v 或 ctrl + v | 粘贴节点 |
 | cmd + z 或 ctrl + z | 撤销操作 |
 | cmd + y 或 ctrl + y | 回退操作 |
-| backspace | 删除操作 |
+| backspace           | 删除操作 |
 
 ## 自定义快捷键
 
@@ -46,16 +49,11 @@ const lf = new LogicFlow({
             elements.edges.forEach((edge) => lf.deleteEdge(edge.id));
             elements.nodes.forEach((node) => lf.deleteNode(node.id));
           }
-        }
-      }
-    ]
-  }
+        },
+      },
+    ],
+  },
 });
 ```
 
-<iframe src="https://codesandbox.io/embed/logicflow-base10-eerft?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-base10"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-base10-eerft?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>

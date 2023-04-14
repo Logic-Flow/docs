@@ -17,12 +17,7 @@ There are 7 basic nodes in LogicFlow:
 
 Let's see the effect of rendering the base node to the canvas
 
-<iframe src="https://codesandbox.io/embed/logicflow-step2-spxng?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="LogicFlow-step2"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-step2-spxng?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> Demo in CodeSandBox</a>
 
 ## Custom nodes based on class inheritance
 
@@ -153,12 +148,7 @@ class customRectModel extends RectNodeModel {
 }
 ```
 
-<iframe src="https://codesandbox.io/embed/epic-cookies-cmqxg?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="epic-cookies-cmqxg"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/epic-cookies-cmqxg?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>
 
 ?> **Note** If you don't set the shape properties in `model`, but define the width and height of the generated graphics directly in `view`, the anchor point position and outline size will be incorrect. At the same time, the position of the line may also be confused.
 
@@ -359,7 +349,7 @@ The code generally has an outermost svg tag and one or more paths inside. At thi
 
 The svg tag generally includes the following attributes:
 
-- `viewBox`: The [viewBox](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/viewBox) property allows to specify a given set of graphical stretches to fit a specific container element.  It is generally sufficient to copy the value of the `viewBox` property from the svg tag.
+- `viewBox`: The [viewBox](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/viewBox) property allows to specify a given set of graphical stretches to fit a specific container element. It is generally sufficient to copy the value of the `viewBox` property from the svg tag.
 - `width` and `height`: Instead of using the `width` and `height` on the svg tag, just write the width and height as you expect.
 
 Attributes of the path tag:
@@ -367,12 +357,7 @@ Attributes of the path tag:
 - `d`: This property defines a path. Just copy the svg code over, and don't worry about what d means.
 - `fill`: Indicates the fill color of the path. Generally the same as the node border color, but can also be customized according to business needs.
 
-<iframe src="https://codesandbox.io/embed/logicflow-step3-mhge5?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="LogicFlow-step3"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-step3-mhge5?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>
 
 ## Custom edge connection rules
 
@@ -418,18 +403,14 @@ lf.on("connection:not-allowed", (msg) => {
 
 In the node model, there is a state attribute. When the node connection rule check fails, the state attribute value is 5. We can use this attribute to realize the prompt effect of the node when connecting.
 
-<iframe src="https://codesandbox.io/embed/long-star-d4j86e?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-vue-rules"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/long-star-d4j86e?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>
 
 ## Restrict node movement
 
 Sometimes, we need to control when nodes can move and when they cannot. For example, when implementing a grouping plug-in, you need to control that the children of a grouping node are not allowed to move out of the group.
 
 Similar to the concatenation rules, we can add rule functions to the node's `moveRules`.
+
 ```ts
 class MovableNodeModel extends RectNodeModel {
   initNodeData(data) {
@@ -460,12 +441,7 @@ lf.graphModel.addNodeMoveRules((model, deltaX, deltaY) => {
 });
 ```
 
-<iframe src="https://codesandbox.io/embed/exciting-galileo-18sm6?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="exciting-galileo-18sm6"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/exciting-galileo-18sm6?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>
 
 ## Custom anchor points of nodes
 
@@ -523,12 +499,7 @@ In the above example, when we customize the anchor points, we can not only defin
 
 ?> **Note** Make sure that the id of the anchor is unique, otherwise there may be problems with inaccurate validation of the connecting rules.
 
-<iframe src="https://codesandbox.io/embed/logicflow-base15-ou2i0?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-base15"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-base15-ou2i0?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>
 
 !> **Tip** In actual development, there may be a need to hide anchor points, you can refer to the github issue [How to hide anchor points?](https://github.com/didi/LogicFlow/issues/454)，You can see code sandbox [Example](https://codesandbox.io/s/reverent-haslett-dkb9n?file=/step_14_hideAnchor/index.js)
 
@@ -701,9 +672,4 @@ export default function PageIndex() {
 
 ### Example of a custom HTML node
 
-<iframe src="https://codesandbox.io/embed/logicflow-step7-dpmgb?fontsize=14&hidenavigation=1&module=%2Fstep7%2FcustomNode.js&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-step7"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-step7-dpmgb?fontsize=14&hidenavigation=1&module=%2Fstep7%2FcustomNode.js&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>

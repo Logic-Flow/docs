@@ -1,4 +1,5 @@
 # Node Resize
+
 ## Getting started
 
 LogicFlow provides `RectResize`, `EllipseResize`, `DiamonResize`, `HtmlResize` in the extension package, which are four kinds of basic nodes that support scaling, each with `view` and `model` properties. Scaling of nodes utilizes LogicFlow's custom node mechanism. Developers can inherit these 4 types of nodes that can be scaled to achieve node scaling.
@@ -95,17 +96,17 @@ export default {
 
 The event `node:resize` is triggered after node scaling, the event parameters include node position and node size before and after node scaling, the data is {oldNodeSize, newNodeSize}, the details of the fields are as follows:
 
-| Name      | Type   | Description                     |
-| :-------- | :----- | :----------------------- |
-| id        | String | Node id                  |
-| type      | String | Node type                 |
-| modelType | String | Node graph type, defined internally |
-| x         | Number | X-axis coordinates of the center of the node       |
-| y         | Number | Y-axis coordinates of the center of the node       |
-| rx        | Number | X-axis radius (ellipse, diamond)     |
-| ry        | Number | Y-axis radius (ellipse, diamond)     |
-| width     | Number | Node width (rectangle)           |
-| height    | Number | Node height (rectangle)        |
+| Name      | Type   | Description                                  |
+| :-------- | :----- | :------------------------------------------- |
+| id        | String | Node id                                      |
+| type      | String | Node type                                    |
+| modelType | String | Node graph type, defined internally          |
+| x         | Number | X-axis coordinates of the center of the node |
+| y         | Number | Y-axis coordinates of the center of the node |
+| rx        | Number | X-axis radius (ellipse, diamond)             |
+| ry        | Number | Y-axis radius (ellipse, diamond)             |
+| width     | Number | Node width (rectangle)                       |
+| height    | Number | Node height (rectangle)                      |
 
 ```js
 lf.on("node:resize", ({ oldNodeSize, newNodeSize }) => {
@@ -179,9 +180,4 @@ class ResizableRectModel extends RectResize.model {
 
 Address: [https://codesandbox.io/s/prod-resonance-ztpvtv](https://codesandbox.io/s/prod-resonance-ztpvtv?file=/step_26_nodeResize/index.js)
 
-<iframe src="https://codesandbox.io/embed/prod-resonance-ztpvtv?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="prod-resonance-ztpvtv"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/prod-resonance-ztpvtv?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>

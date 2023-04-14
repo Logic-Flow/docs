@@ -16,12 +16,7 @@ LogicFlow 是基于 svg 做的流程图编辑框架，所以我们的节点和�
 
 下面我们看看把基础节点渲染到画布效果
 
-<iframe src="https://codesandbox.io/embed/logicflow-base2-forked-sckmtc?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="LogicFlow-base2 (forked)"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-base2-forked-sckmtc?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> 去 CodeSandbox 查看</a>
 
 ## 基于继承的自定义节点
 
@@ -153,12 +148,7 @@ class customRectModel extends RectNodeModel {
 }
 ```
 
-<iframe src="https://codesandbox.io/embed/logicflow-base12-forked-ybl9eb?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-base12 (forked)"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-base12-forked-ybl9eb?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> 去 CodeSandbox 查看</a>
 
 ?> **注意**如果不在`model`中设置形状属性，而是直接在`view`中直接定义生成图形的宽高这种形状属性，会出现锚点位置、outline 大小不正确的情况。同时，连线的位置也可能会出现错乱。
 
@@ -367,12 +357,7 @@ path 标签属性：
 - `d`: 该属性定义了一个路径。直接复制 svg 代码过来即可, 不需要去关系 d 具体内容表示的含义。
 - `fill`: 路径的填充颜色, 一般和节点的边框颜色一致，但是也可以按照业务需求自定义。
 
-<iframe src="https://codesandbox.io/embed/logicflow-step3-mhge5?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="LogicFlow-step3"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-step3-mhge5?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
 
 ## 自定义连接规则校验
 
@@ -404,7 +389,7 @@ class SquareModel extends RectNodeModel {
 
 `message`属性是当不满足校验规则时所抛出的错误信息，`validate`则是传入规则检验的回调函数。`validate`方法有四个参数，分别为边的起始节点（source）、目标节点（target）、起始锚点（sourceAnchor）、 目标锚点（targetAnchor），我们可以根据参数信息来决定是否通过校验，其返回值是一个布尔值。
 
->当我们在面板上进行边操作的时候，LogicFlow 会校验每一条规则，只有**全部**通过后才能连接。
+> 当我们在面板上进行边操作的时候，LogicFlow 会校验每一条规则，只有**全部**通过后才能连接。
 
 在连接边时，当鼠标松开后如果没有通过自定义规则（`validate`方法返回值为`false`），Logic Flow 会对外抛出事件`connection:not-allowed`。
 
@@ -418,12 +403,7 @@ lf.on("connection:not-allowed", (msg) => {
 
 在节点 model 中，有个 state 属性，当节点连接规则校验不通过时，state 属性值为 5。我们可以通过这个属性来实现连线是节点的提示效果。
 
-<iframe src="https://codesandbox.io/embed/long-star-d4j86e?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-vue-rules"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/long-star-d4j86e?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
 
 ## 限制节点移动
 
@@ -461,12 +441,7 @@ lf.graphModel.addNodeMoveRules((model, deltaX, deltaY) => {
 });
 ```
 
-<iframe src="https://codesandbox.io/embed/exciting-galileo-18sm6?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="exciting-galileo-18sm6"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/exciting-galileo-18sm6?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
 
 ## 自定义节点的锚点
 
@@ -524,12 +499,7 @@ class SquareModel extends RectNodeModel {
 
 ?> **注意**一定要确保锚点 id 唯一，否则可能会出现连线规则校验不准确的问题。
 
-<iframe src="https://codesandbox.io/embed/logicflow-base15-ou2i0?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-base15"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-base15-ou2i0?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
 
 !> **提示**在实际开发中，存在隐藏锚点的需求，可以参考 github issue [如何隐藏锚点？](https://github.com/didi/LogicFlow/issues/454)，可以查看 code sandbox [示例](https://codesandbox.io/s/reverent-haslett-dkb9n?file=/step_14_hideAnchor/index.js)
 
@@ -702,57 +672,48 @@ export default function PageIndex() {
 
 ### 自定义 HTML 节点示例
 
-<iframe src="https://codesandbox.io/embed/logicflow-step7-dpmgb?fontsize=14&hidenavigation=1&module=%2Fstep7%2FcustomNode.js&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-step7"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
-
+<a href="https://codesandbox.io/embed/logicflow-step7-dpmgb?fontsize=14&hidenavigation=1&module=%2Fstep7%2FcustomNode.js&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
 
 ### 自定义节点与外部通信
 
-当需要自定义节点与外部交互时，比如点击自定义HTML节点上的按钮，触发外部方法，可以用 LogicFlow 的自定义事件机制来实现。
+当需要自定义节点与外部交互时，比如点击自定义 HTML 节点上的按钮，触发外部方法，可以用 LogicFlow 的自定义事件机制来实现。
 
 ```js
 // view.js
 class VueHtmlNode extends HtmlNode {
-  constructor (props) {
-    super(props)
-    this.isMounted = false
+  constructor(props) {
+    super(props);
+    this.isMounted = false;
     this.r = h(VueNode, {
       properties: props.model.getProperties(),
       text: props.model.inputData,
       onBtnClick: (i) => {
-        props.graphModel.eventCenter.emit('custom:onBtnClick', i)
-      }
-    })
+        props.graphModel.eventCenter.emit("custom:onBtnClick", i);
+      },
+    });
     this.app = createApp({
-      render: () => this.r
-    })
+      render: () => this.r,
+    });
   }
   setHtml(rootEl) {
     if (!this.isMounted) {
-      this.isMounted = true
-      const node = document.createElement('div')
-      rootEl.appendChild(node)
-      this.app.mount(node)
+      this.isMounted = true;
+      const node = document.createElement("div");
+      rootEl.appendChild(node);
+      this.app.mount(node);
     } else {
-      this.r.component.props.properties = this.props.model.getProperties()
+      this.r.component.props.properties = this.props.model.getProperties();
     }
   }
-  getText () {
-    return null
+  getText() {
+    return null;
   }
 }
 
 // flow.js
-const lf = new LogicFlow()
-lf.render()
-lf.on('custom:onBtnClick', () => {
-})
-
+const lf = new LogicFlow();
+lf.render();
+lf.on("custom:onBtnClick", () => {});
 ```
 
-!> **提示** 如果期望从外部传递一个方案给自定义节点使用。由于自定义节点中无法直接访问到`lf`实例，所以不支持直接给lf绑定一个方法。但是自定义节点可以拿到整个图的model对象，也就是`graphModel`，所以可以把这个方法绑定到`graphModel`上。另外`lf`内置的方法`graphModel`中基本都有，所以在开发自定义节点的时候可以使用`graphModel`获取流程图相关数据即可。
-
+!> **提示** 如果期望从外部传递一个方案给自定义节点使用。由于自定义节点中无法直接访问到`lf`实例，所以不支持直接给 lf 绑定一个方法。但是自定义节点可以拿到整个图的 model 对象，也就是`graphModel`，所以可以把这个方法绑定到`graphModel`上。另外`lf`内置的方法`graphModel`中基本都有，所以在开发自定义节点的时候可以使用`graphModel`获取流程图相关数据即可。

@@ -24,12 +24,12 @@ The menus supported by the `Menu` component include right-click menus for nodes,
 
 Each function in the menu can be represented by a single configuration. The specific fields are as follows:
 
-|Fields|Type| function| Required|Description|
-|:--|:--|:-|:--|:-|
-|text|string|menu text||text for menu items|
-|className|string|class name||The default class is lf-menu-item. Setting this field will add a new className to the default class.|
-|icon|boolean|Whether to create the span tag for the icon||If the simple text is not enough to represent the menu, you can set icon to true, and then the corresponding menu item will add the span with class lf-menu-icon. you can enrich the content of the menu by setting the background for lf-menu-icon.|
-|callback|Function|Callback functions executed after a click|✅|In the three menu callbacks, node data/edge data/event information can be obtained respectively.|
+| Fields    | Type     | function                                    | Required | Description                                                                                                                                                                                                                                          |
+| :-------- | :------- | :------------------------------------------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| text      | string   | menu text                                   |          | text for menu items                                                                                                                                                                                                                                  |
+| className | string   | class name                                  |          | The default class is lf-menu-item. Setting this field will add a new className to the default class.                                                                                                                                                 |
+| icon      | boolean  | Whether to create the span tag for the icon |          | If the simple text is not enough to represent the menu, you can set icon to true, and then the corresponding menu item will add the span with class lf-menu-icon. you can enrich the content of the menu by setting the background for lf-menu-icon. |
+| callback  | Function | Callback functions executed after a click   | ✅       | In the three menu callbacks, node data/edge data/event information can be obtained respectively.                                                                                                                                                     |
 
 The delete function of the node right-click menu, example is:
 
@@ -269,9 +269,4 @@ Note that the menu configuration described above must be called before `lf.rende
 
 ### Example
 
-<iframe src="https://codesandbox.io/embed/dazzling-hypatia-en8s9?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-base16"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/dazzling-hypatia-en8s9?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>

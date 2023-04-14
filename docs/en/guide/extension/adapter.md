@@ -5,7 +5,7 @@
 In LogicFlow, a flowchart is composed of **nodes** and **edges**.
 
 - For a node, we need to know the **id**, [type](en/guide/extension/adapter#type), **coordinates**, **text**, [properties](en/guide/extension/adapter#properties) of this node.
-- For an edge, we then need to know the **id**, [type](en/guide/extension/adapter#type), the starting node id (**sourceNodeId**), the target node id (**targetNodeId**), **text**, [properties]( en/guide/extension/adapter#properties) and the starting position of the edge (**startPoint**), and the ending position of the edge (**endPoint**).
+- For an edge, we then need to know the **id**, [type](en/guide/extension/adapter#type), the starting node id (**sourceNodeId**), the target node id (**targetNodeId**), **text**, [properties](en/guide/extension/adapter#properties) and the starting position of the edge (**startPoint**), and the ending position of the edge (**endPoint**).
 
   - The polyline has the additional property `pointsList`. Since the polyline can be manually adjusted by the user, this field is added to record the exact path of this polyline.
 
@@ -99,6 +99,4 @@ lf.getGraphData();
 
 ### Example
 
-<iframe src="https://docs.logic-flow.cn/demo/dist/examples/#/extension/adapter?from=doc"
-  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-></iframe>
+<a href="https://docs.logic-flow.cn/demo/dist/examples/#/extension/adapter?from=doc" target="_blank"> Demo in CodeSandBox</a>

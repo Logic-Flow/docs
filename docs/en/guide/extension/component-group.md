@@ -79,17 +79,17 @@ In addition to the attributes of the node itself, the grouping node also has som
 
 ### Status Properties
 
-| Name         | Type    | Description                                          |
-| :----------- | :------ | :-------------------------------------------- |
-| isRestrict   | boolean | Whether to restrict the group's children from being dragged out of the group, default false        |
-| resizable    | boolean | Whether the group supports manual resizing, default false          |
-| foldable     | boolean | Whether or not to show the expand-collapse button for the group, default false         |
-| width        | number  | Grouping width                                      |
-| height       | number  | Grouping height                                      |
-| foldedWidth  | number  | Width after folding grouping                             |
-| foldedHeight | number  | Height after folding grouping                              |
-| isFolded     | boolean | Read-only, indicating whether the group is collapsed                    |
-| isGroup      | boolean | Read-only, always true, used to identify `model` as `group` |
+| Name         | Type    | Description                                                                                 |
+| :----------- | :------ | :------------------------------------------------------------------------------------------ |
+| isRestrict   | boolean | Whether to restrict the group's children from being dragged out of the group, default false |
+| resizable    | boolean | Whether the group supports manual resizing, default false                                   |
+| foldable     | boolean | Whether or not to show the expand-collapse button for the group, default false              |
+| width        | number  | Grouping width                                                                              |
+| height       | number  | Grouping height                                                                             |
+| foldedWidth  | number  | Width after folding grouping                                                                |
+| foldedHeight | number  | Height after folding grouping                                                               |
+| isFolded     | boolean | Read-only, indicating whether the group is collapsed                                        |
+| isGroup      | boolean | Read-only, always true, used to identify `model` as `group`                                 |
 
 The attributes of group are set in the same way as nodes, either in the `initNodeData` or `setAttributes` methods of `groupModel`.
 
@@ -170,15 +170,10 @@ class MyGroupModel extends GroupNode.model {
 }
 ```
 
-?> **How to prevent nodes from connecting to groups?**  grouping is a special kind of node, so it is still possible to disallow direct connection between nodes and groupings by [customizing the connection rule](http://logic-flow.org/guide/basic/node.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9E%E6%8E%A5%E8%A7%84%E5%88%99%E6%A0%A1%E9%AA%8C). However, please do not set the number of anchor points of the group to 0, because when the group is collapsed, the relationship between the internal nodes of the group and the external nodes will be indicated by the anchor points of the group being connected to the external nodes.
+?> **How to prevent nodes from connecting to groups?** grouping is a special kind of node, so it is still possible to disallow direct connection between nodes and groupings by [customizing the connection rule](http://logic-flow.org/guide/basic/node.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9E%E6%8E%A5%E8%A7%84%E5%88%99%E6%A0%A1%E9%AA%8C). However, please do not set the number of anchor points of the group to 0, because when the group is collapsed, the relationship between the internal nodes of the group and the external nodes will be indicated by the anchor points of the group being connected to the external nodes.
 
 ## Example
 
-<iframe src="https://codesandbox.io/embed/bold-moore-vgvpf?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="bold-moore-vgvpf"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/bold-moore-vgvpf?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>
 
-!> **About the swim lanes**  The grouping feature is not a swim lane, the swim lane needs to be implemented by the developers themselves on the basis of grouping. The full functionality of Bpmn provided by LogicFlow will support BPMN swimlanes later. We also welcome those who have implemented it themselves to give us PR.
+!> **About the swim lanes** The grouping feature is not a swim lane, the swim lane needs to be implemented by the developers themselves on the basis of grouping. The full functionality of Bpmn provided by LogicFlow will support BPMN swimlanes later. We also welcome those who have implemented it themselves to give us PR.

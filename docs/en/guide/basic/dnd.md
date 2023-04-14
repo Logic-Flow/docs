@@ -13,12 +13,7 @@ lf.dnd.startDrag({
 });
 ```
 
-<iframe src="https://codesandbox.io/embed/logicflow-base18-odj3g?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="logicflow-base18"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<a href="https://codesandbox.io/embed/logicflow-base18-odj3g?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> Demo in CodeSandBox</a>
 
 As can be seen from the above code, the node is drawn into the panel through the `div` tag + `css` style, and the `onMouseDown` event is bound to it. When dragging the graphics, the `lf.dnd.startDrag` function will be triggered, which means that the dragging will start. The input parameters of `startDrag`:
 
@@ -35,7 +30,7 @@ type NodeConfig = {
 
 When the mouse is released at the end of the drag, the current mouse position is converted to coordinates on the canvas and used as the node's center point coordinates `x`, `y`, and then the coordinates are merged with the `nodeConfig` passed in by the dragged node. Call the `lf.addNode` method to create the node after listening to the drop event.
 
-!> **Note**   
+!> **Note**  
 If you are using an image as a node added in the configuration panel, you need to set it to be non-draggable. For details, please refer to [#267](https://github.com/didi/LogicFlow/issues/267)
 
 **Using the Drag and Drop Panel Plugin**
