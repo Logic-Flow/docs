@@ -95,4 +95,4 @@ lf.extension.dndPanel.setPatternItems([
 
 使用`DndPanel`组件，可以快捷地创建拖拽面板，如下所示
 
-<a href="https://codesandbox.io/embed/elastic-mahavira-1ucwp?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/elastic-mahavira-1ucwp?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看示例</a>

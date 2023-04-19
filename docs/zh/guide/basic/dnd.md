@@ -13,7 +13,7 @@ lf.dnd.startDrag({
 });
 ```
 
-<a href="https://codesandbox.io/embed/logicflow-base18-odj3g?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/logicflow-base18-odj3g?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 通过上面的代码可以看出，将节点通过`div`标签+`css`样式的方式绘制到面板中，并为其绑定`onMouseDown`事件，当拖拽图形时，会触发`lf.dnd.startDrag`函数，表示开始拖拽，并传入选中图形的配置，`startDrag`入参格式：
 

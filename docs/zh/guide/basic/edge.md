@@ -8,7 +8,7 @@
 
 效果如下：
 
-<a href="https://codesandbox.io/embed/condescending-nash-lx1n1?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/condescending-nash-lx1n1?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ## 选择自定义边继承的内置边
 
@@ -146,7 +146,7 @@ export default {
 
 ### 示例
 
-<a href="https://codesandbox.io/embed/affectionate-visvesvaraya-uexl0y?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/affectionate-visvesvaraya-uexl0y?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ## 保存锚点信息
 
@@ -166,7 +166,7 @@ class CustomEdgeModel2 extends LineEdgeModel {
 }
 ```
 
-<a href="https://codesandbox.io/embed/logicflow-base17-h5pis?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/logicflow-base17-h5pis?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ## 自定义边文本位置
 
@@ -220,7 +220,7 @@ class CustomEdgeModel extends PolylineEdgeModel {
 
 ### 示例
 
-<a href="https://codesandbox.io/embed/laughing-dream-x3v87?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/laughing-dream-x3v87?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ## 给边开启动画
 
@@ -242,7 +242,7 @@ class CustomEdgeModel extends PolylineEdgeModel {
 
 ### 示例
 
-<a href="https://codesandbox.io/embed/suspicious-tree-hw82v8?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/suspicious-tree-hw82v8?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ## 自定义节点之间边的类型
 
@@ -346,4 +346,4 @@ class CustomEdge extends LineEdge {
 }
 ```
 
-<a href="https://codesandbox.io/embed/logicflow026-edgeanimation-forked-fdg3v0?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/logicflow026-edgeanimation-forked-fdg3v0?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> 去 CodeSandbox 查看示例</a>

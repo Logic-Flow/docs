@@ -16,7 +16,7 @@ LogicFlow 是基于 svg 做的流程图编辑框架，所以我们的节点和�
 
 下面我们看看把基础节点渲染到画布效果
 
-<a href="https://codesandbox.io/embed/logicflow-base2-forked-sckmtc?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/logicflow-base2-forked-sckmtc?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ## 基于继承的自定义节点
 
@@ -148,7 +148,7 @@ class customRectModel extends RectNodeModel {
 }
 ```
 
-<a href="https://codesandbox.io/embed/logicflow-base12-forked-ybl9eb?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/logicflow-base12-forked-ybl9eb?fontsize=14&hidenavigation=1&theme=dark" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ?> **注意**如果不在`model`中设置形状属性，而是直接在`view`中直接定义生成图形的宽高这种形状属性，会出现锚点位置、outline 大小不正确的情况。同时，连线的位置也可能会出现错乱。
 
@@ -357,7 +357,7 @@ path 标签属性：
 - `d`: 该属性定义了一个路径。直接复制 svg 代码过来即可, 不需要去关系 d 具体内容表示的含义。
 - `fill`: 路径的填充颜色, 一般和节点的边框颜色一致，但是也可以按照业务需求自定义。
 
-<a href="https://codesandbox.io/embed/logicflow-step3-mhge5?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/logicflow-step3-mhge5?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ## 自定义连接规则校验
 
@@ -403,7 +403,7 @@ lf.on("connection:not-allowed", (msg) => {
 
 在节点 model 中，有个 state 属性，当节点连接规则校验不通过时，state 属性值为 5。我们可以通过这个属性来实现连线是节点的提示效果。
 
-<a href="https://codesandbox.io/embed/long-star-d4j86e?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/long-star-d4j86e?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ## 限制节点移动
 
@@ -441,7 +441,7 @@ lf.graphModel.addNodeMoveRules((model, deltaX, deltaY) => {
 });
 ```
 
-<a href="https://codesandbox.io/embed/exciting-galileo-18sm6?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/exciting-galileo-18sm6?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ## 自定义节点的锚点
 
@@ -499,7 +499,7 @@ class SquareModel extends RectNodeModel {
 
 ?> **注意**一定要确保锚点 id 唯一，否则可能会出现连线规则校验不准确的问题。
 
-<a href="https://codesandbox.io/embed/logicflow-base15-ou2i0?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/logicflow-base15-ou2i0?fontsize=14&hidenavigation=1&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看更加复杂的示例</a>
 
 !> **提示**在实际开发中，存在隐藏锚点的需求，可以参考 github issue [如何隐藏锚点？](https://github.com/didi/LogicFlow/issues/454)，可以查看 code sandbox [示例](https://codesandbox.io/s/reverent-haslett-dkb9n?file=/step_14_hideAnchor/index.js)
 
@@ -672,7 +672,7 @@ export default function PageIndex() {
 
 ### 自定义 HTML 节点示例
 
-<a href="https://codesandbox.io/embed/logicflow-step7-dpmgb?fontsize=14&hidenavigation=1&module=%2Fstep7%2FcustomNode.js&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/logicflow-step7-dpmgb?fontsize=14&hidenavigation=1&module=%2Fstep7%2FcustomNode.js&theme=dark&view=preview" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ### 自定义节点与外部通信
 

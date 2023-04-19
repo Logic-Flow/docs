@@ -18,7 +18,7 @@ LogicFlow 提供了[自定义节点](zh/guide/basic/node)和[自定义边](zh/gu
 </script>
 ```
 
-<a href="https://docs.logic-flow.cn/demo/dist/examples/#/extension/bpmn-elements?from=doc" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://docs.logic-flow.cn/demo/dist/examples/#/extension/bpmn-elements?from=doc" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ## 转换为 XML
 

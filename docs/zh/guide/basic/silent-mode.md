@@ -36,4 +36,4 @@ const lf = new LogicFlow({
 });
 ```
 
-<a href="https://codesandbox.io/embed/pedantic-microservice-db76o?fontsize=14&hidenavigation=1&theme=dark&view=preview> 去 CodeSandbox 查看</a>
+<a href="https://codesandbox.io/embed/pedantic-microservice-db76o?fontsize=14&hidenavigation=1&theme=dark&view=preview> 去 CodeSandbox 查看示例</a>

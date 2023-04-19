@@ -99,4 +99,4 @@ lf.getGraphData();
 
 ### 转换结果示例
 
-<a href="https://docs.logic-flow.cn/demo/dist/examples/#/extension/adapter?from=doc" target="_blank"> 去 CodeSandbox 查看</a>
+<a href="https://docs.logic-flow.cn/demo/dist/examples/#/extension/adapter?from=doc" target="_blank"> 去 CodeSandbox 查看示例</a>
