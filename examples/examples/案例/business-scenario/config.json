@@ -46,6 +46,13 @@
       "mode": "link",
       "link": "https://github.com/towersxu/draft-flow",
       "github": "https://github.com/towersxu/draft-flow"
+    },
+    {
+      "name": "泳道图",
+      "key": "pool",
+      "mode": "link",
+      "link": "/demo/dist/pool",
+      "github": "https://github.com/Logic-Flow/docs/tree/gh-pages/demo/dist/pool"
     }
   ]
 }
