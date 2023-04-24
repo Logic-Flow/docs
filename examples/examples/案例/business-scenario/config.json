@@ -52,7 +52,7 @@
       "key": "pool",
       "mode": "link",
       "link": "/demo/dist/pool",
-      "github": "https://github.com/Logic-Flow/docs/tree/gh-pages/demo/dist/pool"
+      "github": "https://github.com/Logic-Flow/docs/tree/master/demo/dist/pool"
     }
   ]
 }
