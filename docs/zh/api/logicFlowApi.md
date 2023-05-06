@@ -25,7 +25,7 @@ const lf = new LogicFlow(options: Options)
 | history                   | Boolean           | -    | true       | 是否开启历史记录功能                                                                                                                                                                |
 | partial                   | Boolean           | -    | false      | 是否开启局部渲染功能                                                                                                                                                                |
 | edgeType                  | String            | -    | 'polyline' | 在图上编辑创建边的类型，支持自定义类型。                                                                                                                                            |
-| guards                    | Object            | -    | -          | 是否增加守卫函数，支持两个函数beforeClone、beforeDelete，函数返回 true 则执行默认逻辑，返回 false 则阻止                                                                                                                   |
+| guards                    | Object            | -    | -          | 是否增加守卫函数，支持两个函数 beforeClone、beforeDelete，函数返回 true 则执行默认逻辑，返回 false 则阻止                                                                           |
 | disabledTools             | string[]          | -    | -          | 禁止启用的内置工具，目前 logicflow 内置工具有'multipleSelect', 'textEdit'                                                                                                           |
 | isSilentMode              | Boolean           | -    | false      | 仅浏览不可编辑模式，默认不开启                                                                                                                                                      |
 | stopZoomGraph             | boolean           | -    | false      | 禁止缩放画布                                                                                                                                                                        |
@@ -715,11 +715,11 @@ lf.deleteElement("node_id");
 
 参数：
 
-| 参数名   | 类型    | 必传 | 默认值 | 描述            |
-| :------- | :------ | :--- | :----- | :-------------- |
-| id       | string  | ✅   | -      | 节点或者连线 Id |
-| multiple | boolean |      | false  | 是否为多选，如果为true，不会将上一个选中的元素重置     |
-| toFront | boolean |      | true  | 是否将选中的元素置顶，默认为true  |
+| 参数名   | 类型    | 必传 | 默认值 | 描述                                                |
+| :------- | :------ | :--- | :----- | :-------------------------------------------------- |
+| id       | string  | ✅   | -      | 节点或者连线 Id                                     |
+| multiple | boolean |      | false  | 是否为多选，如果为 true，不会将上一个选中的元素重置 |
+| toFront  | boolean |      | true   | 是否将选中的元素置顶，默认为 true                   |
 
 示例：
 
@@ -732,8 +732,9 @@ lf.selectElementById(id: string, multiple = false, toFront = true)
 获取流程绘图数据
 
 ```ts
-//返回值，如果是应用了adapter插件，且设置为adapterOut，返回为转换后的数据格式，否则为默认的格式
-getGraphData(): GraphConfigData | unknown
+// 返回值，如果是应用了adapter插件，且设置为adapterOut，返回为转换后的数据格式，否则为默认的格式
+// 1.2.5版本以后新增了入参，用于某些需要入参的adapterOut的执行，例如内置的BpmnAdapter可能需要传入属性保留字段的数组来保证导出数据中的某些节点属性被正常处理。这里的入参和引入的Adapter的adapterOut方法除了data以外的其他参数保持一致。
+getGraphData(...params: any): GraphConfigData | unknown
 ```
 
 LogicFlow 默认数据格式
@@ -763,7 +764,7 @@ type GraphConfigData = {
     };
     properties: {};
     zIndex?: number;
-    pointsList?: Point[], // 折线、曲线会输出pointsList
+    pointsList?: Point[]; // 折线、曲线会输出pointsList
   }[];
 };
 ```
@@ -836,7 +837,7 @@ lf.getProperties("id");
 
 将某个元素放置到顶部。
 
-如果堆叠模式为默认模式，则将指定元素置顶zIndex设置为9999，原置顶元素重新恢复原有层级zIndex设置为1。
+如果堆叠模式为默认模式，则将指定元素置顶 zIndex 设置为 9999，原置顶元素重新恢复原有层级 zIndex 设置为 1。
 
 如果堆叠模式为递增模式，则将需指定元素 zIndex 设置为当前最大 zIndex + 1。
 
@@ -911,14 +912,14 @@ lf.addElements({
 
 入参:
 
-|名称|类型|默认值|说明|
-|-|-|-|-|
-|leftTopPoint|PointTuple|无| 区域左上方的点 |
-|rightBottomPoint|PointTuple|无| 区域右下角的点 |
-|rightBottomPoint|PointTuple|无| 区域右下角的点 |
-|wholeEdge|boolean|无| 是否要整个边都在区域内部 |
-|wholeNode|boolean|无| 是否要整个节点都在区域内部 |
-|ignoreHideElement|boolean|无| 是否忽略隐藏的节点 |
+| 名称              | 类型       | 默认值 | 说明                       |
+| ----------------- | ---------- | ------ | -------------------------- |
+| leftTopPoint      | PointTuple | 无     | 区域左上方的点             |
+| rightBottomPoint  | PointTuple | 无     | 区域右下角的点             |
+| rightBottomPoint  | PointTuple | 无     | 区域右下角的点             |
+| wholeEdge         | boolean    | 无     | 是否要整个边都在区域内部   |
+| wholeNode         | boolean    | 无     | 是否要整个节点都在区域内部 |
+| ignoreHideElement | boolean    | 无     | 是否忽略隐藏的节点         |
 
 ```js
 lf.getAreaElement([100, 100], [500, 500]);
@@ -1064,14 +1065,14 @@ lf.focusOn({
 
 ## resize
 
-调整画布宽高, 如果width或者height不传会自动计算画布宽高。
+调整画布宽高, 如果 width 或者 height 不传会自动计算画布宽高。
 
 参数：
 
 | 名称   | 类型   | 必传 | 默认值 | 描述     |
 | :----- | :----- | :--- | :----- | :------- |
-| width  | Number |    | -      | 画布的宽 |
-| height | Number |    | -      | 画布的高 |
+| width  | Number |      | -      | 画布的宽 |
+| height | Number |      | -      | 画布的高 |
 
 ```js
 lf.resize(1200, 600);
@@ -1086,7 +1087,7 @@ lf.resize(1200, 600);
 | 名称     | 类型              | 必传 | 默认值 | 描述                                                                                                                     |
 | :------- | :---------------- | :--- | :----- | :----------------------------------------------------------------------------------------------------------------------- |
 | zoomSize | Boolean 或 Number |      | false  | 放大缩小的值，支持传入 0-n 之间的数字。小于 1 表示缩小，大于 1 表示放大。也支持传入 true 和 false 按照内置的刻度放大缩小 |
-| point | [x,y]             |      | false  | 缩放的原点, 不传默认左上角                                                                                               |
+| point    | [x,y]             |      | false  | 缩放的原点, 不传默认左上角                                                                                               |
 
 示例：
 
@@ -1103,7 +1104,7 @@ lf.zoom(2, [100, 100]);
 
 ## resetZoom
 
-重置图形的缩放比例为默认，默认是1。
+重置图形的缩放比例为默认，默认是 1。
 
 示例：
 
@@ -1166,10 +1167,10 @@ console.log(transform);
 
 参数
 
-| 名称 | 类型 | 必传 | 默认值 | 描述 |
-| :- | :- | :- | :- | :- |
-| x | Number | ✅ | | x 轴平移距离 |
-| y | Number | ✅ | | y 轴平移距离 |
+| 名称 | 类型   | 必传 | 默认值 | 描述         |
+| :--- | :----- | :--- | :----- | :----------- |
+| x    | Number | ✅   |        | x 轴平移距离 |
+| y    | Number | ✅   |        | y 轴平移距离 |
 
 ```js
 lf.translate(100, 100);
@@ -1189,10 +1190,10 @@ lf.resetTranslate();
 
 参数:
 
-| 名称 | 类型 | 必传 | 默认值 | 描述 |
-| :- | :- | :- | :- | :- |
-| verticalOffset | Number | ✅ | 20 | 距离盒子上下的距离， 默认为20 |
-| horizontalOffset | Number | ✅ | 20 | 距离盒子左右的距离， 默认为20 |
+| 名称             | 类型   | 必传 | 默认值 | 描述                           |
+| :--------------- | :----- | :--- | :----- | :----------------------------- |
+| verticalOffset   | Number | ✅   | 20     | 距离盒子上下的距离， 默认为 20 |
+| horizontalOffset | Number | ✅   | 20     | 距离盒子左右的距离， 默认为 20 |
 
 ```js
 lf.fitView(deltaX, deltaY);

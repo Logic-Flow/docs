@@ -10,45 +10,45 @@ All node instance operations on the flowchart, as well as events and behavior li
 const lf = new LogicFlow(options: Options)
 ```
 
-| Options                      | Type              | Required	 | Default     | Description                                                                                                                                                                                |
-| :------------------------ | :---------------- | :--- | :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| container                 | HTMLElement       | ✅   | -          | DOM container of the graph |
-| width                     | Number            | -    | -          | Specify the width of the canvas in 'px', the default is to use the container width. |
-| height                    | Number            | -    | -          | Specify the height of the canvas in 'px', the default is to use the container height. |
-| [background](#background) | false \| Object   | -    | false      | Background, no background by default |
-| [grid](#grid)             | false \| Object   | -    | false      | Grid, if set to `false` without grid on, it is 1px moving units, no grid background is drawn; if set to `true` on, it is 20px dotted grid by default |
-| [keyboard](#keyboard)     | Object            | -    | -          | Custom keyboard-related configuration |
-| [style](#style)           | Object            | -    | -          | Style |
-| animation                 | Boolean \| Object | -    | -          | Whether to turn on the animation function, can be unified switch and individual configuration |
-| disabledPlugins           | string[]          | -    | -          | Disable the loaded plugins when passing in the initialization |
-| snapline                  | Boolean           | -    | true       | Whether to enable node auxiliary alignment lines |
-| history                   | Boolean           | -    | true       | Whether to turn on the history function |
-| partial                   | Boolean           | -    | false      | Whether to enable local rendering |
-| edgeType                  | String            | -    | 'polyline' | Edit the type of created edge on the graph, and support custom type. |
-| guards                    | Array             | -    | -          | Whether to add guard function, function returns true then execute default logic, return false then block                                                                                                                   |
-| disabledTools             | string[]          | -    | -          | Disable built-in tools, logicflow built-in tools are 'multipleSelect' and 'textEdit' currently. |
-| isSilentMode              | Boolean           | -    | false      | Browse only non-editable mode, not on by default |
-| stopZoomGraph             | boolean           | -    | false      | Disable scaling of the canvas |
-| stopScrollGraph           | boolean           | -    | false      | Disable mouse scrolling to move the canvas |
-| stopMoveGraph             | boolean           | -    | false      | Disable dragging the canvas |
-| adjustEdge                | boolean           | -    | true       | Allows adjustment of edges |
-| adjustEdgeStartAndEnd     | boolean           | -    | false      | Whether to allow dragging the endpoints of an edge to adjust the linkage |
-| adjustNodePosition        | boolean           | -    | true       | Whether to allow dragging of nodes |
-| hideAnchors               | boolean           | -    | false      | Whether to hide the node's anchor point, default hidden in silent mode |
-| hoverOutline              | boolean           | -    | true       | Show the outer frame of the node when the mouse hovers |
-| nodeSelectedOutline       | boolean           | -    | true       | Show the outer frame of the node when the mouse is selected |
-| edgeSelectedOutline       | boolean           | -    | true       | Show the outer frame of the edge when mouse hover |
-| nodeTextEdit              | boolean           | -    | true       | Allow node text to be editable |
-| edgeTextEdit              | boolean           | -    | true       | Allow edge text to be editable |
-| textEdit                  | Boolean           | -    | true       | Whether to enable text editing |
-| nodeTextDraggable         | boolean           | -    | false      | Allow node text to be dragged |
-| edgeTextDraggable         | boolean           | -    | false      | Allow edge text to be dragged |
-| multipleSelectKey         | string            | -    | -          | Multi-select keys, including meta (cmd), shift and alt. Support key combination to click on elements to achieve multi-selection.                                                                                                                   |
-| idGenerator               | function          | -    | -          | Customize the rules for generating ids when creating nodes and edges. |
-| edgeGenerator             | function          | -    | -          | Rules for generating edges when connecting nodes and moving edges |
-| plugins                   | Array             | -    | -          | The plug-in loaded by the current LogicFlow instance, or the global plug-in if it is not passed. |
-| autoExpand                | boolean           | -    | -          | Whether to automatically expand the canvas when nodes are dragged near the edge of the canvas, default true. Note that if the canvas keeps scrolling when nodes are dragged to a certain position, it is because there is a problem with the width and height of the initialized canvas. It is recommended to turn off autoExpand if the canvas is of variable width and height. |
-| overlapMode               | number            | -    | -          | The stacking mode for element overlap defaults to connected lines at the bottom, nodes at the top, and selected elements at the top. Can be set to 1 for self-incrementing mode (common for graphing tool scenes). |
+| Options                   | Type              | Required | Default    | Description                                                                                                                                                                                                                                                                                                                                                                      |
+| :------------------------ | :---------------- | :------- | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| container                 | HTMLElement       | ✅       | -          | DOM container of the graph                                                                                                                                                                                                                                                                                                                                                       |
+| width                     | Number            | -        | -          | Specify the width of the canvas in 'px', the default is to use the container width.                                                                                                                                                                                                                                                                                              |
+| height                    | Number            | -        | -          | Specify the height of the canvas in 'px', the default is to use the container height.                                                                                                                                                                                                                                                                                            |
+| [background](#background) | false \| Object   | -        | false      | Background, no background by default                                                                                                                                                                                                                                                                                                                                             |
+| [grid](#grid)             | false \| Object   | -        | false      | Grid, if set to `false` without grid on, it is 1px moving units, no grid background is drawn; if set to `true` on, it is 20px dotted grid by default                                                                                                                                                                                                                             |
+| [keyboard](#keyboard)     | Object            | -        | -          | Custom keyboard-related configuration                                                                                                                                                                                                                                                                                                                                            |
+| [style](#style)           | Object            | -        | -          | Style                                                                                                                                                                                                                                                                                                                                                                            |
+| animation                 | Boolean \| Object | -        | -          | Whether to turn on the animation function, can be unified switch and individual configuration                                                                                                                                                                                                                                                                                    |
+| disabledPlugins           | string[]          | -        | -          | Disable the loaded plugins when passing in the initialization                                                                                                                                                                                                                                                                                                                    |
+| snapline                  | Boolean           | -        | true       | Whether to enable node auxiliary alignment lines                                                                                                                                                                                                                                                                                                                                 |
+| history                   | Boolean           | -        | true       | Whether to turn on the history function                                                                                                                                                                                                                                                                                                                                          |
+| partial                   | Boolean           | -        | false      | Whether to enable local rendering                                                                                                                                                                                                                                                                                                                                                |
+| edgeType                  | String            | -        | 'polyline' | Edit the type of created edge on the graph, and support custom type.                                                                                                                                                                                                                                                                                                             |
+| guards                    | Array             | -        | -          | Whether to add guard function, function returns true then execute default logic, return false then block                                                                                                                                                                                                                                                                         |
+| disabledTools             | string[]          | -        | -          | Disable built-in tools, logicflow built-in tools are 'multipleSelect' and 'textEdit' currently.                                                                                                                                                                                                                                                                                  |
+| isSilentMode              | Boolean           | -        | false      | Browse only non-editable mode, not on by default                                                                                                                                                                                                                                                                                                                                 |
+| stopZoomGraph             | boolean           | -        | false      | Disable scaling of the canvas                                                                                                                                                                                                                                                                                                                                                    |
+| stopScrollGraph           | boolean           | -        | false      | Disable mouse scrolling to move the canvas                                                                                                                                                                                                                                                                                                                                       |
+| stopMoveGraph             | boolean           | -        | false      | Disable dragging the canvas                                                                                                                                                                                                                                                                                                                                                      |
+| adjustEdge                | boolean           | -        | true       | Allows adjustment of edges                                                                                                                                                                                                                                                                                                                                                       |
+| adjustEdgeStartAndEnd     | boolean           | -        | false      | Whether to allow dragging the endpoints of an edge to adjust the linkage                                                                                                                                                                                                                                                                                                         |
+| adjustNodePosition        | boolean           | -        | true       | Whether to allow dragging of nodes                                                                                                                                                                                                                                                                                                                                               |
+| hideAnchors               | boolean           | -        | false      | Whether to hide the node's anchor point, default hidden in silent mode                                                                                                                                                                                                                                                                                                           |
+| hoverOutline              | boolean           | -        | true       | Show the outer frame of the node when the mouse hovers                                                                                                                                                                                                                                                                                                                           |
+| nodeSelectedOutline       | boolean           | -        | true       | Show the outer frame of the node when the mouse is selected                                                                                                                                                                                                                                                                                                                      |
+| edgeSelectedOutline       | boolean           | -        | true       | Show the outer frame of the edge when mouse hover                                                                                                                                                                                                                                                                                                                                |
+| nodeTextEdit              | boolean           | -        | true       | Allow node text to be editable                                                                                                                                                                                                                                                                                                                                                   |
+| edgeTextEdit              | boolean           | -        | true       | Allow edge text to be editable                                                                                                                                                                                                                                                                                                                                                   |
+| textEdit                  | Boolean           | -        | true       | Whether to enable text editing                                                                                                                                                                                                                                                                                                                                                   |
+| nodeTextDraggable         | boolean           | -        | false      | Allow node text to be dragged                                                                                                                                                                                                                                                                                                                                                    |
+| edgeTextDraggable         | boolean           | -        | false      | Allow edge text to be dragged                                                                                                                                                                                                                                                                                                                                                    |
+| multipleSelectKey         | string            | -        | -          | Multi-select keys, including meta (cmd), shift and alt. Support key combination to click on elements to achieve multi-selection.                                                                                                                                                                                                                                                 |
+| idGenerator               | function          | -        | -          | Customize the rules for generating ids when creating nodes and edges.                                                                                                                                                                                                                                                                                                            |
+| edgeGenerator             | function          | -        | -          | Rules for generating edges when connecting nodes and moving edges                                                                                                                                                                                                                                                                                                                |
+| plugins                   | Array             | -        | -          | The plug-in loaded by the current LogicFlow instance, or the global plug-in if it is not passed.                                                                                                                                                                                                                                                                                 |
+| autoExpand                | boolean           | -        | -          | Whether to automatically expand the canvas when nodes are dragged near the edge of the canvas, default true. Note that if the canvas keeps scrolling when nodes are dragged to a certain position, it is because there is a problem with the width and height of the initialized canvas. It is recommended to turn off autoExpand if the canvas is of variable width and height. |
+| overlapMode               | number            | -        | -          | The stacking mode for element overlap defaults to connected lines at the bottom, nodes at the top, and selected elements at the top. Can be set to 1 for self-incrementing mode (common for graphing tool scenes).                                                                                                                                                               |
 
 ### `background`
 
@@ -155,11 +155,11 @@ lf.register(config):void
 
 Parameters:
 
-| Parameter Name       | Type   | Required | Default | Description                 |
-| :----------- | :----- | :--- | :----- | :------------------- |
-| config.type  | String | ✅   | -      | Customize the names of nodes and edges |
-| config.model | Model  | ✅   | -      | Model of nodes and edges     |
-| config.view  | View   | ✅   | -      | View of nodes and edges  |
+| Parameter Name | Type   | Required | Default | Description                            |
+| :------------- | :----- | :------- | :------ | :------------------------------------- |
+| config.type    | String | ✅       | -       | Customize the names of nodes and edges |
+| config.model   | Model  | ✅       | -       | Model of nodes and edges               |
+| config.view    | View   | ✅       | -       | View of nodes and edges                |
 
 Example:
 
@@ -240,10 +240,10 @@ Modify node type
 changeNodeType(id: string, type: string): void
 ```
 
-| Name | Type   | Required | Default | Description     |
-| :--- | :----- | :--- | :----- | :------- |
-| id   | String | ✅   |        | Node id  |
-| type | String | ✅   |        | New type |
+| Name | Type   | Required | Default | Description |
+| :--- | :----- | :------- | :------ | :---------- |
+| id   | String | ✅       |         | Node id     |
+| type | String | ✅       |         | New type    |
 
 Example:
 
@@ -259,9 +259,9 @@ Get the model of all edges connected by the node.
 getNodeEdges(id: string): BaseEdgeModel[]
 ```
 
-| Parameter | Type   | Required | Default | Description    |
-| :--- | :----- | :--- | :----- | :------ |
-| id   | String | ✅   |        | Node id |
+| Parameter | Type   | Required | Default | Description |
+| :-------- | :----- | :------- | :------ | :---------- |
+| id        | String | ✅       |         | Node id     |
 
 Example:
 
@@ -279,14 +279,14 @@ addNode(nodeConfig: NodeConfig):nodeModel
 
 Parameters:
 
-| Name       | Type           | Required | Default | Description                     |
-| :--------- | :------------- | :--- | :----- | :----------------------- |
-| type       | String         | ✅   | -      | Node type name            |
-| x          | Number         | ✅   | -      | Node horizontal coordinate x           |
-| y          | Number         | ✅   | -      | Node vertical coordinate y            |
-| text       | Object\|String |      | -      | Node text content and location coordinates   |
-| id         | String         |      | -      | Node id                  |
-| properties | Object         |      | -      | Node properties, user can customize |
+| Name       | Type           | Required | Default | Description                                |
+| :--------- | :------------- | :------- | :------ | :----------------------------------------- |
+| type       | String         | ✅       | -       | Node type name                             |
+| x          | Number         | ✅       | -       | Node horizontal coordinate x               |
+| y          | Number         | ✅       | -       | Node vertical coordinate y                 |
+| text       | Object\|String |          | -       | Node text content and location coordinates |
+| id         | String         |          | -       | Node id                                    |
+| properties | Object         |          | -       | Node properties, user can customize        |
 
 Example:
 
@@ -317,9 +317,9 @@ deleteNode(nodeId: string): void
 
 Parameters:
 
-| Name   | Type   | Required | Default | Description            |
-| :----- | :----- | :--- | :----- | :-------------- |
-| nodeId | String | ✅   | -      | The id of the node to be deleted |
+| Name   | Type   | Required | Default | Description                      |
+| :----- | :----- | :------- | :------ | :------------------------------- |
+| nodeId | String | ✅       | -       | The id of the node to be deleted |
 
 Example:
 
@@ -337,9 +337,9 @@ cloneNode(nodeId: string): BaseNodeModel
 
 Parameters:
 
-| Name   | Type   | Required | Default | Description        |
-| :----- | :----- | :--- | :----- | :---------- |
-| nodeId | String | ✅   | -      | Target node id |
+| Name   | Type   | Required | Default | Description    |
+| :----- | :----- | :------- | :------ | :------------- |
+| nodeId | String | ✅       | -       | Target node id |
 
 Example:
 
@@ -367,9 +367,9 @@ getNodeModelById(nodeId: string): BaseNodeModel
 
 Parameters:
 
-| Name   | Type   | Required | Default | Description    |
-| :----- | :----- | :--- | :----- | :------ |
-| nodeId | String | ✅   | -      | Node id |
+| Name   | Type   | Required | Default | Description |
+| :----- | :----- | :------- | :------ | :---------- |
+| nodeId | String | ✅       | -       | Node id     |
 
 Example:
 
@@ -387,9 +387,9 @@ getNodeDataById(nodeId: string): NodeConfig
 
 Parameters:
 
-| Name   | Type   | Required | Default | Description    |
-| :----- | :----- | :--- | :----- | :------ |
-| nodeId | String | ✅   | -      | Node id |
+| Name   | Type   | Required | Default | Description |
+| :----- | :----- | :------- | :------ | :---------- |
+| nodeId | String | ✅       | -       | Node id     |
 
 Example:
 
@@ -407,9 +407,9 @@ getNodeIncomingNode(nodeId: string): BaseNodeModel[]
 
 Parameters:
 
-| Name   | Type   | Required | Default | Description    |
-| :----- | :----- | :--- | :----- | :------ |
-| nodeId | String | ✅   | -      | Node id |
+| Name   | Type   | Required | Default | Description |
+| :----- | :----- | :------- | :------ | :---------- |
+| nodeId | String | ✅       | -       | Node id     |
 
 ## getNodeOutgoingNode
 
@@ -421,9 +421,9 @@ getNodeOutgoingNode(nodeId: string): BaseNodeModel[]
 
 Parameters:
 
-| Name   | Type   | Required | Default | Description    |
-| :----- | :----- | :--- | :----- | :------ |
-| nodeId | String | ✅   | -      | Node id |
+| Name   | Type   | Required | Default | Description |
+| :----- | :----- | :------- | :------ | :---------- |
+| nodeId | String | ✅       | -       | Node id     |
 
 ## getNodeIncomingEdge
 
@@ -435,9 +435,9 @@ getNodeIncomingEdge(nodeId: string): BaseEdgeModel[]
 
 Parameters:
 
-| Name   | Type   | Required | Default | Description    |
-| :----- | :----- | :--- | :----- | :------ |
-| nodeId | String | ✅   | -      | Node id |
+| Name   | Type   | Required | Default | Description |
+| :----- | :----- | :------- | :------ | :---------- |
+| nodeId | String | ✅       | -       | Node id     |
 
 ## getNodeOutgoingEdge
 
@@ -449,9 +449,9 @@ getNodeOutgoingEdge(nodeId: string): BaseEdgeModel[]
 
 Parameters:
 
-| Name   | Type   | Required | Default | Description    |
-| :----- | :----- | :--- | :----- | :------ |
-| nodeId | String | ✅   | -      | Node id |
+| Name   | Type   | Required | Default | Description |
+| :----- | :----- | :------- | :------ | :---------- |
+| nodeId | String | ✅       | -       | Node id     |
 
 ## addEdge
 
@@ -463,15 +463,15 @@ addEdge(edgeConfig: EdgeConifg): void
 
 Parameters:
 
-| Name         | Type            | Required | Default | Description            |
-| :----------- | :-------------- | :--- | :----- | :-------------- |
-| id           | String          |      | -      | Edge id         |
-| type         | String          |      | -      | Egde type        |
-| sourceNodeId | String          | ✅   | -      | id of the start node of the edge |
-| targetNodeId | String          | ✅   | -      | id of the end node of the edge |
-| startPoint   | Object          |      | -      | Coordinate of the starting point of the edge      |
-| endPoint     | Object          |      | -      | Coordinate of the ending point of the edge      |
-| text         | String\| Object |      | -      | Edge text          |
+| Name         | Type            | Required | Default | Description                                  |
+| :----------- | :-------------- | :------- | :------ | :------------------------------------------- |
+| id           | String          |          | -       | Edge id                                      |
+| type         | String          |          | -       | Egde type                                    |
+| sourceNodeId | String          | ✅       | -       | id of the start node of the edge             |
+| targetNodeId | String          | ✅       | -       | id of the end node of the edge               |
+| startPoint   | Object          |          | -       | Coordinate of the starting point of the edge |
+| endPoint     | Object          |          | -       | Coordinate of the ending point of the edge   |
+| text         | String\| Object |          | -       | Edge text                                    |
 
 Example:
 
@@ -501,9 +501,9 @@ removeEdge(id): void
 
 Parameters:
 
-| Name | Type   | Required | Default | Description    |
-| :--- | :----- | :--- | :----- | :------ |
-| id   | String |      | -      | Edge id |
+| Name | Type   | Required | Default | Description |
+| :--- | :----- | :------- | :------ | :---------- |
+| id   | String |          | -       | Edge id     |
 
 Example:
 
@@ -521,10 +521,10 @@ deleteEdgeByNodeId(config: EdgeFilter): void
 
 Parameters:
 
-| Name         | Type   | Required | Default | Description            |
-| :----------- | :----- | :--- | :----- | :-------------- |
-| sourceNodeId | String |      | -      | id of the starting node of the edge |
-| targetNodeId | String |      | -      | id of the ending node of the edge |
+| Name         | Type   | Required | Default | Description                         |
+| :----------- | :----- | :------- | :------ | :---------------------------------- |
+| sourceNodeId | String |          | -       | id of the starting node of the edge |
+| targetNodeId | String |          | -       | id of the ending node of the edge   |
 
 Example:
 
@@ -553,9 +553,9 @@ getEdgeModelById(edgeId: string): BaseEdgeModel
 
 Parameters:
 
-| Name   | Type   | Required | Default | Description    |
-| :----- | :----- | :--- | :----- | :------ |
-| edgeId | String | ✅   | -      | Node id |
+| Name   | Type   | Required | Default | Description |
+| :----- | :----- | :------- | :------ | :---------- |
+| edgeId | String | ✅       | -       | Node id     |
 
 Example:
 
@@ -567,9 +567,9 @@ lf.getEdgeModelById("id");
 
 Get the model of the edge that satisfies the condition
 
-| Name       | Type   | Required | Default | Description     |
-| :--------- | :----- | :--- | :----- | :------- |
-| edgeFilter | Object | ✅   | -      | Filtering conditions |
+| Name       | Type   | Required | Default | Description          |
+| :--------- | :----- | :------- | :------ | :------------------- |
+| edgeFilter | Object | ✅       | -       | Filtering conditions |
 
 ```js
 // get all the mods of the edges whose starting point is node A
@@ -639,9 +639,9 @@ export type EdgeConfig = {
 
 Parameters:
 
-| Name   | Type   | Required | Default | Description    |
-| :----- | :----- | :--- | :----- | :------ |
-| edgeId | String | ✅   | -      | Edge id |
+| Name   | Type   | Required | Default | Description |
+| :----- | :----- | :------- | :------ | :---------- |
+| edgeId | String | ✅       | -       | Edge id     |
 
 Example:
 
@@ -657,9 +657,9 @@ Set the type of edge, i.e. set the type of linkage drawn directly by the user at
 setDefaultEdgeType(type: EdgeType): void
 ```
 
-| Name | Type   | Required | Default     | Description                                                                                                                                    |
-| :--- | :----- | :--- | :--------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
-| type | String | ✅   | 'polyline' | Set the type of edge, built-in support for edge types are line (straight line), polyline (line), bezier (Bezier curve). The default is a line, and users can customize the type name to switch to the user-defined edge |
+| Name | Type   | Required | Default    | Description                                                                                                                                                                                                             |
+| :--- | :----- | :------- | :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type | String | ✅       | 'polyline' | Set the type of edge, built-in support for edge types are line (straight line), polyline (line), bezier (Bezier curve). The default is a line, and users can customize the type name to switch to the user-defined edge |
 
 Example:
 
@@ -679,10 +679,10 @@ Update the node or edge text
 updateText(id: string, value: string): void
 ```
 
-| Name  | Type   | Required | Default | Description           |
-| :---- | :----- | :--- | :----- | :------------- |
-| id    | String | ✅   |        | Node or edge id  |
-| value | String | ✅   |        | Updated text value |
+| Name  | Type   | Required | Default | Description        |
+| :---- | :----- | :------- | :------ | :----------------- |
+| id    | String | ✅       |         | Node or edge id    |
+| value | String | ✅       |         | Updated text value |
 
 Example:
 
@@ -698,9 +698,9 @@ Delete element
 deleteElement(id: string): boolean
 ```
 
-| Name | Type   | Required | Default | Description          |
-| :--- | :----- | :--- | :----- | :------------ |
-| id   | String | ✅   |        | Node or edge id |
+| Name | Type   | Required | Default | Description     |
+| :--- | :----- | :------- | :------ | :-------------- |
+| id   | String | ✅       |         | Node or edge id |
 
 Example:
 
@@ -714,10 +714,10 @@ Select the graph
 
 Parameters:
 
-| Name   | Type    | Required | Default | Description            |
-| :------- | :------ | :--- | :----- | :-------------- |
-| id       | string  | ✅   | -      | Node or edge id |
-| multiple | boolean |      | false  | Whether it is multiple choice      |
+| Name     | Type    | Required | Default | Description                   |
+| :------- | :------ | :------- | :------ | :---------------------------- |
+| id       | string  | ✅       | -       | Node or edge id               |
+| multiple | boolean |          | false   | Whether it is multiple choice |
 
 Example:
 
@@ -731,7 +731,9 @@ Get flow graphing data
 
 ```ts
 // Return value. If the adapter plugin is applied and the setting is adapterOut, the return is the converted data format, otherwise it is the default format.
-getGraphData(): GraphConfigData | unknown
+// Starting from version 1.2.5, new input parameters have been added for the execution of certain adapterOut that require input parameters. For example, the built-in BpmnAdapter may require an array of attribute reserve fields to be passed in to ensure that certain node attributes in the exported data are properly processed.
+// The input parameters here should be consistent with the other parameters of the adapterOut method from the imported adapter, except for the data parameter.
+getGraphData(...params: any): GraphConfigData | unknown
 ```
 
 LogicFlow default data format
@@ -849,10 +851,10 @@ Note: This method is not recommended for the default stacking mode.
 
 Parameters:
 
-| Name   | Type            | Required | Default | Description                                    |
-| :----- | :-------------- | :--- | :----- | :-------------------------------------- |
-| id     | String          | ✅   | -      | Node or edge id                           |
-| zIndex | String\| Number | ✅   | -      | Passing numbers, also supports passing `top` and `bottom` |
+| Name   | Type            | Required | Default | Description                                               |
+| :----- | :-------------- | :------- | :------ | :-------------------------------------------------------- |
+| id     | String          | ✅       | -       | Node or edge id                                           |
+| zIndex | String\| Number | ✅       | -       | Passing numbers, also supports passing `top` and `bottom` |
 
 Example:
 
@@ -906,13 +908,13 @@ For example, after drawing a selection with the mouse, get all the elements insi
 
 Parameters:
 
-|Name|Type|Default|Description|
-|-|-|-|-|
-|leftTopPoint|PointTuple|-| Point at the upper left of the area |
-|rightBottomPoint|PointTuple|-| point at the bottom right of the area |
-|wholeEdge|boolean|-| Whether the entire edge has to be inside the region |
-|wholeNode|boolean|-| Whether the entire node has to be inside the region |
-|ignoreHideElement|boolean|-| Whether ignoring hidden nodes |
+| Name              | Type       | Default | Description                                         |
+| ----------------- | ---------- | ------- | --------------------------------------------------- |
+| leftTopPoint      | PointTuple | -       | Point at the upper left of the area                 |
+| rightBottomPoint  | PointTuple | -       | point at the bottom right of the area               |
+| wholeEdge         | boolean    | -       | Whether the entire edge has to be inside the region |
+| wholeNode         | boolean    | -       | Whether the entire node has to be inside the region |
+| ignoreHideElement | boolean    | -       | Whether ignoring hidden nodes                       |
 
 ```js
 lf.getAreaElement([100, 100], [500, 500]);
@@ -926,9 +928,9 @@ Get all elements selected
 getSelectElements(isIgnoreCheck: boolean): GraphConfigData
 ```
 
-| Name          | Type    | Required | Default | Description                                                         |
-| :------------ | :------ | :--- | :----- | :----------------------------------------------------------- |
-| isIgnoreCheck | boolean | ✅   | true   | Whether to include edges where sourceNode and targetNode are not selected, default is include. |
+| Name          | Type    | Required | Default | Description                                                                                    |
+| :------------ | :------ | :------- | :------ | :--------------------------------------------------------------------------------------------- |
+| isIgnoreCheck | boolean | ✅       | true    | Whether to include edges where sourceNode and targetNode are not selected, default is include. |
 
 ```js
 lf.getSelectElements(false);
@@ -1002,15 +1004,15 @@ getPointByClient(x: number, y: number)
 
 Parameters:
 
-| Name | Type   | Required | Default | Description                                                   |
-| :--- | :----- | :--- | :----- | :----------------------------------------------------- |
-| x    | Number | ✅   | -      | The `x` coordinate relative to the top left corner of the page, which is generally the `x` coordinate returned by the native event |
-| y    | Number | ✅   | -      | The `y` coordinate relative to the top left corner of the page, which is generally the `y` coordinate returned by the native event |
+| Name | Type   | Required | Default | Description                                                                                                                        |
+| :--- | :----- | :------- | :------ | :--------------------------------------------------------------------------------------------------------------------------------- |
+| x    | Number | ✅       | -       | The `x` coordinate relative to the top left corner of the page, which is generally the `x` coordinate returned by the native event |
+| y    | Number | ✅       | -       | The `y` coordinate relative to the top left corner of the page, which is generally the `y` coordinate returned by the native event |
 
 返回值：
 
-| Name  | Type  | Description                       |
-| :---- | :---- | :------------------------- |
+| Name  | Type  | Description                                                     |
+| :---- | :---- | :-------------------------------------------------------------- |
 | point | Point | Two coordinates relative to the upper left corner of the canvas |
 
 ```ts
@@ -1036,9 +1038,9 @@ Position to the center of the canvas viewport
 
 Parameters:
 
-| Name      | Type   | Required | Default | Description         |
-| :---------- | :----- | :--- | :----- | :----------- |
-| focusOnArgs | object | ✅   | -      | Required parameters for positioning |
+| Name        | Type   | Required | Default | Description                         |
+| :---------- | :----- | :------- | :------ | :---------------------------------- |
+| focusOnArgs | object | ✅       | -       | Required parameters for positioning |
 
 Example:
 
@@ -1062,10 +1064,10 @@ Adjust canvas width and height
 
 Parameters:
 
-| Name   | Type   | Required | Default | Description     |
-| :----- | :----- | :--- | :----- | :------- |
-| width  | Number | ✅   | -      | Width of the canvas |
-| height | Number | ✅   | -      | Height of the canvas |
+| Name   | Type   | Required | Default | Description          |
+| :----- | :----- | :------- | :------ | :------------------- |
+| width  | Number | ✅       | -       | Width of the canvas  |
+| height | Number | ✅       | -       | Height of the canvas |
 
 ```js
 lf.resize(1200, 600);
@@ -1077,10 +1079,10 @@ Zoom in and out of the canvas
 
 Parameters:
 
-| Name     | Type              | Required | Default | Description                                                                                                                     |
-| :------- | :---------------- | :--- | :----- | :----------------------------------------------------------------------------------------------------------------------- |
-| isZoomIn | Boolean or Number |      | false  | The value of zoom in and zoom out is supported by passing in a number between 0 and n. Less than 1 means zoom in, more than 1 means zoom out. It also supports passing true and false to zoom in and out according to the built-in scale. |
-| isZoomIn | [x,y]             |      | false  | The origin of the zoom, not passing the default top left corner.                                                                                               |
+| Name     | Type              | Required | Default | Description                                                                                                                                                                                                                               |
+| :------- | :---------------- | :------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| isZoomIn | Boolean or Number |          | false   | The value of zoom in and zoom out is supported by passing in a number between 0 and n. Less than 1 means zoom in, more than 1 means zoom out. It also supports passing true and false to zoom in and out according to the built-in scale. |
+| isZoomIn | [x,y]             |          | false   | The origin of the zoom, not passing the default top left corner.                                                                                                                                                                          |
 
 Example:
 
@@ -1108,9 +1110,9 @@ setZoomMiniSize(size: number): void
 
 Parameters:
 
-| Name | Type   | Required | Default | Description                 |
-| :--- | :----- | :--- | :----- | :------------------- |
-| size | Number | ✅   | 0.2    | Minimum scaling ratio, default 0.2 |
+| Name | Type   | Required | Default | Description                        |
+| :--- | :----- | :------- | :------ | :--------------------------------- |
+| size | Number | ✅       | 0.2     | Minimum scaling ratio, default 0.2 |
 
 Example:
 
@@ -1128,9 +1130,9 @@ setZoomMaxSize(size: number): void
 
 Parameters:
 
-| Name | Type   | Required | Default | Description                  |
-| :--- | :----- | :--- | :----- | :-------------------- |
-| size | Number | ✅   | 16     | Maximum magnification, default 16|
+| Name | Type   | Required | Default | Description                       |
+| :--- | :----- | :------- | :------ | :-------------------------------- |
+| size | Number | ✅       | 16      | Maximum magnification, default 16 |
 
 Example:
 
@@ -1153,10 +1155,10 @@ Panning graph
 
 Parameters:
 
-| Name | Type | Required | Default | Description |
-| :- | :- | :- | :- | :- |
-| x | Number | ✅ | | x-axis translation distance |
-| y | Number | ✅ | | y-axis translation distance |
+| Name | Type   | Required | Default | Description                 |
+| :--- | :----- | :------- | :------ | :-------------------------- |
+| x    | Number | ✅       |         | x-axis translation distance |
+| y    | Number | ✅       |         | y-axis translation distance |
 
 ```js
 lf.translate(100, 100);
@@ -1195,10 +1197,10 @@ on(evt: string, callback: Function): this
 
 Parameters:
 
-| Name     | Type   | Required | Default | Description     |
-| :------- | :----- | :--- | :----- | :------- |
-| evt      | String | ✅   | -      | Event name |
-| callback | String | ✅   | -      | Callback function |
+| Name     | Type   | Required | Default | Description       |
+| :------- | :----- | :------- | :------ | :---------------- |
+| evt      | String | ✅       | -       | Event name        |
+| callback | String | ✅       | -       | Callback function |
 
 Example:
 
@@ -1221,10 +1223,10 @@ off(evt: string, callback: Function): this
 
 Parameters:
 
-| Name     | Type   | Required | Default | Description     |
-| :------- | :----- | :--- | :----- | :------- |
-| evt      | String | ✅   | -      | Event name |
-| callback | String | ✅   | -      | Callback function |
+| Name     | Type   | Required | Default | Description       |
+| :------- | :----- | :------- | :------ | :---------------- |
+| evt      | String | ✅       | -       | Event name        |
+| callback | String | ✅       | -       | Callback function |
 
 Example:
 
@@ -1247,10 +1249,10 @@ once(evt: string, callback: Function): this
 
 Parameters:
 
-| Name     | Type   | Required | Default | Description     |
-| :------- | :----- | :--- | :----- | :------- |
-| evt      | String | ✅   | -      | Event name |
-| callback | String | ✅   | -      | Callback function |
+| Name     | Type   | Required | Default | Description       |
+| :------- | :----- | :------- | :------ | :---------------- |
+| evt      | String | ✅       | -       | Event name        |
+| callback | String | ✅       | -       | Callback function |
 
 Example:
 
@@ -1270,10 +1272,10 @@ emit(evt: string, ...args): this
 
 Parameters:
 
-| Name | Type   | Required | Default | Description         |
-| :--- | :----- | :--- | :----- | :----------- |
-| evt  | String | ✅   | -      | Event name     |
-| args | Array  | ✅   | -      | Trigger event parameters |
+| Name | Type   | Required | Default | Description              |
+| :--- | :----- | :------- | :------ | :----------------------- |
+| evt  | String | ✅       | -       | Event name               |
+| args | Array  | ✅       | -       | Trigger event parameters |
 
 Example:
 
