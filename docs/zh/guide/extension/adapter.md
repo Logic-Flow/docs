@@ -74,6 +74,11 @@ lf.adapterOut = function (logicFlowData) {
   // 这里把LogicFlow生成的数据转换为用户需要的格式。
   return userData;
 };
+// 如果需要额外的参数，你也可以这样定义
+lf.adapterOut = function (logicFlowData, params, ...rest) {
+  console.log(params, ...rest);
+  return userData;
+};
 ```
 
 ## 使用内置的数据转换工具
@@ -94,6 +99,9 @@ const lf = new LogicFlow();
 lf.render();
 
 // 通过 getGraphData 来获取转换后的数据
+// 1.2.5版本以后新增了getGraphData的入参，来保证某些adapterOut的正常执行，例如这里的bpmn-adapter的adapterOut有一个可选的入参数"retainedFields"
+// 这意味着出现在这个数组里的字段当它的值是数组或是对象时不会被视为一个节点而是一个属性。我们定义了一些默认的属性字段，如"properties", "startPoint","endPoint", "pointsList"，显然这些字段并不足以满足数据处理的要求
+// 所以为了保证导出数据中某些节点属性被正常处理，请按需传入属性保留字段的数组。e.g. lf.getGraphData(['attribute-a', 'attribute-b'])
 lf.getGraphData();
 ```
 
