@@ -493,6 +493,25 @@ class SquareModel extends RectNodeModel {
     ];
   }
 }
+
+class SqlNode extends RectNode {
+  /**
+   * 1.1.7版本后支持在view中重写锚点形状。
+   * 重写锚点新增
+   */
+  getAnchorShape(anchorData) {
+    const { x, y, type } = anchorData;
+    return h("rect", {
+      x: x - 5,
+      y: y - 5,
+      width: 10,
+      height: 10,
+      className: `custom-anchor ${
+        type === "left" ? "incomming-anchor" : "outgoing-anchor"
+      }`
+    });
+  }
+}
 ```
 
 上面的示例中，我们自定义锚点的时候，不仅可以定义锚点的数量和位置，还可以给锚点加上任意属性。有了这些属性，我们可以再做很多额外的事情。例如，我们增加一个校验规则，只允许节点从右边连出，从左边连入；或者加个 id, 在获取数据的时候保存当前连线从哪个锚点连接到哪个锚点。
