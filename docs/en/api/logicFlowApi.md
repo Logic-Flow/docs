@@ -731,7 +731,8 @@ Get flow graphing data
 
 ```ts
 // Return value. If the adapter plugin is applied and the setting is adapterOut, the return is the converted data format, otherwise it is the default format.
-// Starting from version 1.2.5, new input parameters have been added for the execution of certain adapterOut that require input parameters. For example, the built-in BpmnAdapter may require an array of attribute reserve fields to be passed in to ensure that certain node attributes in the exported data are properly processed.
+// Starting from version 1.2.5, new input parameters have been added for the execution of certain adapterOut that require input parameters.
+// For example, the built-in BpmnAdapter may require an array of attribute reserve fields to be passed in to ensure that certain node attributes in the exported data are properly processed.
 // The input parameters here should be consistent with the other parameters of the adapterOut method from the imported adapter, except for the data parameter.
 getGraphData(...params: any): GraphConfigData | unknown
 ```

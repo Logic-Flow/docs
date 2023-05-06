@@ -99,7 +99,12 @@ const lf = new LogicFlow();
 lf.render();
 
 // Get the transformed data by gettingGraphData
-// Starting from version 1.2.5, the input parameter retainedFields has been added to getGraphData to ensure the proper execution of certain adapterOut, such as the bpmn-adapter in this case. retainedFields is an optional input parameter for the adapterOut, which means that any field appearing in this array will be treated as an attribute rather than a node when its value is an array or an object. We have defined some default attribute fields, such as "properties", "startPoint", "endPoint", and "pointsList", but clearly, these fields are not sufficient to meet the requirements of data processing. Therefore, to ensure that certain node attributes in the exported data are properly processed, please pass in an array of attribute reserve fields as needed, for example: lf.getGraphData(['attribute-a', 'attribute-b']).
+// Starting from version 1.2.5, the input parameter retainedFields has been added to getGraphData to ensure the proper execution of certain adapterOut.
+// Such as the bpmn-adapter in this case, retainedFields is an optional input parameter for the adapterOut,
+// which means that any field appearing in this array will be treated as an attribute rather than a node when its value is an array or an object.
+// We have defined some default attribute fields, such as "properties", "startPoint", "endPoint", and "pointsList", but clearly, these fields are not sufficient to meet the requirements of data processing.
+// Therefore, to ensure that certain node attributes in the exported data are properly processed, please pass in an array of attribute reserve fields as needed.
+// for example: lf.getGraphData(['attribute-a', 'attribute-b']).
 lf.getGraphData();
 ```
 

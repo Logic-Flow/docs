@@ -733,7 +733,8 @@ lf.selectElementById(id: string, multiple = false, toFront = true)
 
 ```ts
 // 返回值，如果是应用了adapter插件，且设置为adapterOut，返回为转换后的数据格式，否则为默认的格式
-// 1.2.5版本以后新增了入参，用于某些需要入参的adapterOut的执行，例如内置的BpmnAdapter可能需要传入属性保留字段的数组来保证导出数据中的某些节点属性被正常处理。这里的入参和引入的Adapter的adapterOut方法除了data以外的其他参数保持一致。
+// 1.2.5版本以后新增了入参，用于某些需要入参的adapterOut的执行，例如内置的BpmnAdapter可能需要传入属性保留字段的数组来保证导出数据中的某些节点属性被正常处理。
+// 这里的入参和引入的Adapter的adapterOut方法除了data以外的其他参数保持一致。
 getGraphData(...params: any): GraphConfigData | unknown
 ```
 
