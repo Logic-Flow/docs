@@ -3,16 +3,6 @@
   "key": "business-scenario",
   "examples": [
     {
-      "name": "思维导图",
-      "key": "mind-mapping",
-      "mode": "playground"
-    },
-    {
-      "name": "组织架构图",
-      "key": "organization",
-      "mode": "playground"
-    },
-    {
       "name": "BPMN",
       "key": "BPMN-Demo",
       "mode": "link",

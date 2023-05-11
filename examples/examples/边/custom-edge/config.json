@@ -1,26 +1,5 @@
 {
   "name": "自定义边",
   "key": "custom-edge",
-  "examples": [
-    {
-      "name": "自定义边样式",
-      "key": "custom-edge-style",
-      "mode": "playground"
-    },
-    {
-      "name": "自定义节点之间边的类型",
-      "key": "custom-edge-type",
-      "mode": "playground"
-    },
-    {
-      "name": "自定义连线规则",
-      "key": "custom-edge-rules",
-      "mode": "playground"
-    },
-    {
-      "name": "自定义箭头",
-      "key": "custom-edge-arrow",
-      "mode": "playground"
-    }
-  ]
+  "examples": []
 }

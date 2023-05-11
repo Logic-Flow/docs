@@ -29,11 +29,6 @@
       "mode": "link",
       "link": "https://xinxin93.github.io/logicflow_vue_demo/#/",
       "github": "https://github.com/xinxin93/logicflow_vue_demo"
-    },
-    {
-      "name": "HTML卡片demo",
-      "key": "html-card",
-      "mode": "playground"
     }
   ]
 }

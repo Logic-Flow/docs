@@ -20,13 +20,26 @@ export default function generateConfig() {
     };
     conf.children = [];
     for (const child of filterChildren) {
-      const examples = fs.readFileSync(
-        `${playgroundPath}/${topic}/${child}/config.json`,
-        "utf-8"
-      );
-      conf.children.push(JSON.parse(examples));
+      try {
+        const examples = fs.readFileSync(
+          `${playgroundPath}/${topic}/${child}/config.json`,
+          "utf-8"
+        );
+        const childJson = JSON.parse(examples);
+        if (
+          Object.keys(childJson).length < 1 ||
+          childJson.examples.length < 1
+        ) {
+          continue;
+        }
+        conf.children.push(childJson);
+      } catch (error) {
+        continue;
+      }
     }
-    jsonConfig.topic.push(conf);
+    if (conf.children.length > 0) {
+      jsonConfig.topic.push(conf);
+    }
   }
   return jsonConfig;
 }
