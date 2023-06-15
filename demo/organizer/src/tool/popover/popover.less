@@ -1,0 +1,45 @@
+.lf-popover-floating {
+  position: absolute;
+  background: #FFF;
+  padding: 10px;
+  border-radius: 2px;
+  box-shadow: 0 2px 12px 0 rgba(31,50,82,0.18);
+  z-index: 5000;
+}
+.lf-popover-floating.right {
+  transform: translate(12px, -50%);
+}
+.lf-popover-floating.bottom {
+  transform: translate(-50%, 12px);
+}
+.lf-popover-floating.top {
+  transform: translate(-50%, -100%);
+}
+.lf-popover-floating.left {
+  transform: translate(-100%, -50%);
+}
+.lf-popover-arrow {
+  position: absolute;
+  display: block;
+  z-index: -1;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 6px;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, .03));
+}
+.lf-popover-arrow.right {
+  top: 50%;
+  transform : translateY(-50%);
+  left: -6px;
+  border-right-color: #fff;
+  border-left-width: 0;
+}
+.lf-popover-arrow.bottom {
+  top: 0;
+  left: 50%;
+  transform : translate(-50%, -100%);
+  border-bottom-color: #fff;
+  border-top-width: 0;
+}

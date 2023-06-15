@@ -43,6 +43,13 @@
       "mode": "link",
       "link": "/demo/dist/pool",
       "github": "https://github.com/Logic-Flow/docs/tree/master/demo/pool"
+    },
+    {
+      "name": "编排器",
+      "key": "organizer",
+      "mode": "link",
+      "link": "/demo/dist/organizer",
+      "github": "https://github.com/Logic-Flow/docs/tree/master/demo/organizer"
     }
   ]
 }

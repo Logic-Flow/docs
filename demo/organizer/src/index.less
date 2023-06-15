@@ -1,0 +1,55 @@
+html, body {
+  -webkit-font-smoothing: antialiased;
+}
+.el-popper.logic-pop {
+  background: #FFFFFF;
+  box-shadow: 0 2px 12px 0 rgba(31,50,82,0.18);
+  border-radius: 2px;
+  padding: 12px;
+  &[x-placement^=right] {
+    margin-left: 6px;
+  }
+  &[x-placement^=top] {
+    margin-bottom: 6px;
+  }
+  .el-popconfirm {
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #303A51;
+    line-height: 16px;
+    font-weight: 400;
+    .el-popconfirm__main {
+      margin: 0 0 8px 0;
+    }
+    .el-button {
+      width: 60px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: PingFangSC-Medium;
+      font-size: 12px;
+      text-align: center;
+      line-height: 20px;
+      font-weight: 500;    
+    }
+  }
+}
+
+.el-tooltip__popper.logic-tooltip-pop {
+  background: rgba(24,33,48,0.85) !important;
+  box-shadow: 0 1px 5px 0 rgba(31,50,82,0.18);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: PingFangSC-Regular;
+  font-size: 12px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  text-align: justify;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.logic-panel foreignObject {
+  overflow: visible !important;
+}
