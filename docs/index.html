@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="./static/buble.css" />
 
     <link rel="stylesheet" href="./static/prism-tomorrow.min.css" />
+    <link rel="preload" href="https://img.shields.io/npm/v/@logicflow/core" as="image">
+    <link rel="preload" href="https://img.shields.io/npm/dm/@logicflow/core" as="image">
+    <link rel="preload" href="https://img.shields.io/npm/l/@logicflow/core" as="image">
   </head>
 
   <body>
@@ -119,6 +122,13 @@
           language: language === "zh" ? "chinese" : "english",
         },
       };
+      const userAgent = window.navigator.userAgent;
+      const platform = window.navigator.platform;
+      Omega.trackEvent('tech_user_info', 'tech_urser_info', {
+        language,
+        userAgent,
+        platform,
+      })
     </script>
     <script src="./static/docsify.min.js"></script>
     <script src="./static/countable.js"></script>
