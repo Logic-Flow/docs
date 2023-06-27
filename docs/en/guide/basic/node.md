@@ -29,7 +29,7 @@ LogicFlow recommends that in actual application scenarios, all nodes use custom 
 LogicFlow is based on class inheritance to implement custom nodes, edges. Developers can inherit LogicFlow's built-in nodes and then use the object-oriented [overriding mechanism](https://baike.baidu.com/item/%E9%87%8D%E5%86%99/9355942?fr=aladdin) to override the node style-related methods to achieve the effect of customizing the node style.
 ![logicflow-1.0-2.png](../../assets/images/logicflow-1.0-2.png)
 
-> This diagram was also drawn using LogicFlow. See [graphing tools](https://docs.logic-flow.cn/demo/dist/mvp/)。
+> This diagram was also drawn using LogicFlow. See [graphing tools](https://site.logic-flow.cn/demo/dist/mvp/)。
 
 ## Select the base node that the custom node inherits from
 

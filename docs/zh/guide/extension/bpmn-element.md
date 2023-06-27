@@ -18,7 +18,7 @@ LogicFlow 提供了[自定义节点](zh/guide/basic/node)和[自定义边](zh/gu
 </script>
 ```
 
-<a href="https://docs.logic-flow.cn/demo/dist/examples/#/extension/bpmn-elements?from=doc" target="_blank"> 去 CodeSandbox 查看示例</a>
+<a href="https://site.logic-flow.cn/demo/dist/examples/#/extension/bpmn-elements?from=doc" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ## 转换为 XML
 
@@ -113,4 +113,4 @@ const data = {
 };
 ```
 
-完整的 BPMN 案例工具请到[示例](https://docs.logic-flow.cn/examples/#/gallery)中体验。
+完整的 BPMN 案例工具请到[示例](https://site.logic-flow.cn/examples/#/gallery)中体验。

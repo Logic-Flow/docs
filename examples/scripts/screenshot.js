@@ -76,7 +76,7 @@ async function scrape() {
           if (link.includes("http")) {
             await page.goto(link);
           } else {
-            await page.goto(`https://docs.logic-flow.cn/${link}`);
+            await page.goto(`https://site.logic-flow.cn/${link}`);
           }
           await page.screenshot({
             path: `src/screenshots/${key}.png`,
