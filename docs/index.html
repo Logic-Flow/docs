@@ -15,6 +15,7 @@
         },
       };
       var Omega = Omega || config;
+      var startTime = Math.ceil(new Date().getTime() / 1000);
     </script>
     <script
       crossorigin="Anonymous"
@@ -124,11 +125,15 @@
       };
       const userAgent = window.navigator.userAgent;
       const platform = window.navigator.platform;
-      Omega.trackEvent('tech_user_info', 'tech_urser_info', {
-        language,
-        userAgent,
-        platform,
-      })
+      window.onload = function() {
+        const loadingTime = Math.ceil(new Date().getTime() / 1000) - startTime;
+        Omega.trackEvent('tech_user_info', 'tech_urser_info', {
+          language,
+          userAgent,
+          platform,
+          loadingTime,
+        })
+      }
     </script>
     <script src="./static/docsify.min.js"></script>
     <script src="./static/countable.js"></script>
