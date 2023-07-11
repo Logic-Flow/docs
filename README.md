@@ -41,4 +41,6 @@
 
 3. 添加截图。开发完示例之后，如需使用自动截图工具（不保证其可用性，但可以试试不是嘛，帮我找找 BUG🐶）并自行安装相关依赖(有些依赖可能有点大，比如 puppeteer)，执行`yarn dev:screenshot`以自动生成截图，或者手动截图放在`examples/src/screenshots`中
 
+4. 根目录下执行`yarn build`, 确保项目正常打包
+
 **开发完成后将开发分支的代码合并至`master`(必要时`rebase master`以保证`master`分支线性时间线)以部署项目`github pages`**
