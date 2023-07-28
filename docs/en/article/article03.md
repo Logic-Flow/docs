@@ -1,202 +1,203 @@
-# LogicFlow 边的绘制与交互
-## 前言
-[LogicFlow](https://github.com/didi/LogicFlow/) 是专注于业务的流程图可视化编辑框架（以下简称 LF），在这之前我们分别介绍了 LF 的[整体设计](https://juejin.cn/post/6933413834682007560)和[扩展机制](https://juejin.cn/post/6938319455529369636)，今天我们来聊一聊流程图中比较核心的一个概念 —— 边（Edge）。
+# LogicFlow Edge Drawing and Interaction
+## Preface
+[LogicFlow](https://github.com/didi/LogicFlow/) is a business-focused framework for visualizing and editing flowcharts (referred to as LF for short). Previously, we introduced the overall [design](https://juejin.cn/post/6933413834682007560) and extension [mechanism](https://juejin.cn/post/6938319455529369636) of LF. Today, let's talk about a core concept in flowcharts - Edges.
 
-首先，流程图中的元素主要由节点和边组成，边在 LF 中承担的角色是建立节点之间的关系。不同场景对图的布局和美观度都有要求，目前， LF 中提供了直线、折线、曲线 3 种类型的线来满足不同的需求。如下图所示。
+In LF, flowchart elements are mainly composed of nodes and edges. Edges play the role of connecting nodes. Different scenarios require different layout and aesthetics for the graph. Currently, LF provides three types of lines: straight lines, orthogonal polylines, and smooth curves, to meet various needs. As shown in the figure below.
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9dbb3faa71f44ba3af2e25b6e113e6eb~tplv-k3u1fbpfcp-zoom-1.image" alt="直线示例图" style="width: 80%; margin-left: 10%"/>
+<img src="../../_images/line.png" alt="Line Examples" style="width: 80%; margin-left: 10%;"/>
 
+Additionally, basic edge functionalities include path drawing, arrows, labels, and to enrich interactions, it includes selection and adjustments. In this article, we will introduce the implementation of drawing straight lines, orthogonal polylines, and smooth curves, setting edge labels, expanding the clickable region, indicating selection status, adjusting positions, and modifying styles.
 
-此外，边的基础功能包括路径绘制、箭头、文案，为了丰富操作还包括选中、调整等功能。本文将会介绍直线、折线、曲线的绘制，边文案设置，选中区域扩大，选中状态标识，位置调整，样式调整等实现思路和功能设计。
+To facilitate understanding, let's first explain some terms and functionalities.
+**Drawing**: Creating the shape of the line.
+**Expanding the clickable region**: Usually, edges have a small width (1 - 2px), making precise clicking for selection challenging. By expanding the clickable region, edges become easier to select with the mouse.
+**Selection status indication**: Distinguishing selected edges from others.
+**Position adjustment**: Edge creation is done by connecting through anchor points and automatically calculating their paths. However, automatic calculations may have some limitations. Manual adjustment can be applied to achieve optimal visual results.
+**Edge labeling**: Adding labels to edges to express additional information.
+**Style adjustment**: LF provides default styles for edges, such as color #000000 and width 2px. However, different host systems may require different styles. LF offers methods for style adjustments to meet these diverse requirements.
 
-为了方便理解，先对一些名词和功能做下解释。  
-**绘制**：绘制线的形状。  
-**选中区域扩大**：一般边设置的宽度较小( 1 - 2px)，精确点击进行选中的实际操作比较困难，将选中区域扩大之后，可以使边更容易被鼠标选中。  
-**选中状态标识**：将选中的边与其他边进行区分标识。  
-**位置调整**：边的创建是通过锚点进行连接，自动计算其路径，但是路径会存在一些固定计算的弊端，可以通过手动调整位置，达到视觉最优。  
-**边文案设置**：边上设置文案丰富信息表达。  
-**样式调整**：系统提供了边的默认样式，例如：边的颜色为 #000000，宽度为 2px，如果不同宿主系统的需要不同风格，LF 中也提供了样式调整的方法。
+LF supports three types of edges: straight lines, orthogonal polylines, and smooth curves. We will introduce their implementation one by one.
 
-LF 中提了供直线、直角折线、光滑曲线 3 种类型的边，本文将逐一介绍相关的实现思路。
+## Straight Lines
+Two points determine a straight line; only the starting and ending points are needed to draw a straight line. In LF, SVG's `<line/>` is used for drawing straight lines.
 
-## 直线  
-两点确定一条直线，仅需要边的起点和终点即可绘制出直线，在 LF 中使用 svg 的 <line/> 进行绘制。
+<img src="../../_images/apply.png" alt="Straight Line Example" style="width: 50%; margin-left: 25%;"/>
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ac015036f4b46a9b5ee9f91549e9d1f~tplv-k3u1fbpfcp-zoom-1.image" alt="直线应用" style="width: 50%; margin-left: 25%"/>
+Expanding the clickable region is achieved by adding a rectangle to the straight line. A point perpendicular to the line and at a distance of 10 from each endpoint is calculated. Then, points 5 units away from these perpendicular points and vertically aligned with the line's two sides are computed. This process results in 4 points forming a rectangle. Since the calculation provides 4 points' coordinates, the <path> tag is used for rendering. Currently, straight lines do not support starting position adjustments.
 
-选中区域扩大是在直线上增加矩形来实现的，以与两个端点相邻距离为 10 的点为垂点，计算与垂点距离为 5，垂直于直线两边的点，结果可以得到 4 个点组成一个矩形，因计算结果为 4 点坐标，使用了 path 标签进行渲染。目前直线不支持起始位置的调整。
+<img src="../../_images/line_clickable.png" alt="Straight Line Clickable Area" style="width: 70%; margin-left: 15%;"/>
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a4abbff56b114219825355a3aef175d2~tplv-k3u1fbpfcp-zoom-1.image" alt="直线可点区域" style="width: 70%; margin-left: 15%"/>  
+> The purple area represents the expanded clickable region of the straight line.
 
-> 图中紫色为直线扩大的可点区域
+PS: Why set offset to 10 instead of 0, or why not achieve it by increasing the width (stroke-width) of the drawn shape? Considering that edge start and end position adjustments, as well as other extended features, may be required, this method offers more flexibility and control.
 
-ps：为什么要设置 offset = 10，而不是 offset = 0，或者使用绘制一样的图形加大宽度 (stroke-width) 进行实现呢？考虑到后面会有边起点、终点位置调整，以及扩展功能，这样的方式更加灵活和可控。
-## 直角折线
-两点之间如果仅使用直线进行连接，当节点数量增多，位置关系复杂时，会出现大量边和节点交叉和重合的现象，为了更加清晰的表达节点之间的关系，LF 支持直角折线来连接两个节点。
-在 LF 中直角折线使用 svg 中的 polyline 标签进行绘制，关键步骤是找出组成折线的点。考虑美观性，策略为边尽量不与节点的边产生交叉和重合。
-首先假定使用节点上锚点 Start —> 锚点 End 进行连接，以下面的图为例介绍，如何计算直角折线路径的点。
+## Orthogonal Polylines
+If two points are connected only by a straight line in a complex graph with many nodes, crossings and overlaps between edges and nodes may occur. To express relationships between nodes more clearly, LF supports orthogonal polylines to connect two nodes.
+In LF, orthogonal polylines are drawn using the `<polyline>` tag in SVG. The key step is to find the points that make up the polyline. To enhance aesthetics, the strategy is to avoid intersections and overlaps between edges and node borders as much as possible.
+First, let's assume that we are connecting two nodes using the anchor points Start -> End. The calculation for finding the points forming the orthogonal polyline's path is explained using the example shown below.
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eb8328e73d21467ea5b595a37efb2dd2~tplv-k3u1fbpfcp-zoom-1.image" alt="直角折线" style="width: 40%; margin-left: 27%"/>
+<img src="../../_images/orth_polyline.png" alt="Orthogonal Polyline" style="width: 40%; margin-left: 27%;"/>
 
-第一步：计算以 Start 和 End 为垂足，垂直于的 Start 和 End 所在边框且距离为100的点，如下图所示，先计算出与 Start 所在节点边框距离为 100 的 SBbox，在 SBbox 上可以找到垂直于的 Start，且与其所在节点边框距离为 100 的点，这个点即为 Start 的下一个点，将其命名为 StartNext。同理可得点 EndPre。本次计算得到四个点，[Start, StartNext, EndPre, End]，这些点为路径确定经过的点。
+Step 1: Calculate the points perpendicular to Start and End as shown in the figure. Find the point on SBbox that is 100 units away from Start along the normal line, and on that point, find the point that is 100 units away from the normal line, perpendicular to Start. This point is the next point after Start, and it is called StartNext. Similarly, find the point EndPre after End. This process results in four points: [Start, StartNext, EndPre, End], which form the path for the orthogonal polyline.
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e1b9cb5632654dc7ada3e30dbccacd2f~tplv-k3u1fbpfcp-zoom-1.image" alt="第一步" style="width: 50%; margin-left: 25%"/>
+<img src="../../_images/points1.png" alt="Step 1" style="width: 50%; margin-left: 25%;"/>
 
-第二步：将包含 StartNext 和 EndPre 边的盒子命名为 LBox，包含 SBbox 和 LBbox 的盒子命名为 SLBbox，包含 EBbox 和 LBbox 的盒子命名为 ELBbox，取 SLBbox 和 ELBbox 四个角上的点，即图中蓝色的点，这些点为折线路径中可能经过的点。这一步得到的可能的点为【蓝色的点】
+Step 2: Name the box that contains the line containing StartNext and EndPre as LBox, the box containing SBbox and LBox as SLBbox, and the box containing EBbox and LBox as ELBbox. Take the points on the four corners of SLBbox and ELBbox, represented by the blue points in the figure. These points represent the possible points the polyline could go through. The points obtained in this step are shown in the figure as [Blue points].
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be8ace615fe6412baf804153d932d6fb~tplv-k3u1fbpfcp-zoom-1.image" alt="第二步" style="width: 50%; margin-left: 25%"/>
+<img src="../../_images/points2.png" alt="Step 2" style="width: 50%; margin-left: 25%;"/>
 
-第三步：找出 StartNext 和 EndPre 的中点，下图中绿点，找出中点X，Y 轴上直线与 LBbox、SLBbox、ELBbox 相交，且不在 SBbox 和 EBbox 中的点，即为图中紫色的点，这些点为折线路径中可能经过的点。这一步得到的可能的点为【紫色的点】
+Step 3: Find the midpoint of StartNext and EndPre, represented by the green point in the figure. On the X and Y axes, find the intersections of the line and LBbox, SLBbox, and ELBbox, but not on SBbox and EBbox. These points are represented by the purple points in the figure. These points are the possible points the polyline could go through. The points obtained in this step are shown in the figure as [Purple points].
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/59d744a269ba4bc784b06aa1ad9884b8~tplv-k3u1fbpfcp-zoom-1.image" alt="第三步" style="width: 50%; margin-left: 25%"/>
+<img src="../../_images/points3.png" alt="Step 3" style="width: 50%; margin-left: 25%;"/>
 
-第四步：将前面三步得到的点汇总，然后对相同坐标的点进行去重，将会得到如下图中红色的点，接下来就是求 StartNext 到 EndPre 的最优路径。
+Step 4: Summarize the points obtained in the previous three steps, and then remove duplicate points with the same coordinates. The result is shown in the figure as [Red points]. The next step is to find the optimal path between StartNext and EndPre.
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c50202d316774ed3865d82acd2207cd5~tplv-k3u1fbpfcp-zoom-1.image" alt="第四步" style="width: 50%; margin-left: 25%"/>
+<img src="../../_images/points4.png" alt="Step 4" style="width: 50%; margin-left: 25%;"/>
 
-第五步：采用 [A*查找](https://baike.baidu.com/item/A%2A%E7%AE%97%E6%B3%95/215793?fr=aladdin) 结合 [曼哈顿距离](https://baike.baidu.com/item/%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB/743092?fr=aladdin)计算路径，得到如图所示路径。
+Step 5: Use the [A*](https://en.wikipedia.org/wiki/A*_search_algorithm) algorithm combined with the [Manhattan](https://en.wikipedia.org/wiki/Taxicab_geometry) distance to calculate the path, resulting in the path shown in the figure.
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ab8f8151f7854f879cc98795bede2ab6~tplv-k3u1fbpfcp-zoom-1.image" alt="第五步" style="width: 50%; margin-left: 25%"/>
+<img src="../../_images/points5.png" alt="Step 5" style="width: 50%; margin-left: 25%;"/>
 
-第六步：过滤同一直线上的中间节点，得到如下点，并连接成折线，至此折线路径部分绘制完成。
+Step 6: Filter out the intermediate nodes on the same straight line, resulting in the points shown below, and connect them to form the polyline. At this point, the path of the orthogonal polyline is drawn.
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/395c18ac500240d187b64caf593a843c~tplv-k3u1fbpfcp-zoom-1.image" alt="第六步" style="width: 35%; margin-left: 32%"/>
+<img src="../../_images/find_path.png" alt="Step 6" style="width: 35%; margin-left: 32%;"/>
 
-以上介绍了当两个节点之间存在一定距离，即 SBbox 与 EBbox 不存在重合时，路径计算的方法，这也是大部分绘图会涉及到的情景。当两个节点距离较近时，将采用其他简单策略来进行直角折线的实现，本文不做详细介绍。
-折线点击区域扩大的实现，是将折线分成多个线段，每个线段采用与直线同样的方式。详细介绍可参考直线部分。示例如下如：
+The above describes the method of calculating the path when there is a certain distance between two nodes, and SBbox and EBbox do not overlap. This is the scenario encountered in most diagram drawings. When the two nodes are close to each other, other simpler strategies are used to implement orthogonal polylines. This will not be detailed in this article. The implementation of expanding the clickable region for orthogonal polylines is done by dividing the polyline into multiple line segments and applying the same method as the straight line. For detailed information, please refer to the section on straight lines. An example is shown below:
 
+<img src="../../_images/polyline_clickable.png" alt="Orthogonal Polyline Clickable Area" style="width: 35%; margin-left: 32%;"/>
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5fc04a3fff2f4389a26f5e8a2b655160~tplv-k3u1fbpfcp-zoom-1.image" alt="折线可点区域" style="width: 35%; margin-left: 32%"/>
+> The purple area represents the expanded clickable region of the orthogonal polyline.
 
-> 图中紫色为折线扩大的可点区域
+By processing the polyline into multiple segments, it also facilitates the adjustment of the polyline's position. Currently, LF supports horizontal/vertical movement adjustments for each segment of the polyline.
 
-将折现分成多个线段分别处理，同时也方便了折线的位置调整。目前LF中可以对折线中的各个线段，进行水平/垂直方向的移动调整。
-LF中线段位置调整是根据移动位置，实时重新计算路径的方式实现的。步骤如下：  
-第一步：根据移动坐标，计算出当前线段两个端点拖拽移动后的坐标。  
-第二步：计算拖拽移动调整后，线段与节点外框的交点。   
-- 如果移动前线段没有连接起点、终点，去掉线段会穿插在节点内部的部分，取整个节点离线段最近的点为交点。
-- 如果移动前线段连接了起点, 判断线段端点是否在节点上，如果不在节点上，更换起点为线段与节点的交点。
-- 如果移动前线段连接了终点, 判断线段端点是否在节点上，如果不在节点上，更换终点为线段与节点的交点。   
+The position adjustment of the polyline is implemented by recalculating the path in real-time based on the movement position. The steps are as follows:
+Step 1: Calculate the coordinates of the two endpoints of the current line segment after dragging.
+Step 2: Calculate the intersection points between the line segment after dragging and the node border.
+- If the line segment did not connect to the start or end point before dragging, the removed part of the line segment would intersect inside the node. The closest point of the entire node to the line segment is taken as the intersection point.
+- If the line segment was connected to the start point, check whether the endpoint is on the node. If it is not on the node, change the start point to the intersection point between the line segment and the node.
+- If the line segment was connected to the end point, check whether the endpoint is on the node. If it is not on the node, change the end point to the intersection point between the line segment and the node.
 
-第三步：调整到对应外框的位置后，找到当前线段和图形的准确交点，更新路径。
-以下图为矩形和圆形垂直向下调整为示例，调整效果如下。
+Step 3: After adjusting to the corresponding border position, find the accurate intersection points between the current line segment and the shape, and update the path.
+Below is an example of vertical downward adjustment of a rectangle and a circle. The adjustment effect is as follows:
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d02a8273b1c24bf9852d2b6c85c213ba~tplv-k3u1fbpfcp-zoom-1.image" alt="折线调整" style="width: 80%; margin-left: 10%"/>
+<img src="../../_images/adjustment.png" alt="Adjusting Orthogonal Polyline" style="width: 80%; margin-left: 10%;"/>
 
-## 光滑曲线
-LF 也提供了曲线的方式来绘制边。LF 是基于 svg 进行绘制的，svg 中 path 标签天然支持对于贝塞尔曲线的绘制，为了减少计算，LF 中的光滑曲线是基于贝塞尔曲线实现的，贝塞尔曲线可以依据四个任意坐标的点绘制出的一条光滑曲线，通过控制曲线上的四个点（起点、终点以及两个相互分离的中间支点）来创建、编辑图形。在LF中可以通过移动两个支点的位置来进行曲线形状调整。
+## Smooth Curves
+LF also provides the option to draw curves as edges. LF is based on SVG for drawing, and SVG's <path> tag natively supports Bézier curves. To reduce computations, LF's smooth curves are implemented based on Bézier curves. Bézier curves can be drawn based on four arbitrary coordinates, consisting of a starting point, an ending point, and two middle control points that are mutually separated. By controlling these four points, you can create and edit smooth curves. In LF, you can adjust the shape of curves by moving the positions of two control points.
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8196093d89a94ebf80b04615f69a9ac3~tplv-k3u1fbpfcp-zoom-1.image" alt="贝塞尔支点" style="width: 50%; margin-left: 25%"/>
+<img src="../../_images/cubic_bezier.png" alt="Bézier Control Points" style="width: 50%; margin-left: 25%;"/>
 
-为了绘制贝塞尔曲线，需要计算出控制曲线上的四个点，其中起点和终点是已知的，关键点是如何计算出 2 个中间支点，为了图的美观性，线与节点的边框最大程度不产生重合，以及计算复杂度，实现步骤如下：
-第一步：计算出节点边框的相关坐标
-- 中心点X坐标
-- 中心点Y坐标
-- 最大X轴坐标
-- 最小X轴坐标
-- 最大Y轴坐标
-- 最小Y轴坐标
-第二步：计算出节点距离节点边框 offset = 100 的外框的相关坐标，
-- 中心点X坐标
-- 中心点Y坐标
-- 最大X轴坐标
-- 最小X轴坐标
-- 最大Y轴坐标
-- 最小Y轴坐标
-第三步：判断中心点与起点所在线段的方向（水平/垂直），在中心点与起点相同的方向上计算距离起点距离 offset = 100 对应的支点，这个支点就在第二步描述的节点外框上，以上图示例，根据其位置，取节点外框中的点（坐标为：x: 最大X轴坐标，y: 中心点Y坐标）为支点。同理可以计算出终点对应的支点。此方法与查找折线路径中 StartNext 和 EndPre 相同。
-第四步：得到两个支点后，结合起点和终点，使用 path 标签进行绘制。
-曲线绘制效果如下，其中蓝色圆形即为其支点，可以通过移动支点位置，调整线的形状。
+To draw a Bézier curve, you need to calculate the coordinates of the four control points on the curve: the start point, the end point, and the two control points in between. The position adjustment of the curve is done manually by dragging the control points. These points are recalculated in real-time to update the path.
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/10d9511ebca242b19aa6eab07fef773c~tplv-k3u1fbpfcp-zoom-1.image" alt="贝塞尔曲线调整" style="width: 60%; margin-left: 20%"/>
+Step 1: Calculate the coordinates of the node's bounding box:
+- Center X coordinate
+- Center Y coordinate
+- Maximum X-axis coordinate
+- Minimum X-axis coordinate
+- Maximum Y-axis coordinate
+- Minimum Y-axis coordinate
 
-扩大贝塞尔曲线的选中区域，绘制相同位置的曲线，但是样式属性如下的贝塞尔曲线：
+Step 2: Calculate the coordinates of the bounding box at an offset of 100 from the node's bounding box:
+- Center X coordinate
+- Center Y coordinate
+- Maximum X-axis coordinate
+- Minimum X-axis coordinate
+- Maximum Y-axis coordinate
+- Minimum Y-axis coordinate
+
+Step 3: Determine the direction (horizontal/vertical) between the center point and the starting point. On the same direction as the center point and starting point, calculate the support point at a distance of 100 from the starting point. This support point lies on the bounding box calculated in Step 2. Based on the given example, take the point from the node's bounding box with coordinates (x: Maximum X-axis coordinate, y: Center Y coordinate) as the support point. The same approach can be used to calculate the support point for the ending point. This method is similar to finding StartNext and EndPre in the polyline path.
+
+Step 4: After obtaining the two support points, combine them with the starting and ending points, and use the path tag to draw the curve.
+
+Below is an example of the adjustment of Bézier control points. By moving the control points, the shape of the curve can be modified.
+
+<img src="../../_images/adjust_controll_points.png" style="width: 60%; margin-left: 20%" alt="Adjusting Bézier Curves"/>
+
+Expanding the clickable region of Bézier curves is achieved by drawing a Bézier curve in the same position but with different style properties, as follows:
 
 ```js
+
 strokeWidth="10"
-
 stroke="transparent"
-
 fill="none"
+
 ```
-扩大区域是一个宽度增加 10 的贝塞尔曲线。
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6a33a44f4eb54282b41322c97711a76d~tplv-k3u1fbpfcp-zoom-1.image" alt="贝塞尔曲线调整" style="width: 30%; margin-left: 35%"/>
+The expanded region is a Bézier curve with increased width (10 units).
 
-> 图中紫色为贝塞尔曲线扩大的可点区域  
+<img src="../../_images/bezier_clickable.png" alt="Bézier Curve Clickable Area" style="width: 30%; margin-left: 35%;"/>
 
-## 箭头
-流程图中箭头标明了流程节点的指向，在 LF 中直线、折线、曲线的箭头使用统一方案实现，在 LF 中的箭头本质是一个包含终点的三角形，其中终点是确定的，需要计算另外 2 点组成三角形。
-- 找出边的末端切向量线段。  
-直线：起点到终点的向量  
-折线：折线中最后一个线段的向量  
-曲线：曲线中一共有 4 个点，取终点对应的支点到终点的向量  
-- 计算三角形另外 2 点  
-以与终点相邻距离为10的点为垂点，计算垂直于向量与垂点距离为5的两点点，结果可以得到 3 个点组成三角形，即为箭头。如下如所示，箭头大小可以通过主题样式设置 offset 和 verticalLength 来进行宽高调整。
+> The purple area represents the expanded clickable region of the Bézier curve.
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/07015ed7ab3f457f96d32849f7ffc7ed~tplv-k3u1fbpfcp-zoom-1.image" alt="贝塞尔曲线调整" style="width: 50%; margin-left: 25%"/>
+## Arrows
+Arrows in flowcharts indicate the direction of flow between flowchart nodes. In LF, arrows for straight lines, orthogonal polylines, and smooth curves are implemented using the same method. In LF, arrows are essentially triangles containing the endpoint. The other two points of the triangle, in addition to the endpoint, need to be calculated.
+- Find the tangent vector segment at the end of the edge.
+Straight Line: Vector from the start point to the end point.
+Orthogonal Polyline: Vector of the last line segment of the polyline.
+Smooth Curve: Vector from the endpoint to the control point.
+- Calculate the other two points of the triangle.
+Take the point at a distance of 10 from the endpoint as the perpendicular point. Calculate the points that are 5 units away from the perpendicular point and are vertically aligned with the edge on both sides. These three points form the arrow. As shown in the figure below, the size of the arrow can be adjusted using the theme style's offset and verticalLength properties.
 
-目前在LF中边仅支持单向箭头，且箭头样式仅为三角形，后续会继续丰富箭头的能力展现。
+<img src="../../_images/arrow.png" alt="Arrows" style="width: 50%; margin-left: 25%;"/>
 
-## 边的选中标识
-边的选中是通过一个能够包含边的所有点的矩形进行标识的。通过计算出矩形坐标以及大小信息：x, y, width, height，然后进行渲染，这些选中标识与节点是在不同的 svg 图层中进行绘制的，LF 是基于 MVVM (具体可参考[滴滴开源 LogicFlow：专注流程可视化的前端框架](https://juejin.cn/post/6933413834682007560))，可以很方便的通过数据驱动进行分层渲染，同样节点的选中标识也是相似的分层方式实现，这样可以更加灵活的处理不同模式和条件下的渲染，同时下载图片时也方便进行选中标识图层的剔除，得到更加纯粹干净的图。直线、折线、曲线因其路径计算的差异，选中标识计算方法也有所不同。  
+Currently, LF only supports one-way arrows, and the arrow style is limited to triangles. In the future, more arrow capabilities and styles may be added.
 
-直线的计算逻辑如下：
+## Selected Indication for Edges
+When an edge is selected, it is indicated by a rectangle that can contain all the points of the edge. The coordinates and size information (x, y, width, height) are calculated, and then the rectangle is rendered. The selected indication of edges and nodes are drawn in different SVG layers using LF's MVVM (Model-View-ViewModel) architecture. This allows for flexible rendering based on data, making it easier to handle rendering under different modes and conditions. It also makes it easier to exclude the selected indication layer when exporting images, resulting in a cleaner image. The method of calculating the selected indication for straight lines, orthogonal polylines, and smooth curves is different.
 
-- startPoint：起点
-- endPoint：终点
+For straight lines, the calculation logic is as follows:
 
-```js
+- startPoint: Starting point.
+- endPoint: Ending point.
+
+``` js
 const x = (startPoint.x + endPoint.x) / 2;
-
 const y = (startPoint.y + endPoint.y) / 2;
-
 const width = Math.abs(startPoint.x - endPoint.x) + 10;
-
 const height = Math.abs(startPoint.y - endPoint.y) + 10;
 ```
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0870da1e71384f0ba083a5ee2774c4f6~tplv-k3u1fbpfcp-zoom-1.image" alt="直线选中" style="width: 40%; margin-left: 30%"/>
+<img src="../../_images/line_selected.png" alt="Selected Straight Line" style="width: 40%; margin-left: 30%;"/>
 
-折线的计算逻辑如下：  
-- points：折线路径
+For orthogonal polylines, the calculation logic is as follows:
 
-```js
-// bbox: 包含折线上所有点的box
+- points: Points of the polyline.
+
+``` js
+// bbox: Box that contains all points of the polyline.
 const { points } = polyline;
 const pointsList = points2PointsList(points);
 const bbox = getBBoxOfPoints(pointsList, 8);
-const { x, y, width, height, } = bbox; 
+const { x, y, width, height } = bbox; 
 ```
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eb551bf439a54a86863ad92eedbfc9e0~tplv-k3u1fbpfcp-zoom-1.image" alt="折线选中" style="width: 40%; margin-left: 30%"/>
+<img src="../../_images/polyline_selected.png" alt="Selected Orthogonal Polyline" style="width: 40%; margin-left: 30%;"/>
 
-曲线的计算逻辑如下：
-- pointsList：贝塞尔曲线上所有点 list，包含起点、终点、两个支点
-- bbox: 包含贝塞尔曲线上所有点的 box
+For smooth curves, the calculation logic is as follows:
+- pointsList: List of all points on the Bézier curve, including the start point, end point, and two control points.
+- bbox: Box that contains all points on the Bézier curve.
 
-
-```js
+``` js
 const { path } = bezier;
 const pointsList = getBezierPoints(path);
 const bbox = getBBoxOfPoints(pointsList, 8);
-const { x, y, width, height, } = bbox; 
+const { x, y, width, height } = bbox; 
 ```
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/37a99754710841f1a61cc958372744ce~tplv-k3u1fbpfcp-zoom-1.image" alt="贝塞尔曲线选中" style="width: 40%; margin-left: 30%"/>
 
-## 边文案设置
-边上设置文案可以丰富信息表达，在 LF 中可以通过双击边开启文案编辑，文案默认位置如下:
+<img src="../../_images/bezier_selected.png" alt="Selected Smooth Curve" style="width: 40%; margin-left: 30%;"/>
 
-- 直线：中点。
-- 折线：双击手动添加时为双击位置与折线距离最短的垂点，非双击添加默认为最长线段的中点。
-- 曲线：起点、终点、两个控制点的X轴和Y轴坐标平均值。
+## Edge Labeling
+Adding labels to edges can enrich the information conveyed in the diagram. In LF, you can double-click on an edge to enable the text editing mode. The default position for the label is as follows:
 
-当然文案位置也可以手动进行拖动调整。
+- Straight Line: The middle point of the line.
+- Orthogonal Polyline: When manually adding the label, it is the perpendicular point to the double-click position on the polyline with the shortest distance. When added automatically (non-double-click), it is the middle point of the longest line segment in the polyline.
+- Smooth Curve: The average of the X and Y coordinates of the start point, end point, and two control points.
+Of course, the label position can also be manually adjusted by dragging.
 
-## 样式调整
-关于边的样式调整详细内容，可以查看官方文档介绍-[主题Theme](http://logic-flow.org/guide/advance/theme.html)。
+## Style Adjustment
+For detailed information about adjusting the style of edges, you can refer to the official documentation on [Theme](en/guide/basic/theme.md).
 
-## 最后
-相信通过本文你对 Edge 的实现有一个大概的认知了，其实在做 LogicFlow 的过程中，我们遇到了很多非纯前端的问题，那就需要我们去重拾几何、算法这样的知识，如果你也对这方面非常感兴趣或者有研究，欢迎一起交流。目前，LogicFlow 用户群的人数已经 200+，大家都在讨论流程可视化/LowCode 相关实现，期待你的参与~
+## Conclusion
+By reading this article, you should have a general understanding of how edges are implemented in LogicFlow. While developing LogicFlow, we encountered many non-pure front-end issues, which required us to revisit geometry, algorithms, and other related knowledge. If you are also interested in these aspects or have research experience, we welcome you to join the discussion. Currently, the LogicFlow user group has more than 200 members who are all discussing flow visualization and LowCode-related implementations. We look forward to your participation!
 
-
-- 添加微信号进用户群：logic-flow
+> To join the user group on WeChat: logic-flow
