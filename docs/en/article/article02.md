@@ -9,7 +9,7 @@ We had two ideas on how to make LogicFlow a flexible flow visualization library.
 
 However, for us, making everything configurable to maintain sufficient flexibility would require us to maintain a lot of UI-related logic internally. Let's take a node as an example:
 
-<img src='../../_images/custom_node.png' alt='' width='300'/>
+<img src='/docs/_images/custom_node.png' alt='' width='300'/>
 
 If we were to use a configuration-based approach, the configuration passed by the developer might look like this:
 
@@ -47,7 +47,7 @@ If we only provide `@logicflow/core`, which represents the graphical editing par
 3. Visualization Components: We use LogicFlow's custom component feature to encapsulate menus, canvases, quick tools, etc., required during the process of drawing a flowchart, and package them as Bpmn Components.
 4. Packaging: Finally, we package the above three plugins into the Bpmn plugin.
 
-<img src='../../_images/bpmn_extension.png' alt='' width='500'/>
+<img src='/docs/_images/bpmn_extension.png' alt='' width='500'/>
 
 LogicFlow itself is just a pure flowchart editor and does not have built-in business attributes. For better ease of use, we offer the Bpmn-js plugin, allowing projects that use bpmn-js to quickly switch to LogicFlow. With the Bpmn plugin, by loading the bpmn plugin into LogicFlow, the page behaves like bpmn-js.
 
@@ -62,7 +62,7 @@ LogicFlow.use(Bpmn);
 
 As mentioned earlier, the strength of a plugin's extensibility depends on whether the core program's API offers sufficient extensibility. LogicFlow's design on most APIs aims to support extensibility. The plugins we developed in `@logicflow/extension` are also a way to validate our APIs. The overall approach to supporting extension capability in LogicFlow is shown in the following diagram:
 
-<img src='../../_images/expand.png' alt='' width='500'/>
+<img src='/docs/_images/expand.png' alt='' width='500'/>
 
 #### Custom Nodes
 For ease of use, LogicFlow provides built-in basic nodes and special nodes, and developers can customize nodes based on these built-in nodes to meet their business requirements.
@@ -72,7 +72,7 @@ For ease of use, LogicFlow provides built-in basic nodes and special nodes, and 
 3. Extension Nodes: To simplify the usage, besides providing built-in nodes for developers to extend and customize in the core package, we also offer more nodes in the extension package @logicflow/extension, such as CylinderNode and RectIconNode.
 4. Custom Nodes: Developers can create their custom nodes based on any of the nodes in LogicFlow (including those from @logicflow/extension). They can inherit from existing nodes and override the corresponding methods to implement nodes that meet their business needs. Similarly, developers' custom nodes can become plugins and be contributed to the community. In the future, we plan to add a LogicFlow plugin market, where everyone can freely choose nodes they need for their projects.
 
-<img src='../../_images/structure.png' alt='' width='700'/>
+<img src='/docs/_images/structure.png' alt='' width='700'/>
 
 ### Custom Node Rules
 
@@ -106,7 +106,7 @@ class CnodeModel extends RectModel {
 
 The approach for custom edges is similar to custom nodes. We implement most of the logic for drawing lines in the base edge, and then in the built-in edges, we implement special interaction processing for edges. Finally, developers can customize development based on built-in edges. Of course, since most chart editors only have three types of line representations: straight, polyline, and curve, most custom edges involve changing styles (e.g., colors, dash lines) and names (e.g., edges are called `bpmn:sequenceFlow` in BPMN).
 
-<img src='../../_images/custom_line.png' alt='' width='400'/>
+<img src='/docs/_images/custom_line.png' alt='' width='400'/>
 
 ### Custom Properties
 

@@ -4,7 +4,7 @@
 
 首先，流程图中的元素主要由节点和边组成，边在 LF 中承担的角色是建立节点之间的关系。不同场景对图的布局和美观度都有要求，目前， LF 中提供了直线、折线、曲线 3 种类型的线来满足不同的需求。如下图所示。
 
-<img src="../../_images/line.png" alt="直线示例图" style="width: 80%; margin-left: 10%"/>
+<img src="/docs/_images/line.png" alt="直线示例图" style="width: 80%; margin-left: 10%"/>
 
 
 此外，边的基础功能包括路径绘制、箭头、文案，为了丰富操作还包括选中、调整等功能。本文将会介绍直线、折线、曲线的绘制，边文案设置，选中区域扩大，选中状态标识，位置调整，样式调整等实现思路和功能设计。
@@ -22,11 +22,11 @@ LF 中提了供直线、直角折线、光滑曲线 3 种类型的边，本文�
 ## 直线  
 两点确定一条直线，仅需要边的起点和终点即可绘制出直线，在 LF 中使用 svg 的 `<line/>` 进行绘制。
 
-<img src="../../_images/apply.png" alt="直线应用" style="width: 50%; margin-left: 25%"/>
+<img src="/docs/_images/apply.png" alt="直线应用" style="width: 50%; margin-left: 25%"/>
 
 选中区域扩大是在直线上增加矩形来实现的，以与两个端点相邻距离为 10 的点为垂点，计算与垂点距离为 5，垂直于直线两边的点，结果可以得到 4 个点组成一个矩形，因计算结果为 4 点坐标，使用了 path 标签进行渲染。目前直线不支持起始位置的调整。
 
-<img src="../../_images/line_clickable.png" alt="直线可点区域" style="width: 70%; margin-left: 15%"/>  
+<img src="/docs/_images/line_clickable.png" alt="直线可点区域" style="width: 70%; margin-left: 15%"/>  
 
 > 图中紫色为直线扩大的可点区域
 
@@ -36,37 +36,37 @@ ps：为什么要设置 offset = 10，而不是 offset = 0，或者使用绘制�
 在 LF 中直角折线使用 svg 中的 polyline 标签进行绘制，关键步骤是找出组成折线的点。考虑美观性，策略为边尽量不与节点的边产生交叉和重合。
 首先假定使用节点上锚点 Start —> 锚点 End 进行连接，以下面的图为例介绍，如何计算直角折线路径的点。
 
-<img src="../../_images/orth_polyline.png" alt="直角折线" style="width: 40%; margin-left: 27%"/>
+<img src="/docs/_images/orth_polyline.png" alt="直角折线" style="width: 40%; margin-left: 27%"/>
 
 第一步：计算以 Start 和 End 为垂足，垂直于的 Start 和 End 所在边框且距离为100的点，如下图所示，先计算出与 Start 所在节点边框距离为 100 的 SBbox，在 SBbox 上可以找到垂直于的 Start，且与其所在节点边框距离为 100 的点，这个点即为 Start 的下一个点，将其命名为 StartNext。同理可得点 EndPre。本次计算得到四个点，[Start, StartNext, EndPre, End]，这些点为路径确定经过的点。
 
-<img src="../../_images/points1.png" alt="第一步" style="width: 50%; margin-left: 25%"/>
+<img src="/docs/_images/points1.png" alt="第一步" style="width: 50%; margin-left: 25%"/>
 
 第二步：将包含 StartNext 和 EndPre 边的盒子命名为 LBox，包含 SBbox 和 LBbox 的盒子命名为 SLBbox，包含 EBbox 和 LBbox 的盒子命名为 ELBbox，取 SLBbox 和 ELBbox 四个角上的点，即图中蓝色的点，这些点为折线路径中可能经过的点。这一步得到的可能的点为【蓝色的点】
 
-<img src="../../_images/points2.png" alt="第二步" style="width: 50%; margin-left: 25%"/>
+<img src="/docs/_images/points2.png" alt="第二步" style="width: 50%; margin-left: 25%"/>
 
 第三步：找出 StartNext 和 EndPre 的中点，下图中绿点，找出中点X，Y 轴上直线与 LBbox、SLBbox、ELBbox 相交，且不在 SBbox 和 EBbox 中的点，即为图中紫色的点，这些点为折线路径中可能经过的点。这一步得到的可能的点为【紫色的点】
 
-<img src="../../_images/points3.png" alt="第三步" style="width: 50%; margin-left: 25%"/>
+<img src="/docs/_images/points3.png" alt="第三步" style="width: 50%; margin-left: 25%"/>
 
 第四步：将前面三步得到的点汇总，然后对相同坐标的点进行去重，将会得到如下图中红色的点，接下来就是求 StartNext 到 EndPre 的最优路径。
 
-<img src="../../_images/points4.png" alt="第四步" style="width: 50%; margin-left: 25%"/>
+<img src="/docs/_images/points4.png" alt="第四步" style="width: 50%; margin-left: 25%"/>
 
 第五步：采用 [A*查找](https://baike.baidu.com/item/A%2A%E7%AE%97%E6%B3%95/215793?fr=aladdin) 结合 [曼哈顿距离](https://baike.baidu.com/item/%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB/743092?fr=aladdin)计算路径，得到如图所示路径。
 
-<img src="../../_images/points5.png" alt="第五步" style="width: 50%; margin-left: 25%"/>
+<img src="/docs/_images/points5.png" alt="第五步" style="width: 50%; margin-left: 25%"/>
 
 第六步：过滤同一直线上的中间节点，得到如下点，并连接成折线，至此折线路径部分绘制完成。
 
-<img src="../../_images/find_path.png" alt="第六步" style="width: 35%; margin-left: 32%"/>
+<img src="/docs/_images/find_path.png" alt="第六步" style="width: 35%; margin-left: 32%"/>
 
 以上介绍了当两个节点之间存在一定距离，即 SBbox 与 EBbox 不存在重合时，路径计算的方法，这也是大部分绘图会涉及到的情景。当两个节点距离较近时，将采用其他简单策略来进行直角折线的实现，本文不做详细介绍。
 折线点击区域扩大的实现，是将折线分成多个线段，每个线段采用与直线同样的方式。详细介绍可参考直线部分。示例如下如：
 
 
-<img src="../../_images/polyline_clickable.png" alt="折线可点区域" style="width: 35%; margin-left: 32%"/>
+<img src="/docs/_images/polyline_clickable.png" alt="折线可点区域" style="width: 35%; margin-left: 32%"/>
 
 > 图中紫色为折线扩大的可点区域
 
@@ -81,12 +81,12 @@ LF中线段位置调整是根据移动位置，实时重新计算路径的方式
 第三步：调整到对应外框的位置后，找到当前线段和图形的准确交点，更新路径。
 以下图为矩形和圆形垂直向下调整为示例，调整效果如下。
 
-<img src="../../_images/adjustment.png" alt="折线调整" style="width: 80%; margin-left: 10%"/>
+<img src="/docs/_images/adjustment.png" alt="折线调整" style="width: 80%; margin-left: 10%"/>
 
 ## 光滑曲线
 LF 也提供了曲线的方式来绘制边。LF 是基于 svg 进行绘制的，svg 中 path 标签天然支持对于贝塞尔曲线的绘制，为了减少计算，LF 中的光滑曲线是基于贝塞尔曲线实现的，贝塞尔曲线可以依据四个任意坐标的点绘制出的一条光滑曲线，通过控制曲线上的四个点（起点、终点以及两个相互分离的中间支点）来创建、编辑图形。在LF中可以通过移动两个支点的位置来进行曲线形状调整。
 
-<img src="../../_images/cubic_bezier.png" alt="贝塞尔支点" style="width: 50%; margin-left: 25%"/>
+<img src="/docs/_images/cubic_bezier.png" alt="贝塞尔支点" style="width: 50%; margin-left: 25%"/>
 
 为了绘制贝塞尔曲线，需要计算出控制曲线上的四个点，其中起点和终点是已知的，关键点是如何计算出 2 个中间支点，为了图的美观性，线与节点的边框最大程度不产生重合，以及计算复杂度，实现步骤如下：
 第一步：计算出节点边框的相关坐标
@@ -107,7 +107,7 @@ LF 也提供了曲线的方式来绘制边。LF 是基于 svg 进行绘制的，
 第四步：得到两个支点后，结合起点和终点，使用 path 标签进行绘制。
 曲线绘制效果如下，其中蓝色圆形即为其支点，可以通过移动支点位置，调整线的形状。
 
-<img src="../../_images/adjust_control_points.png" style="width: 60%; margin-left: 20%" alt="贝塞尔曲线调整"/>
+<img src="/docs/_images/adjust_control_points.png" style="width: 60%; margin-left: 20%" alt="贝塞尔曲线调整"/>
 
 扩大贝塞尔曲线的选中区域，绘制相同位置的曲线，但是样式属性如下的贝塞尔曲线：
 
@@ -120,7 +120,7 @@ fill="none"
 ```
 扩大区域是一个宽度增加 10 的贝塞尔曲线。
 
-<img src="../../_images/bezier_clickable.png" alt="贝塞尔曲线调整" style="width: 30%; margin-left: 35%"/>
+<img src="/docs/_images/bezier_clickable.png" alt="贝塞尔曲线调整" style="width: 30%; margin-left: 35%"/>
 
 > 图中紫色为贝塞尔曲线扩大的可点区域  
 
@@ -133,7 +133,7 @@ fill="none"
 - 计算三角形另外 2 点  
 以与终点相邻距离为10的点为垂点，计算垂直于向量与垂点距离为5的两点点，结果可以得到 3 个点组成三角形，即为箭头。如下如所示，箭头大小可以通过主题样式设置 offset 和 verticalLength 来进行宽高调整。
 
-<img src="../../_images/arrow.png" alt="箭头" style="width: 50%; margin-left: 25%"/>
+<img src="/docs/_images/arrow.png" alt="箭头" style="width: 50%; margin-left: 25%"/>
 
 目前在LF中边仅支持单向箭头，且箭头样式仅为三角形，后续会继续丰富箭头的能力展现。
 
@@ -155,7 +155,7 @@ const width = Math.abs(startPoint.x - endPoint.x) + 10;
 const height = Math.abs(startPoint.y - endPoint.y) + 10;
 ```
 
-<img src="../../_images/line_selected.png" alt="直线选中" style="width: 40%; margin-left: 30%"/>
+<img src="/docs/_images/line_selected.png" alt="直线选中" style="width: 40%; margin-left: 30%"/>
 
 折线的计算逻辑如下：  
 - points：折线路径
@@ -168,7 +168,7 @@ const bbox = getBBoxOfPoints(pointsList, 8);
 const { x, y, width, height, } = bbox; 
 ```
 
-<img src="../../_images/polyline_selected.png" alt="折线选中" style="width: 40%; margin-left: 30%"/>
+<img src="/docs/_images/polyline_selected.png" alt="折线选中" style="width: 40%; margin-left: 30%"/>
 
 曲线的计算逻辑如下：
 - pointsList：贝塞尔曲线上所有点 list，包含起点、终点、两个支点
@@ -181,7 +181,7 @@ const pointsList = getBezierPoints(path);
 const bbox = getBBoxOfPoints(pointsList, 8);
 const { x, y, width, height, } = bbox; 
 ```
-<img src="../../_images/bezier_selected.png" alt="贝塞尔曲线选中" style="width: 40%; margin-left: 30%"/>
+<img src="/docs/_images/bezier_selected.png" alt="贝塞尔曲线选中" style="width: 40%; margin-left: 30%"/>
 
 ## 边文案设置
 边上设置文案可以丰富信息表达，在 LF 中可以通过双击边开启文案编辑，文案默认位置如下:
