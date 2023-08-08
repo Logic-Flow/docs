@@ -11,7 +11,7 @@
 
 但是对于我们来说，配置化为了保持其提供足够的灵活性，我们需要在内部维护太多的 UI 相关的逻辑。以一个节点为例：
 
-![LogicFlow1](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b67a55c2d6ab4f04b6d67a8a01ae8567~tplv-k3u1fbpfcp-zoom-1.image)
+<img src='/docs/_images/custom_node.png' alt='' width='300'/>
 
 如果是采用配置化的方式的话，开发者传入的配置大致是：
 
@@ -53,7 +53,8 @@
 3. 最后我们再把流程图绘制过程中需要用到的菜单、画板、快捷工具等利用 LogicFlow 的自定义组件功能，封装成 Bpmn Component 组件。
 4. 将上面的三个插件，一起封装为 Bpmn 插件。
 
-![LogicFlow2](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/96a8b28f2ab54f7ea4efc8e9604b2db7~tplv-k3u1fbpfcp-zoom-1.image)
+<img src='/docs/_images/bpmn_extension.png' alt='' width='500'/>
+
 
 LogicFlow 本身只是一个单纯的流程图编辑器，不带有业务属性。为了更好的易用性，我们提供了 Bpmn-js  插件，让使用 bpmn-js 的项目能够快速替换。有了 Bpmn 插件后，直接通过 LogicFlow 装载 bpmn 插件，这个页面就表现成为 bpmn-js 了。
 
@@ -68,7 +69,7 @@ LogicFlow.use(Bpmn);
 
 前面提到过，插件的扩展性是否强大，是看核心程序提供的 API 是否有足够的扩展性。LogicFlow 在绝大多数 API 上的设计，其目标就是支持的拓展能力。我们在`@logicflow/extension`中开发的插件，也是一种验证我们 API 的方式。从下图可以看到LogicFlow 在支持拓展能力上的整体思路。
 
-![LogicFlow3](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/69420b337fd047209054f9bf8e94be8c~tplv-k3u1fbpfcp-zoom-1.image)
+<img src='/docs/_images/expand.png' alt='' width='500'/>
 
 ### 自定义节点
 
@@ -79,7 +80,7 @@ LogicFlow.use(Bpmn);
 3. 扩展节点：为了让开发者在使用的减少接入成本，LogicFlow 除了在核心包中提供了内置节点给与开发继承自定义外，还在扩展包`@logicflow/extension`中提供了更多的节点。例如圆柱体(CylinderNode)、带有图标的矩形(RectIconNode)等。
 4. 自定义节点：开发者可以在自己的项目中基于 LogicFlow 中的任何一种节点(包括`@logicflow/extension`中的节点)，采用继承重写对应的方法，实现自己业务需求的节点。同样，开发者自己自定义的节点也可以成为插件，开源到社区中。后续我们会增加 LogicFlow 的插件市场，到时大家可以自由选择自己项目所需的节点。
 
-![LogicFlow4](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7259c3bfddc4426c8f573108aed7903b~tplv-k3u1fbpfcp-zoom-1.image)
+<img src='/docs/_images/structure.png' alt='' width='700'/>
 
 ### 自定义节点规则
 
@@ -115,7 +116,8 @@ class CnodeModel extends RectModel {
 
 自定义边方案和自定义节点基本一致，由基础边实现线的绝大部分逻辑，然后在内置边中实现边的特殊交互处理，最后再由开发者基于内置边进行自定义开发。当然，由于绝大多数图编辑上线的表现形式都只有直线、折线和曲线三种形式，所以一般开发者自定义边都是改变一下样式（颜色、虚线）和名字（如Bpmn中边叫做`bpmn:sequenceFlow`）。
 
-![LogicFlow4](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b5372a58e5ca4a8fb966736d43882f9a~tplv-k3u1fbpfcp-zoom-1.image)
+<img src='/docs/_images/custom_line.png' alt='' width='400'/>
+
 
 ### 自定义属性
 
@@ -176,4 +178,4 @@ lf.setTheme({
 LogicFlow 还是一个很新的开源项目，提供的插件还不够丰富，也存在业务场景考虑不周的情况，欢迎大家在 github 上提 issue，我们一定会认真对待每一个 issue！LogicFlow 也在寻找 contributor ，如果你感兴趣的话，欢迎一起来共建！
 
 
-- 添加微信号进用户群：logic-flow
+> 添加微信号进用户群：logic-flow
