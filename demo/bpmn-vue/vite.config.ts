@@ -5,6 +5,7 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/demo/dist/bpmn-vue/",
   plugins: [
     vue({
       template: {
