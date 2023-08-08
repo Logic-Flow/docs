@@ -35,6 +35,12 @@
       "key": "angular-demo",
       "link": "https://chenweihan.github.io/logicflow-angular/bpmn",
       "github": "https://github.com/chenweihan/logicflow-angular"
+    },
+    {
+      "name": "bpmn-vue demo",
+      "key": "bpmn-vue",
+      "link": "/demo/dist/bpmn-vue",
+      "github": "https://github.com/Logic-Flow/docs/tree/master/demo/bpmn-vue"
     }
   ]
 }
