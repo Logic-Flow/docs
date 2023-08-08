@@ -87,6 +87,7 @@
 </template>
 
 <script setup lang="ts">
+// @ts-ignore
 import SvgIcon from "../../../components/SvgIcon.vue";
 const props = defineProps({
   lf: Object,

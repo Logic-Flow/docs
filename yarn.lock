@@ -3695,16 +3695,16 @@
     mousetrap "^1.6.5"
     preact "^10.4.8"
 
-"@logicflow/core@^1.1.23", "@logicflow/core@^1.1.31":
-  version "1.1.31"
-  resolved "https://registry.npmjs.org/@logicflow/core/-/core-1.1.31.tgz"
-  integrity sha512-TQYJoxhqSzWBvw/NkI5hNZ8WkfS7JDLrvp56EU/OYo6Nbusj2n8/ya8XaMM50+GXqnp6+38t3RAGCC9Dk9cmhA==
+"@logicflow/core@^1.1.23", "@logicflow/core@^1.1.31", "@logicflow/core@^1.2.10", "@logicflow/core@^1.2.3", "@logicflow/core@^1.2.6":
+  version "1.2.10"
+  resolved "https://registry.npmjs.org/@logicflow/core/-/core-1.2.10.tgz"
+  integrity sha512-F2lEL4DchqCFOyB+8mLdCQOjJiF7a0pBP7u7N6bkbQ4ljPQW44QiYkCWNpVv1AwaSS6MlZuJ+wV51qNZUd2qXA==
   dependencies:
     "@types/mousetrap" "^1.6.4"
     mousetrap "^1.6.5"
     preact "^10.4.8"
 
-"@logicflow/core@^1.2.0-next.1", "@logicflow/core@^1.2.3", "@logicflow/core@^1.2.6", "@logicflow/core@^1.2.8":
+"@logicflow/core@^1.2.0-next.1":
   version "1.2.8"
   resolved "https://registry.npmjs.org/@logicflow/core/-/core-1.2.8.tgz"
   integrity sha512-rXICx2aGpMHAecWngHN1m0uNHGr6pKEr5b5k/nDRlOY7PDaTuEHvyLzZP8rF3vElIEZb8kpuSKZsZZxrniqqVg==
@@ -3722,21 +3722,12 @@
     ids "^1.0.0"
     preact "^10.4.8"
 
-"@logicflow/extension@^1.1.23", "@logicflow/extension@^1.1.31":
-  version "1.1.31"
-  resolved "https://registry.npmjs.org/@logicflow/extension/-/extension-1.1.31.tgz"
-  integrity sha512-MUDdP7Anf3OmIEVmJTlIH8e5h2yrdqlwWYCDjDoh9R1IOfzR4wCvEiH4HgOkadTsGtfaihFRyFnPIYT1cu7oUA==
+"@logicflow/extension@^1.1.23", "@logicflow/extension@^1.1.31", "@logicflow/extension@^1.2.10", "@logicflow/extension@^1.2.3", "@logicflow/extension@^1.2.6":
+  version "1.2.10"
+  resolved "https://registry.npmjs.org/@logicflow/extension/-/extension-1.2.10.tgz"
+  integrity sha512-aDsQq7x7nGyt/OpfVFRGqrzh25iM2eJdG9+J7VDzXXsmiYmVRuexBzJlO0WMVgiF0AVutfk7rTGbIaDRVmH3kQ==
   dependencies:
-    "@logicflow/core" "^1.1.31"
-    ids "^1.0.0"
-    preact "^10.4.8"
-
-"@logicflow/extension@^1.2.3", "@logicflow/extension@^1.2.6":
-  version "1.2.8"
-  resolved "https://registry.npmjs.org/@logicflow/extension/-/extension-1.2.8.tgz"
-  integrity sha512-YsihopHbZYVdx9bOaxKcGSVYGZEx7wCJ0h9syRTUo6qjW7jGs9ijrI778gdHqmRDQ5xtN71EB2QiwxgP+XYOmQ==
-  dependencies:
-    "@logicflow/core" "^1.2.8"
+    "@logicflow/core" "^1.2.10"
     ids "^1.0.0"
     jest "27.5.1"
     lodash-es "^4.17.21"

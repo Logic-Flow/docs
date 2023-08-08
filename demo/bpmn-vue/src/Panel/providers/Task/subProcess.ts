@@ -105,7 +105,8 @@ export function SubProcessHOF(lf: any) {
     // 因为分组内部节点与外部节点相连时，
     // 如果折叠分组，需要分组代替内部节点与外部节点相连。
     getAnchorStyle() {
-      const style = super.getAnchorStyle({});
+      // @ts-ignore
+      const style = super.getAnchorStyle();
       style.stroke = '#000';
       style.fill = '#fff';
       style.hover.stroke = 'transparent';
