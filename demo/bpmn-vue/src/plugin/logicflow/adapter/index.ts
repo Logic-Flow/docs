@@ -179,18 +179,18 @@ let defaultTransformer: TransformerType = {
       if (condition) {
         if (expressionType === 'cdata') {
           return {
-            json:
+            xml:
               `<bpmn:conditionExpression xsi:type="bpmn2:tFormalExpression"><![CDATA[\${${
                 condition
               }}]]></bpmn:conditionExpression>`,
           };
         }
         return {
-          json: `<bpmn:conditionExpression xsi:type="bpmn2:tFormalExpression">${condition}</bpmn:conditionExpression>`,
+          xml: `<bpmn:conditionExpression xsi:type="bpmn2:tFormalExpression">${condition}</bpmn:conditionExpression>`,
         };
       }
       return {
-        json: '',
+        xml: '',
       };
 
     },
@@ -206,7 +206,7 @@ let defaultTransformer: TransformerType = {
       const typeFunc = () => `<bpmn:${timerType} xsi:type="bpmn:tFormalExpression">${timerValue}</bpmn:${timerType}>`;
 
       return {
-        json:
+        xml:
           `<bpmn:timerEventDefinition id="${definitionId}"${
             timerType && timerValue
               ? `>${typeFunc()}</bpmn:timerEventDefinition>`

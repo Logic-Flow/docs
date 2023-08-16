@@ -90,7 +90,7 @@ export function StartEventFactory(lf: any): {
       const rules = super.getConnectedTargetRules();
       const notAsSource = {
         message: '起始节点不能作为边的终点',
-        validate: (source: any, target: any) => {
+        validate: (_source: any, target: any) => {
           if (target === this) {
             return false;
           }
