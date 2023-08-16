@@ -496,7 +496,7 @@ lf.addEdge({
 基于边 id 删除边
 
 ```js
-removeEdge(id): void
+deleteEdge(id): void
 ```
 
 参数：
@@ -530,16 +530,16 @@ deleteEdgeByNodeId(config: EdgeFilter): void
 
 ```js
 // 删除起点id为id1并且终点id为id2的边
-lf.removeEdge({
+lf.deleteEdgeByNodeId({
   sourceNodeId: "id1",
   targetNodeId: "id2",
 });
 // 删除起点id为id1的边
-lf.removeEdge({
+lf.deleteEdgeByNodeId({
   sourceNodeId: "id1",
 });
 // 删除终点id为id2的边
-lf.removeEdge({
+lf.deleteEdgeByNodeId({({
   targetNodeId: "id2",
 });
 ```
