@@ -34,12 +34,12 @@ import hljs from "highlight.js";
 import LogicFlow from "@logicflow/core";
 import { Snapshot, Menu, SelectionSelect, Group, BPMNElements, BPMNAdapter } from "@logicflow/extension";
 import { onMounted, ref, createApp, h } from "vue";
-import BpmnPattern from "@/components/pattern.vue";
-import BpmnIo from "@/components/io.vue";
-import Panels from "@/components/panels/index.vue";
+import BpmnPattern from "../components/pattern.vue";
+import BpmnIo from "../components/io.vue";
+import Panels from "../components/panels/index.vue";
 // import { BpmnElement } from "@/plugin/logicflow/elements";
 // import { BpmnXmlAdapter } from "@/plugin/logicflow/adapter";
-import { messageIcon } from "@/plugin/logicflow/elements/icons";
+import { messageIcon } from "../plugin/logicflow/elements/icons";
 
 const LF = ref();
 const previewData = ref();

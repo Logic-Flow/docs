@@ -23,7 +23,7 @@ export function groupRule() {
 class IDS {
   private _ids: Set<string>;
   constructor() {
-    globalThis._ids = this;
+    (globalThis as any)._ids = this;
     this._ids = new Set();
   }
   generateId() {
@@ -44,7 +44,7 @@ class IDS {
   }
 }
 
-const ids = globalThis?._ids || new IDS();
+const ids = (globalThis as any)?._ids || new IDS();
 
 export function genBpmnId(): string {
   return ids.next();
