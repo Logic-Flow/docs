@@ -14,6 +14,7 @@ export function groupRule() {
       return !(!isSourceNodeInsideTheGroup && isTargetNodeInsideTheGroup);
     },
   };
+  // @ts-ignore
   this.targetRules.push(rule);
 }
 
@@ -21,6 +22,7 @@ export function groupRule() {
 class IDS {
   private _ids: Set<string>;
   constructor() {
+  // @ts-ignore
     globalThis._ids = this;
     this._ids = new Set();
   }
@@ -41,7 +43,7 @@ class IDS {
     return id;
   }
 }
-
+// @ts-ignore
 const ids = globalThis?._ids || new IDS();
 
 export function genBpmnId(): string {

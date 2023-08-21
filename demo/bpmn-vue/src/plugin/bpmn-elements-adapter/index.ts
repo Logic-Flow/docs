@@ -762,7 +762,7 @@ function convertBpmn2LfData(bpmnData: any, other?: ExtraPropsType) {
     ]));
   }
 
-  const ignoreFields = (obj: Object, filterSet: Set<string>, path: string) => {
+  const ignoreFields = (obj: any, filterSet: Set<string>, path: string) => {
     Object.keys(obj).forEach((key) => {
       const tmpPath = path ? `${path}.${key}` : key;
       if (filterSet.has(tmpPath)) {
@@ -1028,7 +1028,7 @@ class BPMNBaseAdapter {
     if (other?.mapping?.out) {
       const mapping = other?.mapping?.out;
 
-      const nameMapping = (obj: Object | any[]): any => {
+      const nameMapping = (obj: any): any => {
         if (Array.isArray(obj)) {
           obj.forEach((item) => nameMapping(item));
         }

@@ -5,7 +5,7 @@ import { registerGatewayNodes } from './presets/Gateway';
 import { registerTaskNodes } from './presets/Task';
 // import { registerPoolNodes } from './presets/Pool';
 import { registerFlows } from './presets/Flow';
-import { timerIcon, messageIcon } from './presets/icons';
+import { timerIcon } from './presets/icons';
 import * as icons from './presets/icons';
 import * as bpmnUtils from './utils';
 import { registerPoolNodes } from './presets/Pool';

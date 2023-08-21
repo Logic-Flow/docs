@@ -8,11 +8,6 @@ import {
 } from '@logicflow/core';
 import { genBpmnId, groupRule } from '../../utils';
 
-const gateway = {
-  exclusive: 0,
-  inclusive: 1,
-  parallel: 2,
-};
 
 /**
  * index 0 排他网关

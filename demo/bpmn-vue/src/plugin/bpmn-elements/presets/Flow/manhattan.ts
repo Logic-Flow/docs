@@ -1,5 +1,6 @@
 /* eslint-disable no-continue */
 import { Point } from '@logicflow/core';
+import { BBoxType } from './flow';
 
 class NodeBase {
   x: any;
@@ -43,6 +44,7 @@ class NodeBase {
   }
 }
 
+// @ts-ignore
 class PriorityQueue {
   heap: any[];
   constructor() {
@@ -438,7 +440,7 @@ function isHorizontal(p1: { y: any; }, p2: { y: any; }, p3: { y: any; }) {
   return p1.y === p2.y && p2.y === p3.y;
 }
 
-function douglasPeucker(points: string | any[], epsilon: number) {
+function douglasPeucker(points: string | any[], epsilon: number): any {
   let dmax = 0;
   let index = 0;
 
@@ -529,6 +531,7 @@ function circleDetection(path: string | any[]) {
   return res;
 }
 
+// @ts-ignore
 function getOrient(start: NodeBase, end: NodeBase) {
   const { x: x1, y: y1 } = start;
   const { x: x2, y: y2 } = end;
