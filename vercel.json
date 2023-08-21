@@ -2,6 +2,7 @@
   "routes": [
     { "src": "/docs/(.*)", "dest": "/docs/:1" },
     { "src": "/examples/(.*)", "dest": "/examples/:1" },
-    { "src": "/(.*)", "dest": "/docs/:1" }
+    { "src": "/(.*)", "dest": "/docs/:1" },
+    { "src": "/deploy/(.*)", "dest": "/docs/:1"}
   ]
 }
