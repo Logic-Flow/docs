@@ -37,9 +37,9 @@ import { onMounted, ref, createApp, h } from "vue";
 import BpmnPattern from "../components/pattern.vue";
 import BpmnIo from "../components/io.vue";
 import Panels from "../components/panels/index.vue";
-// import { BpmnElement } from "@/plugin/logicflow/elements";
-// import { BpmnXmlAdapter } from "@/plugin/logicflow/adapter";
-import { messageIcon } from "../plugin/logicflow/elements/icons";
+// import { BPMNElements } from "../plugin/bpmn-elements";
+// import { BPMNAdapter } from "../plugin/bpmn-elements-adapter";
+import { messageIcon } from "../plugin/bpmn-elements/presets/icons";
 
 const LF = ref();
 const previewData = ref();

@@ -71,11 +71,11 @@
         @mousedown.native="addNode('bpmn:userTask', { text: '人工任务' })"
       />
       <div>人工任务</div>
-      <SvgIcon
+      <!-- <SvgIcon
         iconClass="bpmn-icon-participant"
-        @mousedown.native="addNode('pool', { text: '泳道' })"
+        @mousedown.native="addNode('bpmn:collaboration', { text: '泳道' })"
       />
-      <div>泳道</div>
+      <div>泳道</div> -->
       <SvgIcon
         iconClass="bpmn-icon-subprocess-expanded"
         @mousedown.native="addNode('bpmn:subProcess', '')"
