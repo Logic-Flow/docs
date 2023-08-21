@@ -30,7 +30,9 @@
   "homepage": "https://github.com/Logic-Flow/docs#readme",
   "devDependencies": {
     "@vue/cli-plugin-eslint": "~4.5.13",
-    "lerna": "^6.0.1"
+    "lerna": "^6.0.1",
+    "@logicflow/core": "^1.2.12",
+    "@logicflow/extension": "^1.2.12"
   },
   "dependencies": {
     "yarn": "^1.22.19"

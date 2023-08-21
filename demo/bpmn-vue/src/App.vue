@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import HelloWorld from './components/HelloWorld.vue'
-import BPMN from './pages/bpmn/index.vue';
+import BPMN from './pages/bpmn.vue';
 </script>
 
 <template>
