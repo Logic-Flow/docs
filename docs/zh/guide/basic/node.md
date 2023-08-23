@@ -738,7 +738,7 @@ lf.on("custom:onBtnClick", () => {});
 !> **提示** 如果期望从外部传递一个方案给自定义节点使用。由于自定义节点中无法直接访问到`lf`实例，所以不支持直接给 lf 绑定一个方法。但是自定义节点可以拿到整个图的 model 对象，也就是`graphModel`，所以可以把这个方法绑定到`graphModel`上。另外`lf`内置的方法`graphModel`中基本都有，所以在开发自定义节点的时候可以使用`graphModel`获取流程图相关数据即可。
 
 ### shouldUpdate
-HTML节点目前通过修改properties触发组件更新。
+HTML节点目前通过修改properties触发节点更新。
 ``` ts
  /** 
   * @overridable 支持重写 
