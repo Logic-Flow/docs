@@ -736,3 +736,43 @@ lf.on("custom:onBtnClick", () => {});
 ```
 
 !> **提示** 如果期望从外部传递一个方案给自定义节点使用。由于自定义节点中无法直接访问到`lf`实例，所以不支持直接给 lf 绑定一个方法。但是自定义节点可以拿到整个图的 model 对象，也就是`graphModel`，所以可以把这个方法绑定到`graphModel`上。另外`lf`内置的方法`graphModel`中基本都有，所以在开发自定义节点的时候可以使用`graphModel`获取流程图相关数据即可。
+
+### shouldUpdate
+HTML节点目前通过修改properties触发组件更新。
+``` ts
+ /** 
+  * @overridable 支持重写 
+  * 和react的shouldComponentUpdate类似，都是为了避免出发不必要的render. 
+  * 但是这里不一样的地方在于，setHtml方法，我们只在properties发生变化了后再触发。 
+  * 而x,y等这些坐标相关的方法发生了变化，不会再重新触发setHtml. 
+  */ 
+ shouldUpdate() { 
+   if (this.preProperties && this.preProperties === this.currentProperties) return; 
+   this.preProperties = this.currentProperties; 
+   return true; 
+ } 
+ componentDidMount() { 
+   if (this.shouldUpdate()) { 
+     this.setHtml(this.rootEl); 
+   } 
+ } 
+ componentDidUpdate() { 
+   if (this.shouldUpdate()) { 
+     this.setHtml(this.rootEl); 
+   } 
+ } 
+```
+
+如果期望其他内容的修改可以触发节点更新，可以重写shouldUpdate（相关issue: [#1208](https://github.com/didi/LogicFlow/issues/1208)）
+``` ts
+shouldUpdate() {
+  if (this.preProperties &&
+   this.preProperties === this.currentProperties &&
+   this.preText === this.props.model.text.value
+ ) return;
+  this.preProperties = this.currentProperties;
+  this.preText = this.props.model.text.value
+  return true;
+}
+```
+
