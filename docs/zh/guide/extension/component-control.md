@@ -17,7 +17,7 @@ LogicFlow.use(Control);
 
 <details>
   <summary>控制面板内置以下控制项</summary>
-  <pre><code>
+  <pre><code style="background-color: #282c34; color: #7ec798">
 private controlItems: ControlItem[] = [
     {
       key: 'zoom-out',
