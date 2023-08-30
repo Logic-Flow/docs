@@ -23,7 +23,10 @@
         @mousedown.native="
           addNode('bpmn:boundaryEvent', {
             text: '时间边界',
-            properties: { definitionType: 'bpmn:timerEventDefinition' },
+            properties: {
+              definitionType: 'bpmn:timerEventDefinition',
+              panels: ['timerDefinition'],
+            },
           })
         "
       ></SvgIcon>
@@ -63,12 +66,26 @@
 
       <SvgIcon
         iconClass="bpmn-icon-service-task"
-        @mousedown.native="addNode('bpmn:serviceTask', { text: '服务任务' })"
+        @mousedown.native="
+          addNode('bpmn:serviceTask', {
+            text: '服务任务',
+            properties: {
+              panels: ['multiInstance'],
+            },
+          })
+        "
       />
       <div>服务任务</div>
       <SvgIcon
         iconClass="bpmn-icon-user-task"
-        @mousedown.native="addNode('bpmn:userTask', { text: '人工任务' })"
+        @mousedown.native="
+          addNode('bpmn:userTask', {
+            text: '人工任务',
+            properties: {
+              panels: ['multiInstance'],
+            },
+          })
+        "
       />
       <div>人工任务</div>
       <!-- <SvgIcon
@@ -467,6 +484,7 @@ function addTimerStartNode() {
     text: "时间开始",
     properties: {
       definitionType: "bpmn:timerEventDefinition",
+      panels: ["timerDefinition"],
     },
   });
 }
@@ -476,6 +494,7 @@ function addTimerCatchNode() {
     text: "时间捕获",
     properties: {
       definitionType: "bpmn:timerEventDefinition",
+      panels: ["timerDefinition"],
     },
   });
 }

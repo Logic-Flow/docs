@@ -3,9 +3,7 @@
     <div class="header">
       <div>
         点击左下角下载 XML，将文件上传到
-        <button href="https://demo.bpmn.io/" target="_blank">
-          BPMN Demo
-        </button>
+        <button href="https://demo.bpmn.io/" target="_blank">BPMN Demo</button>
         即可使用
       </div>
       <div>
@@ -32,13 +30,19 @@
 <script setup lang="ts">
 import hljs from "highlight.js";
 import LogicFlow from "@logicflow/core";
-import { Snapshot, Menu, SelectionSelect, Group, BPMNElements, BPMNAdapter } from "@logicflow/extension";
+import {
+  Snapshot,
+  Menu,
+  SelectionSelect,
+  Group,
+  // BPMNElements, BPMNAdapter
+} from "@logicflow/extension";
 import { onMounted, ref, createApp, h } from "vue";
 import BpmnPattern from "../components/pattern.vue";
 import BpmnIo from "../components/io.vue";
 import Panels from "../components/panels/index.vue";
-// import { BPMNElements } from "../plugin/bpmn-elements";
-// import { BPMNAdapter } from "../plugin/bpmn-elements-adapter";
+import { BPMNElements } from "../plugin/bpmn-elements";
+import { BPMNAdapter } from "../plugin/bpmn-elements-adapter";
 import { messageIcon } from "../plugin/bpmn-elements/presets/icons";
 
 const LF = ref();
@@ -64,7 +68,45 @@ const config = {
 };
 
 LogicFlow.use(BPMNElements);
-LogicFlow.use(BPMNAdapter);
+LogicFlow.use(BPMNAdapter, {
+  excludeFields: {
+    out: ['properties.multiInstanceType']
+  },
+  transformer: {
+    "bpmn:serviceTask": {
+      out(data: any) {
+        const {
+          properties: { multiInstanceType },
+        } = data;
+        if (multiInstanceType === "sequential") {
+          return {
+            json: `<bpmn:multiInstanceLoopCharacteristics isSequential="true" />`,
+          };
+        } else if (multiInstanceType === "parallel") {
+          return {
+            json: `<bpmn:multiInstanceLoopCharacteristics isSequential="false" />`,
+          };
+        }
+      },
+    },
+    "bpmn:userTask": {
+      out(data: any) {
+        const {
+          properties: { multiInstanceType },
+        } = data;
+        if (multiInstanceType === "sequential") {
+          return {
+            json: `<bpmn:multiInstanceLoopCharacteristics isSequential="true" />`,
+          };
+        } else if (multiInstanceType === "parallel") {
+          return {
+            json: `<bpmn:multiInstanceLoopCharacteristics isSequential="false" />`,
+          };
+        }
+      },
+    },
+  },
+});
 LogicFlow.use(Snapshot);
 // LogicFlow.use(Control);
 LogicFlow.use(Menu);
@@ -81,19 +123,21 @@ const onPreviewClick = () => {
   previewData.value = hljs.highlight(
     LF.value!.adapterOut(LF.value!.getGraphRawData(), {
       transformer: {
-        'bpmn:messageEventDefinition': {
+        "bpmn:messageEventDefinition": {
           out(data: any) {
             const {
               properties: { definitionId },
             } = data;
-            console.log(definitionId, `<bpmn:messageEventDefinition id="${definitionId}" />`)
+            console.log(
+              definitionId,
+              `<bpmn:messageEventDefinition id="${definitionId}" />`
+            );
             return {
-              json:
-                `<bpmn:messageEventDefinition id="${definitionId}" />`,
+              json: `<bpmn:messageEventDefinition id="${definitionId}" />`,
             };
-          }
-        }
-      }
+          },
+        },
+      },
     }),
     { language: "xml" }
   ).value;
@@ -134,20 +178,19 @@ onMounted(() => {
 
   setDefinition([
     {
-      nodes: ['startEvent'],
+      nodes: ["startEvent"],
       definition: [
         {
-          type: 'bpmn:messageEventDefinition',
+          type: "bpmn:messageEventDefinition",
           icon: messageIcon,
           properties: {
             panels: [],
-            definitionType: 'bpmn:messageEventDefinition',
-          }
-        }
-      ]
-    }
-  ])
-
+            definitionType: "bpmn:messageEventDefinition",
+          },
+        },
+      ],
+    },
+  ]);
 });
 </script>
 
@@ -190,7 +233,7 @@ pre::-webkit-scrollbar {
   z-index: 999;
 }
 
-.lf-menu>li {
+.lf-menu > li {
   list-style: none;
   padding: 3px 12px;
   font-size: 12px;
