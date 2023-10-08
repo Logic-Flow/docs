@@ -14,7 +14,7 @@ class PluginCls {
     // do anything
   }
   destroy() {
-    // do anythine
+    // do anything
   }
 }
 ```

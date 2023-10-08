@@ -260,10 +260,10 @@ extraProps.transformer = {
 - 导出时，需要从父元素的属性中拿到子元素需要到数据并拼接出子元素。
 - 导入时，需要从子元素中提取我们需要的数据放入父元素的属性中。
 
-在配置完需要的extraProps之后，我们就可以调用adapterOut方法导出数据。
+在配置完需要的extraProps之后，我们需要在注册插件时传入
 
 ``` ts
-const xmlResult = lf.adapterOut(lf.getGraphRawData(), extraProps)
+Logicflow.use(BPMNAdapter, extraProps)
 ```
 
 目前，我们内置了一下transformer **（仅做参考）**：
