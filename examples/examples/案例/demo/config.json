@@ -41,6 +41,12 @@
       "key": "bpmn-vue",
       "link": "/demo/dist/bpmn-vue",
       "github": "https://github.com/Logic-Flow/docs/tree/master/demo/bpmn-vue"
+    },
+    {
+      "name": "logicflow demo",
+      "key": "bpmn-and-engine",
+      "link": "/demo/dist/bpmn-and-engine",
+      "github": "https://github.com/Logic-Flow/docs/tree/master/demo/bpmn-and-engine"
     }
   ]
 }
