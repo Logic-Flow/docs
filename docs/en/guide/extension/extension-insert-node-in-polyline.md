@@ -5,7 +5,7 @@
 Drag a node to the middle of an edge and the node will automatically become part of the middle of the edge.
 Example: There exists a polyline E from node A to node B. Drag a node N onto the polyline E. Release the mouse when the center point of node N is exactly on the path of the polyline E. Then node N becomes an intermediate node between A and B. The original edge E will be deleted and two new polylines will be generated, A to N and N to B respectively.
 
-<a href="https://docs.logic-flow.cn/demo/dist/examples/#/extension/InserNodeInPolyline?from=doc" target="_blank"> Demo in CodeSandBox</a>
+<a href="https://site.logic-flow.cn/demo/dist/examples/#/extension/InserNodeInPolyline?from=doc" target="_blank"> Demo in CodeSandBox</a>
 
 ## support
 

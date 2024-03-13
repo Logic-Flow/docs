@@ -107,7 +107,7 @@ lf.getGraphData();
 
 ### 转换结果示例
 
-<a href="https://docs.logic-flow.cn/demo/dist/examples/#/extension/adapter?from=doc" target="_blank"> 去 CodeSandbox 查看示例</a>
+<a href="https://site.logic-flow.cn/demo/dist/examples/#/extension/adapter?from=doc" target="_blank"> 去 CodeSandbox 查看示例</a>
 
 ## 新的BPMNAdapter
 ### what's the difference?

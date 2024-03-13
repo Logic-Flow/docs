@@ -20,7 +20,7 @@
       </ul>
       </li>
       <li>
-        <a class="active" href="https://logic-flow.github.io/docs/examples" target="_blank" rel="noopener" title="Examples ">示例</a>
+        <a class="active" href="https://site.logic-flow.cn/examples/" target="_blank" rel="noopener" title="Examples ">示例</a>
       </li>
       <li>
         <font>版本记录 <i class="fa fa-caret-down navbar-icon"></i></font>

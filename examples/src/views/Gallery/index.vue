@@ -69,7 +69,7 @@ const jumpTo = (example) => {
     });
   } else {
     (link.includes("http") && window.open(link)) ||
-      window.open(`https://docs.logic-flow.cn/${link}`);
+      window.open(`https://site.logic-flow.cn/${link}`);
     window.open(link);
   }
 };

@@ -15,6 +15,7 @@
         },
       };
       var Omega = Omega || config;
+      var startTime = Math.ceil(new Date().getTime() / 1000);
     </script>
     <script
       crossorigin="Anonymous"
@@ -30,6 +31,9 @@
     <link rel="stylesheet" href="./static/buble.css" />
 
     <link rel="stylesheet" href="./static/prism-tomorrow.min.css" />
+    <link rel="preload" href="https://img.shields.io/npm/v/@logicflow/core" as="image">
+    <link rel="preload" href="https://img.shields.io/npm/dm/@logicflow/core" as="image">
+    <link rel="preload" href="https://img.shields.io/npm/l/@logicflow/core" as="image">
   </head>
 
   <body>
@@ -39,7 +43,7 @@
       <a target="_blank" href="https://github.com/didi/LogicFlow">
         <i class="fa fa-github fa-lg"></i> Github
       </a>
-      <a target="_blank" href="https://logic-flow.github.io/docs/examples">
+      <a target="_blank" href="https://site.logic-flow.cn/examples/">
         <i class="fa fa-puzzle-piece fa-lg"></i> Examples
       </a>
       <a href="#/en/">EN</a>
@@ -119,6 +123,17 @@
           language: language === "zh" ? "chinese" : "english",
         },
       };
+      const userAgent = window.navigator.userAgent;
+      const platform = window.navigator.platform;
+      window.onload = function() {
+        const loadingTime = Math.ceil(new Date().getTime() / 1000) - startTime;
+        Omega.trackEvent('tech_user_info', 'tech_urser_info', {
+          language,
+          userAgent,
+          platform,
+          loadingTime,
+        })
+      }
     </script>
     <script src="./static/docsify.min.js"></script>
     <script src="./static/countable.js"></script>
