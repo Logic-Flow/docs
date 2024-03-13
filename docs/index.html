@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var config = {
+        appKey: "omega32096b582a",
+        autoPerformance: true,
+        autoWhiteScreenMonitor: {
+          // 监听的根节点 默认为'body'
+          container: "body",
+          // 监听深度 默认为2 监听到根节点下一层
+          childrenDepth: 2,
+          // 白屏持续时间 单位ms
+          durationSeconds: 3000,
+        },
+      };
+      var Omega = Omega || config;
+      var startTime = Math.ceil(new Date().getTime() / 1000);
+    </script>
+    <script
+      crossorigin="Anonymous"
+      src="//tracker.didistatic.com/static/tracker/latest2x/omega.min.js"
+    ></script>
+    <meta charset="UTF-8" />
+    <title>Documentation · LogicFlow</title>
+    <link rel="icon" type="image/svg+xml" href="./_images/logo.svg" />
+    <link href="./style/common.css" rel="stylesheet" />
+    <link href="./static/vue.css" rel="stylesheet" />
+    <link href="./static/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./static/buble.css" />
+
+    <link rel="stylesheet" href="./static/prism-tomorrow.min.css" />
+    <link rel="preload" href="https://img.shields.io/npm/v/@logicflow/core" as="image">
+    <link rel="preload" href="https://img.shields.io/npm/dm/@logicflow/core" as="image">
+    <link rel="preload" href="https://img.shields.io/npm/l/@logicflow/core" as="image">
+  </head>
+
+  <body>
+    <nav>
+      <a id="a_guide" href="#/zh/guide/start"> 教程 </a>
+      <a id="a_api" href="#/zh/api/logicFlowApi"> API </a>
+      <a target="_blank" href="https://github.com/didi/LogicFlow">
+        <i class="fa fa-github fa-lg"></i> Github
+      </a>
+      <a target="_blank" href="https://site.logic-flow.cn/examples/">
+        <i class="fa fa-puzzle-piece fa-lg"></i> Examples
+      </a>
+      <a href="#/en/">EN</a>
+      <a href="#/zh/">中文</a>
+    </nav>
+
+    <div id="app">
+      <!-- <img src="./_images/1485.gif" />
+    <span style="font-weight: bold;">加载中...</span> -->
+    </div>
+    <script src="./static/docsify-copy-code.min.js"></script>
+    <script src="./static/docsify-edit-on-github.js"></script>
+    <script>
+      const zh =
+        navigator.language.includes("zh") ||
+        window.location.href.includes("zh");
+      const en =
+        navigator.language.includes("en") ||
+        window.location.href.includes("en");
+      const language = zh ? (en ? "en" : "zh") : "en";
+      const guide = document.querySelector("#a_guide");
+      const api = document.querySelector("#a_api");
+      guide.href = `#/${language}/guide/start`;
+      guide.innerText = language === "zh" ? "教程" : "Guide";
+      api.href = `#/${language}/api/logicFlowApi`;
+      window.$docsify = {
+        name: "LogicFlow",
+        repo: "https://github.com/didi/LogicFlow",
+        logo: "./_images/horizontal-logo.png width=200 class='logo'",
+        nameLink: {
+          "/zh/": "#/zh/",
+          "/en/": "#/en/",
+        },
+        formatUpdated: "{YYYY}/{MM}/{DD}",
+        onlyCover: true,
+        auto2top: true,
+        // coverpage: ['/en/', '/zh/'],
+        coverpage: {
+          "/": `./${language}/_coverpage.md`,
+          "/zh/": "_coverpage.md",
+          "/en/": "_coverpage.md",
+        },
+        loadNavbar: true,
+        loadSidebar: true,
+        subMaxLevel: 2,
+        search: {
+          maxAge: 86400000,
+          paths: "auto",
+          placeholder: {
+            "/zh/": "请输入搜索关键字",
+            "/en/": "Type to search",
+          },
+          noData: {
+            "/zh/": "找不到结果",
+            "/en/": "No Results",
+          },
+          pathNamespaces: ["/zh", "/en"],
+          depth: 2,
+        },
+        plugins: [
+          EditOnGithubPlugin.create(
+            "https://github.com/Logic-Flow/docs/tree/master/docs/",
+            null,
+            function (file) {
+              if (file.indexOf("en") === -1) {
+                return "<div class='edit'>📝   编辑</div>";
+              } else {
+                return "<div class='edit'>📝   Edit on github</div>";
+              }
+            }
+          ),
+        ],
+        count: {
+          countable: true,
+          fontsize: "0.9em",
+          color: "rgb(90,90,90)",
+          language: language === "zh" ? "chinese" : "english",
+        },
+      };
+      const userAgent = window.navigator.userAgent;
+      const platform = window.navigator.platform;
+      window.onload = function() {
+        const loadingTime = Math.ceil(new Date().getTime() / 1000) - startTime;
+        Omega.trackEvent('tech_user_info', 'tech_urser_info', {
+          language,
+          userAgent,
+          platform,
+          loadingTime,
+        })
+      }
+    </script>
+    <script src="./static/docsify.min.js"></script>
+    <script src="./static/countable.js"></script>
+    <script src="./static/search.min.js"></script>
+    <script src="./static/docsify-copy-code.min.js"></script>
+    <script src="./static/docsify-pagination.min.js"></script>
+    <script src="./static/prism-typescript.min.js"></script>
+    <script src="./static/prism-powershell.min.js"></script>
+    <script src="./static/prism-jsx.min.js"></script>
+    <script></script>
+  </body>
+</html>

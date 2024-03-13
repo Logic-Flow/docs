@@ -1,0 +1,9 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "description": "文档",
+  "private": true,
+  "scripts": {
+    "serve": "docsify serve"
+  }
+}
