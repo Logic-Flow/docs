@@ -4,7 +4,7 @@ export const comparisonOperators = [
     value: '==='
   },
   {
-    name: '不严格等于',
+    name: '严格不等于',
     value: '!=='
   },
   {
